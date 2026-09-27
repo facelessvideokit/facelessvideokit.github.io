@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Faceless Video Kit turns the AI assistant you already use into a full YouTube production team: niche, channel setup, topic, competitor-informed script, visuals, voice, captions, thumbnail and a finished MP4. You say yes.">
+<meta property="og:title" content="Faceless Video Kit — Your AI assistant makes the whole faceless video. You say yes.">
+<meta property="og:description" content="From channel idea to uploaded video, in one kit. Works with Claude, ChatGPT, Codex, Cursor and Gemini CLI.">
+<meta property="og:image" content="https://facelessvideokit.github.io/og.png">
+<meta property="og:url" content="https://facelessvideokit.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF4D2E'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='white'/%3E%3C/svg%3E">
+<title>Faceless Video Kit</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0B0A0C; --bg2:#121015; --card:#17151B; --line:#2A2630; --line2:#3A3542;
+  --ink:#F5F2EE; --ink2:#C9C3CF; --mute:#8E8797;
+  --hot:#FF4D2E; --hot2:#FF7A45; --gold:#FFC24B; --ok:#3DDC97;
+  --display:"Bricolage Grotesque","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+body{margin:0}img{max-width:100%}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-inline:20px}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.025em;text-wrap:balance;margin:0}
+p{margin:0}
+.dot{color:var(--hot)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hot)}
+.lead{color:var(--ink2);font-size:clamp(17px,1.6vw,19px);max-width:62ch}
+mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gradient(transparent 62%,rgba(255,77,46,.38) 62%)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:-20px;padding:14px 20px;background:rgba(11,10,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid rgba(42,38,48,.6)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none}
+.logo i{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--hot),var(--hot2));display:grid;place-items:center;box-shadow:0 0 18px rgba(255,77,46,.45)}
+.logo i::after{content:"";border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.navlinks{display:flex;gap:26px;font-size:14px;color:var(--ink2)}
+.navlinks a{text-decoration:none}.navlinks a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:700;text-decoration:none;border-radius:999px;transition:transform .15s ease,box-shadow .2s ease}
+.btn-hot{background:linear-gradient(180deg,#FF5A3A,#E83A1C);color:#fff;padding:16px 28px;font-size:17px;box-shadow:0 0 0 1px rgba(255,120,90,.5) inset,0 10px 40px -8px rgba(255,77,46,.7)}
+.btn-hot:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,140,110,.6) inset,0 16px 50px -8px rgba(255,77,46,.85)}
+.btn-sm{padding:10px 18px;font-size:14px}
+.btn-ghost{color:var(--ink);padding:16px 22px;border:1px solid var(--line2);font-size:16px}
+.btn-ghost:hover{border-color:var(--ink2)}
+
+/* hero */
+.hero{position:relative;padding-block:72px 40px}
+.hero::before{content:"";position:absolute;inset:-60px -20px auto;height:620px;background:radial-gradient(600px 320px at 30% 20%,rgba(255,77,46,.22),transparent 70%),radial-gradient(500px 300px at 85% 40%,rgba(255,194,75,.10),transparent 70%);pointer-events:none;z-index:-1}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 14px 6px 8px;font-size:13px;color:var(--ink2);background:rgba(23,21,27,.7)}
+.badge b{background:var(--hot);color:#fff;border-radius:999px;padding:2px 9px;font-size:11px;letter-spacing:.06em;font-family:var(--mono)}
+.hero h1{font-size:clamp(42px,5.1vw,70px);font-weight:800;margin-block:22px 22px}
+.hero h1 .yes{background:linear-gradient(90deg,var(--hot),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;font-size:14px;color:var(--ink2)}
+.chips span{display:inline-flex;align-items:center;gap:7px}
+.chips span::before{content:"";width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+
+/* chat */
+.chat{background:linear-gradient(180deg,#1A171F,#141217);border:1px solid var(--line2);border-radius:22px;padding:18px;box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset;position:relative}
+.chat-top{display:flex;align-items:center;gap:8px;padding:2px 4px 14px;border-bottom:1px solid var(--line);margin-bottom:14px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.chat-top i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.msgs{display:flex;flex-direction:column;gap:10px}
+.m{max-width:88%;padding:11px 14px;border-radius:16px;font-size:14.5px;line-height:1.5}
+.m.ai{background:#221F28;border:1px solid var(--line);border-top-left-radius:6px;color:var(--ink2)}
+.m.ai b{color:var(--ink)}
+.m.me{align-self:flex-end;background:linear-gradient(180deg,#FF5A3A,#E83A1C);color:#fff;font-weight:700;border-top-right-radius:6px;padding:9px 18px}
+.m .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--gold);margin-bottom:3px}
+.chat-note{font-size:12px;color:var(--mute);margin-top:12px;text-align:center}
+@media (prefers-reduced-motion:no-preference){
+  .m{animation:pop .5s ease both}
+  .m:nth-child(2){animation-delay:.15s}.m:nth-child(3){animation-delay:.3s}.m:nth-child(4){animation-delay:.45s}.m:nth-child(5){animation-delay:.6s}.m:nth-child(6){animation-delay:.75s}
+  @keyframes pop{from{transform:translateY(8px)}to{transform:none}}
+}
+
+/* niche strip */
+.strip{margin-inline:-20px;border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;padding-block:16px;margin-top:40px}
+.track{display:flex;gap:40px;width:max-content;font-family:var(--display);font-weight:700;font-size:22px;color:#5E5767;white-space:nowrap}
+.track span::after{content:"•";color:var(--hot);margin-left:40px}
+@media (prefers-reduced-motion:no-preference){.track{animation:slide 40s linear infinite}@keyframes slide{to{transform:translateX(-50%)}}}
+
+/* sections */
+section.block{padding-block:110px 0}
+.head{display:grid;gap:18px;margin-bottom:54px;max-width:780px}
+.head h2{font-size:clamp(36px,4.8vw,62px);font-weight:800}
+.center{text-align:center;margin-inline:auto;justify-items:center}
+
+/* asset */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px}
+.panel h3{font-size:30px;font-weight:700;margin-block:10px 14px}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.pill.g{color:var(--ok);background:rgba(61,220,151,.1);border:1px solid rgba(61,220,151,.25)}
+.pill.r{color:var(--hot2);background:rgba(255,77,46,.1);border:1px solid rgba(255,77,46,.28)}
+.grow{display:flex;align-items:flex-end;gap:6px;height:130px;margin-block:22px 20px;padding:0 4px;border-bottom:1px solid var(--line2)}
+.grow div{flex:1;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--ok),rgba(61,220,151,.15))}
+.grow-cap{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:-12px;margin-bottom:18px}
+.ticks{list-style:none;padding:0;margin:0;display:grid;gap:12px;font-size:15.5px;color:var(--ink2)}
+.ticks li{padding-left:28px;position:relative}
+.ticks li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.ticks b{color:var(--ink)}
+.wall{display:grid;gap:14px;margin-top:22px}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:14.5px;color:var(--ink2)}
+.row em{font-style:normal;font-family:var(--mono);font-size:12.5px;color:var(--hot2);font-variant-numeric:tabular-nums}
+.bar{grid-column:1/-1;height:6px;border-radius:4px;background:#241F29;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--hot),var(--hot2))}
+.total{margin-top:20px;border:1px solid rgba(255,77,46,.35);background:rgba(255,77,46,.07);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.total span{color:var(--ink2);font-size:14px}
+.total strong{font-family:var(--display);font-size:26px;color:var(--hot2);font-variant-numeric:tabular-nums}
+.flip{margin-top:20px;background:linear-gradient(90deg,rgba(255,77,46,.14),rgba(255,194,75,.08));border:1px solid var(--line2);border-radius:22px;padding:28px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.flip .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,4vw,50px);line-height:1;letter-spacing:-.03em}
+.flip .big span{color:var(--gold)}
+.flip p{color:var(--ink2);max-width:60ch}
+
+/* pipeline */
+.phases{display:grid;gap:22px}
+.phase{display:grid;grid-template-columns:200px 1fr;gap:28px;border-top:1px solid var(--line);padding-top:26px}
+.phase-name{position:sticky;top:90px;align-self:start}
+.phase-name .eyebrow{color:var(--mute)}
+.phase-name h3{font-size:34px;font-weight:800;margin-top:6px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
+.step:hover{border-color:rgba(255,77,46,.55);transform:translateY(-3px)}
+.num{font-family:var(--mono);font-size:12px;color:var(--hot);letter-spacing:.08em}
+.step h4{font-family:var(--display);font-size:21px;font-weight:700;margin:0;letter-spacing:-.015em;line-height:1.15}
+.step p{font-size:14.5px;color:var(--ink2);line-height:1.55}
+.out{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line2);font-family:var(--mono);font-size:11.5px;color:var(--gold);line-height:1.5}
+.guard{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guard div{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg2)}
+.guard b{display:block;font-family:var(--display);font-size:18px;margin-bottom:6px}
+.guard p{font-size:14px;color:var(--ink2)}
+
+/* bring */
+.bring{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bring div{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card)}
+.bring .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.bring b{display:block;font-family:var(--display);font-size:19px;margin-block:6px}
+.bring p{font-size:14px;color:var(--ink2)}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin-inline:auto}
+.price{background:var(--card);border:1px solid var(--line2);border-radius:24px;padding:34px;display:flex;flex-direction:column;gap:18px;position:relative}
+.price.best{border-color:rgba(255,77,46,.7);background:linear-gradient(180deg,rgba(255,77,46,.10),var(--card) 45%);box-shadow:0 30px 80px -30px rgba(255,77,46,.45)}
+.price .flag{position:absolute;top:-13px;left:34px;background:var(--hot);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:5px 12px;border-radius:999px}
+.price h3{font-size:22px;font-weight:700}
+.amt{display:flex;align-items:baseline;gap:6px}
+.amt strong{font-family:var(--display);font-size:64px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.amt span{color:var(--mute)}
+.price .sub{color:var(--ink2);font-size:14.5px}
+.price .btn{justify-content:center}
+.inc{list-style:none;padding:0;margin:8px auto 0;max-width:860px;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:15px;color:var(--ink2)}
+.inc li{padding-left:26px;position:relative}
+.inc li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.spots{max-width:860px;margin:26px auto 0;display:flex;gap:10px 26px;flex-wrap:wrap;justify-content:center;font-size:14px;color:var(--mute)}
+.spots b{color:var(--ink)}
+
+/* final */
+.final{margin-block:120px 60px;border-radius:30px;padding:72px 32px;text-align:center;background:radial-gradient(500px 240px at 50% 0%,rgba(255,77,46,.35),transparent 70%),var(--bg2);border:1px solid var(--line2);display:grid;justify-items:center;gap:22px}
+.final h2{font-size:clamp(38px,5.5vw,72px);font-weight:800;max-width:14ch}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .steps{grid-template-columns:1fr 1fr}
+  .phase{grid-template-columns:1fr;gap:16px}
+  .phase-name{position:static}
+  .bring{grid-template-columns:1fr 1fr}
+  .guard{grid-template-columns:1fr}
+  .navlinks{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px;padding-inline:16px}
+  .nav{margin-inline:-16px;padding-inline:16px}
+  .strip{margin-inline:-16px}
+  .hero{padding-block:44px 24px}
+  .duo,.prices,.steps,.bring,.inc{grid-template-columns:1fr}
+  .flip{grid-template-columns:1fr;gap:12px;padding:24px}
+  .panel,.price{padding:24px}
+  section.block{padding-block:80px 0}
+  .final{padding:52px 20px}
+  .btn-hot{width:100%;justify-content:center}
+  .nav .btn-hot{width:auto}
+}
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>Faceless Video Kit</a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#asset">Why faceless</a><a href="#pipeline">How it works</a><a href="#bring">What you need</a><a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn btn-hot btn-sm" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Get the Kit</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="badge"><b>v2.0</b> Channel idea → uploaded video, in one kit</span>
+        <h1>Your AI assistant makes the whole faceless video<span class="dot">.</span><br><span class="yes">You say yes.</span></h1>
+        <p class="lead">Faceless Video Kit turns the AI assistant you already use into a full YouTube production team. It <mark>finds the niche, sets up the channel, picks the topic, writes scripts that learn from your lane's winners</mark>, then builds the visuals, voice, captions, thumbnail and a finished MP4, ready to upload.</p>
+        <div class="ctas">
+          <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Start at $29/mo founder price <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#pipeline">See every step</a>
+        </div>
+        <div class="chips">
+          <span>No camera, no mic</span><span>No editing skills</span><span>No terminal commands</span><span>7-day refund</span>
+        </div>
+      </div>
+
+      <div class="chat" aria-label="Example session">
+        <div class="chat-top"><i></i>Example session · your AI assistant + the Kit</div>
+        <div class="msgs">
+          <div class="m ai"><span class="tag">NICHE GATE</span><br><b>"Retirement money mistakes" passed 6 of 6 gates.</b> Rising demand, room for a new channel. Set up the channel around it?</div>
+          <div class="m me">Yes</div>
+          <div class="m ai"><span class="tag">20 ANGLES READY</span><br>Topic picked from what's rising. Angle #7 is one nobody in your lane has made yet. <b>Write the script for it?</b></div>
+          <div class="m me">Yes</div>
+          <div class="m ai"><span class="tag">SCRIPT LOCKED</span><br>Hook and beat count match the top videos in your lane. <b>Build visuals, voice, captions and the MP4?</b></div>
+          <div class="m me">Yes</div>
+        </div>
+        <p class="chat-note">Illustration of how a session runs. Wording varies by niche.</p>
+      </div>
+    </div>
+
+    <div class="strip" aria-hidden="true">
+      <div class="track">
+        <span>History</span><span>Personal finance</span><span>Retirement</span><span>True crime</span><span>Scams &amp; fraud</span><span>Science explained</span><span>Mysteries</span><span>Business stories</span><span>Mindset</span>
+        <span>History</span><span>Personal finance</span><span>Retirement</span><span>True crime</span><span>Scams &amp; fraud</span><span>Science explained</span><span>Mysteries</span><span>Business stories</span><span>Mindset</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="asset">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Why a faceless channel</span>
+        <h2>Every video you upload is an asset that keeps working<span class="dot">.</span></h2>
+        <p class="lead">A good video gets found in search and suggested next to other videos for years. The catch has always been making them consistently.</p>
+      </div>
+
+      <div class="duo">
+        <div class="panel">
+          <span class="pill g">The upside</span>
+          <h3>A library that compounds</h3>
+          <div class="grow" aria-hidden="true">
+            <div style="height:8%"></div><div style="height:12%"></div><div style="height:15%"></div><div style="height:21%"></div><div style="height:26%"></div><div style="height:34%"></div><div style="height:41%"></div><div style="height:52%"></div><div style="height:63%"></div><div style="height:76%"></div><div style="height:88%"></div><div style="height:100%"></div>
+          </div>
+          <div class="grow-cap" aria-hidden="true"><span>video 1</span><span>more videos, more ways to be found</span><span>video 12</span></div>
+          <ul class="ticks">
+            <li><b>Publish once, found for years.</b> Old uploads keep pulling views while you make new ones.</li>
+            <li><b>No face, no personal brand.</b> The channel is a business asset, not you on camera.</li>
+            <li><b>Runs next to your day job.</b> You make the decisions; the Kit does the production.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <span class="pill r">The problem</span>
+          <h3>The production wall</h3>
+          <p class="lead" style="font-size:15.5px">Most beginners quit before video 10. One faceless video, done by hand, typically takes:</p>
+          <div class="wall">
+            <div class="row">Finding a topic that can win<em>1–2 h</em><span class="bar"><i style="width:30%"></i></span></div>
+            <div class="row">Writing a script that holds attention<em>2–3 h</em><span class="bar"><i style="width:50%"></i></span></div>
+            <div class="row">Images, footage and animated scenes<em>2–3 h</em><span class="bar"><i style="width:50%"></i></span></div>
+            <div class="row">Voiceover and synced captions<em>1–2 h</em><span class="bar"><i style="width:30%"></i></span></div>
+            <div class="row">Editing the timeline, thumbnail, upload<em>2–3 h</em><span class="bar"><i style="width:50%"></i></span></div>
+          </div>
+          <div class="total"><span>Per video, by hand</span><strong>8–13 hours</strong></div>
+        </div>
+      </div>
+
+      <div class="flip">
+        <div class="big">With the Kit,<br>you <span>decide</span><span class="dot">.</span></div>
+        <p>Every one of those jobs is done by your AI assistant, running the Kit's tools on your own computer. Your part is choosing the niche, approving the plan and saying yes at each checkpoint. No editing software to learn, no blank page, no guesswork about what your audience wants.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pipeline">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">How it works</span>
+        <h2>From channel idea to uploaded video. Every step is in the box<span class="dot">.</span></h2>
+        <p class="lead">Nine stages, in order. Other tools start at "type a prompt". The Kit starts before you have a channel and finishes after the video is live.</p>
+      </div>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-name"><span class="eyebrow">Phase 1</span><h3>Plan<span class="dot">.</span></h3></div>
+          <div class="steps">
+            <div class="step"><span class="num">01</span><h4>Find a niche that can win</h4><p>Checks a topic against six gates (demand, competition, earnings potential and more) before you commit. Or give it 1–3 channels you admire and it reverse-engineers their formula.</p><span class="out">→ a go / no-go verdict with the evidence</span></div>
+            <div class="step"><span class="num">02</span><h4>Set up the channel</h4><p>Channel name, description, tags, and prompts for your profile picture and banner. Everything you need on day one.</p><span class="out">→ a launch-ready channel profile</span></div>
+            <div class="step"><span class="num">03</span><h4>Pick the topic and the angle</h4><p>Finds what's rising in your lane right now, then lays out twenty angles on it so you make the version nobody has made yet.</p><span class="out">→ the topic + an angle with room to win</span></div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-name"><span class="eyebrow">Phase 2</span><h3>Make<span class="dot">.</span></h3></div>
+          <div class="steps">
+            <div class="step"><span class="num">04</span><h4>Write a script that learns from your lane</h4><p>Reads the top videos in your niche and matches what works: hook length, number of beats, pacing. Copies of another creator's script are refused.</p><span class="out">→ a script built on proof, not guesses</span></div>
+            <div class="step"><span class="num">05</span><h4>Build the visuals</h4><p>Writes the image prompts, renders them through your image service, pulls matching stock footage, and adds animated charts and captions.</p><span class="out">→ every frame of the video</span></div>
+            <div class="step"><span class="num">06</span><h4>Voice and captions</h4><p>Natural narration from your voice service, with word-level timing so captions and pictures land exactly on the words.</p><span class="out">→ voiceover + synced highlight captions</span></div>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-name"><span class="eyebrow">Phase 3</span><h3>Launch<span class="dot">.</span></h3></div>
+          <div class="steps">
+            <div class="step"><span class="num">07</span><h4>Design the thumbnail</h4><p>Studies the thumbnails already winning your topic, then shapes a concept that stands out next to them before anything is rendered.</p><span class="out">→ a thumbnail made to get clicked</span></div>
+            <div class="step"><span class="num">08</span><h4>Export the finished video</h4><p>A finished MP4 you can upload straight away. Prefer to tweak it? You also get timelines for Final Cut Pro, Premiere Pro and DaVinci Resolve.</p><span class="out">→ MP4, plus an editable timeline</span></div>
+            <div class="step"><span class="num">09</span><h4>Upload and syndicate</h4><p>Title, description, chapters, tags and pinned comment written for you, plus ready posts for Pinterest, Medium, Tumblr and Flipboard to pull in extra traffic.</p><span class="out">→ a complete upload package</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guard">
+        <div><b>It stops instead of guessing.</b><p>If something's missing, the Kit names it and tells your assistant the exact next step. No half-finished videos full of placeholders.</p></div>
+        <div><b>Checked at every step.</b><p>Scripts, images, captions, thumbnails and the upload are each checked before the next step starts, so problems are caught early.</p></div>
+        <div><b>You own everything.</b><p>Every file sits in a folder on your computer. Nothing is installed without your yes, and nothing is ever deleted.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="bring">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">What you need</span>
+        <h2>Your assistant, your services, your channel<span class="dot">.</span></h2>
+        <p class="lead">The Kit works with the tools you choose, so you are never stuck on one provider's prices. Setup is a conversation: your assistant installs what's missing after you say yes.</p>
+      </div>
+      <div class="bring">
+        <div><span class="k">Required</span><b>An AI assistant</b><p>Claude, ChatGPT, Codex, Cursor or Gemini CLI. On macOS, Windows or Linux.</p></div>
+        <div><span class="k">Your choice</span><b>An image service</b><p>Plug in whichever image generator you like. The Kit shows the cost before it spends. There is also a zero-cost-per-frame path.</p></div>
+        <div><span class="k">Your choice</span><b>A voice service</b><p>Any narration service that returns word timings, so captions stay in sync.</p></div>
+        <div><span class="k">Free options</span><b>Research and footage</b><p>YouTube research and stock footage work out of the box with free sources. Paid tools plug in if you already have them.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pricing">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Founder pricing</span>
+        <h2>Lock in the founder price for life<span class="dot">.</span></h2>
+        <p class="lead">Only 100 founder spots. Your price never goes up while you stay subscribed.</p>
+      </div>
+      <div class="prices">
+        <div class="price">
+          <h3>Founder monthly</h3>
+          <div class="amt"><strong>$29</strong><span>/ month</span></div>
+          <p class="sub">Cancel any time. Founder rate kept for as long as you stay.</p>
+          <a class="btn btn-ghost" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Choose monthly</a>
+        </div>
+        <div class="price best">
+          <span class="flag">2 MONTHS FREE</span>
+          <h3>Founder annual</h3>
+          <div class="amt"><strong>$290</strong><span>/ year</span></div>
+          <p class="sub">Works out to about $24 a month. Founder rate kept every renewal.</p>
+          <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Choose annual <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <ul class="inc">
+        <li>All nine stages, niche to syndication</li>
+        <li>Works with Claude, ChatGPT, Codex, Cursor, Gemini CLI</li>
+        <li>Finished MP4 + Final Cut, Premiere, Resolve timelines</li>
+        <li>One-tap updates as new versions ship</li>
+        <li>Hero-channel reverse-engineering</li>
+        <li>One-click bug reports, answered</li>
+      </ul>
+      <div class="spots"><span><b>70</b> founder monthly spots</span><span><b>30</b> founder annual spots</span><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span></div>
+    </div>
+  </section>
+
+  <section class="final">
+    <span class="eyebrow">Your channel starts here</span>
+    <h2>Your first video is one yes away<span class="dot">.</span></h2>
+    <p class="lead">Pick a niche. Say yes. Upload.</p>
+    <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Get the Faceless Video Kit <span aria-hidden="true">→</span></a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Faceless Video Kit</span>
+    <span>Results depend on your niche, consistency and the services you use. YouTube earnings are never guaranteed.</span>
+  </div>
+</footer>
+
+</body>
+</html>
