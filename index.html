@@ -173,6 +173,23 @@ section.block{padding-block:110px 0}
 footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;color:var(--mute)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
+/* earnings */
+.earn{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ec{background:linear-gradient(180deg,#1B1720,var(--card));border:1px solid var(--line2);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.ec::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,77,46,.18),transparent 70%);pointer-events:none}
+.ec .fmt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.ec .v{font-family:var(--display);font-weight:800;font-size:clamp(44px,5vw,60px);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ec .v small{font-size:.38em;font-weight:700;color:var(--mute);letter-spacing:0;margin-left:6px}
+.ec .money{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ec .money strong{font-family:var(--display);font-size:30px;color:var(--gold);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ec .money span{font-size:13px;color:var(--mute)}
+.ec .t{font-weight:700;font-size:15.5px;line-height:1.4;color:var(--ink)}
+.ec .meta2{display:flex;flex-wrap:wrap;gap:6px}
+.ec .meta2 span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
+.ec .meta2 span b{color:var(--ok)}
+.ec a{margin-top:auto;font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;border-top:1px solid var(--line);padding-top:12px}
+.ec a:hover{color:var(--hot)}
+.earn-note{font-size:12.5px;color:var(--mute);margin-top:16px;max-width:80ch}
 /* proof */
 .proofgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .pv{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
@@ -244,6 +261,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media (max-width:960px){
   .demo{grid-template-columns:1fr}
+  .earn{grid-template-columns:1fr 1fr}
   .outp{order:-1}
   .hero .wrap{grid-template-columns:1fr;gap:40px}
   .steps{grid-template-columns:1fr 1fr}
@@ -257,6 +275,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .demo{padding:12px}
   .tiles{grid-template-columns:1fr}
   .proofgrid{grid-template-columns:1fr}
+  .earn{grid-template-columns:1fr}
   body{font-size:16px;padding-inline:16px}
   .nav{margin-inline:-16px;padding-inline:16px}
   .strip{margin-inline:-16px}
@@ -388,6 +407,43 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
             <div class="meta"><span class="k">Animated scenes</span><b>Data that moves</b><div class="tags"><span>Animated bar chart</span><span>Captions</span><span>Callout plate</span></div></div>
           </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block" id="earning">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">What the format earns</span>
+        <h2>Small faceless channels. Millions of views<span class="dot">.</span></h2>
+        <p class="lead">Three faceless videos from 2026, each on a channel under 70K subscribers. Every one is a format the Kit makes: AI stills, stills with text, and footage-led.</p>
+      </div>
+      <div class="earn">
+        <div class="ec">
+          <span class="fmt">AI stills · long documentary</span>
+          <div class="v">2.84M<small>views</small></div>
+          <div class="money"><strong>≈ $40K</strong><span>ad revenue · est. range $22K–$59K</span></div>
+          <p class="t">4.5 Billion Years of Earth's History in JUST 1 Hour</p>
+          <div class="meta2"><span>Wild Horizons · 68K subs</span><span><b>12.6×</b> the channel's usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=Me4hxOX8ULo">Watch on YouTube →</a>
+        </div>
+        <div class="ec">
+          <span class="fmt">Stills + text · money psychology</span>
+          <div class="v">2.05M<small>views</small></div>
+          <div class="money"><strong>≈ $8.9K</strong><span>ad revenue · est. range $1.4K–$16K</span></div>
+          <p class="t">Why Your Brain Never Feels Rich Enough (And How to Rewire It)</p>
+          <div class="meta2"><span>The Affluent Mind · 43.6K subs</span><span><b>44×</b> the channel's usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=dI64rTyvAn0">Watch on YouTube →</a>
+        </div>
+        <div class="ec">
+          <span class="fmt">Footage-led · factory process</span>
+          <div class="v">701K<small>views</small></div>
+          <div class="money"><strong>≈ $1.4K</strong><span>ad revenue · est. range up to $3.2K</span></div>
+          <p class="t">Inside a Giant Coconut Factory: From Whole Coconuts to Canned Coconut Milk</p>
+          <div class="meta2"><span>Process Lab · 7.6K subs</span><span><b>15×</b> the channel's usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=5o40dZSubNo">Watch on YouTube →</a>
+        </div>
+      </div>
+      <p class="earn-note">Not made by us or with the Kit. Shown as examples of what these formats can do. Views as of 28 Sep 2026; earnings are NexLev estimates of YouTube ad revenue only. Results vary and are not guaranteed.</p>
     </div>
   </section>
 
