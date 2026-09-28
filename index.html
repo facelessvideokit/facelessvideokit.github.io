@@ -231,8 +231,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .tile.on p{opacity:1}
 .tile .thumbs{display:flex;gap:6px;margin-top:6px;opacity:0;transition:opacity .4s}
 .tile.on .thumbs{opacity:1}
-.tile .thumbs i{flex:1;aspect-ratio:16/9;border-radius:6px;background:var(--tg);position:relative;overflow:hidden}
-.tile .thumbs i::after{content:attr(data-t);position:absolute;left:6%;top:10%;font-family:var(--display);font-weight:800;font-size:9px;line-height:1;color:#fff;font-style:normal;max-width:70%;text-shadow:0 1px 4px #000}
+.tile .thumbs .th{flex:1;aspect-ratio:16/9;border-radius:7px;position:relative;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 16px -8px rgba(0,0,0,.8)}
+.tile .thumbs .th svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tile .thumbs .th.b svg{transform:scale(1.55);transform-origin:78% 55%}
+.tile .thumbs .th::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.05) 70%);z-index:1}
+.tile .thumbs .th span{position:absolute;left:7%;top:50%;transform:translateY(-50%);z-index:2;max-width:62%;font-family:var(--display);font-weight:800;font-size:clamp(14px,1.6vw,18px);line-height:.96;letter-spacing:-.01em;color:#fff;text-transform:uppercase;text-shadow:0 2px 0 #000,0 0 10px rgba(0,0,0,.8)}
+.tile .thumbs .th span em{font-style:normal;color:var(--gold)}
+.tile .thumbs .th.b span em{color:#FF5A3A}
 .demo-note{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
 .done-pill{display:none;align-items:center;gap:8px;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--ok);letter-spacing:.06em}
 .demo.finished .done-pill{display:flex}
@@ -348,7 +353,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div class="tiles">
             <div class="tile" id="tl0"><span class="k">Hook · first line</span><p id="dHook"></p></div>
             <div class="tile" id="tl1"><span class="k">Visual style</span><p id="dLook"></p></div>
-            <div class="tile" id="tl2"><span class="k">Thumbnail · 2 options</span><div class="thumbs" id="dThumbs"><i></i><i></i></div></div>
+            <div class="tile" id="tl2"><span class="k">Thumbnail · 2 options</span><div class="thumbs" id="dThumbs"><div class="th a"></div><div class="th b"></div></div></div>
             <div class="tile" id="tl3"><span class="k">Output</span><p id="dOut"></p></div>
           </div>
           <div class="done-pill" id="dDone">VIDEO READY · UPLOAD PACKAGE WRITTEN</div>
@@ -593,7 +598,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     $("dHook").textContent="“"+n.hook+"”";
     $("dLook").textContent=n.look;
     $("dOut").textContent=n.out;
-    var th=$("dThumbs").children;for(var k=0;k<2;k++){th[k].style.setProperty("--tg",n.tg);th[k].setAttribute("data-t",n.tt[k])}
+    var th=$("dThumbs").children;for(var k=0;k<2;k++){var w=n.tt[k].split(" "),last=w.pop();th[k].innerHTML=n.scene.replace(/id="(\w+)"/g,'id="$1_t'+k+'"').replace(/url\(#(\w+)\)/g,'url(#$1_t'+k+')')+"<span>"+(w.length?w.join(" ")+" ":"")+"<em>"+last+"</em></span>"}
   }
   function setStage(k,state){var el=$("st"+k);if(el)el.className=state}
   function effects(k,on){
