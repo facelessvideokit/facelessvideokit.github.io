@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Faceless Video Kit turns the AI assistant you already use into a full YouTube production team: niche, channel setup, topic, competitor-informed script, visuals, voice, captions, thumbnail and a finished MP4. You say yes.">
-<meta property="og:title" content="Faceless Video Kit — Your AI assistant makes the whole faceless video. You say yes.">
-<meta property="og:description" content="From channel idea to uploaded video, in one kit. Works with Claude, ChatGPT, Codex, Cursor and Gemini CLI.">
+<meta name="description" content="Make faceless YouTube videos without editing. A download that plugs into ChatGPT or Claude: pick a topic, get the script, voice, visuals, captions, thumbnail and a finished MP4.">
+<meta property="og:title" content="Faceless Video Kit — Make faceless YouTube videos without editing">
+<meta property="og:description" content="Pick a topic. Your AI assistant makes the script, voice, visuals, captions, thumbnail and a finished MP4. Works with ChatGPT and Claude.">
 <meta property="og:image" content="https://facelessvideokit.github.io/og.png">
 <meta property="og:url" content="https://facelessvideokit.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF4D2E'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='white'/%3E%3C/svg%3E">
-<title>Faceless Video Kit</title>
+<title>Faceless Video Kit · Make faceless YouTube videos without editing</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,22 +69,17 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .chips span{display:inline-flex;align-items:center;gap:7px}
 .chips span::before{content:"";width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
 
-/* chat */
-.chat{background:linear-gradient(180deg,#1A171F,#141217);border:1px solid var(--line2);border-radius:22px;padding:18px;box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset;position:relative}
-.chat-top{display:flex;align-items:center;gap:8px;padding:2px 4px 14px;border-bottom:1px solid var(--line);margin-bottom:14px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-.chat-top i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
-.msgs{display:flex;flex-direction:column;gap:10px}
-.m{max-width:88%;padding:11px 14px;border-radius:16px;font-size:14.5px;line-height:1.5}
-.m.ai{background:#221F28;border:1px solid var(--line);border-top-left-radius:6px;color:var(--ink2)}
-.m.ai b{color:var(--ink)}
-.m.me{align-self:flex-end;background:linear-gradient(180deg,#FF5A3A,#E83A1C);color:#fff;font-weight:700;border-top-right-radius:6px;padding:9px 18px}
-.m .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--gold);margin-bottom:3px}
-.chat-note{font-size:12px;color:var(--mute);margin-top:12px;text-align:center}
-@media (prefers-reduced-motion:no-preference){
-  .m{animation:pop .5s ease both}
-  .m:nth-child(2){animation-delay:.15s}.m:nth-child(3){animation-delay:.3s}.m:nth-child(4){animation-delay:.45s}.m:nth-child(5){animation-delay:.6s}.m:nth-child(6){animation-delay:.75s}
-  @keyframes pop{from{transform:translateY(8px)}to{transform:none}}
-}
+/* hero video + 3 steps */
+.herovid{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+.herovid video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.herovid .live{position:absolute;left:12px;top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;background:rgba(0,0,0,.72);color:#fff;padding:5px 10px;border-radius:999px}
+.herovid-note{font-size:12.5px;color:var(--mute);margin-top:10px;text-align:center}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px;padding:0;list-style:none}
+.steps3 li{border:1px solid var(--line2);border-radius:14px;padding:12px 14px;background:rgba(23,21,27,.7);font-size:14.5px;color:var(--ink2)}
+.steps3 li b{display:block;color:var(--ink);font-size:16px}
+.steps3 li span{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.08em}
+.fine{font-size:13.5px;color:var(--ink2);margin-top:12px}
+@media (max-width:520px){.steps3{grid-template-columns:1fr}}
 
 /* niche strip */
 .strip{margin-inline:-20px;border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;padding-block:16px;margin-top:40px}
@@ -314,29 +309,30 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="badge"><b>v2.0</b> Channel idea → uploaded video, in one kit</span>
-        <h1>Your AI assistant makes the whole faceless video<span class="dot">.</span><br><span class="yes">You say yes.</span></h1>
-        <p class="lead">Faceless Video Kit turns the AI assistant you already use into a full YouTube production team. It <mark>finds the niche, sets up the channel, picks the topic, writes scripts that learn from your lane's winners</mark>, then builds the visuals, voice, captions, thumbnail and a finished MP4, ready to upload.</p>
+        <span class="badge"><b>FOR YOUTUBE</b> Works inside ChatGPT or Claude</span>
+        <h1>Make faceless YouTube videos<br><span class="yes">without editing.</span></h1>
+        <p class="lead">Faceless Video Kit is a download that plugs into <mark>ChatGPT or Claude</mark>. Tell it a topic. It writes the script and makes the voice, visuals, captions, thumbnail and a <mark>finished MP4, ready to upload</mark>.</p>
+        <ol class="steps3">
+          <li><span>1 · YOU</span><b>Pick a topic</b>or a channel you like</li>
+          <li><span>2 · YOUR AI</span><b>Builds the video</b>script, voice, visuals</li>
+          <li><span>3 · YOU GET</span><b>A finished MP4</b>plus title and thumbnail</li>
+        </ol>
         <div class="ctas">
-          <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Start at $29/mo founder price <span aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost" href="#pipeline">See every step</a>
+          <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Get it · $29/mo founder price <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
+        <p class="fine">Plus your own AI credits, about $1 a video · 7-day refund · cancel anytime</p>
         <div class="chips">
-          <span>No camera, no mic</span><span>No editing skills</span><span>No terminal commands</span><span>7-day refund</span>
+          <span>No camera, no mic</span><span>No editing skills</span><span>No terminal commands</span>
         </div>
       </div>
 
-      <div class="chat" aria-label="Example session">
-        <div class="chat-top"><i></i>Example session · your AI assistant + the Kit</div>
-        <div class="msgs">
-          <div class="m ai"><span class="tag">NICHE GATE</span><br><b>"Retirement money mistakes" passed 6 of 6 gates.</b> Rising demand, room for a new channel. Set up the channel around it?</div>
-          <div class="m me">Yes</div>
-          <div class="m ai"><span class="tag">20 ANGLES READY</span><br>Topic picked from what's rising. Angle #7 is one nobody in your lane has made yet. <b>Write the script for it?</b></div>
-          <div class="m me">Yes</div>
-          <div class="m ai"><span class="tag">SCRIPT LOCKED</span><br>Hook and beat count match the top videos in your lane. <b>Build visuals, voice, captions and the MP4?</b></div>
-          <div class="m me">Yes</div>
+      <div>
+        <div class="herovid">
+          <video src="proof/hero_loop.mp4" poster="proof/hero_loop.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Clips from videos the Kit made"></video>
+          <span class="live">MADE BY THE KIT</span>
         </div>
-        <p class="chat-note">Illustration of how a session runs. Wording varies by niche.</p>
+        <p class="herovid-note">Real clips from our own channels, made by the same pipeline that powers the Kit.</p>
       </div>
     </div>
 
