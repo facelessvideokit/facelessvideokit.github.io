@@ -299,6 +299,25 @@ whop.setScope("biz_U40fQX45fci3MA");
 whop.track("page");
 </script>
 <!-- End Whop Pixel -->
+<style id="fvk-checkout-css">
+.co{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(6,5,8,.78);backdrop-filter:blur(6px)}
+.co[hidden]{display:none!important}
+.co-box{width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--bg2);border:1px solid var(--line2);border-radius:18px;padding:20px 18px 18px;display:grid;gap:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.co-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.co-top b{font-family:var(--display);font-size:20px;color:var(--ink)}
+.co-x{background:none;border:1px solid var(--line2);color:var(--ink2);border-radius:999px;width:36px;height:36px;font-size:18px;cursor:pointer}
+.co-x:focus-visible,.co-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.co-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.co-tabs button{font:600 15px/1.25 var(--body);text-align:left;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
+.co-tabs button small{font-weight:500;font-size:12px;color:var(--mute)}
+.co-tabs button[aria-pressed="true"]{border-color:var(--hot);color:var(--ink);box-shadow:0 0 0 1px var(--hot) inset}
+.co-pane{min-height:420px}
+.co-wait{color:var(--mute);font-size:14px;padding:30px 4px;text-align:center}
+.co-foot{font-size:12px;color:var(--mute);text-align:center;margin:0}
+.co-note{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:101;max-width:calc(100% - 32px);background:var(--card);border:1px solid var(--ok);color:var(--ink);padding:12px 16px;border-radius:12px;font-size:15px}
+.co-note.err{border-color:var(--hot)}
+html.co-open,html.co-open body{overflow:hidden}
+</style>
 </head>
 <body>
 
@@ -309,7 +328,7 @@ whop.track("page");
     <nav class="navlinks" aria-label="Sections">
       <a href="#demo">Demo</a><a href="#new">New</a><a href="#proof">Real videos</a><a href="#asset">Why faceless</a><a href="#pipeline">How it works</a><a href="#bring">What you need</a><a href="#pricing">Pricing</a>
     </nav>
-    <a class="btn btn-hot btn-sm" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Get the Kit</a>
+    <a class="btn btn-hot btn-sm" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit</a>
   </div>
 </header>
 
@@ -326,7 +345,7 @@ whop.track("page");
           <li><span>3 · YOU GET</span><b>A finished MP4</b><i>plus title and thumbnail</i></li>
         </ol>
         <div class="ctas">
-          <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Get it · $29/mo founder price <span aria-hidden="true">→</span></a>
+          <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo founder price</span> <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine">Plus the AI services you choose. You see the cost before anything is spent · 7-day refund · cancel anytime</p>
@@ -594,14 +613,14 @@ whop.track("page");
           <h3>Founder monthly</h3>
           <div class="amt"><strong>$29</strong><span>/ month</span></div>
           <p class="sub">Cancel any time. Founder rate kept for as long as you stay.</p>
-          <a class="btn btn-ghost" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Choose monthly</a>
+          <a class="btn btn-ghost" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Choose monthly</a>
         </div>
         <div class="price best">
           <span class="flag">2 MONTHS FREE</span>
           <h3>Founder annual</h3>
           <div class="amt"><strong>$290</strong><span>/ year</span></div>
           <p class="sub">Works out to about $24 a month. Founder rate kept every renewal.</p>
-          <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Choose annual <span aria-hidden="true">→</span></a>
+          <a class="btn btn-hot" href="https://whop.com/checkout/plan_BvpNYKOD7dBxd" data-buy="annual">Choose annual <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <ul class="inc">
@@ -620,7 +639,7 @@ whop.track("page");
     <span class="eyebrow">Your channel starts here</span>
     <h2>Your first video is one yes away<span class="dot">.</span></h2>
     <p class="lead">Pick a niche. Say yes. Upload.</p>
-    <a class="btn btn-hot" href="https://whop.com/facelessvideokit/products/faceless-video-kit/">Get the Faceless Video Kit <span aria-hidden="true">→</span></a>
+    <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Faceless Video Kit <span aria-hidden="true">→</span></a>
   </section>
 </main>
 
@@ -741,5 +760,59 @@ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){do
 </script>
 
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "71cb4d2fe0a24762b6f43cdfb0e374bb"}'></script><!-- End Cloudflare Web Analytics -->
+<div class="co" id="co" role="dialog" aria-modal="true" aria-labelledby="co-title" hidden>
+  <div class="co-box">
+    <div class="co-top"><b id="co-title">Get the Faceless Video Kit</b><button class="co-x" id="co-x" type="button" aria-label="Close checkout">×</button></div>
+    <div class="co-tabs" role="group" aria-label="Plan">
+      <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Founder price, kept for life</small></button>
+      <button type="button" data-plan-tab="annual" aria-pressed="false"><span data-price="annual">$290 / year</span><small data-note="annual">Founder price, 2 months free</small></button>
+    </div>
+    <div class="co-pane" id="co-pane"><p class="co-wait" id="co-wait">Loading secure checkout…</p></div>
+    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Cancel any time</p>
+  </div>
+</div>
+<script id="fvk-plans">window.FVK_PLANS={"monthly":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29 / month","short":"$29/mo founder price","note":"Founder price, kept for life"},"annual":{"id":"plan_BvpNYKOD7dBxd","price":"$290 / year","short":"$290/yr founder price","note":"Founder price, 2 months free"}};</script>
+<script>
+(function(){
+  var P=window.FVK_PLANS, co=document.getElementById('co'), pane=document.getElementById('co-pane'),
+      wait=document.getElementById('co-wait'), loaded=false, current='monthly', lastFocus=null;
+  var RETURN=location.origin+location.pathname+'?checkout=done';
+  function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id;}
+  // keep every price label and fallback link in step with the plan block
+  document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
+    if(k==='monthly-short'){el.textContent=P.monthly.short}else if(P[k]){el.textContent=P[k].price}});
+  document.querySelectorAll('[data-note]').forEach(function(el){var k=el.getAttribute('data-note');if(P[k])el.textContent=P[k].note});
+  document.querySelectorAll('a[data-buy]').forEach(function(a){a.href=checkoutUrl(a.getAttribute('data-buy'))});
+  function show(k){current=k;
+    document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
+    ['monthly','annual'].forEach(function(n){var c=document.getElementById('wco-'+n);if(c)c.hidden=(n!==k)});}
+  function load(){if(loaded)return;loaded=true;
+    ['monthly','annual'].forEach(function(n){var d=document.createElement('div');d.id='wco-'+n;
+      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);
+      d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');
+      d.hidden=(n!==current);pane.appendChild(d);});
+    var s=document.createElement('script');s.src='https://js.whop.com/static/checkout/loader.js';s.async=true;
+    s.onerror=function(){location.href=checkoutUrl(current)};document.head.appendChild(s);
+    // if Whop's checkout hasn't drawn after 10 s, send the buyer to the same plan's checkout page
+    setTimeout(function(){if(!pane.querySelector('iframe')){location.href=checkoutUrl(current)}else{wait.hidden=true}},10000);
+    wait.hidden=false;pane.insertBefore(wait,pane.firstChild);
+    // hide "Loading" once Whop's form has drawn (its frame grows past a stub height)
+    var poll=setInterval(function(){var f=pane.querySelector('#wco-'+current+' iframe');if(f&&f.offsetHeight>150){wait.hidden=true;clearInterval(poll)}},250);}
+  function open(k){lastFocus=document.activeElement;co.hidden=false;document.documentElement.classList.add('co-open');show(k);load();
+    document.getElementById('co-x').focus();}
+  function close(){co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
+  document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
+    if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
+  document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-plan-tab'))})});
+  document.getElementById('co-x').addEventListener('click',close);
+  co.addEventListener('click',function(e){if(e.target===co)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!co.hidden)close()});
+  var q=new URLSearchParams(location.search);
+  if(q.get('checkout')==='done'){var n=document.createElement('div');var ok=q.get('status')!=='error';
+    n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
+    n.textContent=ok?"You're in. Whop has emailed your access and the download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
+    document.body.appendChild(n);history.replaceState(null,'',location.pathname);setTimeout(function(){n.remove()},12000);}
+})();
+</script>
 </body>
 </html>
