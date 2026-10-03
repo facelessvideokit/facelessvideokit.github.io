@@ -147,7 +147,7 @@ section.block{padding-block:110px 0}
 .bring p{font-size:14px;color:var(--ink2)}
 
 /* pricing */
-.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1180px;margin-inline:auto}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin-inline:auto}
 .price{background:var(--card);border:1px solid var(--line2);border-radius:24px;padding:34px;display:flex;flex-direction:column;gap:18px;position:relative}
 .price.best{border-color:rgba(255,77,46,.7);background:linear-gradient(180deg,rgba(255,77,46,.10),var(--card) 45%);box-shadow:0 30px 80px -30px rgba(255,77,46,.45)}
 .price .flag{position:absolute;top:-13px;left:34px;background:var(--hot);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:5px 12px;border-radius:999px}
@@ -307,7 +307,7 @@ whop.track("page");
 .co-top b{font-family:var(--display);font-size:20px;color:var(--ink)}
 .co-x{background:none;border:1px solid var(--line2);color:var(--ink2);border-radius:999px;width:36px;height:36px;font-size:18px;cursor:pointer}
 .co-x:focus-visible,.co-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.co-tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.co-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .co-tabs button{font:600 15px/1.25 var(--body);text-align:left;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
 .co-tabs button small{font-weight:500;font-size:12px;color:var(--mute)}
 .co-tabs button[aria-pressed="true"]{border-color:var(--hot);color:var(--ink);box-shadow:0 0 0 1px var(--hot) inset}
@@ -345,7 +345,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <li><span>3 · YOU GET</span><b>A finished MP4</b><i>plus title and thumbnail</i></li>
         </ol>
         <div class="ctas">
-          <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo founder price</span> <span aria-hidden="true">→</span></a>
+          <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine">Plus the AI services you choose. You see the cost before anything is spent · 7-day refund · cancel anytime</p>
@@ -604,30 +604,24 @@ html.co-open,html.co-open body{overflow:hidden}
   <section class="block" id="pricing">
     <div class="wrap">
       <div class="head center">
-        <span class="eyebrow">Founder pricing</span>
-        <h2>Lock in the founder price for life<span class="dot">.</span></h2>
-        <p class="lead">Only 100 founder spots on monthly and annual, and 50 on lifetime. Your price never goes up.</p>
+        <span class="eyebrow">Pricing</span>
+        <h2>Two ways to get it<span class="dot">.</span></h2>
+        <p class="lead">Monthly, or pay once and keep it. Same Kit, same updates. No price rises planned.</p>
       </div>
       <div class="prices">
         <div class="price">
-          <h3>Founder monthly</h3>
+          <h3>Monthly</h3>
           <div class="amt"><strong>$29</strong><span>/ month</span></div>
-          <p class="sub">Cancel any time. Founder rate kept for as long as you stay.</p>
+          <p class="sub">Cancel any time.</p>
           <a class="btn btn-ghost" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Choose monthly</a>
         </div>
         <div class="price best">
-          <span class="flag">2 MONTHS FREE</span>
-          <h3>Founder annual</h3>
-          <div class="amt"><strong>$290</strong><span>/ year</span></div>
-          <p class="sub">Works out to about $24 a month. Founder rate kept every renewal.</p>
-          <a class="btn btn-hot" href="https://whop.com/checkout/plan_BvpNYKOD7dBxd" data-buy="annual">Choose annual <span aria-hidden="true">→</span></a>
-        </div>
-        <!--lifetime--><div class="price">
-          <h3>Founder lifetime</h3>
+          <span class="flag">PAY ONCE</span>
+          <h3>Lifetime</h3>
           <div class="amt"><strong>$99</strong><span>once</span></div>
-          <p class="sub">Pay once, keep it for life, updates included. First 50 buyers only.</p>
-          <a class="btn btn-ghost" href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime">Choose lifetime</a>
-        </div><!--/lifetime-->
+          <p class="sub">Pay once, keep it for life. Updates included.</p>
+          <a class="btn btn-hot" href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime">Choose lifetime <span aria-hidden="true">→</span></a>
+        </div>
       </div>
       <ul class="inc">
         <li>All nine stages, niche to syndication</li>
@@ -637,7 +631,7 @@ html.co-open,html.co-open body{overflow:hidden}
         <li>Hero-channel reverse-engineering</li>
         <li>One-click bug reports, answered</li>
       </ul>
-      <div class="spots"><span><b>70</b> founder monthly spots</span><span><b>30</b> founder annual spots</span><!--lifetime--><span><b>50</b> lifetime spots</span><!--/lifetime--><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span></div>
+      <div class="spots"><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span></div>
     </div>
   </section>
 
@@ -770,15 +764,14 @@ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){do
   <div class="co-box">
     <div class="co-top"><b id="co-title">Get the Faceless Video Kit</b><button class="co-x" id="co-x" type="button" aria-label="Close checkout">×</button></div>
     <div class="co-tabs" role="group" aria-label="Plan">
-      <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Founder price, kept for life</small></button>
-      <button type="button" data-plan-tab="annual" aria-pressed="false"><span data-price="annual">$290 / year</span><small data-note="annual">Founder price, 2 months free</small></button>
-      <!--lifetime--><button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button><!--/lifetime-->
+      <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Cancel any time</small></button>
+      <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
     </div>
     <div class="co-pane" id="co-pane"><p class="co-wait" id="co-wait">Loading secure checkout…</p></div>
-    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly and annual cancel any time</p>
+    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly cancels any time</p>
   </div>
 </div>
-<script id="fvk-plans">window.FVK_PLANS={"monthly":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29 / month","short":"$29/mo founder price","note":"Founder price, kept for life"},"annual":{"id":"plan_BvpNYKOD7dBxd","price":"$290 / year","short":"$290/yr founder price","note":"Founder price, 2 months free"},"lifetime":{"id":"plan_hPS32cvM4Glzd","price":"$99 once","short":"$99 once, lifetime","note":"Pay once, yours for life"}};</script>
+<script id="fvk-plans">window.FVK_PLANS={"monthly":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29 / month","short":"$29/mo","note":"Cancel any time"},"lifetime":{"id":"plan_hPS32cvM4Glzd","price":"$99 once","short":"$99 once","note":"Pay once, yours for life"}};</script>
 <script>
 (function(){
   var P=window.FVK_PLANS, co=document.getElementById('co'), pane=document.getElementById('co-pane'),
