@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Make faceless YouTube videos without editing. A download that plugs into Claude or ChatGPT: pick a niche, and it makes the script, voice, visuals, captions, thumbnail, Shorts and a finished MP4, every day on autopilot if you want, and publishes on your yes.">
-<meta property="og:title" content="Faceless Video Kit — Make faceless YouTube videos without editing">
+<meta property="og:title" content="Faceless Video Kit — Faceless YouTube videos and Shorts, made on autopilot">
 <meta property="og:description" content="Pick a topic. Your AI assistant makes the script, voice, visuals, captions, thumbnail and a finished MP4. Works with Claude and ChatGPT.">
 <meta property="og:image" content="https://facelessvideokit.github.io/og.png">
 <meta property="og:url" content="https://facelessvideokit.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF4D2E'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='white'/%3E%3C/svg%3E">
-<title>Faceless Video Kit · Make faceless YouTube videos without editing</title>
+<title>Faceless Video Kit · Faceless YouTube videos and Shorts on autopilot</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -400,6 +400,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .ba figure{margin:0;display:grid;gap:5px}
 .ba img,.ba video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line2);display:block;background:#000}
 .ba figcaption{font-size:12px;color:var(--ink2)}
+
+/* first screen: video + Short + autopilot card */
+.hstack{position:relative;padding:34px 0 64px}
+.hs-main{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8);width:86%}
+.hs-main video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.hstack .live{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;background:rgba(0,0,0,.72);color:#fff;padding:5px 9px;border-radius:999px}
+.hs-short{position:absolute;right:0;bottom:0;width:31%;aspect-ratio:9/16;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 30px 60px -20px rgba(0,0,0,.9)}
+.hs-short video{width:100%;height:100%;object-fit:cover;display:block}
+.hs-short .live{top:auto;bottom:8px;left:8px;background:var(--hot)}
+.hs-ap{position:absolute;left:-6px;bottom:6px;width:56%;max-width:270px;background:rgba(23,21,27,.94);border:1px solid rgba(255,77,46,.55);border-radius:16px;padding:12px 14px;display:grid;gap:6px;backdrop-filter:blur(8px);box-shadow:0 20px 50px -20px rgba(0,0,0,.9)}
+.hs-ap .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.hs-ap .r{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2)}
+.hs-ap .r b{color:var(--ink);font-variant-numeric:tabular-nums}
+.hs-ap .m{height:6px;border-radius:4px;background:#241F29;overflow:hidden}
+.hs-ap .m i{display:block;height:100%;width:38%;background:linear-gradient(90deg,var(--ok),#9BE8C4)}
+.hs-ap .w{font-size:12.5px;color:var(--gold)}
+@media (max-width:960px){.hero .wrap>div:has(.hstack){order:-1}}
+@media (max-width:640px){.hstack{padding:4px 0 58px}.hero .wrap{gap:18px}.herovid-note{margin-top:4px}.hs-main{width:92%}.hs-ap{width:62%;padding:10px 12px}.hs-ap .r{font-size:12px}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -445,13 +463,13 @@ html.co-open,html.co-open body{overflow:hidden}
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="badge"><b>NEW · AUTOPILOT</b> Works inside Claude or ChatGPT</span>
-        <h1>Make faceless YouTube videos<br><span class="yes">without editing.</span></h1>
-        <p class="lead">Faceless Video Kit is a download that plugs into <mark>Claude, or ChatGPT on a paid plan</mark>. Tell it a topic. It writes the script and makes the voice, visuals, captions, thumbnail and a <mark>finished MP4, ready to upload</mark>. Turn on autopilot and videos get made while you're at work: you tick the topics and say yes to publish.</p>
+        <span class="badge"><b>FOR YOUTUBE</b> Works inside Claude or ChatGPT</span>
+        <h1>Faceless YouTube videos <span class="yes">and Shorts, made on autopilot.</span></h1>
+        <p class="lead">Faceless Video Kit is a download that plugs into <mark>Claude or ChatGPT</mark>. You pick the topics and say yes. Your AI assistant makes the script, voice, visuals, captions, thumbnail and <mark>finished video</mark>, cuts up to 5 <mark>Shorts</mark>, and posts them.</p>
         <ol class="steps3">
-          <li><span>1 · YOU</span><b>Pick a topic</b><i>or a channel you like</i></li>
-          <li><span>2 · YOUR AI</span><b>Builds the video</b><i>script, voice, visuals</i></li>
-          <li><span>3 · YOU GET</span><b>A finished MP4</b><i>plus title and thumbnail</i></li>
+          <li><span>1 · YOU</span><b>Tick topics</b><i>once a week</i></li>
+          <li><span>2 · YOUR AI</span><b>Makes it all</b><i>video, thumbnail, Shorts</i></li>
+          <li><span>3 · YOU</span><b>Say yes</b><i>it posts them for you</i></li>
         </ol>
         <div class="ctas">
           <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
@@ -464,11 +482,18 @@ html.co-open,html.co-open body{overflow:hidden}
       </div>
 
       <div>
-        <div class="herovid">
-          <video src="proof/hero_loop.mp4" poster="proof/hero_loop.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Clips from videos the Kit made"></video>
-          <span class="live">MADE BY THE KIT</span>
+        <div class="hstack">
+          <div class="hs-main"><video src="v2/style_fantasy.mp4" poster="v2/style_fantasy.jpg" muted loop playsinline autoplay preload="metadata" aria-label="A video the Kit made"></video><span class="live">VIDEO · MADE BY THE KIT</span></div>
+          <div class="hs-short"><video src="v2/short_dragon.mp4" poster="v2/short_dragon.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Its Short"></video><span class="live">ITS SHORT</span></div>
+          <div class="hs-ap" aria-label="Example autopilot week">
+            <span class="k">Autopilot · this week</span>
+            <div class="r"><span>Videos made</span><b>3</b></div>
+            <div class="r"><span>Spent</span><b>$9.40 of $25</b></div>
+            <div class="m"><i></i></div>
+            <div class="w">1 waiting for your yes</div>
+          </div>
         </div>
-        <p class="herovid-note">Real clips from our own channels, made by the same pipeline that powers the Kit.</p>
+        <p class="herovid-note">Real Kit output: the video and its Short. Autopilot card shows example numbers.</p>
       </div>
     </div>
 
@@ -614,7 +639,7 @@ html.co-open,html.co-open body{overflow:hidden}
   <section class="block" id="features">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">New in v2.4</span>
+        <span class="eyebrow">Autopilot</span>
         <h2>Videos get made while you're at work<span class="dot">.</span></h2>
         <p class="lead">Turn on autopilot and the Kit makes your videos every day under a weekly spending limit you pick. It only stops for two things: which topics to make, and your yes before anything goes live.</p>
       </div>
