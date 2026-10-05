@@ -981,7 +981,7 @@ html.co-open,html.co-open body{overflow:hidden}
   function load(){if(loaded)return;loaded=true;
     Object.keys(P).forEach(function(n){var d=document.createElement('div');d.id='wco-'+n;
       d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);
-      d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');
+      d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');d.setAttribute('data-whop-checkout-theme-button-text','Get the Kit');
       d.hidden=(n!==current);pane.appendChild(d);});
     var s=document.createElement('script');s.src='https://js.whop.com/static/checkout/loader.js';s.async=true;
     s.onerror=function(){location.href=checkoutUrl(current)};document.head.appendChild(s);
