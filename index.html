@@ -69,6 +69,15 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .chips span{display:inline-flex;align-items:center;gap:7px}
 .chips span::before{content:"";width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
 
+/* where it runs + what you need (6 Oct 2026: a buyer expected a web app) */
+.where{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-6px 0 14px;font-family:var(--display);font-weight:700;font-size:clamp(18px,1.75vw,21px);letter-spacing:-.01em;line-height:1.25}
+.where i{font-style:normal;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(255,194,75,.4);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.need{display:grid;grid-template-columns:auto repeat(3,1fr);gap:0;margin:0 0 22px;border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:rgba(23,21,27,.7)}
+.need>*{padding:9px 14px;font-size:14px;color:var(--ink2);border-left:1px solid var(--line2);display:flex;flex-direction:column;justify-content:center}
+.need>*:first-child{border-left:0;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.need b{color:var(--ink);font-size:15px;line-height:1.25}
+@media (max-width:620px){.need{grid-template-columns:repeat(3,1fr)}.need>*:first-child{grid-column:1/-1;border-bottom:1px solid var(--line2);padding:8px 14px}.need>*:nth-child(2){border-left:0}.need>*{padding:10px;font-size:12.5px}.need b{font-size:14px}}
+
 /* hero video + 3 steps */
 .herovid{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
 .herovid video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
@@ -460,8 +469,15 @@ html.co-open,html.co-open body{overflow:hidden}
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="badge"><b>FOR YOUTUBE</b> Works inside Claude or ChatGPT</span>
+        <span class="badge"><b>FOR YOUTUBE</b> Long videos and Shorts</span>
         <h1>Faceless YouTube videos <span class="yes">and Shorts, made on autopilot.</span></h1>
+        <p class="where">Works inside Claude or ChatGPT on your computer. <i>NOT A WEB APP</i></p>
+        <div class="need" aria-label="What you need">
+          <span>What you need</span>
+          <span><b>A Mac or PC</b>it runs there</span>
+          <span><b>Claude or ChatGPT</b>ChatGPT: a paid plan</span>
+          <span><b>10 min setup</b>your AI does it</span>
+        </div>
         <p class="lead">Faceless Video Kit is a download that plugs into <mark>Claude or ChatGPT</mark>. You pick the topics and say yes. Your AI assistant makes the script, voice, visuals, captions, thumbnail and <mark>finished video</mark>, cuts up to 5 <mark>Shorts</mark>, and posts them.</p>
         <ol class="steps3">
           <li><span>1 · YOU</span><b>Tick topics</b><i>once a week</i></li>
@@ -473,7 +489,6 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine">7-day refund, no questions · Cancel anytime</p>
-        <p class="fine"><b>Runs on your Mac or PC, inside your AI assistant. Not a web app.</b></p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No terminal commands</span>
         </div>
