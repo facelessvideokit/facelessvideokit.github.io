@@ -969,6 +969,11 @@ html.co-open,html.co-open body{overflow:hidden}
   var P=window.FVK_PLANS, co=document.getElementById('co'), pane=document.getElementById('co-pane'),
       wait=document.getElementById('co-wait'), loaded=false, current='monthly', lastFocus=null;
   var RETURN=location.origin+location.pathname+'?checkout=done';
+  // 6 Oct 2026: a buyer paid in this embedded checkout, landed in Whop's hub (chat only) and never saw his key.
+  // On success, go straight to the licence relay's key page for THIS payment (key + download + START HERE).
+  var CLAIM='https://fvk-licence.facelessvideokit.workers.dev/v1/claim?payment_id=';
+  function toClaim(id){if(/^pay_[A-Za-z0-9]{6,40}$/.test(id||'')){location.href=CLAIM+encodeURIComponent(id);return true}return false}
+  window.fvkCheckoutDone=function(planId,receiptId){if(!toClaim(receiptId)){location.href=RETURN+'&status=success'}};
   function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id;}
   // keep every price label and fallback link in step with the plan block
   document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
@@ -980,7 +985,7 @@ html.co-open,html.co-open body{overflow:hidden}
     Object.keys(P).forEach(function(n){var c=document.getElementById('wco-'+n);if(c)c.hidden=(n!==k)});}
   function load(){if(loaded)return;loaded=true;
     Object.keys(P).forEach(function(n){var d=document.createElement('div');d.id='wco-'+n;
-      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);
+      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);d.setAttribute('data-whop-checkout-on-complete','fvkCheckoutDone');
       d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');d.setAttribute('data-whop-checkout-theme-button-text','Get the Kit');
       d.hidden=(n!==current);pane.appendChild(d);});
     var s=document.createElement('script');s.src='https://js.whop.com/static/checkout/loader.js';s.async=true;
@@ -1000,9 +1005,10 @@ html.co-open,html.co-open body{overflow:hidden}
   co.addEventListener('click',function(e){if(e.target===co)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!co.hidden)close()});
   var q=new URLSearchParams(location.search);
+  if(q.get('checkout')==='done'&&toClaim(q.get('payment_id')||q.get('receipt_id')))return;
   if(q.get('checkout')==='done'){var n=document.createElement('div');var ok=q.get('status')!=='error';
     n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
-    n.textContent=ok?"You're in. Whop has emailed your access and the download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
+    n.textContent=ok?"You're in. Your licence key page didn't open? Message us in the Faceless Video Kit chat on whop.com and we'll send your key and download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
     document.body.appendChild(n);history.replaceState(null,'',location.pathname);setTimeout(function(){n.remove()},12000);}
 })();
 </script>
