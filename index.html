@@ -78,6 +78,18 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .need b{color:var(--ink);font-size:15px;line-height:1.25}
 @media (max-width:620px){.need{grid-template-columns:repeat(3,1fr)}.need>*:first-child{grid-column:1/-1;border-bottom:1px solid var(--line2);padding:8px 14px}.need>*:nth-child(2){border-left:0}.need>*{padding:10px;font-size:12.5px}.need b{font-size:14px}}
 
+/* studio (7 Oct 2026) */
+.studio-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:center}
+.studio-shot{margin:0;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+.studio-shot .bar3{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mute)}
+.studio-shot .bar3 i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.studio-shot .bar3 span{margin-left:8px}
+.studio-shot img{display:block;width:100%;height:auto}
+.studio-shot figcaption{font-size:12.5px;color:var(--mute);padding:8px 14px;border-top:1px solid var(--line)}
+.studio-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.studio-list li{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);color:var(--ink2);font-size:15px}
+.studio-list b{display:block;color:var(--ink);font-family:var(--display);font-size:18px;margin-bottom:3px}
+@media (max-width:860px){.studio-grid{grid-template-columns:1fr}}
+
 /* hero video + 3 steps */
 .herovid{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
 .herovid video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
@@ -88,6 +100,7 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .steps3 li b{display:block;color:var(--ink);font-size:16px}
 .steps3 li span{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.08em}
 .fine{font-size:13.5px;color:var(--ink2);margin-top:12px}
+.studio-note a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .steps3 li i{font-style:normal}
 @media (max-width:520px){.steps3{gap:6px}.steps3 li{padding:10px;font-size:13px}.steps3 li b{font-size:14px}.steps3 li i{display:none}}
 
@@ -459,7 +472,7 @@ html.co-open,html.co-open body{overflow:hidden}
   <div class="wrap">
     <a class="logo" href="#top"><i aria-hidden="true"></i>Faceless Video Kit</a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#demo">Demo</a><a href="#how">How it works</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="#pricing">Pricing</a>
+      <a href="#demo">Demo</a><a href="#how">How it works</a><a href="#studio">Studio</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="#pricing">Pricing</a>
     </nav>
     <a class="btn btn-hot btn-sm" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit</a>
   </div>
@@ -489,6 +502,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine">7-day refund, no questions · Cancel anytime</p>
+        <p class="fine studio-note">Plus <a href="#studio">your own Studio</a>: every video on one page, in your browser.</p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No terminal commands</span>
         </div>
@@ -601,6 +615,25 @@ html.co-open,html.co-open body{overflow:hidden}
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section class="block" id="studio">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Your Studio</span>
+        <h2>Your whole channel on one page<span class="dot">.</span></h2>
+        <p class="lead">Say &ldquo;open my studio&rdquo; and it opens in your browser. It runs <mark>on your own computer</mark>: no account, no website to log in to, nothing uploaded anywhere.</p>
+      </div>
+      <div class="studio-grid">
+        <figure class="studio-shot"><div class="bar3" aria-hidden="true"><i></i><i></i><i></i><span>Your Studio &middot; on this computer</span></div><img src="v2/studio_wide.jpg" alt="The Studio: a video's finished MP4 playing, its two thumbnails with one in use, its voice and its Short" width="1160" height="822" loading="lazy"><figcaption>The real Studio, on a sample channel.</figcaption></figure>
+        <ul class="studio-list">
+          <li><b>Every video, at a glance</b>Its stage, its next step and its release day on a calendar.</li>
+          <li><b>Watch what was made</b>Play the finished MP4, its Shorts and its voice. Flip through the pictures.</li>
+          <li><b>Decide in one click</b>Tick this week's topics, pick the thumbnail, say yes to an upload.</li>
+          <li><b>Look after the Kit</b>Update it, pause autopilot or top it up, report a bug. One click each.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
