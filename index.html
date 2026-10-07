@@ -1062,7 +1062,7 @@ html.co-open,html.co-open body{overflow:hidden}
       <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
     </div>
     <div class="co-pane" id="co-pane"><p class="co-wait" id="co-wait">Loading secure checkout…</p></div>
-    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly cancels any time</p>
+    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly cancels any time<br>Don't finish? We may email you a reminder (unsubscribe in one click).</p>
   </div>
 </div>
 <script id="fvk-plans">window.FVK_PLANS={"monthly":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29 / month","short":"$29/mo","note":"Cancel any time"},"lifetime":{"id":"plan_hPS32cvM4Glzd","price":"$99 once","short":"$99 once","note":"Pay once, yours for life"}};</script>
@@ -1076,6 +1076,16 @@ html.co-open,html.co-open body{overflow:hidden}
   var CLAIM='https://fvk-licence.facelessvideokit.workers.dev/v1/claim?payment_id=';
   function toClaim(id){if(/^pay_[A-Za-z0-9]{6,40}$/.test(id||'')){location.href=CLAIM+encodeURIComponent(id);return true}return false}
   window.fvkCheckoutDone=function(planId,receiptId){if(!toClaim(receiptId)){location.href=RETURN+'&status=success'}};
+  // 7 Oct 2026: abandoned-checkout follow-up. Whop's frame says when it has the buyer's email
+  // (on-identity-captured); the relay emails them if no payment follows (relay/src/recover.js).
+  var LEAD='https://fvk-licence.facelessvideokit.workers.dev/v1/lead', email='', told='';
+  function tellLead(){if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
+    try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current}),keepalive:true}).catch(function(){})}catch(e){}}
+  window.fvkIdentity=function(d){var e=d&&typeof d.email==='string'?d.email.trim():'';if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){email=e;tellLead()}};
+  // the $79 lifetime link from the recovery email: ?offer=<one-use code>
+  var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
+  if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
+  if(OFFER){P.lifetime.price='$79 once';P.lifetime.note='Your $20-off code is applied'}
   function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id;}
   // keep every price label and fallback link in step with the plan block
   document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
@@ -1084,10 +1094,11 @@ html.co-open,html.co-open body{overflow:hidden}
   document.querySelectorAll('a[data-buy]').forEach(function(a){a.href=checkoutUrl(a.getAttribute('data-buy'))});
   function show(k){current=k;
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
-    Object.keys(P).forEach(function(n){var c=document.getElementById('wco-'+n);if(c)c.hidden=(n!==k)});}
+    Object.keys(P).forEach(function(n){var c=document.getElementById('wco-'+n);if(c)c.hidden=(n!==k)});tellLead();}
   function load(){if(loaded)return;loaded=true;
     Object.keys(P).forEach(function(n){var d=document.createElement('div');d.id='wco-'+n;
-      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);d.setAttribute('data-whop-checkout-on-complete','fvkCheckoutDone');
+      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);d.setAttribute('data-whop-checkout-on-complete','fvkCheckoutDone');d.setAttribute('data-whop-checkout-on-identity-captured','fvkIdentity');
+      if(OFFER&&n==='lifetime')d.setAttribute('data-whop-checkout-promo-code',OFFER);
       d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');d.setAttribute('data-whop-checkout-theme-button-text','Get the Kit');
       d.hidden=(n!==current);pane.appendChild(d);});
     var s=document.createElement('script');s.src='https://js.whop.com/static/checkout/loader.js';s.async=true;
@@ -1107,6 +1118,8 @@ html.co-open,html.co-open body{overflow:hidden}
   co.addEventListener('click',function(e){if(e.target===co)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!co.hidden)close()});
   var q=new URLSearchParams(location.search);
+  // links from the recovery emails open the checkout straight away
+  if(OFFER){open('lifetime')}else if(P[q.get('resume')]){open(q.get('resume'))}
   if(q.get('checkout')==='done'&&toClaim(q.get('payment_id')||q.get('receipt_id')))return;
   if(q.get('checkout')==='done'){var n=document.createElement('div');var ok=q.get('status')!=='error';
     n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
