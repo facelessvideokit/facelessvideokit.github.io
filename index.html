@@ -364,7 +364,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .bx .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
 .bx h3{font-size:clamp(21px,2vw,26px);font-weight:700;line-height:1.08}
 .bx p{color:var(--ink2);font-size:14.5px}
-.bx.w4{grid-column:span 4}.bx.w3{grid-column:span 3}.bx.w2{grid-column:span 2}
+.bx.w6{grid-column:span 6}.bx.w4{grid-column:span 4}.bx.w3{grid-column:span 3}.bx.w2{grid-column:span 2}
+.lookgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:4px}
+.lookgrid figure{margin:0;position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.lookgrid img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.lookgrid figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 6px;font-size:11.5px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))}
+.fmts{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.fmts li{font-size:13.5px;color:var(--mute);border-left:2px solid var(--line2);padding-left:9px}
+.fmts b{display:block;color:var(--ink);font-size:14.5px}
+.studio-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;align-items:start}
+.studio-picks figure{margin:0;border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:var(--bg2)}
+.studio-picks img{display:block;width:100%;height:420px;object-fit:cover;object-position:top}
+.studio-picks figcaption{font-size:12.5px;color:var(--mute);padding:8px 12px;border-top:1px solid var(--line)}
 .bx.hot{background:linear-gradient(160deg,rgba(255,77,46,.16),var(--card) 55%);border-color:rgba(255,77,46,.45)}
 .looks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
 .looks figure{margin:0;display:grid;gap:6px}
@@ -389,7 +400,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .ap .meter i{display:block;height:100%;width:38%;background:linear-gradient(90deg,var(--ok),#9BE8C4);border-radius:5px}
 .ap .wait{font-size:13px;color:var(--gold)}
 .bnote{font-size:12px;color:var(--mute);margin-top:12px}
-@media (max-width:960px){.bento{grid-template-columns:1fr 1fr}.bx.w4,.bx.w3,.bx.w2{grid-column:span 2}}
+@media (max-width:960px){.bento{grid-template-columns:1fr 1fr}.bx.w6,.bx.w4,.bx.w3,.bx.w2{grid-column:span 2}.lookgrid{grid-template-columns:repeat(4,1fr)}.studio-picks{grid-template-columns:1fr 1fr}.studio-picks figure:nth-child(3){display:none}}
+@media (max-width:640px){.lookgrid{grid-template-columns:repeat(3,1fr)}.lookgrid figcaption{font-size:10px;padding:10px 5px 4px}.studio-picks img{height:320px}}
 @media (max-width:640px){.looks{grid-template-columns:1fr 1fr}.styles3{grid-template-columns:1fr}.vshort{grid-template-columns:100px 1fr}}
 
 /* v2: asset strip */
@@ -491,7 +503,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <span><b>Claude or ChatGPT</b>ChatGPT: a paid plan</span>
           <span><b>10 min setup</b>your AI does it</span>
         </div>
-        <p class="lead">Faceless Video Kit is a download that plugs into <mark>Claude or ChatGPT</mark>. You pick the topics and say yes. Your AI assistant makes the script, voice, visuals, captions, thumbnail and <mark>finished video</mark>, cuts up to 5 <mark>Shorts</mark>, and posts them.</p>
+        <p class="lead">Faceless Video Kit is a download that plugs into <mark>Claude or ChatGPT</mark>. You pick the topics and say yes. Your AI assistant makes the script, voice, visuals in the look you pick, captions, thumbnail and <mark>finished video</mark>, cuts up to 5 <mark>Shorts</mark>, and posts them.</p>
         <ol class="steps3">
           <li><span>1 · YOU</span><b>Tick topics</b><i>once a week</i></li>
           <li><span>2 · YOUR AI</span><b>Makes it all</b><i>video, thumbnail, Shorts</i></li>
@@ -502,7 +514,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine">7-day refund, no questions · Cancel anytime</p>
-        <p class="fine studio-note">Plus <a href="#studio">your own Studio</a>: every video on one page, in your browser.</p>
+        <p class="fine studio-note">Plus <a href="#studio">your own Studio</a>: pick a look, a voice and a format in one click, and see every video on one page.</p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No terminal commands</span>
         </div>
@@ -630,9 +642,15 @@ html.co-open,html.co-open body{overflow:hidden}
         <ul class="studio-list">
           <li><b>Every video, at a glance</b>Its stage, its next step and its release day on a calendar.</li>
           <li><b>Watch what was made</b>Play the finished MP4, its Shorts and its voice. Flip through the pictures.</li>
+          <li><b>Shape the channel in one click</b>One of 12 ready-made looks, a voiceover that suits it (or your own voice, cloned), the format, up to 4K, and how the captions look.</li>
           <li><b>Decide in one click</b>Tick this week's topics, pick the thumbnail, say yes to an upload.</li>
           <li><b>Look after the Kit</b>Update it, pause autopilot or top it up, report a bug. One click each.</li>
         </ul>
+      </div>
+      <div class="studio-picks">
+        <figure><img src="v2/studio_looks.jpg" alt="The Studio's look picker: ready-made looks, each shown with a real sample picture" width="560" height="758" loading="lazy"><figcaption>Pick the look</figcaption></figure>
+        <figure><img src="v2/studio_voice.jpg" alt="The Studio's voice picker: the style's own voice, describe a voice, use my voice, or pick a ready voice, with two voices to listen to" width="560" height="1246" loading="lazy"><figcaption>Pick the voice, listen first</figcaption></figure>
+        <figure><img src="v2/studio_formats.jpg" alt="The Studio's format picker: stills, b-roll, b-roll plus stills, AI video, stills plus AI clips, animated explainer" width="560" height="732" loading="lazy"><figcaption>Pick the format</figcaption></figure>
       </div>
     </div>
   </section>
@@ -642,9 +660,44 @@ html.co-open,html.co-open body{overflow:hidden}
       <div class="head">
         <span class="eyebrow">Formats</span>
         <h2>Any look. Long videos and Shorts<span class="dot">.</span></h2>
-        <p class="lead">Describe the style once and every frame on the channel follows it. Footage, stills, animated data, or all three in one video.</p>
+        <p class="lead">Start from one of 12 ready-made looks, or describe your own, and every frame on the channel follows it. Footage, pictures, AI video, animated explainers, or a mix.</p>
       </div>
       <div class="bento">
+        <div class="bx w6">
+          <span class="k">12 ready-made looks</span>
+          <h3>Pick a look. The voice and captions come with it</h3>
+          <p>Each look brings its colours, a caption style and a voiceover made to suit it on your own voice service. One click, then change anything you like. Every sample below was drawn by the Kit in that look.</p>
+          <div class="lookgrid"><figure><img src="looks/look_realistic.jpg" alt="Realistic documentary: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Realistic documentary</figcaption></figure><figure><img src="looks/look_dark-fantasy.jpg" alt="Dark fantasy: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Dark fantasy</figcaption></figure><figure><img src="looks/look_history.jpg" alt="History (painted): a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>History (painted)</figcaption></figure><figure><img src="looks/look_3d-animated.jpg" alt="3D animated: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>3D animated</figcaption></figure><figure><img src="looks/look_anime.jpg" alt="Anime: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Anime</figcaption></figure><figure><img src="looks/look_horror.jpg" alt="Horror: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Horror</figcaption></figure><figure><img src="looks/look_true-crime.jpg" alt="True crime noir: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>True crime noir</figcaption></figure><figure><img src="looks/look_sci-fi.jpg" alt="Sci-fi neon: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Sci-fi neon</figcaption></figure><figure><img src="looks/look_flat-explainer.jpg" alt="Flat explainer: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Flat explainer</figcaption></figure><figure><img src="looks/look_whiteboard.jpg" alt="Whiteboard doodle: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Whiteboard doodle</figcaption></figure><figure><img src="looks/look_stick-figure.jpg" alt="Stick figure: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Stick figure</figcaption></figure><figure><img src="looks/look_watercolor.jpg" alt="Watercolour: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Watercolour</figcaption></figure></div>
+        </div>
+        <div class="bx w2">
+          <span class="k">6 ways to make a video</span>
+          <h3>Footage, pictures, or full AI video</h3>
+          <ul class="fmts">
+            <li><b>Stills</b>a picture for every line</li>
+            <li><b>B-roll</b>real stock clips</li>
+            <li><b>B-roll + stills</b>clips, pictures where none fit</li>
+            <li><b>AI video</b>every shot moves</li>
+            <li><b>Stills + AI clips</b>the key moments move</li>
+            <li><b>Animated explainer</b>charts, maps and diagrams</li>
+          </ul>
+        </div>
+        <div class="bx w2">
+          <span class="k">Your voiceover</span>
+          <h3>A voice that suits the channel, or yours</h3>
+          <ul class="fmts">
+            <li><b>The look's own voice</b>made to fit the genre</li>
+            <li><b>Describe a voice</b>age, pace, mood</li>
+            <li><b>Use my voice</b>cloned from a recording</li>
+            <li><b>Pick a ready voice</b>listen first</li>
+          </ul>
+          <p>A designed voice comes in twos: listen, then keep one.</p>
+        </div>
+        <div class="bx w2">
+          <span class="k">Sharp, captioned your way</span>
+          <h3>Up to 4K. Captions on, off, or a subtitle file</h3>
+          <p>1080p, 1440p or 4K per channel. Captions word-by-word in yellow or white, plain, or on a dark box. Or no captions on the picture, just a subtitle file for YouTube's CC button.</p>
+          <div class="chips2"><span>1080p</span><span>1440p</span><span>4K</span><span>5 caption looks</span><span>.srt</span></div>
+        </div>
         <div class="bx w4">
           <span class="k">Any style you describe</span>
           <h3>3D cartoon, fantasy, photo-real, or your own</h3>
@@ -675,7 +728,7 @@ html.co-open,html.co-open body{overflow:hidden}
             <figure><img src="v2/clip_still.jpg" alt="The still picture" loading="lazy"><figcaption>Before: a still</figcaption></figure>
             <figure><video data-src="v2/clip_moving.mp4" poster="v2/clip_still.jpg" muted loop playsinline preload="none" aria-label="The same picture as a moving clip"></video><figcaption>After: it moves</figcaption></figure>
           </div>
-          <p>Pick the pictures you want to move. The Kit turns them into short video clips with the AI video service you plug in. It tells you the price first: this one was about $1.10, and nothing was spent until we said yes.</p>
+          <p>Pick the pictures you want to move, or make every shot move with the AI video format. The Kit turns them into short video clips with the AI video service you plug in. It tells you the price first: this one was about $1.10, and nothing was spent until we said yes.</p>
         </div>
       </div>
     </div>
