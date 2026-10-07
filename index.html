@@ -79,16 +79,18 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 @media (max-width:620px){.need{grid-template-columns:repeat(3,1fr)}.need>*:first-child{grid-column:1/-1;border-bottom:1px solid var(--line2);padding:8px 14px}.need>*:nth-child(2){border-left:0}.need>*{padding:10px;font-size:12.5px}.need b{font-size:14px}}
 
 /* studio (7 Oct 2026) */
-.studio-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:center}
+.studio-sec{background:radial-gradient(1200px 520px at 50% 34%,rgba(255,77,46,.10),transparent 70%)}
+.studio-sec .studio-shot{max-width:1120px;margin-inline:auto;box-shadow:0 50px 120px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.04)}
+.studio-list{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.studio-list li{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);color:var(--ink2);font-size:14px;line-height:1.45}
+.studio-list b{display:block;color:var(--ink);font-family:var(--display);font-size:16.5px;margin-bottom:4px}
+@media (max-width:960px){.studio-list{grid-template-columns:1fr 1fr}.studio-list li:last-child{grid-column:span 2}}
+@media (max-width:640px){.studio-list{grid-template-columns:1fr;gap:8px}.studio-list li:last-child{grid-column:auto}.studio-list li{padding:10px 14px;font-size:13.5px}.studio-list b{font-size:15.5px;margin-bottom:2px}}
 .studio-shot{margin:0;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
 .studio-shot .bar3{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mute)}
 .studio-shot .bar3 i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.studio-shot .bar3 span{margin-left:8px}
 .studio-shot img{display:block;width:100%;height:auto}
 .studio-shot figcaption{font-size:12.5px;color:var(--mute);padding:8px 14px;border-top:1px solid var(--line)}
-.studio-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.studio-list li{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);color:var(--ink2);font-size:15px}
-.studio-list b{display:block;color:var(--ink);font-family:var(--display);font-size:18px;margin-bottom:3px}
-@media (max-width:860px){.studio-grid{grid-template-columns:1fr}}
 
 /* hero video + 3 steps */
 .herovid{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
@@ -118,26 +120,14 @@ section.block{padding-block:110px 0}
 
 /* asset */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px}
-.panel h3{font-size:30px;font-weight:700;margin-block:10px 14px}
-.pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
-.pill.g{color:var(--ok);background:rgba(61,220,151,.1);border:1px solid rgba(61,220,151,.25)}
-.pill.r{color:var(--hot2);background:rgba(255,77,46,.1);border:1px solid rgba(255,77,46,.28)}
 .grow{display:flex;align-items:flex-end;gap:6px;height:130px;margin-block:22px 20px;padding:0 4px;border-bottom:1px solid var(--line2)}
 .grow div{flex:1;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--ok),rgba(61,220,151,.15))}
 .grow-cap{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:-12px;margin-bottom:18px}
-.ticks{list-style:none;padding:0;margin:0;display:grid;gap:12px;font-size:15.5px;color:var(--ink2)}
-.ticks li{padding-left:28px;position:relative}
-.ticks li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
-.ticks b{color:var(--ink)}
 .wall{display:grid;gap:14px;margin-top:22px}
 .row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:14.5px;color:var(--ink2)}
 .row em{font-style:normal;font-family:var(--mono);font-size:12.5px;color:var(--hot2);font-variant-numeric:tabular-nums}
 .bar{grid-column:1/-1;height:6px;border-radius:4px;background:#241F29;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--hot),var(--hot2))}
-.total{margin-top:20px;border:1px solid rgba(255,77,46,.35);background:rgba(255,77,46,.07);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.total span{color:var(--ink2);font-size:14px}
-.total strong{font-family:var(--display);font-size:26px;color:var(--hot2);font-variant-numeric:tabular-nums}
 .flip{margin-top:20px;background:linear-gradient(90deg,rgba(255,77,46,.14),rgba(255,194,75,.08));border:1px solid var(--line2);border-radius:22px;padding:28px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
 .flip .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,4vw,50px);line-height:1;letter-spacing:-.03em}
 .flip .big span{color:var(--gold)}
@@ -220,74 +210,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .pv .meta b{font-family:var(--display);font-size:20px;letter-spacing:-.01em}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tags span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
-/* live demo */
-.demo>*{min-width:0}
-.demo{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;background:linear-gradient(180deg,#16131A,#110F14);border:1px solid var(--line2);border-radius:26px;padding:18px;box-shadow:0 40px 100px -40px rgba(255,77,46,.35)}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tab{appearance:none;font:inherit;font-weight:700;font-size:14px;color:var(--ink2);background:#1C1920;border:1px solid var(--line);border-radius:12px;padding:11px 12px;text-align:left;cursor:pointer;display:flex;gap:9px;align-items:center;transition:border-color .2s,color .2s,background .2s}
-.tab i{width:9px;height:9px;border-radius:50%;background:var(--c,#666);flex:none}
-.tab:hover{color:var(--ink)}
-.tab[aria-selected="true"]{color:var(--ink);border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,#1C1920)}
-.prompt{margin-top:12px;background:#0E0C10;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.prompt .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--mute)}
-.prompt p{font-size:15.5px;font-weight:600;min-height:48px;margin-top:6px;color:var(--ink)}
-.caret{display:inline-block;width:2px;height:1.05em;background:var(--hot);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.stages{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:2px}
-.stages li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:4px 10px;padding:7px 8px;border-radius:10px;opacity:.38;transition:opacity .3s,background .3s}
-.stages li .ic{grid-row:span 2;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line2);margin-top:1px;display:grid;place-items:center}
-.stages li b{font-size:14px;color:var(--ink)}
-.stages li small{overflow-wrap:anywhere;font-family:var(--mono);font-size:11px;color:var(--mute);line-height:1.4}
-.stages li.run{opacity:1;background:rgba(255,77,46,.08)}
-.stages li.run .ic{border-color:var(--hot);border-top-color:transparent;animation:spin .8s linear infinite}
-.stages li.done{opacity:1}
-.stages li.done .ic{border-color:var(--ok);background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%230B0A0C' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
-.stages li.done small{color:var(--ink2)}
-@keyframes spin{to{transform:rotate(360deg)}}
-.stage-k{font-family:var(--mono);font-size:10px;color:var(--hot);letter-spacing:.08em;margin-right:6px}
-.outp{display:flex;flex-direction:column;gap:12px;min-width:0}
-.frame{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:16px;overflow:hidden;border:1px solid var(--line2);background:#000}
-.scene{position:absolute;inset:0;opacity:0;transition:opacity .6s}
-.scene svg{width:100%;height:100%;display:block}
-.frame.on .scene{opacity:1}
-.card-t{position:absolute;left:5%;top:9%;right:5%;font-family:var(--display);font-weight:800;font-size:clamp(17px,2.3vw,28px);line-height:1.02;letter-spacing:-.02em;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.6);opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s;max-width:62%}
-.frame.titled .card-t{opacity:1;transform:none}
-.cap{position:absolute;left:0;right:0;bottom:9%;text-align:center;font-family:var(--display);font-weight:800;font-size:clamp(14px,1.8vw,21px);color:#fff;text-shadow:0 2px 10px #000;opacity:0;transition:opacity .4s;padding-inline:6%}
-.cap span{padding:1px 5px;border-radius:5px;transition:background .15s,color .15s}
-.cap span.hl{background:var(--gold);color:#111;text-shadow:none}
-.frame.capped .cap{opacity:1}
-.rec{position:absolute;right:10px;top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.18);padding:4px 8px;border-radius:999px}
-.bar2{position:absolute;left:0;bottom:0;height:3px;background:var(--hot);width:0;transition:width .5s}
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{background:#1A171E;border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-height:78px;transition:border-color .3s}
-.tile .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
-.tile p{font-size:13.5px;color:var(--ink2);margin-top:5px;line-height:1.45;opacity:0;transition:opacity .4s}
-.tile.on{border-color:rgba(61,220,151,.35)}
-.tile.on p{opacity:1}
-.tile .thumbs{display:flex;gap:6px;margin-top:6px;opacity:0;transition:opacity .4s}
-.tile.on .thumbs{opacity:1}
-.tile .thumbs .th{flex:1;aspect-ratio:16/9;border-radius:7px;position:relative;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 16px -8px rgba(0,0,0,.8)}
-.tile .thumbs .th svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.tile .thumbs .th.b svg{transform:scale(1.55);transform-origin:78% 55%}
-.tile .thumbs .th::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.05) 70%);z-index:1}
-.tile .thumbs .th span{position:absolute;left:7%;top:50%;transform:translateY(-50%);z-index:2;max-width:62%;font-family:var(--display);font-weight:800;font-size:clamp(14px,1.6vw,18px);line-height:.96;letter-spacing:-.01em;color:#fff;text-transform:uppercase;text-shadow:0 2px 0 #000,0 0 10px rgba(0,0,0,.8)}
-.tile .thumbs .th span em{font-style:normal;color:var(--gold)}
-.tile.ch{grid-column:1/-1;display:none;align-items:center;gap:12px;min-height:0}
-.tile.ch.show{display:flex}
-.tile.ch .pic{width:48px;height:48px;border-radius:50%;background:#2A1F1A;border:1px solid rgba(255,255,255,.14);overflow:hidden;flex:none;opacity:0;transition:opacity .4s}
-.tile.ch .pic svg{width:100%;height:100%;display:block}
-.tile.ch.on .pic{opacity:1}
-.lang{position:absolute;right:10px;top:38px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:#111;background:var(--gold);padding:4px 8px;border-radius:999px;display:none}
-.lang.show{display:inline-block}
-.tile .thumbs .th.b span em{color:#FF5A3A}
-.demo-note{font-size:12px;color:var(--mute);text-align:center;margin-top:12px}
-.done-pill{display:none;align-items:center;gap:8px;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--ok);letter-spacing:.06em}
-.demo.finished .done-pill{display:flex}
-
 @media (max-width:960px){
-  .demo{grid-template-columns:1fr}
   .earn{grid-template-columns:1fr 1fr}
-  .outp{order:-1}
   .hero .wrap{grid-template-columns:1fr;gap:40px}
   .steps{grid-template-columns:1fr 1fr}
   .phase{grid-template-columns:1fr;gap:16px}
@@ -297,8 +221,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .navlinks{display:none}
 }
 @media (max-width:640px){
-  .demo{padding:12px}
-  .tiles{grid-template-columns:1fr}
   .proofgrid{grid-template-columns:1fr}
   .earn{grid-template-columns:1fr}
   body{font-size:16px;padding-inline:16px}
@@ -307,7 +229,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .hero{padding-block:44px 24px}
   .duo,.prices,.steps,.bring,.inc{grid-template-columns:1fr}
   .flip{grid-template-columns:1fr;gap:12px;padding:24px}
-  .panel,.price{padding:24px}
   section.block{padding-block:80px 0}
   .final{padding:52px 20px}
   .btn-hot{width:100%;justify-content:center}
@@ -377,17 +298,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .studio-picks img{display:block;width:100%;height:420px;object-fit:cover;object-position:top}
 .studio-picks figcaption{font-size:12.5px;color:var(--mute);padding:8px 12px;border-top:1px solid var(--line)}
 .bx.hot{background:linear-gradient(160deg,rgba(255,77,46,.16),var(--card) 55%);border-color:rgba(255,77,46,.45)}
-.looks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
-.looks figure{margin:0;display:grid;gap:6px}
-.looks img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line2);display:block}
-.looks figcaption{font-size:12px;color:var(--ink2);line-height:1.3}
-.styles3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
-.sv{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line2);background:#000;aspect-ratio:16/9}
-.sv video{width:100%;height:100%;object-fit:cover;display:block}
-.sv .snd{font-size:11px;padding:5px 9px;right:6px;bottom:6px}
-.sv em{position:absolute;left:6px;top:6px;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.6);padding:3px 7px;border-radius:999px}
-.vshort{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
-.vshort .sv{aspect-ratio:9/16}
 .chips2{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
 .chips2 span{font-size:12px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
 .clipcard{display:grid;grid-template-columns:1fr;gap:8px}
@@ -402,13 +312,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .bnote{font-size:12px;color:var(--mute);margin-top:12px}
 @media (max-width:960px){.bento{grid-template-columns:1fr 1fr}.bx.w6,.bx.w4,.bx.w3,.bx.w2{grid-column:span 2}.lookgrid{grid-template-columns:repeat(4,1fr)}.studio-picks{grid-template-columns:1fr 1fr}.studio-picks figure:nth-child(3){display:none}}
 @media (max-width:640px){.lookgrid{grid-template-columns:repeat(3,1fr)}.lookgrid figcaption{font-size:10px;padding:10px 5px 4px}.studio-picks img{height:320px}}
-@media (max-width:640px){.looks{grid-template-columns:1fr 1fr}.styles3{grid-template-columns:1fr}.vshort{grid-template-columns:100px 1fr}}
 
 /* v2: asset strip */
-.astrip{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.astrip .panel h3{font-size:26px}
-.astrip .total{margin-top:14px}
-@media (max-width:640px){.astrip{grid-template-columns:1fr}}
 .svcline{max-width:860px;margin:18px auto 0;text-align:center;font-size:14px;color:var(--ink2)}
 
 /* v2: shorter on phones */
@@ -484,7 +389,7 @@ html.co-open,html.co-open body{overflow:hidden}
   <div class="wrap">
     <a class="logo" href="#top"><i aria-hidden="true"></i>Faceless Video Kit</a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#demo">Demo</a><a href="#how">How it works</a><a href="#studio">Studio</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="#pricing">Pricing</a>
+      <a href="#studio">Studio</a><a href="#how">How it works</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="#pricing">Pricing</a>
     </nav>
     <a class="btn btn-hot btn-sm" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit</a>
   </div>
@@ -541,56 +446,38 @@ html.co-open,html.co-open body{overflow:hidden}
     <p class="reel-note">Every clip is real output. Orange tags: moving clips the Kit made from a one-line description. The rest: real footage from our own faceless channels, edited by the same pipeline.</p>
   </section>
 
-  <section class="block" id="demo">
+  
+
+
+  <section class="block studio-sec" id="studio">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">Watch it build</span>
-        <h2>Pick a niche. Watch the video take shape<span class="dot">.</span></h2>
-        <p class="lead">Four niches, two languages, same Kit. Every stage below is a real step the Kit runs, from checking the niche to a finished MP4 and upload package.</p>
+        <span class="eyebrow">Your Studio</span>
+        <h2>Your whole channel on one page<span class="dot">.</span></h2>
+        <p class="lead">Say &ldquo;open my studio&rdquo; and it opens in your browser. It runs <mark>on your own computer</mark>: no account, no website to log in to, nothing uploaded anywhere.</p>
       </div>
-
-      <div class="demo" id="demoBox">
-        <div>
-          <div class="tabs" role="tablist" aria-label="Example niches">
-            <button class="tab" role="tab" id="t0" data-i="0" aria-selected="true" style="--c:#E8B04B"><i></i>History mysteries</button>
-            <button class="tab" role="tab" id="t1" data-i="1" aria-selected="false" style="--c:#3DDC97"><i></i>Personal finance</button>
-            <button class="tab" role="tab" id="t2" data-i="2" aria-selected="false" style="--c:#FF4D2E"><i></i>Scams &amp; fraud</button>
-            <button class="tab" role="tab" id="t3" data-i="3" aria-selected="false" style="--c:#B08CFF"><i></i>Misterios · Español</button>
-          </div>
-          <div class="prompt"><span class="k">YOU TELL YOUR ASSISTANT</span><p id="dPrompt"></p></div>
-          <ol class="stages" id="dStages"></ol>
-        </div>
-
-        <div class="outp">
-          <div class="frame" id="dFrame">
-            <div class="scene" id="dScene"></div>
-            <div class="card-t" id="dTitle"></div>
-            <div class="cap" id="dCap"></div>
-            <span class="rec" id="dRec">DRAFT</span>
-            <span class="lang" id="dLang"></span>
-            <span class="bar2" id="dBar"></span>
-          </div>
-          <div class="tiles">
-            <div class="tile" id="tl0"><span class="k">Hook · first line</span><p id="dHook"></p></div>
-            <div class="tile" id="tl1"><span class="k">Visual style</span><p id="dLook"></p></div>
-            <div class="tile" id="tl2"><span class="k">Thumbnail · 2 options</span><div class="thumbs" id="dThumbs"><div class="th a"></div><div class="th b"></div></div></div>
-            <div class="tile" id="tl3"><span class="k">Output</span><p id="dOut"></p></div>
-            <div class="tile ch" id="tl4"><div class="pic" id="dPic"></div><div><span class="k">Character · locked</span><p id="dChar"></p></div></div>
-          </div>
-          <div class="done-pill" id="dDone">VIDEO READY · UPLOAD PACKAGE WRITTEN</div>
-        </div>
+      <figure class="studio-shot"><div class="bar3" aria-hidden="true"><i></i><i></i><i></i><span>Your Studio &middot; on this computer</span></div><img src="v2/studio_home.jpg" alt="The Studio on a sample channel: a finished video waiting for a yes to upload, the autopilot spend for the week, and every video with its steps ticked off" width="1600" height="1266" loading="lazy"><figcaption>The real Studio, on a sample channel.</figcaption></figure>
+      <ul class="studio-list">
+        <li><b>Every video, at a glance</b>Its stage, its next step and its release day on a calendar.</li>
+        <li><b>Watch what was made</b>Play the finished MP4, its Shorts and its voice. Flip through the pictures.</li>
+        <li><b>Shape the channel</b>A look, a voice, the format, up to 4K and the captions. One click each.</li>
+        <li><b>Decide in one click</b>Tick this week's topics, pick the thumbnail, say yes to an upload.</li>
+        <li><b>Look after the Kit</b>Update it, pause autopilot or top it up, report a bug.</li>
+      </ul>
+      <div class="studio-picks">
+        <figure><img src="v2/studio_looks.jpg" alt="The Studio's look picker: ready-made looks, each shown with a real sample picture" width="560" height="758" loading="lazy"><figcaption>Pick the look</figcaption></figure>
+        <figure><img src="v2/studio_voice.jpg" alt="The Studio's voice picker: the style's own voice, describe a voice, use my voice, or pick a ready voice, with two voices to listen to" width="560" height="1246" loading="lazy"><figcaption>Pick the voice, listen first</figcaption></figure>
+        <figure><img src="v2/studio_formats.jpg" alt="The Studio's format picker: stills, b-roll, b-roll plus stills, AI video, stills plus AI clips, animated explainer" width="560" height="732" loading="lazy"><figcaption>Pick the format</figcaption></figure>
       </div>
-      <p class="demo-note">Simulation of a Kit run. Real runs take longer and depend on the services you plug in.</p>
     </div>
   </section>
-
 
   <section class="block" id="how">
     <div class="wrap">
       <div class="head">
         <span class="eyebrow">How it works</span>
         <h2>Five steps. You do two of them<span class="dot">.</span></h2>
-        <p class="lead">Your AI assistant runs the Kit on your own computer. You pick the direction and say yes. Everything in between is made for you and checked before the next step starts. If something is missing, it stops and says exactly what.</p>
+        <p class="lead">By hand, one video takes 8–13 hours. Here, your AI assistant runs the Kit on your own computer. You pick the direction and say yes. Everything in between is made for you and checked before the next step starts. If something is missing, it stops and says exactly what.</p>
       </div>
       <div class="how" id="howList">
         <div class="how-rail" aria-hidden="true"><i></i></div>
@@ -620,7 +507,7 @@ html.co-open,html.co-open body{overflow:hidden}
         </div>
 
         <div class="hs"><span class="n">5</span>
-          <div><span class="who">You · one yes</span><h3>Say yes, and it publishes</h3><p>Your assistant fills in YouTube Studio for you and schedules the video, then posts the Shorts to the platforms you chose, at the times you chose.</p></div>
+          <div><span class="who">You · one yes</span><h3>Say yes, and it publishes</h3><p>Your assistant fills in YouTube Studio in your own browser, no API keys, and schedules the video. Then it posts the Shorts to YouTube Shorts, TikTok, Instagram and X, when you choose.</p></div>
           <div class="hv"><span class="k">Ready to publish · The map that drew a door</span>
             <div class="ask"><span class="y">Yes, schedule it</span><span>Not yet</span></div>
             <span class="when">→ YouTube · Tue 3:00 PM &nbsp;·&nbsp; Shorts → YouTube, Instagram, X</span></div>
@@ -630,30 +517,7 @@ html.co-open,html.co-open body{overflow:hidden}
     </div>
   </section>
 
-  <section class="block" id="studio">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Your Studio</span>
-        <h2>Your whole channel on one page<span class="dot">.</span></h2>
-        <p class="lead">Say &ldquo;open my studio&rdquo; and it opens in your browser. It runs <mark>on your own computer</mark>: no account, no website to log in to, nothing uploaded anywhere.</p>
-      </div>
-      <div class="studio-grid">
-        <figure class="studio-shot"><div class="bar3" aria-hidden="true"><i></i><i></i><i></i><span>Your Studio &middot; on this computer</span></div><img src="v2/studio_wide.jpg" alt="The Studio: a video's finished MP4 playing, its two thumbnails with one in use, its voice and its Short" width="1160" height="822" loading="lazy"><figcaption>The real Studio, on a sample channel.</figcaption></figure>
-        <ul class="studio-list">
-          <li><b>Every video, at a glance</b>Its stage, its next step and its release day on a calendar.</li>
-          <li><b>Watch what was made</b>Play the finished MP4, its Shorts and its voice. Flip through the pictures.</li>
-          <li><b>Shape the channel in one click</b>One of 12 ready-made looks, a voiceover that suits it (or your own voice, cloned), the format, up to 4K, and how the captions look.</li>
-          <li><b>Decide in one click</b>Tick this week's topics, pick the thumbnail, say yes to an upload.</li>
-          <li><b>Look after the Kit</b>Update it, pause autopilot or top it up, report a bug. One click each.</li>
-        </ul>
-      </div>
-      <div class="studio-picks">
-        <figure><img src="v2/studio_looks.jpg" alt="The Studio's look picker: ready-made looks, each shown with a real sample picture" width="560" height="758" loading="lazy"><figcaption>Pick the look</figcaption></figure>
-        <figure><img src="v2/studio_voice.jpg" alt="The Studio's voice picker: the style's own voice, describe a voice, use my voice, or pick a ready voice, with two voices to listen to" width="560" height="1246" loading="lazy"><figcaption>Pick the voice, listen first</figcaption></figure>
-        <figure><img src="v2/studio_formats.jpg" alt="The Studio's format picker: stills, b-roll, b-roll plus stills, AI video, stills plus AI clips, animated explainer" width="560" height="732" loading="lazy"><figcaption>Pick the format</figcaption></figure>
-      </div>
-    </div>
-  </section>
+  
 
   <section class="block" id="formats">
     <div class="wrap">
@@ -669,7 +533,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <p>Each look brings its colours, a caption style and a voiceover made to suit it on your own voice service. One click, then change anything you like. Every sample below was drawn by the Kit in that look.</p>
           <div class="lookgrid"><figure><img src="looks/look_realistic.jpg" alt="Realistic documentary: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Realistic documentary</figcaption></figure><figure><img src="looks/look_dark-fantasy.jpg" alt="Dark fantasy: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Dark fantasy</figcaption></figure><figure><img src="looks/look_history.jpg" alt="History (painted): a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>History (painted)</figcaption></figure><figure><img src="looks/look_3d-animated.jpg" alt="3D animated: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>3D animated</figcaption></figure><figure><img src="looks/look_anime.jpg" alt="Anime: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Anime</figcaption></figure><figure><img src="looks/look_horror.jpg" alt="Horror: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Horror</figcaption></figure><figure><img src="looks/look_true-crime.jpg" alt="True crime noir: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>True crime noir</figcaption></figure><figure><img src="looks/look_sci-fi.jpg" alt="Sci-fi neon: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Sci-fi neon</figcaption></figure><figure><img src="looks/look_flat-explainer.jpg" alt="Flat explainer: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Flat explainer</figcaption></figure><figure><img src="looks/look_whiteboard.jpg" alt="Whiteboard doodle: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Whiteboard doodle</figcaption></figure><figure><img src="looks/look_stick-figure.jpg" alt="Stick figure: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Stick figure</figcaption></figure><figure><img src="looks/look_watercolor.jpg" alt="Watercolour: a sample picture in this look" width="480" height="270" loading="lazy"><figcaption>Watercolour</figcaption></figure></div>
         </div>
-        <div class="bx w2">
+        <div class="bx w3">
           <span class="k">6 ways to make a video</span>
           <h3>Footage, pictures, or full AI video</h3>
           <ul class="fmts">
@@ -681,40 +545,15 @@ html.co-open,html.co-open body{overflow:hidden}
             <li><b>Animated explainer</b>charts, maps and diagrams</li>
           </ul>
         </div>
-        <div class="bx w2">
-          <span class="k">Your voiceover</span>
-          <h3>A voice that suits the channel, or yours</h3>
-          <ul class="fmts">
-            <li><b>The look's own voice</b>made to fit the genre</li>
-            <li><b>Describe a voice</b>age, pace, mood</li>
-            <li><b>Use my voice</b>cloned from a recording</li>
-            <li><b>Pick a ready voice</b>listen first</li>
-          </ul>
-          <p>A designed voice comes in twos: listen, then keep one.</p>
-        </div>
-        <div class="bx w2">
+        
+        <div class="bx w3">
           <span class="k">Sharp, captioned your way</span>
           <h3>Up to 4K. Captions on, off, or a subtitle file</h3>
           <p>1080p, 1440p or 4K per channel. Captions word-by-word in yellow or white, plain, or on a dark box. Or no captions on the picture, just a subtitle file for YouTube's CC button.</p>
           <div class="chips2"><span>1080p</span><span>1440p</span><span>4K</span><span>5 caption looks</span><span>.srt</span></div>
         </div>
-        <div class="bx w4">
-          <span class="k">Any style you describe</span>
-          <h3>3D cartoon, fantasy, photo-real, or your own</h3>
-          <p>Each of these was made by the Kit from a 30-word script: pictures, voice, captions and the finished MP4.</p>
-          <div class="styles3">
-            <div class="sv"><video data-src="v2/style_cartoon.mp4" poster="v2/style_cartoon.jpg" muted loop playsinline preload="none"></video><em>3D cartoon</em><button class="snd" type="button">Sound on</button></div>
-            <div class="sv"><video data-src="v2/style_fantasy.mp4" poster="v2/style_fantasy.jpg" muted loop playsinline preload="none"></video><em>Fantasy</em><button class="snd" type="button">Sound on</button></div>
-            <div class="sv"><video data-src="v2/style_cinematic.mp4" poster="v2/style_cinematic.jpg" muted loop playsinline preload="none"></video><em>Photo-real</em><button class="snd" type="button">Sound on</button></div>
-          </div>
-        </div>
-        <div class="bx w2">
-          <span class="k">Vertical Shorts</span>
-          <div class="vshort">
-            <div class="sv"><video data-src="v2/short_dragon.mp4" poster="v2/short_dragon.jpg" muted loop playsinline preload="none"></video><button class="snd" type="button">Sound</button></div>
-            <div><h3>Up to 5 Shorts from every video</h3><p>It proposes the strongest moments. You tick which ones.</p></div>
-          </div>
-        </div>
+        
+        
         <div class="bx w3">
           <span class="k">Characters + languages</span>
           <h3>The same face in every frame. Any language</h3>
@@ -753,19 +592,9 @@ html.co-open,html.co-open body{overflow:hidden}
             <div class="wait">Waiting on you: 1 publish · a ping on your desktop (and phone, if you want)</div>
           </div>
         </div>
+        
+        
         <div class="bx w2">
-          <span class="k">Auto-publish</span>
-          <h3>It fills in YouTube Studio for you</h3>
-          <p>Title, description, chapters, tags, thumbnail and schedule, typed in by your assistant in your own browser. No API keys. You confirm once before Publish.</p>
-          <div class="chips2"><span>No API setup</span><span>Your yes first</span></div>
-        </div>
-        <div class="bx w3">
-          <span class="k">Shorts everywhere</span>
-          <h3>One video, five Shorts, four platforms</h3>
-          <p>Shorts cut from each video go to YouTube Shorts, TikTok, Instagram and X. You choose the platforms and when they go up.</p>
-          <div class="chips2"><span>YouTube Shorts</span><span>TikTok</span><span>Instagram</span><span>X</span></div>
-        </div>
-        <div class="bx w3">
           <span class="k">Your voice, your services</span>
           <h3>Bring the tools you already like</h3>
           <p>Works in Claude, ChatGPT, Codex, Cursor or Gemini CLI, on Mac, Windows or Linux. Plug in any image and voice service, or your own cloned voice. Quality is never set to the lowest tier, and you can lock it per channel. Research and stock footage work free out of the box.</p>
@@ -840,36 +669,6 @@ html.co-open,html.co-open body{overflow:hidden}
     </div>
   </section>
 
-
-  <section class="block" id="asset">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Why a faceless channel</span>
-        <h2>Every video you upload is an asset that keeps working<span class="dot">.</span></h2>
-      </div>
-      <div class="astrip">
-        <div class="panel">
-          <span class="pill g">The upside</span>
-          <h3>A library that compounds</h3>
-          <ul class="ticks" style="margin-top:16px">
-            <li><b>Publish once, found for years.</b> Old uploads keep pulling views while you make new ones.</li>
-            <li><b>No face, no personal brand.</b> The channel is a business asset, not you on camera.</li>
-            <li><b>Runs next to your day job.</b> You decide; the Kit does the production.</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <span class="pill r">The problem</span>
-          <h3>The production wall</h3>
-          <p class="lead" style="font-size:15.5px;margin-top:12px">Topic, script, visuals, voice, captions, editing, thumbnail, upload. Most beginners quit before video 10.</p>
-          <div class="total"><span>One video, by hand</span><strong>8–13 hours</strong></div>
-          <div class="total" style="border-color:rgba(61,220,151,.4);background:rgba(61,220,151,.07)"><span>With the Kit</span><strong style="color:var(--ok)">Your yes</strong></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
   <section class="block" id="pricing">
     <div class="wrap">
       <div class="head center">
@@ -921,114 +720,10 @@ html.co-open,html.co-open body{overflow:hidden}
 </footer>
 <script>
 (function(){
-  var N=[
-    {prompt:"Why did the Maya walk away from their greatest cities?",
-     s:["History & mysteries: 6 of 6 gates","Top 12 videos: hooks, beats, thumbnails","20 angles laid out. #4 is wide open","Hook 17s · 7 beats, matched to the lane","Stills + drone b-roll + map scene","Word-timed narration + captions","Shaped against the lane's winners","1080p MP4 + editor timelines","Title, tags, chapters, 4 site posts"],
-     title:"The Maya Didn't Vanish. They Walked Away.",
-     hook:"Around 900 AD, millions of people left cities they had spent centuries building.",
-     look:"Painted stills, jungle b-roll, an animated map of the abandoned cities.",
-     out:"8:40 · MP4 1080p · Final Cut, Premiere, Resolve",
-     tg:"linear-gradient(135deg,#3B2A12,#0E1A14)",tt:["THEY WALKED AWAY","THE MAYA EXIT"],
-     scene:'<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ha" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3A548"/><stop offset=".55" stop-color="#8A3B1E"/><stop offset="1" stop-color="#1B120C"/></linearGradient></defs><rect width="320" height="180" fill="url(#ha)"/><circle cx="238" cy="70" r="26" fill="#FFD27A" opacity=".8"/><path d="M150 150 L150 132 L160 132 L160 118 L170 118 L170 104 L180 104 L180 92 L204 92 L204 104 L214 104 L214 118 L224 118 L224 132 L234 132 L234 150Z" fill="#1A0F0A"/><rect x="186" y="80" width="12" height="12" fill="#1A0F0A"/><path d="M0 150 Q20 120 40 140 Q55 110 75 135 Q90 115 110 142 Q125 125 140 150 Z M240 150 Q255 120 275 138 Q290 112 305 136 Q315 125 320 130 L320 150Z" fill="#0F1A10"/><rect y="148" width="320" height="32" fill="#0B120B"/></svg>'},
-    {prompt:"The retirement mistake that quietly costs people the most",
-     s:["Personal finance: 6 of 6 gates","Top 15 videos: hooks, beats, thumbnails","20 angles laid out. #11 is wide open","Hook 14s · 8 beats, matched to the lane","Stills + animated charts","Word-timed narration + captions","Shaped against the lane's winners","1080p MP4 + editor timelines","Title, tags, chapters, 4 site posts"],
-     title:"The $0 Mistake That Drains Retirements",
-     hook:"It costs nothing to make. That is exactly why almost everyone makes it.",
-     look:"Clean stills, animated line and bar charts, number call-outs.",
-     out:"11:20 · MP4 1080p · Final Cut, Premiere, Resolve",
-     tg:"linear-gradient(135deg,#0E3A2A,#0B1410)",tt:["THE $0 MISTAKE","DON'T DO THIS"],
-     scene:'<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#0B1A14"/><g stroke="#1F3A2E" stroke-width="1"><path d="M0 45H320M0 90H320M0 135H320M64 0V180M128 0V180M192 0V180M256 0V180"/></g><path class="draw" d="M20 70 L60 62 L100 66 L140 55 L180 60 L210 90 L240 112 L270 128 L300 140" fill="none" stroke="#3DDC97" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="300" cy="140" r="6" fill="#FF4D2E"/><text x="236" y="165" font-family="JetBrains Mono,monospace" font-size="12" fill="#FF7A45">-38%</text></svg>'},
-    {prompt:"How one man invoiced Google and Facebook for $121 million",
-     s:["Scams & fraud: 6 of 6 gates","Top 10 videos: hooks, beats, thumbnails","20 angles laid out. #2 is wide open","Hook 16s · 7 beats, matched to the lane","Stills + b-roll + document scenes","Word-timed narration + captions","Shaped against the lane's winners","1080p MP4 + editor timelines","Title, tags, chapters, 4 site posts"],
-     title:"He Never Hacked Anything. He Just Sent a Bill.",
-     hook:"No malware, no breach. Just an invoice that looked exactly like the real thing.",
-     look:"Moody stills, office b-roll, animated invoices and money-trail scenes.",
-     out:"14:05 · MP4 1080p · Final Cut, Premiere, Resolve",
-     tg:"linear-gradient(135deg,#3A0E0E,#120A0A)",tt:["$121M INVOICE","HE JUST SENT A BILL"],
-     scene:'<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="sr" cx=".7" cy=".3" r=".9"><stop offset="0" stop-color="#4A1414"/><stop offset="1" stop-color="#0D0707"/></radialGradient></defs><rect width="320" height="180" fill="url(#sr)"/><g transform="rotate(-6 230 95)"><rect x="185" y="40" width="96" height="120" rx="3" fill="#EDE6DA"/><rect x="195" y="52" width="40" height="7" fill="#1A1A1A"/><g fill="#B9B0A2"><rect x="195" y="70" width="76" height="4"/><rect x="195" y="80" width="60" height="4"/><rect x="195" y="90" width="70" height="4"/><rect x="195" y="100" width="50" height="4"/></g><rect x="195" y="130" width="76" height="16" fill="#1A1A1A"/><text x="199" y="142" font-family="JetBrains Mono,monospace" font-size="10" fill="#fff">$121,000,000</text></g><g transform="rotate(-18 250 120)"><rect x="222" y="104" width="64" height="26" rx="4" fill="none" stroke="#FF4D2E" stroke-width="3"/><text x="232" y="123" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="15" fill="#FF4D2E">PAID</text></g></svg>'},
-    {prompt:"Make a Spanish video on why the Nazca lines were drawn, with our narrator Inés",
-     s:["Misterios (Spanish): 6 of 6 gates","Top 12 Spanish-language videos studied","20 angles laid out. #6 is wide open","Script in Spanish · hook 15s · 7 beats","Stills with Inés in every scene + map","Spanish voice, word-timed + captions","Inés on both options, same face","1080p MP4 + editor timelines","Título, etiquetas, capítulos, 4 posts"],
-     title:"Las líneas de Nazca no eran para nosotros",
-     hook:"Alguien dibujó un colibrí de noventa metros que solo se ve desde el cielo.",
-     look:"Painted stills of the desert, with Inés, the channel's narrator, the same in every scene. An animated map of the lines.",
-     out:"9:30 · Español · MP4 1080p · Final Cut, Premiere, Resolve",
-     lang:"ES · ESPAÑOL",
-     ch:{pic:'<svg viewBox="-4 0 44 44"><rect x="-4" width="44" height="44" fill="#E7A25E"/><g transform="translate(0 6)"><ellipse cx="18" cy="81" rx="16" ry="3" fill="#000" opacity=".25"/><rect x="10" y="58" width="6" height="22" rx="2" fill="#2A1A14"/><rect x="19" y="58" width="6" height="22" rx="2" fill="#2A1A14"/><path d="M5 30 Q17 24 30 30 L32 60 L3 60Z" fill="#C8923A"/><path d="M5 34 L-8 44" stroke="#C8923A" stroke-width="5" stroke-linecap="round"/><path d="M9 30 L26 30 L22 38 L13 38Z" fill="#D7372B"/><path d="M22 36 L27 48 L23 49 L19 37Z" fill="#D7372B"/><circle cx="17.5" cy="20" r="8" fill="#C98A5E"/><path d="M11 20 Q8 32 12 40" stroke="#1E120C" stroke-width="3.2" fill="none" stroke-linecap="round"/><ellipse cx="17.5" cy="13" rx="15" ry="3.4" fill="#1F4A48"/><path d="M10 13 Q11 3 17.5 3 Q24 3 25 13Z" fill="#1F4A48"/><rect x="10.5" y="10" width="14" height="2.2" fill="#D7372B"/></g></svg>',txt:"Inés, locked to one picture: the same face in every frame, both thumbnails and every AI clip."},
-     tg:"linear-gradient(135deg,#4A2A12,#1A0E08)",tt:["NO ERAN PARA NOSOTROS","EL COLIBRÍ GIGANTE"],
-     scene:'<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="nz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9D9A6"/><stop offset=".55" stop-color="#E7A25E"/><stop offset="1" stop-color="#C9784A"/></linearGradient></defs><rect width="320" height="180" fill="url(#nz)"/><path d="M0 98 Q40 80 80 96 Q120 78 170 95 Q210 84 250 97 Q290 86 320 94 V104 H0Z" fill="#9A5530"/><rect y="100" width="320" height="80" fill="#B96A3C"/><g transform="translate(0 -24)"><path class="draw" d="M30 142 L62 128 L92 133 L122 118 L156 111 M92 133 L108 154 L84 148 L92 133 M62 128 L50 108 L74 121 M62 128 L40 116 L58 131" fill="none" stroke="#F6E3C8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></g><g transform="translate(236 70)"><ellipse cx="18" cy="81" rx="16" ry="3" fill="#000" opacity=".25"/><rect x="10" y="58" width="6" height="22" rx="2" fill="#2A1A14"/><rect x="19" y="58" width="6" height="22" rx="2" fill="#2A1A14"/><path d="M5 30 Q17 24 30 30 L32 60 L3 60Z" fill="#C8923A"/><path d="M5 34 L-8 44" stroke="#C8923A" stroke-width="5" stroke-linecap="round"/><path d="M9 30 L26 30 L22 38 L13 38Z" fill="#D7372B"/><path d="M22 36 L27 48 L23 49 L19 37Z" fill="#D7372B"/><circle cx="17.5" cy="20" r="8" fill="#C98A5E"/><path d="M11 20 Q8 32 12 40" stroke="#1E120C" stroke-width="3.2" fill="none" stroke-linecap="round"/><ellipse cx="17.5" cy="13" rx="15" ry="3.4" fill="#1F4A48"/><path d="M10 13 Q11 3 17.5 3 Q24 3 25 13Z" fill="#1F4A48"/><rect x="10.5" y="10" width="14" height="2.2" fill="#D7372B"/></g></svg>'}
-  ];
-  var NAMES=["Checking the niche","Studying the lane","Picking the angle","Writing the script","Building the visuals","Voice and captions","Designing the thumbnail","Exporting the video","Upload package"];
-  var $=function(id){return document.getElementById(id)};
-  var box=$("demoBox"),frame=$("dFrame"),stagesEl=$("dStages");
-  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var timers=[],cur=0,userPicked=false,capTimer=null;
-  function clear(){timers.forEach(clearTimeout);timers=[];if(capTimer){clearInterval(capTimer);capTimer=null}}
-  function at(ms,fn){timers.push(setTimeout(fn,ms))}
-  function render(i){
-    var n=N[i];
-    document.querySelectorAll(".tab").forEach(function(t){t.setAttribute("aria-selected",t.dataset.i==i?"true":"false")});
-    stagesEl.innerHTML=NAMES.map(function(nm,k){return '<li id="st'+k+'"><span class="ic"></span><b><span class="stage-k">'+String(k+1).padStart(2,"0")+'</span>'+nm+'</b><small>'+n.s[k]+'</small></li>'}).join("");
-    $("dScene").innerHTML=n.scene;
-    $("dTitle").textContent=n.title;
-    $("dCap").innerHTML=n.hook.split(" ").slice(0,9).map(function(w){return "<span>"+w+"</span>"}).join(" ");
-    $("dHook").textContent="“"+n.hook+"”";
-    $("dLook").textContent=n.look;
-    $("dOut").textContent=n.out;
-    var L=$("dLang");L.textContent=n.lang||"";L.classList.toggle("show",!!n.lang);
-    $("tl4").classList.toggle("show",!!n.ch);$("dPic").innerHTML=n.ch?n.ch.pic:"";$("dChar").textContent=n.ch?n.ch.txt:"";
-    var th=$("dThumbs").children;for(var k=0;k<2;k++){var w=n.tt[k].split(" "),last=w.pop();th[k].innerHTML=n.scene.replace(/id="(\w+)"/g,'id="$1_t'+k+'"').replace(/url\(#(\w+)\)/g,'url(#$1_t'+k+')')+"<span>"+(w.length?w.join(" ")+" ":"")+"<em>"+last+"</em></span>"}
-  }
-  function setStage(k,state){var el=$("st"+k);if(el)el.className=state}
-  function effects(k,on){
-    if(k>=2)frame.classList.toggle("titled",on);
-    if(k>=3)$("tl0").classList.toggle("on",on);
-    if(k>=4){frame.classList.toggle("on",on);$("tl1").classList.toggle("on",on);$("tl4").classList.toggle("on",on)}
-    if(k>=5)frame.classList.toggle("capped",on);
-    if(k>=6)$("tl2").classList.toggle("on",on);
-    if(k>=7){$("tl3").classList.toggle("on",on);$("dRec").textContent=on?"MP4 · 1080p":"DRAFT"}
-    if(k>=8)box.classList.toggle("finished",on);
-  }
-  function complete(i){
-    clear();render(i);
-    for(var k=0;k<9;k++){setStage(k,"done");effects(k,true)}
-    $("dPrompt").textContent=N[i].prompt;$("dBar").style.width="100%";
-    var sp=$("dCap").children;if(sp[0])sp[0].className="hl";
-  }
-  function reset(){
-    ["titled","on","capped"].forEach(function(c){frame.classList.remove(c)});
-    ["tl0","tl1","tl2","tl3","tl4"].forEach(function(id){$(id).classList.remove("on")});
-    box.classList.remove("finished");$("dRec").textContent="DRAFT";$("dBar").style.width="0";
-  }
-  function play(i){
-    clear();cur=i;render(i);reset();
-    var p=N[i].prompt,el=$("dPrompt"),t=0;el.innerHTML='<span class="caret"></span>';
-    for(var c=1;c<=p.length;c++){(function(c){at(t+=26,function(){el.innerHTML=p.slice(0,c)+'<span class="caret"></span>'})})(c)}
-    t+=350;
-    for(var k=0;k<9;k++){(function(k){
-      at(t,function(){setStage(k,"run")});
-      t+=(k==3||k==4)?1300:950;
-      at(t,function(){
-        setStage(k,"done");effects(k,true);$("dBar").style.width=((k+1)/9*100)+"%";
-        if(k==5){var sp=$("dCap").children,w=0;capTimer=setInterval(function(){for(var j=0;j<sp.length;j++)sp[j].className=(j==w?"hl":"");w=(w+1)%sp.length},330)}
-        if(k==8){el.textContent=p;if(!userPicked)at(4200,function(){play((cur+1)%N.length)})}
-      });
-    })(k)}
-  }
-  document.querySelectorAll(".tab").forEach(function(t){t.addEventListener("click",function(){userPicked=true;var i=+t.dataset.i;reduce?complete(i):play(i)})});
-  complete(0);
-  if(!reduce){
-    var started=false;
-    var go=function(){if(!started){started=true;play(0)}};
-    if("IntersectionObserver" in window){new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){go();o.disconnect()}})},{threshold:.35}).observe(box)}else go();
-  }
-})();
-</script>
-<script>
-(function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   /* sound: one player at a time, across proof players and bento clips */
-  document.querySelectorAll('.pv,.sv').forEach(function(c){var v=c.querySelector('video'),b=c.querySelector('.snd');if(!v||!b)return;
-    b.addEventListener('click',function(){var on=v.muted;document.querySelectorAll('.pv video,.sv video').forEach(function(o){o.muted=true});document.querySelectorAll('.snd').forEach(function(x){x.textContent=x.closest('.vshort')?'Sound':'Sound on'});
+  document.querySelectorAll('.pv').forEach(function(c){var v=c.querySelector('video'),b=c.querySelector('.snd');if(!v||!b)return;
+    b.addEventListener('click',function(){var on=v.muted;document.querySelectorAll('.pv video').forEach(function(o){o.muted=true});document.querySelectorAll('.snd').forEach(function(x){x.textContent=x.closest('.vshort')?'Sound':'Sound on'});
       if(on){v.dataset.user='1';if(!v.src&&v.dataset.src)v.src=v.dataset.src;v.muted=false;v.currentTime=0;v.play().catch(function(){});b.textContent='Mute'}});});
   if(reduce){document.querySelectorAll('.pv video').forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
   /* a clip the phone refuses to autoplay (iOS Low Power Mode) becomes its animated WebP */
