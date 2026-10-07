@@ -1082,6 +1082,10 @@ html.co-open,html.co-open body{overflow:hidden}
   function tellLead(){if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
     try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current}),keepalive:true}).catch(function(){})}catch(e){}}
   window.fvkIdentity=function(d){var e=d&&typeof d.email==='string'?d.email.trim():'';if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){email=e;tellLead()}};
+  // identity-captured may wait for a Whop login; also read the typed email from the open frame every 3 s
+  function readEmail(){if(!window.wco||!window.wco.getEmail)return;
+    try{Promise.resolve(window.wco.getEmail('wco-'+current)).then(function(e){window.fvkIdentity({email:e})},function(){})}catch(e){}}
+  setInterval(function(){if(!co.hidden)readEmail()},3000);
   // the $79 lifetime link from the recovery email: ?offer=<one-use code>
   var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
@@ -1097,7 +1101,7 @@ html.co-open,html.co-open body{overflow:hidden}
     Object.keys(P).forEach(function(n){var c=document.getElementById('wco-'+n);if(c)c.hidden=(n!==k)});tellLead();}
   function load(){if(loaded)return;loaded=true;
     Object.keys(P).forEach(function(n){var d=document.createElement('div');d.id='wco-'+n;
-      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);d.setAttribute('data-whop-checkout-on-complete','fvkCheckoutDone');d.setAttribute('data-whop-checkout-on-identity-captured','fvkIdentity');
+      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);d.setAttribute('data-whop-checkout-on-complete','fvkCheckoutDone');d.setAttribute('data-whop-checkout-on-identity-captured','fvkIdentity');d.setAttribute('data-whop-checkout-identifier','wco-'+n);
       if(OFFER&&n==='lifetime')d.setAttribute('data-whop-checkout-promo-code',OFFER);
       d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');d.setAttribute('data-whop-checkout-theme-button-text','Get the Kit');
       d.hidden=(n!==current);pane.appendChild(d);});
@@ -1110,7 +1114,7 @@ html.co-open,html.co-open body{overflow:hidden}
     var poll=setInterval(function(){var f=pane.querySelector('#wco-'+current+' iframe');if(f&&f.offsetHeight>150){wait.hidden=true;clearInterval(poll)}},250);}
   function open(k){lastFocus=document.activeElement;co.hidden=false;document.documentElement.classList.add('co-open');show(k);load();
     document.getElementById('co-x').focus();}
-  function close(){co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
+  function close(){readEmail();co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
     if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
   document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-plan-tab'))})});
