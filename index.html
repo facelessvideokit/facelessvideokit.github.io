@@ -376,6 +376,7 @@ whop.track("page");
 .co-tabs button[aria-pressed="true"]{border-color:var(--hot);color:var(--ink);box-shadow:0 0 0 1px var(--hot) inset}
 .co-pane{min-height:420px}
 .co-wait{color:var(--mute);font-size:14px;padding:30px 4px;text-align:center}
+.co-email{display:grid;gap:8px;padding:6px 2px 4px}.co-email label{font-size:14px;color:var(--ink2)}.co-email .co-row{display:flex;gap:8px}.co-email input{flex:1;min-width:0;font:500 16px/1.2 var(--body);padding:14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink)}.co-email input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.co-email .btn-hot{width:auto;padding:14px 20px;font-size:16px}.co-email .co-err{color:var(--hot);font-size:13px;margin:0}.co-email[hidden],.co-who[hidden]{display:none!important}.co-who{font-size:13px;color:var(--mute);margin:0 2px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.co-who button{all:unset;color:var(--gold);cursor:pointer;text-decoration:underline;font-size:13px}.co-who button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .co-foot{font-size:12px;color:var(--mute);text-align:center;margin:0}
 .co-note{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:101;max-width:calc(100% - 32px);background:var(--card);border:1px solid var(--ok);color:var(--ink);padding:12px 16px;border-radius:12px;font-size:15px}
 .co-note.err{border-color:var(--hot)}
@@ -766,7 +767,7 @@ html.co-open,html.co-open body{overflow:hidden}
       <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Cancel any time</small></button>
       <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
     </div>
-    <div class="co-pane" id="co-pane"><p class="co-wait" id="co-wait">Loading secure checkout…</p></div>
+    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit">Continue</button></div><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div id="co-mount"></div></div>
     <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly cancels any time<br>Don't finish? We may email you a reminder (unsubscribe in one click).</p>
   </div>
 </div>
@@ -774,47 +775,66 @@ html.co-open,html.co-open body{overflow:hidden}
 <script>
 (function(){
   var P=window.FVK_PLANS, co=document.getElementById('co'), pane=document.getElementById('co-pane'),
-      wait=document.getElementById('co-wait'), loaded=false, current='monthly', lastFocus=null;
+      wait=document.getElementById('co-wait'), mountEl=document.getElementById('co-mount'), form=document.getElementById('co-email'),
+      emIn=document.getElementById('co-em'), emErr=document.getElementById('co-err'), who=document.getElementById('co-who'),
+      current='monthly', lastFocus=null, handle=null, mountedKey='', readyTimer=0, sdk=null;
   var RETURN=location.origin+location.pathname+'?checkout=done';
   // 6 Oct 2026: a buyer paid in this embedded checkout, landed in Whop's hub (chat only) and never saw his key.
   // On success, go straight to the licence relay's key page for THIS payment (key + download + START HERE).
   var CLAIM='https://fvk-licence.facelessvideokit.workers.dev/v1/claim?payment_id=';
   function toClaim(id){if(/^pay_[A-Za-z0-9]{6,40}$/.test(id||'')){location.href=CLAIM+encodeURIComponent(id);return true}return false}
-  window.fvkCheckoutDone=function(planId,receiptId){if(!toClaim(receiptId)){location.href=RETURN+'&status=success'}};
-  // 7 Oct 2026: abandoned-checkout follow-up. Whop's frame says when it has the buyer's email
-  // (on-identity-captured); the relay emails them if no payment follows (relay/src/recover.js).
+  // 8 Oct 2026: Whop retires the legacy embed (js.whop.com loader.js) on 21 Oct 2026. This is Whop Elements.
+  // Elements has no "email captured" event, so the email is asked here first (it feeds the abandoned-checkout
+  // follow-up, relay/src/recover.js) and handed to Whop prefilled, so the buyer types it once.
   var LEAD='https://fvk-licence.facelessvideokit.workers.dev/v1/lead', email='', told='';
+  function okEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
   function tellLead(){if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
     try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current}),keepalive:true}).catch(function(){})}catch(e){}}
-  window.fvkIdentity=function(d){var e=d&&typeof d.email==='string'?d.email.trim():'';if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){email=e;tellLead()}};
   // the $79 lifetime link from the recovery email: ?offer=<one-use code>
   var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
   if(OFFER){P.lifetime.price='$79 once';P.lifetime.note='Your $20-off code is applied'}
+  var E0=(q0.get('email')||'').trim(); if(okEmail(E0))emIn.value=E0;
   function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id;}
   // keep every price label and fallback link in step with the plan block
   document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
     if(k==='monthly-short'){el.textContent=P.monthly.short}else if(P[k]){el.textContent=P[k].price}});
   document.querySelectorAll('[data-note]').forEach(function(el){var k=el.getAttribute('data-note');if(P[k])el.textContent=P[k].note});
   document.querySelectorAll('a[data-buy]').forEach(function(a){a.href=checkoutUrl(a.getAttribute('data-buy'))});
+  // Whop Elements script: loaded once, the first time checkout opens (cdn.whop.com)
+  var sdkWait=[];
+  function loadSdk(cb){if(sdk){cb(sdk);return}sdkWait.push(cb);if(sdkWait.length>1)return;
+    var s=document.createElement('script');s.src='https://cdn.whop.com/elements/amber/elements.js';s.async=true;s.setAttribute('data-whop-elements','');
+    s.onload=function(){try{sdk=window.WhopElements({locale:'en'})}catch(e){sdk=null}
+      if(!sdk){bail();return}var w=sdkWait;sdkWait=[];w.forEach(function(f){f(sdk)})};
+    s.onerror=bail;document.head.appendChild(s);}
+  // anything goes wrong loading Whop's checkout: send the buyer to the same plan's hosted checkout page
+  function bail(){location.href=checkoutUrl(current)}
+  function unmount(){clearTimeout(readyTimer);if(handle){try{handle.destroy()}catch(e){}}handle=null;mountedKey='';mountEl.innerHTML=''}
+  function mount(){if(!email)return;var key=current+'|'+email;if(key===mountedKey)return;unmount();mountedKey=key;
+    wait.hidden=false;
+    loadSdk(function(w){if(mountedKey!==key)return;
+      var opts={plan:P[current].id,returnUrl:RETURN,appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
+        onComplete:function(r){if(r&&r.result==='payment'&&toClaim(r.paymentId))return;location.href=RETURN+'&status=succeeded'}};
+      if(OFFER&&current==='lifetime')opts.promoCode=OFFER;
+      try{handle=w.checkout.create(opts);
+        handle.create('checkout',{buyerEmail:email,
+          onReady:function(){clearTimeout(readyTimer);wait.hidden=true},
+          onError:function(){bail()}}).mount(mountEl);}catch(e){bail();return}
+      // if Whop's checkout hasn't drawn after 12 s, use the hosted checkout page instead
+      readyTimer=setTimeout(function(){if(!wait.hidden)bail()},12000);});}
+  function showEmailStep(){form.hidden=false;who.hidden=true;unmount();wait.hidden=true;emIn.focus()}
+  function showWho(){who.innerHTML='';who.appendChild(document.createTextNode('Key goes to '+email+' · '));
+    var b=document.createElement('button');b.type='button';b.textContent='change';b.addEventListener('click',showEmailStep);who.appendChild(b);
+    form.hidden=true;who.hidden=false;}
+  form.addEventListener('submit',function(e){e.preventDefault();var v=emIn.value.trim();
+    if(!okEmail(v)){emErr.hidden=false;emIn.focus();return}emErr.hidden=true;email=v;tellLead();showWho();mount();});
   function show(k){current=k;
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
-    Object.keys(P).forEach(function(n){var c=document.getElementById('wco-'+n);if(c)c.hidden=(n!==k)});tellLead();}
-  function load(){if(loaded)return;loaded=true;
-    Object.keys(P).forEach(function(n){var d=document.createElement('div');d.id='wco-'+n;
-      d.setAttribute('data-whop-checkout-plan-id',P[n].id);d.setAttribute('data-whop-checkout-return-url',RETURN);d.setAttribute('data-whop-checkout-on-complete','fvkCheckoutDone');d.setAttribute('data-whop-checkout-on-identity-captured','fvkIdentity');
-      if(OFFER&&n==='lifetime')d.setAttribute('data-whop-checkout-promo-code',OFFER);
-      d.setAttribute('data-whop-checkout-theme','dark');d.setAttribute('data-whop-checkout-theme-accent-color','orange');d.setAttribute('data-whop-checkout-theme-button-text','Get the Kit');
-      d.hidden=(n!==current);pane.appendChild(d);});
-    var s=document.createElement('script');s.src='https://js.whop.com/static/checkout/loader.js';s.async=true;
-    s.onerror=function(){location.href=checkoutUrl(current)};document.head.appendChild(s);
-    // if Whop's checkout hasn't drawn after 10 s, send the buyer to the same plan's checkout page
-    setTimeout(function(){if(!pane.querySelector('iframe')){location.href=checkoutUrl(current)}else{wait.hidden=true}},10000);
-    wait.hidden=false;pane.insertBefore(wait,pane.firstChild);
-    // hide "Loading" once Whop's form has drawn (its frame grows past a stub height)
-    var poll=setInterval(function(){var f=pane.querySelector('#wco-'+current+' iframe');if(f&&f.offsetHeight>150){wait.hidden=true;clearInterval(poll)}},250);}
-  function open(k){lastFocus=document.activeElement;co.hidden=false;document.documentElement.classList.add('co-open');show(k);load();
-    document.getElementById('co-x').focus();}
+    tellLead();mount();}
+  function open(k){lastFocus=document.activeElement;co.hidden=false;document.documentElement.classList.add('co-open');show(k);
+    loadSdk(function(){});
+    if(!email){showEmailStep()}else{document.getElementById('co-x').focus()}}
   function close(){co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
     if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
@@ -825,10 +845,13 @@ html.co-open,html.co-open body{overflow:hidden}
   var q=new URLSearchParams(location.search);
   // links from the recovery emails open the checkout straight away
   if(OFFER){open('lifetime')}else if(P[q.get('resume')]){open(q.get('resume'))}
-  if(q.get('checkout')==='done'&&toClaim(q.get('payment_id')||q.get('receipt_id')))return;
-  if(q.get('checkout')==='done'){var n=document.createElement('div');var ok=q.get('status')!=='error';
+  // back from an off-site payment step (3DS, bank page). Elements appends payment=pay_… and
+  // status=succeeded|failed|canceled; the legacy embed sent payment_id/receipt_id and success|error.
+  if(q.get('checkout')==='done'){var st=q.get('status')||'';var ok=(st==='succeeded'||st==='success');
+    if(ok&&toClaim(q.get('payment')||q.get('payment_id')||q.get('receipt_id')))return;
+    var n=document.createElement('div');
     n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
-    n.textContent=ok?"You're in. Your licence key page didn't open? Message us in the Faceless Video Kit chat on whop.com and we'll send your key and download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
+    n.textContent=ok?"You're in. Your licence key page didn't open? Check your email, or message us in the Faceless Video Kit chat on whop.com and we'll send your key and download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
     document.body.appendChild(n);history.replaceState(null,'',location.pathname);setTimeout(function(){n.remove()},12000);}
 })();
 </script>
