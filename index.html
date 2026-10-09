@@ -362,6 +362,15 @@ whop.setScope("biz_U40fQX45fci3MA");
 whop.track("page");
 </script>
 <!-- End Whop Pixel -->
+<!-- Meta Pixel: FVK's own dataset "FVK Site" (FVK Ads account), since Whop's ad BM was banned 9 Oct 2026.
+     Purchase is also sent server-side by the relay with the same event id (relay/src/metacapi.js). -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1448862650539340');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1448862650539340&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel -->
 <style id="fvk-checkout-css">
 .co{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(6,5,8,.78);backdrop-filter:blur(6px)}
 .co[hidden]{display:none!important}
@@ -788,8 +797,17 @@ html.co-open,html.co-open body{overflow:hidden}
   // follow-up, relay/src/recover.js) and handed to Whop prefilled, so the buyer types it once.
   var LEAD='https://fvk-licence.facelessvideokit.workers.dev/v1/lead', email='', told='';
   function okEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+  // Meta: the _fbp/_fbc cookies go with the lead so the relay's server Purchase matches this browser
+  function ck(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''}
+  var PRICE={monthly:29,lifetime:99}, ic='';
+  function fb(){try{if(window.fbq)fbq.apply(null,arguments)}catch(e){}}
   function tellLead(){if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
-    try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current}),keepalive:true}).catch(function(){})}catch(e){}}
+    if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:(OFFER&&current==='lifetime')?79:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id],content_type:'product'})}
+    try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,fbp:ck('_fbp'),fbc:ck('_fbc')}),keepalive:true}).catch(function(){})}catch(e){}}
+  // Purchase in the browser, eventID = the Whop payment id (the relay sends the same id, Meta keeps one)
+  function bought(id,k,then){var v=(OFFER&&k==='lifetime')?79:PRICE[k]||PRICE.monthly;
+    fb('track','Purchase',{value:v,currency:'USD',content_name:'Faceless Video Kit',content_ids:[(P[k]||P.monthly).id],content_type:'product'},id?{eventID:id}:undefined);
+    setTimeout(then,450)}
   // the $79 lifetime link from the recovery email: ?offer=<one-use code>
   var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
@@ -814,8 +832,9 @@ html.co-open,html.co-open body{overflow:hidden}
   function mount(){if(!email)return;var key=current+'|'+email;if(key===mountedKey)return;unmount();mountedKey=key;
     wait.hidden=false;
     loadSdk(function(w){if(mountedKey!==key)return;
-      var opts={plan:P[current].id,returnUrl:RETURN,appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
-        onComplete:function(r){if(r&&r.result==='payment'&&toClaim(r.paymentId))return;location.href=RETURN+'&status=succeeded'}};
+      var opts={plan:P[current].id,returnUrl:RETURN+'&plan='+current,appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
+        onComplete:function(r){var id=r&&r.result==='payment'?r.paymentId:'';
+          bought(id,current,function(){if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
       if(OFFER&&current==='lifetime')opts.promoCode=OFFER;
       try{handle=w.checkout.create(opts);
         handle.create('checkout',{buyerEmail:email,
@@ -848,7 +867,10 @@ html.co-open,html.co-open body{overflow:hidden}
   // back from an off-site payment step (3DS, bank page). Elements appends payment=pay_… and
   // status=succeeded|failed|canceled; the legacy embed sent payment_id/receipt_id and success|error.
   if(q.get('checkout')==='done'){var st=q.get('status')||'';var ok=(st==='succeeded'||st==='success');
-    if(ok&&toClaim(q.get('payment')||q.get('payment_id')||q.get('receipt_id')))return;
+    var pid=q.get('payment')||q.get('payment_id')||q.get('receipt_id')||'';
+    // back from 3DS / a bank page: count the sale here (onComplete never ran), unless it already did
+    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){bought(pid,q.get('plan')==='lifetime'?'lifetime':'monthly',function(){if(!toClaim(pid))location.replace(location.pathname)});return}
+    if(ok&&toClaim(pid))return;
     var n=document.createElement('div');
     n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
     n.textContent=ok?"You're in. Your licence key page didn't open? Check your email, or message us in the Faceless Video Kit chat on whop.com and we'll send your key and download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
