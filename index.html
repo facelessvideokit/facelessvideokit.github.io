@@ -387,6 +387,11 @@ fbq('track','PageView');
 .co-wait{color:var(--mute);font-size:14px;padding:30px 4px;text-align:center}
 .co-email{display:grid;gap:8px;padding:6px 2px 4px}.co-email label{font-size:14px;color:var(--ink2)}.co-email .co-row{display:flex;gap:8px}.co-email input{flex:1;min-width:0;font:500 16px/1.2 var(--body);padding:14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink)}.co-email input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.co-email .btn-hot{width:auto;padding:14px 20px;font-size:16px}.co-email .co-err{color:var(--hot);font-size:13px;margin:0}.co-email[hidden],.co-who[hidden]{display:none!important}.co-who{font-size:13px;color:var(--mute);margin:0 2px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.co-who button{all:unset;color:var(--gold);cursor:pointer;text-decoration:underline;font-size:13px}.co-who button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .co-foot{font-size:12px;color:var(--mute);text-align:center;margin:0}
+.co-up{display:grid;gap:12px;padding:4px 2px}.co-up[hidden],.co-tabs[hidden]{display:none!important}
+.co-up-h{margin:0;font:700 19px/1.3 var(--body);color:var(--ink)}.co-up-h b{color:var(--gold)}
+.co-up-l{list-style:none;margin:0;padding:0;display:grid;gap:6px;color:var(--ink2);font-size:15px}.co-up-l li::before{content:"\2713  ";color:var(--ok);font-weight:700}
+.co-up .btn-hot{width:100%;justify-content:center;font-size:16px;padding:14px 20px}
+.co-up-no{all:unset;justify-self:center;color:var(--mute);font-size:14px;text-decoration:underline;cursor:pointer;padding:6px}.co-up-no:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .co-note{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:101;max-width:calc(100% - 32px);background:var(--card);border:1px solid var(--ok);color:var(--ink);padding:12px 16px;border-radius:12px;font-size:15px}
 .co-note.err{border-color:var(--hot)}
 html.co-open,html.co-open body{overflow:hidden}
@@ -776,7 +781,7 @@ html.co-open,html.co-open body{overflow:hidden}
       <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Cancel any time</small></button>
       <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
     </div>
-    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit">Continue</button></div><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div id="co-mount"></div></div>
+    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit">Continue</button></div><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: $70 more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $99</li><li>Same key, same Kit: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · $70</button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
     <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly cancels any time<br>Don't finish? We may email you a reminder (unsubscribe in one click).</p>
   </div>
 </div>
@@ -792,6 +797,10 @@ html.co-open,html.co-open body{overflow:hidden}
   // On success, go straight to the licence relay's key page for THIS payment (key + download + START HERE).
   var CLAIM='https://fvk-licence.facelessvideokit.workers.dev/v1/claim?payment_id=';
   function toClaim(id){if(/^pay_[A-Za-z0-9]{6,40}$/.test(id||'')){location.href=CLAIM+encodeURIComponent(id);return true}return false}
+  // 10 Oct 2026 (owner): right after a $29 purchase, ONE offer before the key page: lifetime for $70 more
+  // (the $29 counts toward the $99). Hidden Whop plan; the relay links it to the monthly, stops the renewal
+  // and keeps the same key working. No thanks / close / any checkout error -> straight to the key page.
+  var UPG='plan_o5Dd8K2JJKSFT', upFrom='';
   // 8 Oct 2026: Whop retires the legacy embed (js.whop.com loader.js) on 21 Oct 2026. This is Whop Elements.
   // Elements has no "email captured" event, so the email is asked here first (it feeds the abandoned-checkout
   // follow-up, relay/src/recover.js) and handed to Whop prefilled, so the buyer types it once.
@@ -834,7 +843,7 @@ html.co-open,html.co-open body{overflow:hidden}
     loadSdk(function(w){if(mountedKey!==key)return;
       var opts={plan:P[current].id,returnUrl:RETURN+'&plan='+current,appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
         onComplete:function(r){var id=r&&r.result==='payment'?r.paymentId:'';
-          bought(id,current,function(){if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
+          bought(id,current,function(){if(current==='monthly'&&offerUpgrade(id))return;if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
       if(OFFER&&current==='lifetime')opts.promoCode=OFFER;
       try{handle=w.checkout.create(opts);
         handle.create('checkout',{buyerEmail:email,
@@ -842,6 +851,22 @@ html.co-open,html.co-open body{overflow:hidden}
           onError:function(){bail()}}).mount(mountEl);}catch(e){bail();return}
       // if Whop's checkout hasn't drawn after 12 s, use the hosted checkout page instead
       readyTimer=setTimeout(function(){if(!wait.hidden)bail()},12000);});}
+  function offerUpgrade(pid){if(!/^pay_[A-Za-z0-9]{6,40}$/.test(pid||''))return false;
+    upFrom=pid;unmount();co.hidden=false;document.documentElement.classList.add('co-open');
+    var tabs=co.querySelector('.co-tabs');if(tabs)tabs.hidden=true;
+    document.getElementById('co-title').textContent="You're in. One offer before your Kit";
+    form.hidden=true;who.hidden=true;wait.hidden=true;var ft=co.querySelector('.co-foot');if(ft)ft.hidden=true;var up=document.getElementById('co-up');up.hidden=false;
+    document.getElementById('co-up-yes').focus();return true}
+  function upgradeNow(){var pid=upFrom;document.getElementById('co-up').hidden=true;wait.hidden=false;mountedKey='upgrade';
+    loadSdk(function(w){
+      try{handle=w.checkout.create({plan:UPG,metadata:{fvk_upgrade_of:pid},returnUrl:RETURN+'&plan=upgrade&from='+encodeURIComponent(pid),
+          appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
+          onComplete:function(){toClaim(pid)}});
+        handle.create('checkout',{buyerEmail:email||undefined,onReady:function(){clearTimeout(readyTimer);wait.hidden=true},
+          onError:function(){toClaim(pid)}}).mount(mountEl);}catch(e){toClaim(pid);return}
+      readyTimer=setTimeout(function(){if(!wait.hidden)toClaim(pid)},12000);});}
+  document.getElementById('co-up-yes').addEventListener('click',upgradeNow);
+  document.getElementById('co-up-no').addEventListener('click',function(){toClaim(upFrom)});
   function showEmailStep(){form.hidden=false;who.hidden=true;unmount();wait.hidden=true;emIn.focus()}
   function showWho(){who.innerHTML='';who.appendChild(document.createTextNode('Key goes to '+email+' · '));
     var b=document.createElement('button');b.type='button';b.textContent='change';b.addEventListener('click',showEmailStep);who.appendChild(b);
@@ -854,7 +879,7 @@ html.co-open,html.co-open body{overflow:hidden}
   var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:(OFFER&&k==='lifetime')?79:PRICE[k],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[k].id],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
     if(!email){showEmailStep()}else{document.getElementById('co-x').focus()}}
-  function close(){co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
+  function close(){if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
     if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
   document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-plan-tab'))})});
@@ -869,7 +894,9 @@ html.co-open,html.co-open body{overflow:hidden}
   if(q.get('checkout')==='done'){var st=q.get('status')||'';var ok=(st==='succeeded'||st==='success');
     var pid=q.get('payment')||q.get('payment_id')||q.get('receipt_id')||'';
     // back from 3DS / a bank page: count the sale here (onComplete never ran), unless it already did
-    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){bought(pid,q.get('plan')==='lifetime'?'lifetime':'monthly',function(){if(!toClaim(pid))location.replace(location.pathname)});return}
+    if(q.get('plan')==='upgrade'&&toClaim(q.get('from')))return;
+    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){var pl=q.get('plan')==='lifetime'?'lifetime':'monthly';
+      bought(pid,pl,function(){history.replaceState(null,'',location.pathname);if(pl==='monthly'&&offerUpgrade(pid))return;if(!toClaim(pid))location.replace(location.pathname)});return}
     if(ok&&toClaim(pid))return;
     var n=document.createElement('div');
     n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
