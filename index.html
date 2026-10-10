@@ -851,7 +851,7 @@ html.co-open,html.co-open body{overflow:hidden}
   function show(k){current=k;
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
     tellLead();mount();}
-  function open(k){lastFocus=document.activeElement;co.hidden=false;document.documentElement.classList.add('co-open');show(k);
+  var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:(OFFER&&k==='lifetime')?79:PRICE[k],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[k].id],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
     if(!email){showEmailStep()}else{document.getElementById('co-x').focus()}}
   function close(){co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
