@@ -356,6 +356,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (min-width:641px) and (max-width:960px){.hero .wrap>div:has(.hstack){order:-1}}
 /* 12 Oct 2026: on phones the first screen is the headline, where it runs, the button and the price; the pictures follow */
 @media (max-width:640px){.hero .wrap>div:first-child{display:flex;flex-direction:column}.hero .wrap>div:first-child>.badge{order:-5;align-self:flex-start}.hero .wrap>div:first-child>h1{order:-4;margin-block:16px 12px}.hero .wrap>div:first-child>.where{order:-3}.hero .wrap>div:first-child>.ctas{order:-2;margin-top:16px}.hero .wrap>div:first-child>.fine.price-line{order:-1;margin-bottom:22px}.ph-only{display:inline}}
+.co-alt[hidden]{display:none}
 .co-alt{display:block;margin:12px auto 0;background:none;border:0;color:var(--mute);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;min-height:40px}
 @media (max-width:640px){.co-row{flex-wrap:wrap}.co-row input,.co-row .btn{flex:1 1 100%;width:100%}}
 .co-sent{text-align:center;padding:8px 0 4px}.co-sent-h{font-weight:700;font-size:18px;margin:0 0 6px}.co-sent p{margin:0}
@@ -793,8 +794,8 @@ html.co-open,html.co-open body{overflow:hidden}
       <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Cancel any time</small></button>
       <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
     </div>
-    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="submit" id="co-buyhere" value="buy" hidden>or buy now on this phone</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: $70 more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $99</li><li>Same key, same Kit: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · $70</button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
-    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions · Monthly cancels any time<br>Don't finish? We may email you a reminder (unsubscribe in one click).</p>
+    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="button" id="co-buyhere" hidden>or pay on this phone instead</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: $70 more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $99</li><li>Same key, same Kit: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · $70</button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
+    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions asked · Cancel the monthly plan anytime</p>
   </div>
 </div>
 <script id="fvk-plans">window.FVK_PLANS={"monthly":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29 / month","short":"$29/mo","note":"Cancel any time"},"lifetime":{"id":"plan_hPS32cvM4Glzd","price":"$99 once","short":"$99 once","note":"Pay once, yours for life"}};</script>
@@ -887,6 +888,8 @@ html.co-open,html.co-open body{overflow:hidden}
       lbl=form.querySelector('label'), LBL0=lbl.innerHTML;
   function laterMode(on){later=on;goBtn.textContent=on?'Email me the link':'Continue';buyHere.hidden=!on;
     lbl.innerHTML=on?'On your phone? The Kit runs on your <b>Mac or PC</b>. We\u2019ll email you the link to open there.':LBL0}
+  buyHere.addEventListener('click',function(){laterMode(false);emErr.hidden=true;
+    if(okEmail(emIn.value.trim())){form.requestSubmit()}else{emIn.focus()}});
   if(PHONE){laterMode(true);var hb=document.getElementById('hero-buy');if(hb)hb.innerHTML='Email me the link for my computer <span aria-hidden="true">\u2192</span>'}
   function sendLater(){sent.hidden=true;goBtn.disabled=true;
     fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,later:true,fbp:ck('_fbp'),fbc:ck('_fbc')})})
@@ -900,8 +903,8 @@ html.co-open,html.co-open body{overflow:hidden}
     form.hidden=true;who.hidden=false;}
   form.addEventListener('submit',function(e){e.preventDefault();var v=emIn.value.trim();
     if(!okEmail(v)){emErr.textContent='Enter a valid email address.';emErr.hidden=false;emIn.focus();return}emErr.hidden=true;email=v;
-    if(later&&!(e.submitter&&e.submitter.value==='buy')){sendLater();return}
-    if(later)laterMode(false);tellLead();showWho();mount();});
+    if(later){sendLater();return}
+    tellLead();showWho();mount();});
   function show(k){current=k;
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
     if(later)return;tellLead();mount();}
