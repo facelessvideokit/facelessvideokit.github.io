@@ -815,16 +815,17 @@ html.co-open,html.co-open body{overflow:hidden}
   // and keeps the same key working. No thanks / close / any checkout error -> straight to the key page.
   var UPG='plan_o5Dd8K2JJKSFT', upFrom='';
   // 8 Oct 2026: Whop retires the legacy embed (js.whop.com loader.js) on 21 Oct 2026. This is Whop Elements.
-  // Elements has no "email captured" event, so the email is asked here first (it feeds the abandoned-checkout
-  // follow-up, relay/src/recover.js) and handed to Whop prefilled, so the buyer types it once.
+  // Elements has no "email captured" event. 12 Oct 2026 (owner): on a computer the checkout opens straight away
+  // and Whop asks for the email itself (3 of 4 checkout openers left at our own email box). Our email box now
+  // only serves the phone 'email me the link' flow; a recovery-email link (?email=) still prefills Whop.
   var LEAD='https://fvk-licence.facelessvideokit.workers.dev/v1/lead', email='', told='';
   function okEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
   // Meta: the _fbp/_fbc cookies go with the lead so the relay's server Purchase matches this browser
   function ck(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''}
   var PRICE={monthly:29,lifetime:99}, ic='';
   function fb(){try{if(window.fbq)fbq.apply(null,arguments)}catch(e){}}
-  function tellLead(){if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
-    if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:(OFFER&&current==='lifetime')?79:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id],content_type:'product'})}
+  function trackIC(){if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:(OFFER&&current==='lifetime')?79:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id],content_type:'product'})}}
+  function tellLead(){trackIC();if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
     try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,fbp:ck('_fbp'),fbc:ck('_fbc')}),keepalive:true}).catch(function(){})}catch(e){}}
   // Purchase in the browser, eventID = the Whop payment id (the relay sends the same id, Meta keeps one)
   function bought(id,k,then){var v=(OFFER&&k==='lifetime')?79:PRICE[k]||PRICE.monthly;
@@ -834,7 +835,7 @@ html.co-open,html.co-open body{overflow:hidden}
   var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
   if(OFFER){P.lifetime.price='$79 once';P.lifetime.note='Your $20-off code is applied'}
-  var E0=(q0.get('email')||'').trim(); if(okEmail(E0))emIn.value=E0;
+  var E0=(q0.get('email')||'').trim(); if(okEmail(E0)){emIn.value=E0;email=E0}
   function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id;}
   // keep every price label and fallback link in step with the plan block
   document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
@@ -851,7 +852,7 @@ html.co-open,html.co-open body{overflow:hidden}
   // anything goes wrong loading Whop's checkout: send the buyer to the same plan's hosted checkout page
   function bail(){location.href=checkoutUrl(current)}
   function unmount(){clearTimeout(readyTimer);if(handle){try{handle.destroy()}catch(e){}}handle=null;mountedKey='';mountEl.innerHTML=''}
-  function mount(){if(!email)return;var key=current+'|'+email;if(key===mountedKey)return;unmount();mountedKey=key;
+  function mount(){var key=current+'|'+email;if(key===mountedKey)return;unmount();mountedKey=key;
     wait.hidden=false;
     loadSdk(function(w){if(mountedKey!==key)return;
       var opts={plan:P[current].id,returnUrl:RETURN+'&plan='+current,appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
@@ -859,7 +860,7 @@ html.co-open,html.co-open body{overflow:hidden}
           bought(id,current,function(){if(current==='monthly'&&offerUpgrade(id))return;if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
       if(OFFER&&current==='lifetime')opts.promoCode=OFFER;
       try{handle=w.checkout.create(opts);
-        handle.create('checkout',{buyerEmail:email,
+        handle.create('checkout',{buyerEmail:email||undefined,
           onReady:function(){clearTimeout(readyTimer);wait.hidden=true},
           onError:function(){bail()}}).mount(mountEl);}catch(e){bail();return}
       // if Whop's checkout hasn't drawn after 12 s, use the hosted checkout page instead
@@ -889,7 +890,7 @@ html.co-open,html.co-open body{overflow:hidden}
   function laterMode(on){later=on;goBtn.textContent=on?'Email me the link':'Continue';buyHere.hidden=!on;
     lbl.innerHTML=on?'On your phone? The Kit runs on your <b>Mac or PC</b>. We\u2019ll email you the link to open there.':LBL0}
   buyHere.addEventListener('click',function(){laterMode(false);emErr.hidden=true;
-    if(okEmail(emIn.value.trim())){form.requestSubmit()}else{emIn.focus()}});
+    var v=emIn.value.trim();if(okEmail(v))email=v;goPay();});
   if(PHONE){laterMode(true);var hb=document.getElementById('hero-buy');if(hb)hb.innerHTML='Email me the link for my computer <span aria-hidden="true">\u2192</span>'}
   function sendLater(){sent.hidden=true;goBtn.disabled=true;
     fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,later:true,fbp:ck('_fbp'),fbc:ck('_fbc')})})
@@ -898,6 +899,8 @@ html.co-open,html.co-open body{overflow:hidden}
       .catch(function(){laterMode(false);emErr.textContent='Couldn\u2019t send the email just now. You can buy here instead.';emErr.hidden=false})
       .then(function(){goBtn.disabled=false})}
   function showEmailStep(){form.hidden=false;who.hidden=true;sent.hidden=true;unmount();wait.hidden=true;emIn.focus()}
+  // straight to Whop's own checkout (it asks for the email itself unless we already have one)
+  function goPay(){form.hidden=true;sent.hidden=true;if(email){showWho()}else{who.hidden=true}tellLead();mount();}
   function showWho(){who.innerHTML='';who.appendChild(document.createTextNode('Key goes to '+email+' · '));
     var b=document.createElement('button');b.type='button';b.textContent='change';b.addEventListener('click',showEmailStep);who.appendChild(b);
     form.hidden=true;who.hidden=false;}
@@ -910,7 +913,7 @@ html.co-open,html.co-open body{overflow:hidden}
     if(later)return;tellLead();mount();}
   var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:(OFFER&&k==='lifetime')?79:PRICE[k],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[k].id],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
-    if(!email){showEmailStep()}else{document.getElementById('co-x').focus()}}
+    if(later){showEmailStep()}else{goPay();document.getElementById('co-x').focus()}}
   function close(){if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
     if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
