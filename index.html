@@ -315,6 +315,27 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* v2: asset strip */
 .svcline{max-width:860px;margin:18px auto 0;text-align:center;font-size:14px;color:var(--ink2)}
+/* value compare */
+.vs{max-width:860px;margin:0 auto 34px;display:grid;grid-template-columns:1fr 1fr 1.15fr;border:1px solid var(--line2);border-radius:20px;overflow:hidden;background:var(--bg2)}
+.vs>div{padding:20px 22px;display:flex;flex-direction:column;gap:6px;border-left:1px solid var(--line2)}
+.vs>div:first-child{border-left:0}
+.vs .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.vs b{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.vs span.s{font-size:13.5px;color:var(--ink2);line-height:1.45}
+.vs .us{background:linear-gradient(180deg,rgba(255,77,46,.13),rgba(255,77,46,.03))}
+.vs .us .k{color:var(--hot)}
+.vs-note{max-width:860px;margin:-22px auto 34px;font-size:12.5px;color:var(--mute);text-align:center}
+@media (max-width:640px){.vs{grid-template-columns:1fr}.vs>div{border-left:0;border-top:1px solid var(--line2);padding:16px 18px}.vs>div:first-child{border-top:0}.vs b{font-size:22px}}
+/* faq */
+.faq{max-width:860px;margin-inline:auto;display:grid;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:0 22px}
+.faq details[open]{border-color:var(--line2);background:var(--bg2)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;font-weight:700;font-size:17px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--hot)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--ink2);font-size:15.5px;padding:0 0 18px;max-width:70ch}
+@media (max-width:640px){.faq details{padding:0 16px}.faq summary{font-size:15.5px;padding:15px 30px 15px 0}}
 
 /* v2: shorter on phones */
 @media (max-width:640px){
@@ -711,6 +732,12 @@ html.co-open,html.co-open body{overflow:hidden}
         <h2>Two ways to get it<span class="dot">.</span></h2>
         <p class="lead">Monthly, or pay once and keep it. Same Kit, same updates. No price rises planned.</p>
       </div>
+      <div class="vs" aria-label="What a faceless video costs other ways">
+        <div><span class="k">By hand</span><b>8–13 hours</b><span class="s">per video: script, voice, visuals, captions, thumbnail, edit, upload.</span></div>
+        <div><span class="k">All-in-one AI tools</span><b>$39 / month</b><span class="s">AITuber Creator, Revid Growth. Their image and voice credits are built in.</span></div>
+        <div class="us"><span class="k">Faceless Video Kit</span><b><span data-price="monthly-short">$29/mo</span> or <span data-price="lifetime">$99 once</span></b><span class="s">Lifetime costs less than 3 months of those tools, and it's yours for life. You pay pictures and voice straight to the service, at its own price.</span></div>
+      </div>
+      <p class="vs-note">Tool prices from their pricing pages, Oct 2026, monthly billing.</p>
       <div class="prices">
         <div class="price">
           <h3>Monthly</h3>
@@ -729,13 +756,33 @@ html.co-open,html.co-open body{overflow:hidden}
       <ul class="inc">
         <li>Every step, niche to published video</li>
         <li>Autopilot under a weekly spending limit you set</li>
-        <li>Shorts + auto-publish: YouTube, TikTok, Instagram, X</li>
+        <li>Shorts + auto-publish: YouTube, TikTok, Instagram, X, Facebook, Threads</li>
         <li>Finished MP4 + Final Cut, Premiere, Resolve timelines</li>
         <li>Works with Claude, ChatGPT, Codex, Cursor, Gemini CLI</li>
         <li>One-tap updates and one-click bug reports</li>
       </ul>
       <div class="spots"><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span></div>
       <p class="svcline">Pictures and voice come from pay-as-you-go services you sign up for (fal.ai, Fish Audio), or your own files. The Kit shows each price before it spends. Research and stock footage are free. Runs on Mac, Windows or Linux.</p>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Questions</span>
+        <h2>Before you buy<span class="dot">.</span></h2>
+      </div>
+      <div class="faq">
+        <details><summary>How is this different from just asking ChatGPT or Claude?</summary><p>On its own, your AI assistant can write a script. It can't make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes.</p></details>
+        <details><summary>Is it a website or an app I log into?</summary><p>No. It's a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video.</p></details>
+        <details><summary>Do I need any tech or editing skills?</summary><p>No. Setup takes about 15 minutes, and your AI assistant does it with you. No terminal commands. Every decision comes as a few options with one marked as recommended, so you just pick.</p></details>
+        <details><summary>What else will I pay for?</summary><p>Pictures and voice come from pay-as-you-go services you sign up for (fal.ai, Fish Audio), or you can use your own files. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works. ChatGPT needs a paid plan.</p></details>
+        <details><summary>Which kinds of videos can it make?</summary><p>Long videos and Shorts, in 12 looks: photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more. Captions, music, animated charts and a thumbnail are included. You get a finished MP4. Final Cut, Premiere and DaVinci Resolve timelines are there if you want them.</p></details>
+        <details><summary>Will it post for me?</summary><p>Yes, after you say yes. It uploads to YouTube and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK.</p></details>
+        <details><summary>What if I get stuck?</summary><p>The Studio has a Help box with instant answers, and it can hand you over to your own AI assistant. If something breaks, one click sends us a bug report, and we tell you when it's fixed.</p></details>
+        <details><summary>What if it's not for me?</summary><p>Ask for a refund within 7 days. No questions. Monthly cancels any time. When a membership ends the Kit stops, but every video you made stays on your computer.</p></details>
+        <details><summary>Will my channel make money?</summary><p>We can't promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube's own rules. The Kit makes the videos. Growing the channel is still up to you.</p></details>
+      </div>
     </div>
   </section>
 
