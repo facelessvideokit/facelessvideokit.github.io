@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- Meta Pixel (14 Oct 2026: moved to the top of <head>, ahead of the font stylesheet, so a slow Instagram in-app load still counts the landing): FVK's own dataset "FVK Site" (FVK Ads account), since Whop's ad BM was banned 9 Oct 2026.
+     Purchase is also sent server-side by the relay with the same event id (relay/src/metacapi.js). -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1448862650539340');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1448862650539340&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel -->
 <meta name="description" content="Make faceless YouTube videos without editing. A download that plugs into Claude or ChatGPT: pick a niche, and it makes the script, voice, visuals, captions, thumbnail, Shorts and a finished MP4, every day on autopilot if you want, and publishes on your yes.">
 <meta property="og:title" content="Faceless Video Kit — Faceless YouTube videos and Shorts, made on autopilot">
 <meta property="og:description" content="Pick a topic. Your AI assistant makes the script, voice, visuals, captions, thumbnail and a finished MP4. Works with Claude and ChatGPT.">
@@ -15,7 +24,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"></noscript>
 <style>
 :root{
   color-scheme:dark;
@@ -410,15 +420,7 @@ whop.setScope("biz_U40fQX45fci3MA");
 whop.track("page");
 </script>
 <!-- End Whop Pixel -->
-<!-- Meta Pixel: FVK's own dataset "FVK Site" (FVK Ads account), since Whop's ad BM was banned 9 Oct 2026.
-     Purchase is also sent server-side by the relay with the same event id (relay/src/metacapi.js). -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1448862650539340');
-fbq('track','PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1448862650539340&ev=PageView&noscript=1"></noscript>
-<!-- End Meta Pixel -->
+
 <style id="fvk-checkout-css">
 /* 11 Oct 2026: every grid here gets minmax(0,1fr) columns — an auto track sized to the widest child pushed the
    close button, the $99 tab and Continue off the right edge on phones (QA at 320/390/412 px). */
