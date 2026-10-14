@@ -1,0 +1,16 @@
+# Faceless Video Kit
+
+> A download that plugs into Claude or ChatGPT on your Mac or PC and makes faceless YouTube videos and Shorts. You pick the topics; your AI assistant writes the script and makes the voice, pictures, captions, thumbnail and a finished MP4, cuts up to 5 Shorts, and posts only when you say yes. Not a web app.
+
+- Who it's for: people who want a faceless YouTube channel without a camera, a mic, editing skills or terminal commands.
+- How it works: setup takes about 15 minutes and your AI assistant does it. A local Studio page shows every video. Autopilot makes videos under a weekly spending limit you set.
+- Styles: 12 looks including photo-real, 3D cartoon, fantasy, stick figures, archival film and stock footage. Long videos and Shorts.
+- Posting: YouTube, plus Shorts to TikTok, Instagram, X, Facebook and Threads, each after your yes.
+- What else you pay for: pictures and voice come from pay-as-you-go services you choose (for example fal.ai, Fish Audio) or your own files; the Kit shows each price before spending. Research and stock footage are free. Claude's free plan works; ChatGPT needs a paid plan.
+- Price: $29/month or $99 once (lifetime). 7-day refund, no questions.
+- Earnings: not promised. Results depend on niche, posting and YouTube's rules.
+
+## Pages
+- [Home, demo videos and FAQ](https://facelessvideokit.github.io/)
+- [Pricing](https://facelessvideokit.github.io/pricing.md)
+- [Privacy](https://facelessvideokit.github.io/privacy.html)
