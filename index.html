@@ -414,6 +414,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 /* 12 Oct 2026: on phones the first screen is the headline, where it runs, the button and the price; the pictures follow */
 @media (max-width:640px){.hero .wrap>div:first-child{display:flex;flex-direction:column}.hero .wrap>div:first-child>.badge{order:-5;align-self:flex-start}.hero .wrap>div:first-child>h1{order:-4;margin-block:16px 12px}.hero .wrap>div:first-child>.where{order:-3}.hero .wrap>div:first-child>.ctas{order:-2;margin-top:16px}.hero .wrap>div:first-child>.fine.price-line{order:-1;margin-bottom:22px}.ph-only{display:inline}}
 .co-alt[hidden]{display:none}
+.co-phone{font-size:13px;color:var(--mute);margin:0 2px 8px;text-align:center}.co-phone .co-alt{display:inline;margin:0;min-height:0;font-size:13px}
 .co-alt{display:block;margin:12px auto 0;background:none;border:0;color:var(--mute);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;min-height:40px}
 @media (max-width:640px){.co-row{flex-wrap:wrap}.co-row input,.co-row .btn{flex:1 1 100%;width:100%}}
 .co-sent{text-align:center;padding:8px 0 4px}.co-sent-h{font-weight:700;font-size:18px;margin:0 0 6px}.co-sent p{margin:0}
@@ -879,7 +880,7 @@ html.co-open,html.co-open body{overflow:hidden}
       <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Cancel any time</small></button>
       <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
     </div>
-    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="button" id="co-buyhere" hidden>or pay on this phone instead</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: $70 more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $99</li><li>Same key, same Kit: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · $70</button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
+    <div class="co-pane" id="co-pane"><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="button" id="co-buyhere" hidden>or pay on this phone instead</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-phone" id="co-phone" hidden>On your phone? Pay here: your download link is emailed to open on your Mac or PC. <button class="co-alt" type="button" id="co-later">Email me the link instead</button></p><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: $70 more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $99</li><li>Same key, same Kit: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · $70</button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
     <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions asked · Cancel the monthly plan anytime</p>
   </div>
 </div>
@@ -966,17 +967,17 @@ html.co-open,html.co-open body{overflow:hidden}
       readyTimer=setTimeout(function(){if(!wait.hidden)toClaim(pid)},12000);});}
   document.getElementById('co-up-yes').addEventListener('click',upgradeNow);
   document.getElementById('co-up-no').addEventListener('click',function(){toClaim(upFrom)});
-  // 12 Oct 2026 (owner): 96% of ad clicks are on phones and the Kit runs on a Mac or PC. On a phone the checkout
-  // first offers to email the link for their computer (relay sends it at once; the $79 email follows in 24 h),
-  // with 'or buy now on this phone' kept one tap away.
+  // 14 Oct 2026 (owner, reversing 12 Oct): on a phone the checkout opens straight away like on a computer: the
+  // email-first sheet got 5 buy-sheet opens, 1 lead and 0 sales. The download link reaches their email anyway,
+  // and 'Email me the link instead' (relay sends it at once; the $79 email follows in 24 h) stays one tap away.
   var PHONE=!!(window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches&&Math.min(screen.width,screen.height)<768),
-      later=PHONE, sent=document.getElementById('co-sent'), goBtn=document.getElementById('co-go'), buyHere=document.getElementById('co-buyhere'),
+      later=false, phoneLine=document.getElementById('co-phone'), sent=document.getElementById('co-sent'), goBtn=document.getElementById('co-go'), buyHere=document.getElementById('co-buyhere'),
       lbl=form.querySelector('label'), LBL0=lbl.innerHTML;
-  function laterMode(on){later=on;goBtn.textContent=on?'Email me the link':'Continue';buyHere.hidden=!on;
+  function laterMode(on){later=on;goBtn.textContent=on?'Email me the link':'Continue';buyHere.hidden=!on;phoneLine.hidden=on||!PHONE;
     lbl.innerHTML=on?'On your phone? The Kit runs on your <b>Mac or PC</b>. We\u2019ll email you the link to open there.':LBL0}
   buyHere.addEventListener('click',function(){laterMode(false);emErr.hidden=true;
     var v=emIn.value.trim();if(okEmail(v))email=v;goPay();});
-  if(PHONE){laterMode(true);var hb=document.getElementById('hero-buy');if(hb)hb.innerHTML='Email me the link for my computer <span aria-hidden="true">\u2192</span>'}
+  document.getElementById('co-later').addEventListener('click',function(){laterMode(true);showEmailStep()});
   function sendLater(){sent.hidden=true;goBtn.disabled=true;
     fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,later:true,fbp:ck('_fbp'),fbc:ck('_fbc')})})
       .then(function(r){if(!r.ok)throw 0;fb('track','Lead',{value:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id]});
@@ -985,7 +986,7 @@ html.co-open,html.co-open body{overflow:hidden}
       .then(function(){goBtn.disabled=false})}
   function showEmailStep(){form.hidden=false;who.hidden=true;sent.hidden=true;unmount();wait.hidden=true;emIn.focus()}
   // straight to Whop's own checkout (it asks for the email itself unless we already have one)
-  function goPay(){form.hidden=true;sent.hidden=true;if(email){showWho()}else{who.hidden=true}tellLead();mount();}
+  function goPay(){form.hidden=true;sent.hidden=true;phoneLine.hidden=!PHONE;if(email){showWho()}else{who.hidden=true}tellLead();mount();}
   function showWho(){who.innerHTML='';who.appendChild(document.createTextNode('Key goes to '+email+' · '));
     var b=document.createElement('button');b.type='button';b.textContent='change';b.addEventListener('click',showEmailStep);who.appendChild(b);
     form.hidden=true;who.hidden=false;}
@@ -1024,6 +1025,12 @@ html.co-open,html.co-open body{overflow:hidden}
     n.textContent=ok?"You're in. Your licence key page didn't open? Check your email, or message us in the Faceless Video Kit chat on whop.com and we'll send your key and download link.":"The payment didn't go through and nothing was charged. Tap a Buy button to try again.";
     document.body.appendChild(n);history.replaceState(null,'',location.pathname);setTimeout(function(){n.remove()},12000);}
 })();
+</script>
+<script>
+/* Microsoft Clarity session recordings + heatmaps (owner, 14 Oct 2026: find where buyers drop before paying).
+   Loaded 2.5 s after the page has fully loaded, so it never competes with the hero, the Meta Pixel or LCP. */
+window.addEventListener('load',function(){setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yxksij4ckw");},2500)});
 </script>
 </body>
 </html>
