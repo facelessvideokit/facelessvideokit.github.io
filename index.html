@@ -431,6 +431,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .co-sent{text-align:center;padding:8px 0 4px}.co-sent-h{font-weight:700;font-size:18px;margin:0 0 6px}.co-sent p{margin:0}
 
 @media (max-width:640px){.hero{padding-top:20px}.hero .wrap{gap:12px}.hs-main{width:76%}.hs-ap{width:76%;font-size:12.5px;gap:4px 12px;padding:9px 12px}.hs-short{width:27%}.herovid-note{margin-top:8px}}
+.sf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sf{background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:20px 22px}
+.sf q{display:block;font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink);quotes:"\201C" "\201D";margin-bottom:8px}
+.sf p{margin:0;color:var(--ink2);font-size:15px;line-height:1.5}
+.sh{margin-top:18px;border:1px solid rgba(255,77,46,.45);border-radius:22px;padding:26px 28px;background:radial-gradient(420px 180px at 0% 0%,rgba(255,77,46,.16),transparent),var(--bg2);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.sh h3{margin:0 0 12px;font-family:var(--display);font-size:22px}
+.sh ol{margin:0;padding-left:20px;color:var(--ink2);display:grid;gap:6px;font-size:16px}
+.sh ol b{color:var(--ink)}
+.sh-cta{display:grid;gap:8px;justify-items:center;text-align:center}
+.micro{font-size:13px;color:var(--mute);margin:0}
+@media (max-width:900px){.sf-grid{grid-template-columns:1fr 1fr}.sh{grid-template-columns:1fr}}
+@media (max-width:560px){.sf-grid{grid-template-columns:1fr}.sf{padding:16px 18px}.sf q{font-size:17px}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -767,6 +779,37 @@ html.co-open,html.co-open body{overflow:hidden}
     </div>
   </section>
 
+  <section class="block" id="familiar">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Right now you might be thinking</span>
+        <h2>Sound familiar<span class="dot">?</span></h2>
+      </div>
+      <div class="sf-grid">
+        <div class="sf"><q>I'm not techy.</q><p>No terminal, no code. Your AI assistant sets it up with you in about 15 minutes. Every choice comes as a few options, one marked as recommended.</p></div>
+        <div class="sf"><q>Is this a website I log into?</q><p>No. It's a download that runs inside Claude or ChatGPT. You get your own Studio page on your computer.</p></div>
+        <div class="sf"><q>I've never made a video.</q><p>You won't edit anything. Pick a niche, tick a topic, say yes. You get a finished MP4.</p></div>
+        <div class="sf"><q>I don't want my face on camera.</q><p>Good. Every video is faceless. Nobody ever sees you.</p></div>
+        <div class="sf"><q>I don't have time.</q><p>Autopilot runs the week under a spending limit you set. It only stops for your topic picks and your OK to publish.</p></div>
+        <div class="sf"><q>I've bought courses and never used them.</q><p>This isn't a course. There's nothing to watch first. Start with one video, below.</p></div>
+      </div>
+      <div class="sh">
+        <div>
+          <h3>Don't learn the Kit. Do this first.</h3>
+          <ol>
+            <li><b>Open your Studio</b> after setup.</li>
+            <li><b>Pick a niche</b>, or a channel you admire.</li>
+            <li><b>Tick one topic and say yes.</b> Your AI makes the rest.</li>
+          </ol>
+        </div>
+        <div class="sh-cta">
+          <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
+          <p class="micro">Checkout takes a minute. 7-day refund.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="pricing">
     <div class="wrap">
       <div class="head center">
@@ -835,6 +878,7 @@ html.co-open,html.co-open body{overflow:hidden}
     <h2>Your first video is one yes away<span class="dot">.</span></h2>
     <p class="lead">Pick a niche. Say yes. Upload.</p>
     <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Faceless Video Kit <span aria-hidden="true">→</span></a>
+    <p class="micro" style="margin-top:12px">Checkout takes a minute. Setup about 15, with your AI.</p>
   </section>
 </main>
 
