@@ -106,7 +106,11 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .studio-shot{margin:0;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
 .studio-shot .bar3{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mute)}
 .studio-shot .bar3 i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.studio-shot .bar3 span{margin-left:8px}
-.studio-shot img{display:block;width:100%;height:auto}
+.studio-shot img{display:block;width:100%;height:auto;cursor:zoom-in}
+/* 15 Oct 2026 Clarity: dead taps on the hero clip, the reel, the proof clips, the badge and the Studio picture. Each now does something. */
+a.badge{text-decoration:none}.hs-main,.hs-short,.reel .rt,.pv .vw video{cursor:pointer}
+.lbx{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+.lbx img{max-width:100%;max-height:100%;border-radius:10px}.lbx button{position:absolute;top:12px;right:14px;background:none;border:0;color:#fff;font-size:30px;line-height:1;cursor:pointer}
 .studio-shot figcaption{font-size:12.5px;color:var(--mute);padding:8px 14px;border-top:1px solid var(--line)}
 
 /* hero video + 3 steps */
@@ -476,7 +480,7 @@ html.co-open,html.co-open body{overflow:hidden}
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="badge"><b>FOR YOUTUBE</b> Long videos and Shorts</span>
+        <a class="badge" href="#formats"><b>FOR YOUTUBE</b> Long videos and Shorts</a>
         <h1>Faceless YouTube videos <span class="yes">and Shorts, made on autopilot.</span></h1>
         <p class="where">Works inside Claude or ChatGPT on your computer. <i>NOT A WEB APP</i></p>
         <div class="need" aria-label="What you need">
@@ -840,6 +844,16 @@ html.co-open,html.co-open body{overflow:hidden}
   document.querySelectorAll('.pv').forEach(function(c){var v=c.querySelector('video'),b=c.querySelector('.snd');if(!v||!b)return;
     b.addEventListener('click',function(){var on=v.muted;document.querySelectorAll('.pv video').forEach(function(o){o.muted=true});document.querySelectorAll('.snd').forEach(function(x){x.textContent=x.closest('.vshort')?'Sound':'Sound on'});
       if(on){v.dataset.user='1';if(!v.src&&v.dataset.src)v.src=v.dataset.src;v.muted=false;v.currentTime=0;v.play().catch(function(){});b.textContent='Mute'}});});
+  /* 15 Oct 2026 Clarity dead taps: tapping a proof clip works like its Sound button; the hero clip and the reel
+     (silent) jump to the proof clips with sound; the Studio picture opens full size */
+  document.querySelectorAll('.pv .vw video').forEach(function(v){v.addEventListener('click',function(){var b=v.parentNode.querySelector('.snd');if(b)b.click()})});
+  function toProof(){var p=document.getElementById('proof');if(p)p.scrollIntoView({behavior:reduce?'auto':'smooth'})}
+  document.querySelectorAll('.hs-main,.hs-short,.reel').forEach(function(el){el.addEventListener('click',toProof)});
+  var sImg=document.querySelector('.studio-shot img');
+  if(sImg)sImg.addEventListener('click',function(){var o=document.createElement('div');o.className='lbx';o.setAttribute('role','dialog');o.setAttribute('aria-label','Studio picture, full size');
+    o.innerHTML='<button type="button" aria-label="Close">&times;</button>';var i=new Image();i.src=sImg.currentSrc||sImg.src;i.alt=sImg.alt;o.appendChild(i);
+    function shut(){o.remove();removeEventListener('keydown',esc)}function esc(e){if(e.key==='Escape')shut()}
+    o.addEventListener('click',shut);addEventListener('keydown',esc);document.body.appendChild(o);o.querySelector('button').focus()});
   if(reduce){document.querySelectorAll('.pv video').forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
   /* a clip the phone refuses to autoplay (iOS Low Power Mode) becomes its animated WebP */
   function still(v){if(reduce||!v.dataset.webp||!v.isConnected)return;var i=new Image();i.src=v.dataset.webp;i.alt="";i.className=v.className;i.setAttribute('aria-hidden','true');v.replaceWith(i)}
