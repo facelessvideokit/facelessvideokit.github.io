@@ -1016,7 +1016,7 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
   function fb(){try{if(window.fbq)fbq.apply(null,arguments)}catch(e){}}
   function trackIC(){if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:(OFFER&&current==='lifetime')?79:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id],content_type:'product'})}}
   function tellLead(){trackIC();if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
-    try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,fbp:ck('_fbp'),fbc:ck('_fbc')}),keepalive:true}).catch(function(){})}catch(e){}}
+    try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,fbp:ck('_fbp'),fbc:ck('_fbc'),aff:AFF||undefined}),keepalive:true}).catch(function(){})}catch(e){}}
   // Purchase in the browser, eventID = the Whop payment id (the relay sends the same id, Meta keeps one)
   function bought(id,k,then){var v=(OFFER&&k==='lifetime')?79:PRICE[k]||PRICE.monthly;
     fb('track','Purchase',{value:v,currency:'USD',content_name:'Faceless Video Kit',content_ids:[(P[k]||P.monthly).id],content_type:'product'},id?{eventID:id}:undefined);
@@ -1026,7 +1026,16 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
   if(OFFER){P.lifetime.price='$79 once';P.lifetime.note='Your $20-off code is applied'}
   var E0=(q0.get('email')||'').trim(); if(okEmail(E0)){emIn.value=E0;email=E0}
-  function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id;}
+  // 16 Oct 2026 (owner): Whop affiliates. An affiliate's external link lands here with ?a=<username>;
+  // kept 30 days in this browser (Whop's own window) and handed to every checkout and lead, so the
+  // sale is credited whether they buy now, come back later, or finish from a reminder email.
+  var AFF_RE=/^[A-Za-z0-9_.-]{2,40}$/, AFF='';
+  (function(){var a=(q0.get('a')||'').trim(),now=Date.now();
+    try{if(AFF_RE.test(a)){localStorage.setItem('fvk_aff',JSON.stringify({c:a,t:now}));AFF=a;return}
+      var s=JSON.parse(localStorage.getItem('fvk_aff')||'null');
+      if(s&&AFF_RE.test(s.c)&&now-s.t<30*864e5)AFF=s.c;else localStorage.removeItem('fvk_aff')}
+    catch(e){if(AFF_RE.test(a))AFF=a}})();
+  function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id+(AFF?'?a='+encodeURIComponent(AFF):'');}
   // keep every price label and fallback link in step with the plan block
   document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
     if(k==='monthly-short'){el.textContent=P.monthly.short}else if(P[k]){el.textContent=P[k].price}});
@@ -1049,6 +1058,7 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
         onComplete:function(r){var id=r&&r.result==='payment'?r.paymentId:'';
           bought(id,current,function(){if(current==='monthly'&&offerUpgrade(id))return;if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
       if(OFFER&&current==='lifetime')opts.promoCode=OFFER;
+      if(AFF)opts.affiliateCode=AFF;
       try{handle=w.checkout.create(opts);
         handle.create('checkout',{buyerEmail:email||undefined,
           onReady:function(){clearTimeout(readyTimer);wait.hidden=true},
@@ -1063,7 +1073,7 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
     document.getElementById('co-up-yes').focus();return true}
   function upgradeNow(){var pid=upFrom;document.getElementById('co-up').hidden=true;wait.hidden=false;mountedKey='upgrade';
     loadSdk(function(w){
-      try{handle=w.checkout.create({plan:UPG,metadata:{fvk_upgrade_of:pid},returnUrl:RETURN+'&plan=upgrade&from='+encodeURIComponent(pid),
+      try{handle=w.checkout.create({plan:UPG,metadata:{fvk_upgrade_of:pid},affiliateCode:AFF||undefined,returnUrl:RETURN+'&plan=upgrade&from='+encodeURIComponent(pid),
           appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
           onComplete:function(){toClaim(pid)}});
         handle.create('checkout',{buyerEmail:email||undefined,onReady:function(){clearTimeout(readyTimer);wait.hidden=true},
@@ -1087,7 +1097,7 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
     var v=emIn.value.trim();if(okEmail(v))email=v;goPay();});
   document.getElementById('co-later').addEventListener('click',function(){laterMode(true);showEmailStep()});payHere.addEventListener('click',function(){if(!later)return;laterMode(false);emErr.hidden=true;goPay()});function takeEmail(v,loud){v=(v||'').trim();if(!okEmail(v)){if(loud){emErr.textContent='Enter a valid email address.';emErr.hidden=false;emIn.focus()}return}emErr.hidden=true;if(v===email&&mountedKey===current+'|'+email)return;email=v;tellLead();saved.textContent='\u2713 Saved. Your key and download link go to '+email;saved.hidden=false;if(!touched)mount()}emIn.addEventListener('input',function(){if(later)return;clearTimeout(typeT);typeT=setTimeout(function(){takeEmail(emIn.value)},1200)});emIn.addEventListener('blur',function(){if(later)return;clearTimeout(typeT);takeEmail(emIn.value)});
   function sendLater(){sent.hidden=true;goBtn.disabled=true;
-    fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,later:true,fbp:ck('_fbp'),fbc:ck('_fbc')})})
+    fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,later:true,fbp:ck('_fbp'),fbc:ck('_fbc'),aff:AFF||undefined})})
       .then(function(r){if(!r.ok)throw 0;fb('track','Lead',{value:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id]});
         form.hidden=true;sent.hidden=false;document.getElementById('co-sent-to').textContent='We sent the link to '+email+'. Open it on your Mac or PC; your plan is saved there.'})
       .catch(function(){laterMode(false);emErr.textContent='Couldn\u2019t send the email just now. You can buy here instead.';emErr.hidden=false})
