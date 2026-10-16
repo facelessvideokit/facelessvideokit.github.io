@@ -106,7 +106,7 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .studio-shot{margin:0;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
 .studio-shot .bar3{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mute)}
 .studio-shot .bar3 i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.studio-shot .bar3 span{margin-left:8px}
-.studio-shot img{display:block;width:100%;height:auto;cursor:zoom-in}
+.studio-shot img{display:block;width:100%;height:auto;cursor:zoom-in}.studio-list li{cursor:zoom-in}
 /* 15 Oct 2026 Clarity: dead taps on the hero clip, the reel, the proof clips, the badge and the Studio picture. Each now does something. */
 a.badge{text-decoration:none}.hs-main,.hs-short,.reel .rt,.pv .vw video{cursor:pointer}
 .lbx{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
@@ -940,6 +940,9 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
     o.addEventListener('click',shut);addEventListener('keydown',esc);document.body.appendChild(o);document.documentElement.style.overflow='hidden';o.querySelector('button').focus()}
   if(sImg){sImg.tabIndex=0;sImg.setAttribute('role','button');sImg.setAttribute('aria-label','Open the Studio picture full size');sImg.addEventListener('click',lbOpen);
     sImg.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();lbOpen()}})}
+  /* 16 Oct 2026 Clarity: the Studio feature cards under the picture ('Every video, at a glance'…) were tapped like
+     buttons and did nothing; each now opens the Studio picture full size */
+  if(sImg)document.querySelectorAll('.studio-list li').forEach(function(li){li.addEventListener('click',lbOpen)});
   if(reduce){document.querySelectorAll('.pv video').forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
   /* a clip the phone refuses to autoplay (iOS Low Power Mode) becomes its animated WebP */
   function still(v){if(reduce||!v.dataset.webp||!v.isConnected)return;var i=new Image();i.src=v.dataset.webp;i.alt="";i.className=v.className;i.setAttribute('aria-hidden','true');v.replaceWith(i)}
