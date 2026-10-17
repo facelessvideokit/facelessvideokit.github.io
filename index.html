@@ -473,6 +473,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 html.mbar-on .mbar{transform:none}html.mbar-on body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 html.co-open .mbar{display:none}}
 @media (max-width:380px){.nav .logo{white-space:nowrap;font-size:15px}.nav .btn-sm{white-space:nowrap;padding:10px 14px}}
+
+/* 17 Oct 2026 (owner handoff #2): each real Kit clip carries what that format earns for OTHER channels (NexLev estimate) */
+.pv .pe{display:grid;gap:3px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line2)}
+.pv .pk{font:600 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.pv .pm{font-size:14px;color:var(--ink2)}.pv .pm b{font-size:20px;color:var(--gold);margin-right:2px}
+.pv .ps{font-size:12.5px;color:var(--mute)}.pv .ps a{color:var(--ink2);text-decoration:underline}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -782,27 +788,28 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
       <div class="head">
         <span class="eyebrow">Real output</span>
         <h2>Real videos, not mock-ups<span class="dot">.</span></h2>
-        <p class="lead">Each clip is the opening of a full-length video made for our own faceless channels, by the same pipeline that powers the Kit. Section cards, highlight captions and animated scenes are all built by it.</p>
+        <p class="lead">Each clip is the opening of a full-length video made for our own faceless channels, by the same pipeline that powers the Kit. Section cards, highlight captions and animated scenes are all built by it. Under each: what a similar format earns for another small channel.</p>
       </div>
       <div class="proofgrid">
           <div class="pv">
             <div class="vw"><video data-src="proof/broll_only.mp4" data-poster="proof/broll_only.jpg" muted loop playsinline preload="none" aria-label="B-roll only example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Footage-led</span><b>B-roll only</b><div class="tags"><span>Location caption</span><span>Highlight captions</span><span>Music bed</span></div></div>
+            <div class="meta"><span class="k">Footage-led</span><b>B-roll only</b><div class="tags"><span>Location caption</span><span>Highlight captions</span><span>Music bed</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><span class="pm"><b>≈ $1.4K</b> ad revenue · est. up to $3.2K</span><span class="ps">701K views · Process Lab · 7.6K subs · <a href="https://www.youtube.com/watch?v=5o40dZSubNo" rel="noopener">watch</a></span></div></div>
           </div>
           <div class="pv">
             <div class="vw"><video data-src="proof/broll_stills.mp4" data-poster="proof/broll_stills.jpg" muted loop playsinline preload="none" aria-label="B-roll + stills example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Hybrid</span><b>B-roll + stills</b><div class="tags"><span>Place + date callouts</span><span>Ken Burns motion</span><span>Highlight captions</span></div></div>
+            <div class="meta"><span class="k">Hybrid</span><b>B-roll + stills</b><div class="tags"><span>Place + date callouts</span><span>Ken Burns motion</span><span>Highlight captions</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><span class="pm"><b>≈ $2.3K</b> ad revenue · est. up to $4.8K</span><span class="ps">950K views · Beyond the Map · 15.1K subs · <a href="https://www.youtube.com/watch?v=Yu0O_VWWZCY" rel="noopener">watch</a></span></div></div>
           </div>
           <div class="pv">
             <div class="vw"><video data-src="proof/stills_stickfigure.mp4" data-poster="proof/stills_stickfigure.jpg" muted loop playsinline preload="none" aria-label="Stills only · stick figures example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Illustrated</span><b>Stills only · stick figures</b><div class="tags"><span>Section card</span><span>Highlight captions</span><span>Animated checklist</span></div></div>
+            <div class="meta"><span class="k">Illustrated</span><b>Stills only · stick figures</b><div class="tags"><span>Section card</span><span>Highlight captions</span><span>Animated checklist</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><span class="pm"><b>≈ $8.9K</b> ad revenue · est. $1.4K–$16K</span><span class="ps">2.05M views · The Affluent Mind · 43.6K subs · <a href="https://www.youtube.com/watch?v=dI64rTyvAn0" rel="noopener">watch</a></span></div></div>
           </div>
           <div class="pv">
             <div class="vw"><video data-src="proof/data_scenes.mp4" data-poster="proof/data_scenes.jpg" muted loop playsinline preload="none" aria-label="Data that moves example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Animated scenes</span><b>Data that moves</b><div class="tags"><span>Animated bar chart</span><span>Captions</span><span>Callout plate</span></div></div>
+            <div class="meta"><span class="k">Animated scenes</span><b>Data that moves</b><div class="tags"><span>Animated bar chart</span><span>Captions</span><span>Callout plate</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><span class="pm"><b>≈ $1.6K</b> ad revenue · est. $620–$2.7K</span><span class="ps">930K views · DataSlides · 3K subs · <a href="https://www.youtube.com/watch?v=3OaBcc-A-kM" rel="noopener">watch</a></span></div></div>
           </div>
       </div>
     
+      <p class="earn-note">Earnings lines are other creators' videos from 2026, not made by us or with the Kit, shown as what a similar format can do. NexLev estimates of YouTube ad revenue only; views as of 17 Oct 2026. Results vary and are not guaranteed.</p>
       <div class="secbuy">
         <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
         <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
