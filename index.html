@@ -486,8 +486,15 @@ html.co-open .mbar{display:none}}
 .nc-row{display:flex;gap:10px}.nc-row input{flex:1;min-width:0;font:500 17px var(--body);color:var(--ink);background:var(--bg2);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;min-height:52px}
 .nc-row .btn{white-space:nowrap}
 @media (max-width:760px){.nc{grid-template-columns:1fr;padding:22px}.nc-row{flex-direction:column}}
-.nc-hint{margin:6px 0 0}.nc-hint a{color:var(--gold);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-@media (max-width:640px){.hero .wrap>div:first-child>.nc-hint{order:-1;margin:-14px 0 22px}}
+.nc-card{display:flex;align-items:center;gap:14px;margin:18px 0 4px;padding:14px 14px 14px 16px;max-width:580px;border:1px solid rgba(255,194,75,.6);border-radius:18px;background:linear-gradient(90deg,rgba(255,194,75,.16),rgba(255,194,75,.04));color:var(--ink);text-decoration:none;animation:ncPulse 2.6s ease-out 1.2s 3;transition:transform .15s,border-color .15s,background .15s}
+.nc-card:hover{border-color:var(--gold);background:linear-gradient(90deg,rgba(255,194,75,.24),rgba(255,194,75,.06));transform:translateY(-1px)}
+.nc-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.nc-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(255,194,75,.18);color:var(--gold);display:grid;place-items:center}
+.nc-tx{flex:1;min-width:0;display:grid;gap:3px}.nc-tx b{font:800 16.5px/1.25 var(--body)}.nc-tx i{font-style:normal;font-size:13.5px;line-height:1.35;color:var(--ink2)}
+.nc-go{flex:none;background:var(--gold);color:#1A1205;font-weight:800;font-size:14.5px;padding:11px 16px;border-radius:999px;white-space:nowrap}
+@keyframes ncPulse{0%{box-shadow:0 0 0 0 rgba(255,194,75,.5)}100%{box-shadow:0 0 0 16px rgba(255,194,75,0)}}
+@media (prefers-reduced-motion:reduce){.nc-card{animation:none;transition:none}}
+@media (max-width:640px){.hero .wrap>div:first-child>.nc-hint{order:-1;margin:-8px 0 22px}.nc-card{flex-wrap:wrap}.nc-tx{flex-basis:calc(100% - 56px)}.nc-go{width:100%;text-align:center}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -569,7 +576,11 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine price-line"><span class="ph-only">$29/mo or $99 once · </span>7-day refund, no questions · Cancel anytime</p>
-        <p class="fine nc-hint">Not sure about your niche? <a href="niche-check.html">Check it free <span aria-hidden="true">→</span></a></p>
+        <a class="nc-hint nc-card" href="niche-check.html">
+          <span class="nc-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></span>
+          <span class="nc-tx"><b>Not sure your niche will work?</b><i>Free live check: are small faceless channels winning there?</i></span>
+          <span class="nc-go">Check my niche free <span aria-hidden="true">→</span></span>
+        </a>
         <p class="fine studio-note">Plus <a href="#studio">your own Studio</a>: pick a look, a voice and a format in one click, and see every video on one page.</p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No commands to type</span>
