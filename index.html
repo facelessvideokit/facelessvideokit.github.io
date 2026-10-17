@@ -479,6 +479,15 @@ html.co-open .mbar{display:none}}
 .pv .pk{font:600 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
 .pv .pm{font-size:14px;color:var(--ink2)}.pv .pm b{font-size:20px;color:var(--gold);margin-right:2px}
 .pv .ps{font-size:12.5px;color:var(--mute)}.pv .ps a{color:var(--ink2);text-decoration:underline}
+
+/* 17 Oct 2026 (owner handoff #3): free niche checker teaser, sends the keyword to niche-check.html */
+.nc{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.nc h2{font-size:clamp(28px,4vw,40px);margin:8px 0 8px}.nc .lead{margin:0}
+.nc-row{display:flex;gap:10px}.nc-row input{flex:1;min-width:0;font:500 17px var(--body);color:var(--ink);background:var(--bg2);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;min-height:52px}
+.nc-row .btn{white-space:nowrap}
+@media (max-width:760px){.nc{grid-template-columns:1fr;padding:22px}.nc-row{flex-direction:column}}
+.nc-hint{margin:6px 0 0}.nc-hint a{color:var(--gold);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:640px){.hero .wrap>div:first-child>.nc-hint{order:-1;margin:-14px 0 22px}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -525,7 +534,7 @@ html.co-open,html.co-open body{overflow:hidden}
   <div class="wrap">
     <a class="logo" href="#top"><i aria-hidden="true"></i>Faceless Video Kit</a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#studio">Studio</a><a href="#how">How it works</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a href="#studio">Studio</a><a href="#how">How it works</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="niche-check.html">Niche checker</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-hot btn-sm" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit</a>
   </div>
@@ -560,6 +569,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine price-line"><span class="ph-only">$29/mo or $99 once · </span>7-day refund, no questions · Cancel anytime</p>
+        <p class="fine nc-hint">Not sure about your niche? <a href="niche-check.html">Check it free <span aria-hidden="true">→</span></a></p>
         <p class="fine studio-note">Plus <a href="#studio">your own Studio</a>: pick a look, a voice and a format in one click, and see every video on one page.</p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No commands to type</span>
@@ -856,6 +866,17 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
         <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Start your channel · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
         <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
       </div>
+    </div>
+  </section>
+
+    <section class="block" id="nichecheck">
+    <div class="wrap">
+      <form class="nc" action="niche-check.html" method="get">
+        <div><span class="eyebrow">Free tool</span>
+          <h2>Not sure about your niche<span class="dot">?</span></h2>
+          <p class="lead">Check it free. We search YouTube live and tell you if small faceless channels are winning there.</p></div>
+        <div class="nc-row"><input name="q" type="text" maxlength="60" required placeholder="e.g. space facts" aria-label="Your niche"><button class="btn btn-hot" type="submit">Check my niche <span aria-hidden="true">→</span></button></div>
+      </form>
     </div>
   </section>
 
