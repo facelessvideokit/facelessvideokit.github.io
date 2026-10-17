@@ -11,6 +11,7 @@
 - Earnings: not promised. Results depend on niche, posting and YouTube's rules.
 
 ## Pages
+- [Free faceless niche checker (live YouTube research)](https://facelessvideokit.github.io/niche-check.html)
 - [Home, demo videos and FAQ](https://facelessvideokit.github.io/)
 - [Pricing](https://facelessvideokit.github.io/pricing.md)
 - [Privacy](https://facelessvideokit.github.io/privacy.html)
