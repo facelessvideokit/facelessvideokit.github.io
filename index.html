@@ -280,6 +280,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .hs .n{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:15px;background:var(--bg);border:2px solid var(--line2);color:var(--ink2);position:relative;z-index:1;transition:border-color .4s,color .4s,box-shadow .4s}
 .hs.on .n{border-color:var(--hot);color:var(--ink);box-shadow:0 0 24px rgba(255,77,46,.45)}
 .hs .who{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.hs .tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.hs .tools b{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,194,75,.4);background:rgba(255,194,75,.08);border-radius:999px;padding:4px 9px;line-height:1.2}
 .hs h3{font-size:clamp(24px,2.6vw,32px);font-weight:700;margin-block:6px 8px}
 .hs p{color:var(--ink2);font-size:15.5px;max-width:46ch}
 .hv{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;min-height:150px;display:grid;align-content:center;gap:8px;font-size:14px}
@@ -658,13 +659,13 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
         <div class="how-rail" aria-hidden="true"><i></i></div>
 
         <div class="hs"><span class="n">1</span>
-          <div><span class="who">You · once</span><h3>Pick a niche, or a channel you admire</h3><p>The Kit checks the niche against six gates before you commit, or reverse-engineers 1–3 hero channels. Then it sets up your channel: name, banner, description, cadence.</p></div>
+          <div><span class="who">You · once</span><span class="tools" aria-label="Kit tools"><b>Lane Research</b></span><h3>Pick a niche, or a channel you admire</h3><p>The Kit checks the niche against six gates before you commit, or reverse-engineers 1–3 hero channels. Then it sets up your channel: name, banner, description, cadence.</p></div>
           <div class="hv"><span class="k">Niche check · history mysteries</span>
             <div class="gate">Demand<b>PASS</b></div><div class="gate">Competition<b>PASS</b></div><div class="gate">Earnings potential<b>PASS</b></div><div class="gate">+ 3 more<b>6 of 6</b></div></div>
         </div>
 
         <div class="hs"><span class="n">2</span>
-          <div><span class="who">You · weekly</span><h3>Tick this week's topics</h3><p>It finds what is rising in your lane right now and lays out the angles nobody has made yet. You tick the ones you want, all at once.</p></div>
+          <div><span class="who">You · weekly</span><span class="tools" aria-label="Kit tools"><b>Autopilot + Studio</b></span><h3>Tick this week's topics</h3><p>It finds what is rising in your lane right now and lays out the angles nobody has made yet. You tick the ones you want, all at once.</p></div>
           <div class="hv"><span class="k">This week's slate · pick any</span>
             <label class="t"><i></i>The Maya didn't vanish. They walked away.</label>
             <label class="t"><i></i>The map that drew a door</label>
@@ -672,17 +673,17 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
         </div>
 
         <div class="hs"><span class="n">3</span>
-          <div><span class="who">Your AI · on its own</span><h3>Script, visuals, voice and captions</h3><p>A script that learns from the top videos in your lane, pictures in the look you chose, narration from your voice service, captions timed to the word.</p></div>
+          <div><span class="who">Your AI · on its own</span><span class="tools" aria-label="Kit tools"><b>Script Writer</b><b>Video Maker</b><b>Highlight Captions</b></span><h3>Script, visuals, voice and captions</h3><p>A script that learns from the top videos in your lane, pictures in the look you chose, narration from your voice service, captions timed to the word.</p></div>
           <div class="hv vid"><video data-src="v2/style_cartoon.mp4" data-poster="v2/style_cartoon.jpg" muted loop playsinline preload="none" aria-label="A clip the Kit made"></video></div>
         </div>
 
         <div class="hs"><span class="n">4</span>
-          <div><span class="who">You get</span><h3>A finished MP4, thumbnail and Shorts</h3><p>Upload-ready video plus editable timelines for Final Cut, Premiere and Resolve. Up to five vertical Shorts cut from each video, the ones you tick.</p></div>
+          <div><span class="who">You get</span><span class="tools" aria-label="Kit tools"><b>Lane Thumbnails</b><b>Shorts Cutter</b></span><h3>A finished MP4, thumbnail and Shorts</h3><p>Upload-ready video plus editable timelines for Final Cut, Premiere and Resolve. Up to five vertical Shorts cut from each video, the ones you tick.</p></div>
           <div class="hv vid"><div class="pair"><video data-src="v2/style_fantasy.mp4" data-poster="v2/style_fantasy.jpg" muted loop playsinline preload="none" aria-label="The finished video"></video><video class="v" data-src="v2/short_dragon.mp4" data-poster="v2/short_dragon.jpg" muted loop playsinline preload="none" aria-label="Its Short"></video></div></div>
         </div>
 
         <div class="hs"><span class="n">5</span>
-          <div><span class="who">You · one yes</span><h3>Say yes, and it publishes</h3><p>Your assistant fills in YouTube Studio in your own browser, no API keys, and schedules the video. Then it posts the Shorts to YouTube Shorts, TikTok, Instagram, X, Facebook and Threads, when you choose.</p></div>
+          <div><span class="who">You · one yes</span><span class="tools" aria-label="Kit tools"><b>Auto-Publish</b></span><h3>Say yes, and it publishes</h3><p>Your assistant fills in YouTube Studio in your own browser, no API keys, and schedules the video. Then it posts the Shorts to YouTube Shorts, TikTok, Instagram, X, Facebook and Threads, when you choose.</p></div>
           <div class="hv"><span class="k">Ready to publish · The map that drew a door</span>
             <div class="ask"><span class="y">Yes, schedule it</span><span>Not yet</span></div>
             <span class="when">→ YouTube · Tue 3:00 PM &nbsp;·&nbsp; Shorts → YouTube, Instagram, X</span></div>
