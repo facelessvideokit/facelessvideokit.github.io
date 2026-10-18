@@ -768,14 +768,14 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
   </div>
 </div>
 <script id="fvk-plans">/* The ONE place for Whop plan ids and prices. Every Buy button, price label, checkout tab, pixel value and the
-   post-purchase upgrade read from here. The PLAN_ID_* values are placeholders until the new Whop plans exist
+   post-purchase upgrade read from here. Plan IDs are the live Whop plans (Oct 2026 pricing)
    (Starter $29/mo 1 channel, Pro $49/mo unlimited, Lifetime $199 once, hidden upgrade $170 = Starter -> Lifetime);
-   offerPrice is the lifetime price with the recovery email's one-use $20-off code. */
+   offerPrice is the lifetime price with the recovery email's one-use $50-off code (KIT149...; an older KIT79... code still opens the old $99 plan at $79). */
 window.FVK_PLANS={
- "starter":{"id":"PLAN_ID_STARTER_29","price":"$29/mo","value":29,"note":"Starter · 1 channel"},
- "pro":{"id":"PLAN_ID_PRO_49","price":"$49/mo","value":49,"note":"Pro · unlimited"},
- "lifetime":{"id":"PLAN_ID_LIFETIME_199","price":"$199 once","value":199,"note":"Lifetime · unlimited","offerPrice":"$179 once","offerValue":179,"offerNote":"Your $20-off code is applied"},
- "upgrade":{"id":"PLAN_ID_UPGRADE_170","price":"$170","value":170}
+ "starter":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29/mo","value":29,"note":"Starter · 1 channel"},
+ "pro":{"id":"plan_nYpiZvrMrTVVO","price":"$49/mo","value":49,"note":"Pro · unlimited"},
+ "lifetime":{"id":"plan_uUSJ5QofypAlK","price":"$199 once","value":199,"note":"Lifetime · unlimited","offerPrice":"$149 once","offerValue":149,"offerNote":"Your $50-off code is applied"},
+ "upgrade":{"id":"plan_5v7A0o2xCXi8l","price":"$170","value":170}
 };</script>
 
 <script>
@@ -814,7 +814,7 @@ window.FVK_PLANS={
   // the discounted lifetime link from the recovery email: ?offer=<one-use code>
   var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
-  if(OFFER){P.lifetime.price=P.lifetime.offerPrice;P.lifetime.note=P.lifetime.offerNote}
+  if(OFFER){if(/^KIT79/i.test(OFFER)){P.lifetime.id='plan_hPS32cvM4Glzd';P.lifetime.offerPrice='$79 once';P.lifetime.offerValue=79;P.lifetime.offerNote='Your saved offer is applied'}P.lifetime.price=P.lifetime.offerPrice;P.lifetime.note=P.lifetime.offerNote}
   var E0=(q0.get('email')||'').trim(); if(okEmail(E0)){emIn.value=E0;email=E0}
   // 16 Oct 2026 (owner): Whop affiliates. An affiliate's external link lands here with ?a=<username>;
   // kept 30 days in this browser (Whop's own window) and handed to every checkout and lead, so the
