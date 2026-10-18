@@ -1216,7 +1216,7 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
     if(later)return;tellLead();mount();}
   var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:(OFFER&&k==='lifetime')?79:PRICE[k],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[k].id],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
-    laterMode(later);if(later){showEmailStep()}else{goPay();document.getElementById('co-x').focus()}}
+    laterMode(later);if(later){showEmailStep()}else{goPay();/* 18 Oct 2026 Clarity: both phone checkout openers tapped straight into Whop, typed nothing in our box, so no recovery email. On a phone with no address yet, the cursor (and keyboard) starts in our email box; a typed address is saved at once (takeEmail). */if(PHONE&&!email){emIn.focus()}else{document.getElementById('co-x').focus()}}}
   function close(){clearTimeout(typeT);if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
     if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
