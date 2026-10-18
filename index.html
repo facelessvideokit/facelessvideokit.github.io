@@ -44,6 +44,7 @@ fbq('track','PageView');
   --body:"Manrope","Manrope Fallback","Manrope FallbackR",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   --wrap:1120px;
+  --tick:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
 body{margin:0;overflow-x:clip}img{max-width:100%}
@@ -58,6 +59,8 @@ p{margin:0}
 .lead{color:var(--ink2);font-size:clamp(17px,1.6vw,19px);max-width:62ch}
 mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gradient(transparent 62%,rgba(255,77,46,.38) 62%)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.micro{font-size:13px;color:var(--mute);margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:-20px;padding:14px 20px;background:rgba(11,10,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid rgba(42,38,48,.6)}
@@ -65,7 +68,7 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none}
 .logo i{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--hot),var(--hot2));display:grid;place-items:center;box-shadow:0 0 18px rgba(255,77,46,.45)}
 .logo i::after{content:"";border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
-.navlinks{display:flex;gap:26px;font-size:14px;color:var(--ink2)}
+.navlinks{display:flex;gap:22px;font-size:14px;color:var(--ink2)}
 .navlinks a{text-decoration:none}.navlinks a:hover{color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:700;text-decoration:none;border-radius:999px;transition:transform .15s ease,box-shadow .2s ease}
 .btn-hot{background:linear-gradient(180deg,#FF5A3A,#E83A1C);color:#fff;padding:16px 28px;font-size:17px;box-shadow:0 0 0 1px rgba(255,120,90,.5) inset,0 10px 40px -8px rgba(255,77,46,.7)}
@@ -78,331 +81,28 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .hero{position:relative;padding-block:72px 40px}
 .hero::before{content:"";position:absolute;inset:-60px -20px auto;height:620px;background:radial-gradient(600px 320px at 30% 20%,rgba(255,77,46,.22),transparent 70%),radial-gradient(500px 300px at 85% 40%,rgba(255,194,75,.10),transparent 70%);pointer-events:none;z-index:-1}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 14px 6px 8px;font-size:13px;color:var(--ink2);background:rgba(23,21,27,.7)}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 14px 6px 8px;font-size:13px;color:var(--ink2);background:rgba(23,21,27,.7);text-decoration:none}
 .badge b{background:var(--hot);color:#fff;border-radius:999px;padding:2px 9px;font-size:11px;letter-spacing:.06em;font-family:var(--mono)}
 .hero h1{font-size:clamp(42px,5.1vw,70px);font-weight:800;margin-block:22px 22px}
 .hero h1 .yes{background:linear-gradient(90deg,var(--hot),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.chips{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;font-size:14px;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:14px;color:var(--ink2)}
 .chips span{display:inline-flex;align-items:center;gap:7px}
-.chips span::before{content:"";width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
-
+.chips span::before{content:"";width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) var(--tick) center/16px no-repeat}
+.fine{font-size:13.5px;color:var(--ink2);margin-top:12px}
+.nc-hint{margin-top:10px;font-size:14px}.nc-hint a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;font-weight:600}
 /* where it runs + what you need (6 Oct 2026: a buyer expected a web app) */
 .where{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-6px 0 14px;font-family:var(--display);font-weight:700;font-size:clamp(18px,1.75vw,21px);letter-spacing:-.01em;line-height:1.25}
-.where i{font-style:normal;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(255,194,75,.4);border-radius:999px;padding:4px 10px;white-space:nowrap}
 .need{display:grid;grid-template-columns:auto repeat(3,1fr);gap:0;margin:0 0 22px;border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:rgba(23,21,27,.7)}
 .need>*{padding:9px 14px;font-size:14px;color:var(--ink2);border-left:1px solid var(--line2);display:flex;flex-direction:column;justify-content:center}
 .need>*:first-child{border-left:0;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
 .need b{color:var(--ink);font-size:15px;line-height:1.25}
-@media (max-width:620px){.need{grid-template-columns:repeat(3,1fr)}.need>*:first-child{grid-column:1/-1;border-bottom:1px solid var(--line2);padding:8px 14px}.need>*:nth-child(2){border-left:0}.need>*{padding:10px;font-size:12.5px}.need b{font-size:14px}}
-
-/* studio (7 Oct 2026) */
-.studio-sec{background:radial-gradient(1200px 520px at 50% 34%,rgba(255,77,46,.10),transparent 70%)}
-.studio-sec .studio-shot{max-width:1120px;margin-inline:auto;box-shadow:0 50px 120px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.04)}
-.studio-list{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.studio-list li{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);color:var(--ink2);font-size:14px;line-height:1.45}
-.studio-list b{display:block;color:var(--ink);font-family:var(--display);font-size:16.5px;margin-bottom:4px}
-@media (max-width:960px){.studio-list{grid-template-columns:1fr 1fr}.studio-list li:last-child{grid-column:span 2}}
-@media (max-width:640px){.studio-list{grid-template-columns:1fr;gap:8px}.studio-list li:last-child{grid-column:auto}.studio-list li{padding:10px 14px;font-size:13.5px}.studio-list b{font-size:15.5px;margin-bottom:2px}}
-.studio-shot{margin:0;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
-.studio-shot .bar3{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mute)}
-.studio-shot .bar3 i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.studio-shot .bar3 span{margin-left:8px}
-.studio-shot img{display:block;width:100%;height:auto;cursor:zoom-in}.studio-list li{cursor:zoom-in}
-/* 15 Oct 2026 Clarity: dead taps on the hero clip, the reel, the proof clips, the badge and the Studio picture. Each now does something. */
-a.badge{text-decoration:none}.hs-main,.hs-short,.reel .rt,.pv .vw video{cursor:pointer}
-.lbx{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
-.lbx img{max-width:100%;max-height:100%;border-radius:10px}.lbx button{position:absolute;top:12px;right:14px;background:none;border:0;color:#fff;font-size:30px;line-height:1;cursor:pointer}
-.studio-shot figcaption{font-size:12.5px;color:var(--mute);padding:8px 14px;border-top:1px solid var(--line)}
-
-/* hero video + 3 steps */
-.herovid{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
-.herovid video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
-.herovid .live{position:absolute;left:12px;top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;background:rgba(0,0,0,.72);color:#fff;padding:5px 10px;border-radius:999px}
-.herovid-note{font-size:12.5px;color:var(--mute);margin-top:10px;text-align:center}
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px;padding:0;list-style:none}
 .steps3 li{border:1px solid var(--line2);border-radius:14px;padding:12px 14px;background:rgba(23,21,27,.7);font-size:14.5px;color:var(--ink2)}
 .steps3 li b{display:block;color:var(--ink);font-size:16px}
 .steps3 li span{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.08em}
-.fine{font-size:13.5px;color:var(--ink2);margin-top:12px}
-.studio-note a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .steps3 li i{font-style:normal}
 @media (max-width:520px){.steps3{gap:6px}.steps3 li{padding:10px;font-size:13px}.steps3 li b{font-size:14px}.steps3 li i{display:none}}
-
-/* niche strip */
-.strip{margin-inline:-20px;border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;padding-block:16px;margin-top:40px}
-.track{display:flex;gap:40px;width:max-content;font-family:var(--display);font-weight:700;font-size:22px;color:#5E5767;white-space:nowrap}
-.track span::after{content:"•";color:var(--hot);margin-left:40px}
-@media (prefers-reduced-motion:no-preference){.track{animation:slide 40s linear infinite}@keyframes slide{to{transform:translateX(-50%)}}}
-
-/* sections */
-section.block{padding-block:110px 0}
-.head{display:grid;gap:18px;margin-bottom:54px;max-width:780px}
-.head h2{font-size:clamp(36px,4.8vw,62px);font-weight:800}
-.center{text-align:center;margin-inline:auto;justify-items:center}
-
-/* asset */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.grow{display:flex;align-items:flex-end;gap:6px;height:130px;margin-block:22px 20px;padding:0 4px;border-bottom:1px solid var(--line2)}
-.grow div{flex:1;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--ok),rgba(61,220,151,.15))}
-.grow-cap{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:-12px;margin-bottom:18px}
-.wall{display:grid;gap:14px;margin-top:22px}
-.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:14.5px;color:var(--ink2)}
-.row em{font-style:normal;font-family:var(--mono);font-size:12.5px;color:var(--hot2);font-variant-numeric:tabular-nums}
-.bar{grid-column:1/-1;height:6px;border-radius:4px;background:#241F29;overflow:hidden}
-.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--hot),var(--hot2))}
-.flip{margin-top:20px;background:linear-gradient(90deg,rgba(255,77,46,.14),rgba(255,194,75,.08));border:1px solid var(--line2);border-radius:22px;padding:28px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
-.flip .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,4vw,50px);line-height:1;letter-spacing:-.03em}
-.flip .big span{color:var(--gold)}
-.flip p{color:var(--ink2);max-width:60ch}
-
-/* pipeline */
-.phases{display:grid;gap:22px}
-.phase{display:grid;grid-template-columns:200px 1fr;gap:28px;border-top:1px solid var(--line);padding-top:26px}
-.phase-name{position:sticky;top:90px;align-self:start}
-.phase-name .eyebrow{color:var(--mute)}
-.phase-name h3{font-size:34px;font-weight:800;margin-top:6px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
-.step:hover{border-color:rgba(255,77,46,.55);transform:translateY(-3px)}
-.num{font-family:var(--mono);font-size:12px;color:var(--hot);letter-spacing:.08em}
-.step h4{font-family:var(--display);font-size:21px;font-weight:700;margin:0;letter-spacing:-.015em;line-height:1.15}
-.step p{font-size:14.5px;color:var(--ink2);line-height:1.55}
-.out{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line2);font-family:var(--mono);font-size:11.5px;color:var(--gold);line-height:1.5}
-.guard{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.guard div{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg2)}
-.guard b{display:block;font-family:var(--display);font-size:18px;margin-bottom:6px}
-.guard p{font-size:14px;color:var(--ink2)}
-
-/* bring */
-.bring{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.bring div{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card)}
-.bring .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
-.bring b{display:block;font-family:var(--display);font-size:19px;margin-block:6px}
-.bring p{font-size:14px;color:var(--ink2)}
-
-/* pricing */
-.prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin-inline:auto}
-.price{background:var(--card);border:1px solid var(--line2);border-radius:24px;padding:34px;display:flex;flex-direction:column;gap:18px;position:relative}
-.price.best{border-color:rgba(255,77,46,.7);background:linear-gradient(180deg,rgba(255,77,46,.10),var(--card) 45%);box-shadow:0 30px 80px -30px rgba(255,77,46,.45)}
-.price .flag{position:absolute;top:-13px;left:34px;background:var(--hot);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:5px 12px;border-radius:999px}
-.price h3{font-size:22px;font-weight:700}
-.amt{display:flex;align-items:baseline;gap:6px}
-.amt strong{font-family:var(--display);font-size:64px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.amt span{color:var(--mute)}
-.price .sub{color:var(--ink2);font-size:14.5px}
-.price .btn{justify-content:center}
-.inc{list-style:none;padding:0;margin:8px auto 0;max-width:860px;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:15px;color:var(--ink2)}
-.inc li{padding-left:26px;position:relative}
-.inc li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
-.spots{max-width:860px;margin:26px auto 0;display:flex;gap:10px 26px;flex-wrap:wrap;justify-content:center;font-size:14px;color:var(--mute)}
-.spots b{color:var(--ink)}
-
-/* final */
-.final{margin-block:120px 60px;border-radius:30px;padding:72px 32px;text-align:center;background:radial-gradient(500px 240px at 50% 0%,rgba(255,77,46,.35),transparent 70%),var(--bg2);border:1px solid var(--line2);display:grid;justify-items:center;gap:22px}
-.final h2{font-size:clamp(38px,5.5vw,72px);font-weight:800;max-width:14ch}
-footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;color:var(--mute)}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-/* earnings */
-.earn{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ec{background:linear-gradient(180deg,#1B1720,var(--card));border:1px solid var(--line2);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
-.ec::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,77,46,.18),transparent 70%);pointer-events:none}
-.ec .fmt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
-.ec .v{font-family:var(--display);font-weight:800;font-size:clamp(44px,5vw,60px);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.ec .v small{font-size:.38em;font-weight:700;color:var(--mute);letter-spacing:0;margin-left:6px}
-.ec .money{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.ec .money strong{font-family:var(--display);font-size:30px;color:var(--gold);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.ec .money span{font-size:13px;color:var(--mute)}
-.ec .t{font-weight:700;font-size:15.5px;line-height:1.4;color:var(--ink)}
-.ec .meta2{display:flex;flex-wrap:wrap;gap:6px}
-.ec .meta2 span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
-.ec .meta2 span b{color:var(--ok)}
-.ec a{margin-top:auto;font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;border-top:1px solid var(--line);padding-top:12px}
-.ec a:hover{color:var(--hot)}
-.earn-note{font-size:12.5px;color:var(--mute);margin-top:16px;max-width:80ch}
-/* proof */
-.proofgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.pv{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-.pv .vw{position:relative;aspect-ratio:16/9;max-width:100%;background:#000}
-.pv video{width:100%;height:100%;display:block;object-fit:cover}
-.snd{position:absolute;right:10px;bottom:10px;appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:7px 12px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px)}
-.snd:hover{background:rgba(0,0,0,.8)}
-.pv .meta{padding:16px 18px 18px;display:grid;gap:8px}
-.pv .meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
-.pv .meta b{font-family:var(--display);font-size:20px;letter-spacing:-.01em}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tags span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
-@media (max-width:960px){
-  .earn{grid-template-columns:1fr 1fr}
-  .hero .wrap{grid-template-columns:1fr;gap:40px}
-  .steps{grid-template-columns:1fr 1fr}
-  .phase{grid-template-columns:1fr;gap:16px}
-  .phase-name{position:static}
-  .bring{grid-template-columns:1fr 1fr}
-  .guard{grid-template-columns:1fr}
-  .navlinks{display:none}
-}
-@media (max-width:640px){
-  .proofgrid{grid-template-columns:1fr}
-  .earn{grid-template-columns:1fr}
-  body{font-size:16px;padding-inline:16px}
-  .nav{margin-inline:-16px;padding-inline:16px}
-  .strip{margin-inline:-16px}
-  .hero{padding-block:44px 24px}
-  .duo,.prices,.steps,.bring,.inc{grid-template-columns:1fr}
-  .flip{grid-template-columns:1fr;gap:12px;padding:24px}
-  section.block{padding-block:80px 0}
-  .final{padding:52px 20px}
-  .btn-hot{width:100%;justify-content:center}
-  .nav .btn-hot{width:auto}
-}
-
-/* v2: clip marquee */
-.reel{margin-inline:-20px;margin-top:44px;overflow:hidden;position:relative;padding-block:6px 4px}
-.reel::before,.reel::after{content:"";position:absolute;top:0;bottom:0;width:70px;z-index:2;pointer-events:none}
-.reel::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.reel::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
-.reel-track{display:flex;gap:14px;width:max-content}
-@media (prefers-reduced-motion:no-preference){.reel-track{animation:slide 70s linear infinite}.reel:hover .reel-track{animation-play-state:paused}}
-.rt{position:relative;width:168px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line2);flex:none}
-.rt video,.rt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.rt span{position:absolute;left:8px;bottom:8px;z-index:1;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);padding:4px 8px;border-radius:999px;backdrop-filter:blur(4px)}
-.rt.kit span{background:rgba(255,77,46,.82);border-color:rgba(255,160,130,.5)}
-.reel-note{font-size:12.5px;color:var(--mute);text-align:center;margin-top:12px}
-@media (max-width:640px){.reel{margin-inline:-16px}.rt{width:132px;border-radius:13px}}
-
-/* v2: how it works (scroll-driven) */
-.how{display:grid;grid-template-columns:1fr;gap:0;position:relative;max-width:980px}
-.how-rail{position:absolute;left:23px;top:24px;bottom:24px;width:2px;background:var(--line2);border-radius:2px}
-.how-rail i{display:block;width:100%;height:var(--p,0%);background:linear-gradient(180deg,var(--hot),var(--gold));border-radius:2px;transition:height .15s linear}
-.hs{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center;padding-block:26px;opacity:.35;transform:translateY(10px);transition:opacity .5s,transform .5s}
-.hs.on{opacity:1;transform:none}
-.hs .n{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:15px;background:var(--bg);border:2px solid var(--line2);color:var(--ink2);position:relative;z-index:1;transition:border-color .4s,color .4s,box-shadow .4s}
-.hs.on .n{border-color:var(--hot);color:var(--ink);box-shadow:0 0 24px rgba(255,77,46,.45)}
-.hs .who{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-.hs .tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.hs .tools b{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,194,75,.4);background:rgba(255,194,75,.08);border-radius:999px;padding:4px 9px;line-height:1.2}
-.hs h3{font-size:clamp(24px,2.6vw,32px);font-weight:700;margin-block:6px 8px}
-.hs p{color:var(--ink2);font-size:15.5px;max-width:46ch}
-.hv{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;min-height:150px;display:grid;align-content:center;gap:8px;font-size:14px}
-.hv .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
-.hv .gate{display:flex;justify-content:space-between;gap:10px;color:var(--ink2)}
-.hv .gate b{color:var(--ok);font-family:var(--mono);font-size:12.5px}
-.hv label{display:flex;gap:10px;align-items:center;color:var(--ink);background:#1D1A22;border:1px solid var(--line2);border-radius:10px;padding:8px 10px}
-.hv label i{width:16px;height:16px;border-radius:5px;border:1.5px solid var(--line2);flex:none}
-.hv label.t i{background:var(--hot) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;border-color:var(--hot)}
-.hv video{width:100%;border-radius:12px;display:block;background:#000}
-.hv.vid{padding:8px}
-.hv .pair{display:grid;grid-template-columns:1.6fr 1fr;gap:8px;align-items:center}
-.hv .pair video{aspect-ratio:16/9;object-fit:cover}
-.hv .pair video.v{aspect-ratio:9/16}
-.hv .ask{display:flex;gap:8px;flex-wrap:wrap}
-.hv .ask span{border-radius:999px;padding:7px 14px;font-weight:700;font-size:13.5px;border:1px solid var(--line2);color:var(--ink2)}
-.hv .ask span.y{background:var(--ok);color:#0B0A0C;border-color:var(--ok)}
-.hv .when{font-family:var(--mono);font-size:12px;color:var(--gold)}
-@media (max-width:820px){.hs{grid-template-columns:48px minmax(0,1fr);gap:14px 18px}.hv{grid-column:2}}
-@media (prefers-reduced-motion:reduce){.hs{opacity:1;transform:none}.how-rail i{height:100%}}
-
-/* v2: bentos */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.bx{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden;position:relative}
-.bx .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
-.bx h3{font-size:clamp(21px,2vw,26px);font-weight:700;line-height:1.08}
-.bx p{color:var(--ink2);font-size:14.5px}
-.bx.w6{grid-column:span 6}.bx.w4{grid-column:span 4}.bx.w3{grid-column:span 3}.bx.w2{grid-column:span 2}
-.lookgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:4px}
-.lookgrid figure{margin:0;position:relative;background-color:#222;background-size:cover;background-position:center;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
-.lookgrid img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
-.lookgrid figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 6px;font-size:11.5px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))}
-.fmts{list-style:none;margin:0;padding:0;display:grid;gap:7px}
-.fmts li{font-size:13.5px;color:var(--mute);border-left:2px solid var(--line2);padding-left:9px}
-.fmts b{display:block;color:var(--ink);font-size:14.5px}
-.studio-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;align-items:start}
-.studio-picks figure{margin:0;border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:var(--bg2)}
-.studio-picks img{display:block;width:100%;height:420px;object-fit:cover;object-position:top}
-.studio-picks figcaption{font-size:12.5px;color:var(--mute);padding:8px 12px;border-top:1px solid var(--line)}
-.bx.hot{background:linear-gradient(160deg,rgba(255,77,46,.16),var(--card) 55%);border-color:rgba(255,77,46,.45)}
-.chips2{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.chips2 span{font-size:12px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
-.clipcard{display:grid;grid-template-columns:1fr;gap:8px}
-.clipcard img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line2);display:block}
-.mono{font-family:var(--mono);font-size:12px;color:var(--gold);line-height:1.5}
-.ap{display:grid;gap:8px;margin-top:6px;background:#0E0C10;border:1px solid var(--line);border-radius:14px;padding:14px}
-.ap .row2{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink2)}
-.ap .row2 b{color:var(--ink);font-variant-numeric:tabular-nums}
-.ap .meter{height:8px;border-radius:5px;background:#241F29;overflow:hidden}
-.ap .meter i{display:block;height:100%;width:38%;background:linear-gradient(90deg,var(--ok),#9BE8C4);border-radius:5px}
-.ap .wait{font-size:13px;color:var(--gold)}
-.bnote{font-size:12px;color:var(--mute);margin-top:12px}
-@media (max-width:960px){.bento{grid-template-columns:1fr 1fr}.bx.w6,.bx.w4,.bx.w3,.bx.w2{grid-column:span 2}.lookgrid{grid-template-columns:repeat(4,1fr)}.studio-picks{grid-template-columns:1fr 1fr}.studio-picks figure:nth-child(3){display:none}}
-@media (max-width:640px){.lookgrid{grid-template-columns:repeat(3,1fr)}.lookgrid figcaption{font-size:10px;padding:10px 5px 4px}.studio-picks img{height:320px}}
-
-/* v2: asset strip */
-.svcline{max-width:860px;margin:18px auto 0;text-align:center;font-size:14px;color:var(--ink2)}
-/* value stack */
-.vbox{max-width:980px;margin:0 auto 34px;border:1px solid rgba(255,77,46,.45);border-radius:26px;background:linear-gradient(180deg,#16131A,var(--bg2));padding:30px 30px 26px;box-shadow:0 0 0 1px rgba(255,77,46,.08),0 30px 90px -40px rgba(255,77,46,.55)}
-.vbox-h{text-align:center;font-family:var(--display);font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:22px;color:var(--ink2);text-transform:uppercase}
-.vbox-h b{color:var(--ink);font-weight:800}
-.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
-.vb{display:grid;grid-template-columns:132px 1fr;gap:12px 18px;padding:22px 0;border-bottom:1px solid var(--line2)}
-.vb-cov{grid-row:span 1;aspect-ratio:3/4;border-radius:12px;background-size:cover;background-position:center;position:relative;overflow:hidden;border:1px solid rgba(255,122,69,.6);box-shadow:0 14px 30px -12px rgba(0,0,0,.8),0 0 18px -6px rgba(255,77,46,.6)}
-.vb-cov::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,12,.15) 20%,rgba(11,10,12,.92) 78%)}
-.vb-brand{position:absolute;top:8px;left:9px;z-index:1;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:#fff;background:var(--hot);padding:2px 6px;border-radius:4px}
-.vb-t{position:absolute;left:9px;right:9px;bottom:10px;z-index:1;font-family:var(--display);font-weight:800;font-size:17px;line-height:.98;letter-spacing:-.02em;color:#fff;text-transform:uppercase}
-.vb-t::first-line{color:var(--hot2)}
-.vb-txt{display:grid;gap:8px;align-content:start}
-.vb-txt h3{font-size:21px;font-weight:800;line-height:1.08}
-.vb-txt h3 em{font-style:normal;color:var(--hot2)}
-.vb-txt p{font-size:14.5px;color:var(--ink2);line-height:1.5}
-.vb-foot{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.vb-acc{font-size:12.5px;font-weight:600;color:var(--ink2);background:#221E27;border:1px solid var(--line2);padding:5px 11px;border-radius:999px}
-.vb-like{font-size:12px;color:var(--mute)}
-.vb-v{flex:none;margin-left:auto;font-size:13.5px;color:#062b19;background:var(--ok);padding:6px 13px;border-radius:999px;font-weight:600}
-.vb-v b{font-weight:800}
-.vb-v.vb-incl{background:var(--gold);color:#2b1d00;font-weight:800}
-.vtot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:22px 4px 12px;color:var(--ink2);font-size:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
-.vtot s{font-family:var(--display);font-size:30px;font-weight:800;color:var(--mute);text-decoration-color:var(--hot);text-decoration-thickness:3px;letter-spacing:-.02em;text-transform:none}
-.vyou{display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(90deg,rgba(255,77,46,.22),rgba(255,77,46,.06));border:1px solid rgba(255,77,46,.6);border-radius:16px;padding:16px 20px}
-.vyou>span{font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-.vyou b{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:800;letter-spacing:-.02em}
-.vbyo{font-size:13px;color:var(--mute);margin-top:14px}
-.vs-note{max-width:900px;margin:-22px auto 34px;font-size:12.5px;color:var(--mute);text-align:center}
-@media (max-width:820px){.vgrid{grid-template-columns:1fr}}
-@media (max-width:640px){.vbox{padding:20px 16px 18px;border-radius:20px}.vb{grid-template-columns:104px 1fr;gap:10px 14px;padding:18px 0}.vb-t{font-size:13px}.vb-like{order:3;flex-basis:100%}.vb-txt h3{font-size:18px}.vb-txt p{font-size:13.5px}.vtot,.vyou{flex-direction:column;align-items:flex-start;gap:2px}.vtot s{font-size:26px}}
-/* faq */
-.faq{max-width:860px;margin-inline:auto;display:grid;gap:10px}
-.faq details{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:0 22px}
-.faq details[open]{border-color:var(--line2);background:var(--bg2)}
-.faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;font-weight:700;font-size:17px;position:relative}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--hot)}
-.faq details[open] summary::after{content:"–"}
-.faq details p{color:var(--ink2);font-size:15.5px;padding:0 0 18px;max-width:70ch}
-@media (max-width:640px){.faq details{padding:0 16px}.faq summary{font-size:15.5px;padding:15px 30px 15px 0}}
-
-/* v2: shorter on phones */
-@media (max-width:640px){
-  .proofgrid{grid-template-columns:1fr 1fr;gap:10px}
-  .pv .meta{padding:10px 10px 12px;gap:4px}.pv .meta b{font-size:15px}.pv .meta .tags{display:none}
-  .pv .snd{font-size:11px;padding:5px 9px;right:6px;bottom:6px}
-  .earn{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:-16px;padding-inline:16px;padding-bottom:6px}
-  .earn .ec{flex:0 0 84%;scroll-snap-align:center}
-}
-/* v2: shorter on desktop */
-@media (min-width:961px){
-  .proofgrid{grid-template-columns:repeat(4,1fr);gap:12px}
-  .pv .meta{padding:12px 14px 14px}.pv .meta b{font-size:17px}
-  section.block{padding-block:92px 0}
-  .head{margin-bottom:40px}
-  .hs{padding-block:16px}
-  .hv{min-height:0}
-}
-@media (min-width:961px){.hs{grid-template-columns:48px minmax(0,1.15fr) minmax(0,.85fr)}}
-
-.ba{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.ba figure{margin:0;display:grid;gap:5px}
-.ba img,.ba video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line2);display:block;background:#000}
-.ba figcaption{font-size:12px;color:var(--ink2)}
-
 /* first screen: video in clear view, its Short on the right edge, autopilot strip below */
 .hstack{position:relative;padding:8px 0 0}
 .hs-main{position:relative;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.8);width:80%}
@@ -415,87 +115,214 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .hs-ap .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot);width:100%}
 .hs-ap b{color:var(--ink);font-variant-numeric:tabular-nums}
 .hs-ap .w{color:var(--gold)}
-.ph-only{display:none}
+.herovid-note{font-size:12.5px;color:var(--mute);margin-top:10px;text-align:center}
 @media (min-width:641px) and (max-width:960px){.hero .wrap>div:has(.hstack){order:-1}}
-/* 15 Oct 2026 (Clarity: half of phone visitors left on screen 1, which was all text): on phones the first screen is
-   headline, where it runs, the real video + its Short, the 3 steps, then the button and price. Posters show at once;
-   the clips still start only after load (12 Oct rule). The rest of the left column follows. */
-@media (max-width:640px){.hero .wrap{display:flex;flex-direction:column}.hero .wrap>div:first-child{display:contents}
+/* 15-16 Oct 2026 Clarity (phones): the first screen is headline, the real video + its Short with a big Sound on,
+   three quick answers, the 3 steps, then Buy and price. Desktop unchanged. */
+.qa{display:none;list-style:none;margin:0;padding:0;gap:5px;width:100%}
+.qa li{display:flex;align-items:center;gap:10px;border:1px solid var(--line2);border-radius:12px;padding:7px 12px;background:rgba(23,21,27,.7);font-size:14px;line-height:1.3;color:var(--ink)}
+.qa li::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.15) var(--tick) center/18px no-repeat}
+.hs-main .snd-big{left:10px;right:auto;bottom:10px;display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B0A0D;border:0;font-size:15px;font-weight:700;padding:10px 16px 10px 13px;min-height:44px;box-shadow:0 8px 24px rgba(0,0,0,.55)}
+.hs-main .snd-big:hover{background:#fff}.hs-main .snd-big svg{width:18px;height:18px;flex:none}
+@media (max-width:640px){.hero{padding-block:20px 24px}.hero .wrap{display:flex;flex-direction:column;gap:12px}.hero .wrap>div:first-child{display:contents}
 .hero .wrap>div:first-child>*{order:2}
 .hero .wrap>div:first-child>.badge{order:-7;align-self:flex-start}.hero .wrap>div:first-child>h1{order:-6;margin-block:14px 8px}
-.hero .wrap>div:first-child>.where{order:-5;margin:0}.hero .wrap>div:has(.hstack){order:-4}
+.hero .wrap>div:has(.hstack){order:-5}.hero .wrap>div:first-child>.qa{order:-4;display:grid}
 .hero .wrap>div:first-child>.steps3{order:-3;margin:0;width:100%;max-width:none}.hero .wrap>div:first-child>.ctas{order:-2;margin-top:0}
-.hero .wrap>div:first-child>.fine.price-line{order:-1;margin:0 0 22px}.ph-only{display:inline}}
+.hero .wrap>div:first-child>.fine.price-line{order:-1;margin:0}.hero .wrap>div:first-child>.nc-hint{order:-1;margin:0 0 6px}
+.hero .wrap>div:first-child>.where,.hero .wrap>div:first-child>.need,.hero .wrap>div:first-child>.lead{display:none}
+.hs-main{width:76%}.hs-short{width:27%}.hero .hstack{padding-bottom:5.5%}
+/* the example autopilot card and its note move the Buy button off the first screen; the headline already says autopilot */
+.hero .hs-ap,.hero .herovid-note{display:none}}
+.hs-main,.hs-short,.reel .rt,.pv .vw video{cursor:pointer}
+.lbx{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+.lbx img{max-width:100%;max-height:100%;border-radius:10px}.lbx button{position:absolute;top:12px;right:14px;background:none;border:0;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+
+/* clip marquee */
+.reel{margin-inline:-20px;margin-top:44px;overflow:hidden;position:relative;padding-block:6px 4px}
+.reel::before,.reel::after{content:"";position:absolute;top:0;bottom:0;width:70px;z-index:2;pointer-events:none}
+.reel::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.reel::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.reel-track{display:flex;gap:14px;width:max-content}
+@media (prefers-reduced-motion:no-preference){.reel-track{animation:slide 70s linear infinite}.reel:hover .reel-track{animation-play-state:paused}@keyframes slide{to{transform:translateX(-50%)}}}
+.rt{position:relative;width:168px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line2);flex:none}
+.rt video,.rt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.rt span{position:absolute;left:8px;bottom:8px;z-index:1;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.16);padding:4px 8px;border-radius:999px;backdrop-filter:blur(4px)}
+.rt.kit span{background:rgba(255,77,46,.82);border-color:rgba(255,160,130,.5)}
+.reel-note{font-size:12.5px;color:var(--mute);text-align:center;margin-top:12px}
+@media (max-width:640px){.reel{margin-inline:-16px;margin-top:28px}.rt{width:112px;border-radius:12px}.rt span{font-size:9px;padding:3px 6px;left:6px;bottom:6px}}
+
+/* sections */
+section.block{padding-block:92px 0}
+.head{display:grid;gap:14px;margin-bottom:40px;max-width:780px}
+.head h2{font-size:clamp(34px,4.8vw,60px);font-weight:800}
+.center{text-align:center;margin-inline:auto;justify-items:center}
+.note{font-size:12.5px;color:var(--mute);margin-top:14px;max-width:80ch}
+
+/* real videos */
+.proofgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pv{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.pv .vw{position:relative;aspect-ratio:16/9;max-width:100%;background:#000}
+.pv video{width:100%;height:100%;display:block;object-fit:cover}
+.snd{position:absolute;right:10px;bottom:10px;appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:7px 12px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px)}
+.snd:hover{background:rgba(0,0,0,.8)}
+.pv .meta{padding:12px 14px 14px;display:grid;gap:6px}
+.pv .meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.pv .meta b{font-family:var(--display);font-size:17px;letter-spacing:-.01em}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
+
+/* how it works: 5 steps with real Studio screens; steps light up, the rail fills with scroll */
+.how{display:grid;grid-template-columns:1fr;gap:0;position:relative;max-width:1040px}
+.how-rail{position:absolute;left:23px;top:24px;bottom:24px;width:2px;background:var(--line2);border-radius:2px}
+.how-rail i{display:block;width:100%;height:var(--p,0%);background:linear-gradient(180deg,var(--hot),var(--gold));border-radius:2px;transition:height .15s linear}
+.hs{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center;padding-block:18px;opacity:.35;transform:translateY(10px);transition:opacity .5s,transform .5s}
+.hs.on{opacity:1;transform:none}
+.hs .n{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:15px;background:var(--bg);border:2px solid var(--line2);color:var(--ink2);position:relative;z-index:1;transition:border-color .4s,color .4s,box-shadow .4s}
+.hs.on .n{border-color:var(--hot);color:var(--ink);box-shadow:0 0 24px rgba(255,77,46,.45)}
+.hs .who{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.hs .tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.hs .tools b{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,194,75,.4);background:rgba(255,194,75,.08);border-radius:999px;padding:4px 9px;line-height:1.2}
+.hs h3{font-size:clamp(22px,2.4vw,30px);font-weight:700;margin-block:6px 8px}
+.hs p{color:var(--ink2);font-size:15.5px;max-width:46ch}
+.shot{margin:0;border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:var(--bg2);box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top left;cursor:zoom-in}
+@media (min-width:961px){.hs{grid-template-columns:48px minmax(0,1fr) minmax(0,1.05fr)}}
+@media (max-width:820px){.hs{grid-template-columns:48px minmax(0,1fr);gap:10px 16px;padding-block:12px}.shot{grid-column:2}.hs p{font-size:14.5px}}
+@media (max-width:640px){.hs{grid-template-columns:36px minmax(0,1fr);gap:8px 12px}.hs .n{width:36px;height:36px;font-size:13px}.how-rail{left:17px}.hs h3{margin-block:4px 4px}.shot img{aspect-ratio:2/1}}
+@media (prefers-reduced-motion:reduce){.hs{opacity:1;transform:none}.how-rail i{height:100%}}
+
+/* what's possible: other creators' channels, NexLev estimates */
+.wall2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.wall-k{display:inline-block;font-size:13.5px;color:var(--ink);border:1px solid rgba(255,194,75,.5);background:rgba(255,194,75,.08);border-radius:12px;padding:8px 12px;margin-bottom:16px}
+.ec{background:linear-gradient(180deg,#1B1720,var(--card));border:1px solid var(--line2);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-width:0}
+.ec::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,77,46,.18),transparent 70%);pointer-events:none}
+.ec .fmt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.ec .v{font-family:var(--display);font-weight:800;font-size:clamp(44px,5vw,60px);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ec .v small{font-size:.38em;font-weight:700;color:var(--mute);letter-spacing:0;margin-left:6px}
+.ec .money{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ec .money strong{font-family:var(--display);font-size:30px;color:var(--gold);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ec .money span{font-size:13px;color:var(--mute)}
+.ec .t{font-weight:700;font-size:15px;line-height:1.4;color:var(--ink)}
+.ec .meta2{display:flex;flex-wrap:wrap;gap:6px}
+.ec .meta2 span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
+.ec .meta2 span b{color:var(--ok)}
+.ec a{margin-top:auto;font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;border-top:1px solid var(--line);padding-top:12px}
+.ec a:hover{color:var(--hot)}
+@media (max-width:960px){.wall2{grid-template-columns:1fr 1fr}}
+
+/* what you get: the folder, the time it saves, an original script, the 12 looks */
+.get{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;align-items:stretch}
+.gl{list-style:none;margin:0;padding:22px 24px;display:grid;gap:11px;align-content:start;background:var(--card);border:1px solid var(--line2);border-radius:22px}
+.gl li{padding-left:30px;position:relative;color:var(--ink2);font-size:15.5px;line-height:1.4}.gl li b{color:var(--ink)}
+.gl li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:rgba(61,220,151,.15) var(--tick) center/18px no-repeat}
+.gside{display:grid;gap:16px}
+.tcard{border-radius:22px;padding:22px 24px;background:linear-gradient(135deg,rgba(255,77,46,.18),rgba(255,194,75,.08));border:1px solid rgba(255,77,46,.5)}
+.tcard .k,.ocard .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.tnum{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;font-family:var(--display);font-weight:800;line-height:1.05;margin-top:10px;letter-spacing:-.02em}
+.tnum s{font-size:clamp(28px,3.4vw,40px);color:var(--mute);text-decoration-color:var(--hot);text-decoration-thickness:3px}
+.tnum i{font-style:normal;color:var(--gold);font-size:28px}
+.tnum b{font-size:clamp(28px,3.4vw,40px)}
+.tcard p,.ocard p{color:var(--ink2);font-size:14.5px;margin-top:10px}
+.ocard{border:1px solid var(--line2);border-radius:22px;padding:22px 24px;background:var(--bg2)}
+.ocard h3{font-size:24px;margin-top:8px}
+.looks{margin-top:26px}
+.looks-h{display:flex;justify-content:space-between;align-items:baseline;gap:4px 12px;flex-wrap:wrap;margin-bottom:10px}
+.looks-h b{font-family:var(--display);font-size:20px}.looks-h span{font-size:13px;color:var(--mute)}
+.lookgrid{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-20px;padding:0 20px 8px;scrollbar-width:thin}
+.lookgrid figure{flex:0 0 220px;scroll-snap-align:start;margin:0;position:relative;background-color:#222;background-size:cover;background-position:center;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.lookgrid img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.lookgrid figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 10px 7px;font-size:12.5px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+@media (max-width:820px){.get{grid-template-columns:1fr}}
+
+/* guides: every step, on video; tap a poster and it plays here */
+.gg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gv{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.gv-p{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#000;border:0;padding:0;margin:0;cursor:pointer;color:inherit}
+.gv-p img,.gv-p video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.gv-d{position:absolute;right:8px;bottom:8px;font:600 11.5px var(--mono);background:rgba(0,0,0,.78);color:#fff;padding:3px 7px;border-radius:6px}
+.gv-pl{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:var(--hot);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.gv-pl::after{content:"";position:absolute;left:18px;top:14px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent}
+.gv-t{padding:10px 12px 12px;display:grid;gap:3px}.gv-t b{font-size:15px;line-height:1.25}.gv-t span{font-size:12.5px;color:var(--mute);line-height:1.4}
+@media (max-width:960px){.gg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.gg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin-inline:-16px;padding:0 16px 6px}.gv{flex:0 0 64%;scroll-snap-align:start}.gv-t{padding:8px 10px 10px}.gv-t b{font-size:13.5px}.gv-t span{display:none}.gv-pl{width:38px;height:38px;margin:-19px 0 0 -19px}.gv-pl::after{left:15px;top:11px;border-left-width:12px;border-top-width:8px;border-bottom-width:8px}}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1040px;margin-inline:auto;align-items:stretch}
+.price{background:var(--card);border:1px solid var(--line2);border-radius:22px;padding:28px 24px 24px;display:flex;flex-direction:column;gap:12px;position:relative}
+.price.best{border-color:rgba(255,77,46,.7);background:linear-gradient(180deg,rgba(255,77,46,.10),var(--card) 45%);box-shadow:0 30px 80px -30px rgba(255,77,46,.45)}
+.price .flag{position:absolute;top:-12px;left:24px;background:var(--hot);color:#fff;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.price .flag.g{background:var(--gold);color:#1A1205}
+.price h3{font-size:22px;font-weight:700}
+.amt{display:flex;align-items:baseline;gap:6px}
+.amt strong{font-family:var(--display);font-size:56px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.amt span{color:var(--mute)}
+.price .sub{color:var(--ink2);font-size:14.5px}
+.price .sub b{color:var(--ink)}
+.price .btn{justify-content:center;margin-top:auto}
+.cmp{max-width:1040px;margin:22px auto 0;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:var(--bg2)}
+.cmp table{width:100%;border-collapse:collapse;font-size:14.5px}
+.cmp th,.cmp td{padding:10px 14px;border-top:1px solid var(--line);text-align:center;color:var(--ink2);font-weight:500}
+.cmp thead th{border-top:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.cmp tbody th{text-align:left;color:var(--ink)}
+.cmp .y{color:var(--ok);font-weight:800}
+.paybox{max-width:1040px;margin:16px auto 0;border:1px solid rgba(255,194,75,.45);border-radius:18px;padding:18px 22px;background:linear-gradient(90deg,rgba(255,194,75,.10),rgba(255,194,75,.02))}
+.paybox h3{font-size:19px;margin-bottom:6px}
+.paybox p{color:var(--ink2);font-size:15px}
+.spots{max-width:1040px;margin:16px auto 0;display:flex;gap:8px 26px;flex-wrap:wrap;justify-content:center;font-size:14px;color:var(--mute)}
+.spots b{color:var(--ink)}
+@media (max-width:820px){.prices{grid-template-columns:1fr;gap:20px}.price{padding:24px 20px 20px;gap:8px}.amt strong{font-size:46px}}
+@media (max-width:640px){.price{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;padding:20px 16px 16px}.price h3,.price .amt,.price .sub{grid-column:1}.price h3{font-size:19px}.price .btn{grid-column:2;grid-row:1/span 3;align-self:center;margin:0;width:auto;padding:12px 16px;font-size:15px}.amt strong{font-size:40px}.price .sub{font-size:13.5px}.paybox p{font-size:14px}.cmp table{font-size:13px}.cmp th,.cmp td{padding:8px 5px}.cmp tbody th{padding-left:12px}.paybox{padding:16px}}
+
+/* questions */
+.faq{max-width:860px;margin-inline:auto;display:grid;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:0 22px}
+.faq details[open]{background:var(--bg2)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;font-weight:700;font-size:17px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--hot)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--ink2);font-size:15.5px;padding:0 0 18px;max-width:70ch}
+@media (max-width:640px){.faq details{padding:0 16px}.faq summary{font-size:15.5px;padding:15px 30px 15px 0}}
+
+/* final */
+.final{margin-block:100px 60px;border-radius:30px;padding:64px 32px;text-align:center;background:radial-gradient(500px 240px at 50% 0%,rgba(255,77,46,.35),transparent 70%),var(--bg2);border:1px solid var(--line2);display:grid;justify-items:center;gap:20px}
+.final h2{font-size:clamp(36px,5.5vw,68px);font-weight:800;max-width:14ch}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr;gap:40px}.navlinks{display:none}.proofgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  body{font-size:16px;padding-inline:16px}
+  .nav{margin-inline:-16px;padding-inline:16px}
+  section.block{padding-block:64px 0}
+  .head{margin-bottom:26px;gap:10px}
+  .final{padding:44px 20px;margin-top:72px}
+  .btn-hot{width:100%;justify-content:center}
+  .nav .btn-hot{width:auto}
+  .proofgrid{gap:10px}
+  .pv .meta{padding:10px 10px 12px;gap:4px}.pv .meta b{font-size:15px}.pv .meta .tags{display:none}
+  .pv .snd{font-size:11px;padding:5px 9px;right:6px;bottom:6px}
+  .wall2{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:-16px;padding:0 16px 6px}
+  .wall2 .ec{flex:0 0 82%;scroll-snap-align:center;padding:20px}
+  .lookgrid{margin-inline:-16px;padding-inline:16px}.lookgrid figure{flex-basis:168px}
+  .gl{padding:18px}.gl li{font-size:14.5px}.tcard,.ocard{padding:18px}
+}
 .co-alt[hidden]{display:none}.co-how{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}.co-how[hidden]{display:none}.co-how button{font:600 14px/1.25 var(--body);padding:12px 10px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer}.co-how button[aria-pressed="true"]{border-color:var(--gold);color:var(--ink);box-shadow:0 0 0 1px var(--gold) inset}.co-saved{font-size:13px;color:var(--ok);margin:2px 2px 8px}.co-saved[hidden]{display:none}.co-pane .co-email{margin-bottom:10px}#co-go[hidden]{display:none!important}
-.co-phone{font-size:13px;color:var(--mute);margin:0 2px 8px;text-align:center}.co-phone .co-alt{display:inline;margin:0;min-height:0;font-size:13px}
 .co-alt{display:block;margin:12px auto 0;background:none;border:0;color:var(--mute);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;min-height:40px}
 @media (max-width:640px){.co-row{flex-wrap:wrap}.co-row input,.co-row .btn{flex:1 1 100%;width:100%}}
 .co-sent{text-align:center;padding:8px 0 4px}.co-sent-h{font-weight:700;font-size:18px;margin:0 0 6px}.co-sent p{margin:0}
 
-@media (max-width:640px){.hero{padding-top:20px}.hero .wrap{gap:12px}.hs-main{width:76%}.hs-ap{width:76%;font-size:12.5px;gap:4px 12px;padding:9px 12px}.hs-short{width:27%}.herovid-note{margin-top:8px}}
-/* 16 Oct 2026 Clarity (phones, 3 days): half left in the first 20% of the page, 0 taps on the hero Buy, most taps on
-   FAQ answers and "Sound on". On phones: headline, then the real video with a big Sound on button, then three quick
-   answers (in place of the "where it runs" line, the "What you need" box and the paragraph), the 3 steps and Buy.
-   Desktop unchanged. */
-.qa{display:none;list-style:none;margin:0;padding:0;gap:5px;width:100%}
-.qa li{display:flex;align-items:center;gap:10px;border:1px solid var(--line2);border-radius:12px;padding:7px 12px;background:rgba(23,21,27,.7);font-size:14px;line-height:1.3;color:var(--ink)}
-.qa li::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%233DDC97' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
-.hs-main .snd-big{left:10px;right:auto;bottom:10px;display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B0A0D;border:0;font-size:15px;font-weight:700;padding:10px 16px 10px 13px;min-height:44px;box-shadow:0 8px 24px rgba(0,0,0,.55)}
-.hs-main .snd-big:hover{background:#fff}.hs-main .snd-big svg{width:18px;height:18px;flex:none}
-@media (max-width:640px){.hero .wrap>div:first-child>.where,.hero .wrap>div:first-child>.need,.hero .wrap>div:first-child>.lead{display:none}
-.hero .wrap>div:has(.hstack){order:-5}.hero .wrap>div:first-child>.qa{order:-4;display:grid}
-.hero .price-line .ph-only{display:none}
-/* the example autopilot card and its note move the Buy button off the first screen; the headline already says autopilot */
-.hero .hs-ap,.hero .herovid-note{display:none}.hero .hstack{padding-bottom:5.5%}}
-.sf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.sf{background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:20px 22px}
-.sf q{display:block;font-family:var(--display);font-size:19px;font-weight:700;color:var(--ink);quotes:"\201C" "\201D";margin-bottom:8px}
-.sf p{margin:0;color:var(--ink2);font-size:15px;line-height:1.5}
-.sh{margin-top:18px;border:1px solid rgba(255,77,46,.45);border-radius:22px;padding:26px 28px;background:radial-gradient(420px 180px at 0% 0%,rgba(255,77,46,.16),transparent),var(--bg2);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.sh h3{margin:0 0 12px;font-family:var(--display);font-size:22px}
-.sh ol{margin:0;padding-left:20px;color:var(--ink2);display:grid;gap:6px;font-size:16px}
-.sh ol b{color:var(--ink)}
-.sh-cta{display:grid;gap:8px;justify-items:center;text-align:center}
-.micro{font-size:13px;color:var(--mute);margin:0}
-@media (max-width:900px){.sf-grid{grid-template-columns:1fr 1fr}.sh{grid-template-columns:1fr}}
-@media (max-width:560px){.sf-grid{grid-template-columns:1fr}.sf{padding:16px 18px}.sf q{font-size:17px}}
-
-/* 17 Oct 2026 (owner handoff #1): a Buy button closes every section, and a sticky Buy bar on phones.
-   Both open the same checkout as every other a[data-buy] (email box above Whop; phones: Pay here / Send to computer). */
-.secbuy{display:flex;flex-direction:column;align-items:center;gap:8px;margin:34px auto 0;text-align:center}
-.secbuy .micro{margin:0;font-size:13px;color:var(--mute)}.secbuy .micro a{color:var(--gold);text-decoration:underline}
+/* 17 Oct 2026 (owner handoff #1): a sticky Buy bar on phones; it opens the same checkout as every other a[data-buy] */
 .mbar{display:none}
 @media (max-width:640px){
 .mbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;align-items:center;justify-content:space-between;gap:10px;
  padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,10,12,.94);border-top:1px solid var(--line2);
  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .25s ease}
-.mbar-t{font-size:13px;line-height:1.3;color:var(--ink2)}.mbar-t b{color:var(--ink)}
-.mbar-t{flex:1 1 auto;min-width:0}.mbar .btn{flex:0 0 auto;width:auto;max-width:none;white-space:nowrap;padding:12px 18px}
+.mbar-t{font-size:13px;line-height:1.3;color:var(--ink2);flex:1 1 auto;min-width:0}.mbar-t b{color:var(--ink)}
+.mbar .btn{flex:0 0 auto;width:auto;max-width:none;white-space:nowrap;padding:12px 18px}
 html.mbar-on .mbar{transform:none}html.mbar-on body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 html.co-open .mbar{display:none}}
 @media (max-width:380px){.nav .logo{white-space:nowrap;font-size:15px}.nav .btn-sm{white-space:nowrap;padding:10px 14px}}
-
-/* 17 Oct 2026 (owner handoff #2): each real Kit clip carries what that format earns for OTHER channels (NexLev estimate) */
-.pv .pe{display:grid;gap:3px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line2)}
-.pv .pk{font:600 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-.pv .pm{font-size:14px;color:var(--ink2);text-decoration:none}.pv a.pm:hover b,.pv a.pm:focus-visible b{text-decoration:underline}.pv .pm b{font-size:20px;color:var(--gold);margin-right:2px}
-.pv .ps{font-size:12.5px;color:var(--mute)}.pv .ps a{color:var(--ink2);text-decoration:underline}
-
-/* 17 Oct 2026 (owner handoff #3): free niche checker teaser, sends the keyword to niche-check.html */
-.nc{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
-.nc h2{font-size:clamp(28px,4vw,40px);margin:8px 0 8px}.nc .lead{margin:0}
-.nc-row{display:flex;gap:10px}.nc-row input{flex:1;min-width:0;font:500 17px var(--body);color:var(--ink);background:var(--bg2);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;min-height:52px}
-.nc-row .btn{white-space:nowrap}
-@media (max-width:760px){.nc{grid-template-columns:1fr;padding:22px}.nc-row{flex-direction:column}}
-.nc-card{display:flex;align-items:center;gap:14px;margin:18px 0 4px;padding:14px 14px 14px 16px;max-width:580px;border:1px solid rgba(255,194,75,.6);border-radius:18px;background:linear-gradient(90deg,rgba(255,194,75,.16),rgba(255,194,75,.04));color:var(--ink);text-decoration:none;animation:ncPulse 2.6s ease-out 1.2s 3;transition:transform .15s,border-color .15s,background .15s}
-.nc-card:hover{border-color:var(--gold);background:linear-gradient(90deg,rgba(255,194,75,.24),rgba(255,194,75,.06));transform:translateY(-1px)}
-.nc-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.nc-ic{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(255,194,75,.18);color:var(--gold);display:grid;place-items:center}
-.nc-tx{flex:1;min-width:0;display:grid;gap:3px}.nc-tx b{font:800 16.5px/1.25 var(--body)}.nc-tx i{font-style:normal;font-size:13.5px;line-height:1.35;color:var(--ink2)}
-.nc-go{flex:none;background:var(--gold);color:#1A1205;font-weight:800;font-size:14.5px;padding:11px 16px;border-radius:999px;white-space:nowrap}
-@keyframes ncPulse{0%{box-shadow:0 0 0 0 rgba(255,194,75,.5)}100%{box-shadow:0 0 0 16px rgba(255,194,75,0)}}
-@media (prefers-reduced-motion:reduce){.nc-card{animation:none;transition:none}}
-@media (max-width:640px){.hero .wrap>div:first-child>.nc-hint{order:-1;margin:-8px 0 22px}.nc-card{flex-wrap:wrap}.nc-tx{flex-basis:calc(100% - 56px)}.nc-go{width:100%;text-align:center}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -507,7 +334,7 @@ whop.track("page");
 
 <style id="fvk-checkout-css">
 /* 11 Oct 2026: every grid here gets minmax(0,1fr) columns — an auto track sized to the widest child pushed the
-   close button, the $99 tab and Continue off the right edge on phones (QA at 320/390/412 px). */
+   close button, a plan tab and Continue off the right edge on phones (QA at 320/390/412 px). */
 .co{position:fixed;inset:0;z-index:100;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:16px;background:rgba(6,5,8,.78);backdrop-filter:blur(6px)}
 .co[hidden]{display:none!important}
 .co-box{box-sizing:border-box;min-width:0;grid-template-columns:minmax(0,1fr);width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--bg2);border:1px solid var(--line2);border-radius:18px;padding:20px 18px 18px;display:grid;gap:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
@@ -515,8 +342,8 @@ whop.track("page");
 .co-top b{font-family:var(--display);font-size:20px;color:var(--ink)}
 .co-x{background:none;border:1px solid var(--line2);color:var(--ink2);border-radius:999px;width:36px;height:36px;font-size:18px;cursor:pointer}
 .co-x:focus-visible,.co-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.co-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.co-tabs button{min-width:0;font:600 15px/1.25 var(--body);text-align:left;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
+.co-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.co-tabs button{min-width:0;font:600 15px/1.25 var(--body);text-align:left;padding:10px 11px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
 .co-tabs button small{font-weight:500;font-size:12px;color:var(--mute)}
 .co-tabs button[aria-pressed="true"]{border-color:var(--hot);color:var(--ink);box-shadow:0 0 0 1px var(--hot) inset}
 .co-pane{min-width:0;min-height:420px}.co-pane:has(.co-email:not([hidden])){min-height:0}
@@ -533,7 +360,7 @@ whop.track("page");
 html.co-open,html.co-open body{overflow:hidden}
 </style>
 <link rel="canonical" href="https://facelessvideokit.github.io/">
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Faceless Video Kit", "url": "https://facelessvideokit.github.io/", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "description": "A download that plugs into Claude or ChatGPT on your Mac or PC and makes faceless YouTube videos and Shorts: script, voice, pictures, captions, thumbnail and a finished MP4, posted only when you say yes.", "image": "https://facelessvideokit.github.io/og.png", "offers": [{"@type": "Offer", "name": "Monthly", "price": "29.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Lifetime", "price": "99.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is this different from just asking ChatGPT or Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On its own, your AI assistant can write a script. It can't make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes."}}, {"@type": "Question", "name": "Is it a website or an app I log into?", "acceptedAnswer": {"@type": "Answer", "text": "No. It's a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video."}}, {"@type": "Question", "name": "Do I need any tech or editing skills?", "acceptedAnswer": {"@type": "Answer", "text": "No. Setup takes about 15 minutes, and your AI assistant does it with you. No commands to type. With ChatGPT you double-click an installer: on a Mac it asks for your Mac password once (Open Anyway) and you press Return in its window; on Windows you click More info, then Run anyway, and press Enter. Every decision comes as a few options with one marked as recommended, so you just pick."}}, {"@type": "Question", "name": "What else will I pay for?", "acceptedAnswer": {"@type": "Answer", "text": "Pictures, clips and voice come from the AI services the Kit has built in (ElevenLabs, Higgsfield, OpenAI (ChatGPT’s image model and voices), Google Veo, fal.ai or Fish Audio), paid direct at their own price, or you can use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works. ChatGPT needs a paid plan."}}, {"@type": "Question", "name": "Which kinds of videos can it make?", "acceptedAnswer": {"@type": "Answer", "text": "Long videos and Shorts, in 12 looks: photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more. Captions, music, animated charts and a thumbnail are included. You get a finished MP4. Final Cut, Premiere and DaVinci Resolve timelines are there if you want them."}}, {"@type": "Question", "name": "Will it post for me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, after you say yes. It uploads to YouTube and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK."}}, {"@type": "Question", "name": "What if I get stuck?", "acceptedAnswer": {"@type": "Answer", "text": "The Studio has a Help box with instant answers, and it can hand you over to your own AI assistant. If something breaks, one click sends us a bug report, and we tell you when it's fixed."}}, {"@type": "Question", "name": "What if it's not for me?", "acceptedAnswer": {"@type": "Answer", "text": "Ask for a refund within 7 days. No questions. Monthly cancels any time. When a membership ends the Kit stops, but every video you made stays on your computer."}}, {"@type": "Question", "name": "Will my channel make money?", "acceptedAnswer": {"@type": "Answer", "text": "We can't promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube's own rules. The Kit makes the videos. Growing the channel is still up to you."}}]}]</script>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Faceless Video Kit", "url": "https://facelessvideokit.github.io/", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "description": "A download that plugs into Claude or ChatGPT on your Mac or PC and makes faceless YouTube videos and Shorts: script, voice, pictures, captions, thumbnail and a finished MP4, posted only when you say yes.", "image": "https://facelessvideokit.github.io/og.png", "offers": [{"@type": "Offer", "name": "Starter (1 channel, monthly)", "price": "29.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Pro (unlimited channels, monthly)", "price": "49.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Lifetime (unlimited channels, once)", "price": "199.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What else will I pay for?", "acceptedAnswer": {"@type": "Answer", "text": "Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works; ChatGPT needs a paid plan."}}, {"@type": "Question", "name": "Will it post for me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, after you say yes. It uploads to YouTube in your own browser and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK."}}, {"@type": "Question", "name": "Is it a website or an app I log into?", "acceptedAnswer": {"@type": "Answer", "text": "No. It's a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video."}}, {"@type": "Question", "name": "Do I need any tech or editing skills?", "acceptedAnswer": {"@type": "Answer", "text": "No. Setup takes about 15 minutes and your AI assistant does it with you. No commands to type, and you never edit: tick a topic, read the script, say yes. Every choice comes as a few options with one marked as recommended. With ChatGPT you double-click an installer once."}}, {"@type": "Question", "name": "How is this different from just asking ChatGPT or Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On its own, your AI assistant can write a script. It can't make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes."}}, {"@type": "Question", "name": "What if it's not for me?", "acceptedAnswer": {"@type": "Answer", "text": "Ask for a refund within 7 days. No questions. Monthly plans cancel any time. When a plan ends the Kit stops, but every video you made stays on your computer."}}, {"@type": "Question", "name": "Will my channel make money?", "acceptedAnswer": {"@type": "Answer", "text": "We can't promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube's own rules. The Kit makes the videos. Growing the channel is still up to you."}}, {"@type": "Question", "name": "Which kinds of videos can it make?", "acceptedAnswer": {"@type": "Answer", "text": "Long videos and Shorts in 12 looks (photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more) or one you describe. Stills, b-roll, AI video, animated explainers or a mix. Up to 4K, captions your way, music, and the same character in every frame if you want one. Script, voice and captions in Spanish, Hindi, Portuguese, Arabic and more."}}]}]</script>
 </head>
 <body>
 
@@ -542,9 +369,9 @@ html.co-open,html.co-open body{overflow:hidden}
   <div class="wrap">
     <a class="logo" href="#top"><i aria-hidden="true"></i>Faceless Video Kit</a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#studio">Studio</a><a href="#how">How it works</a><a href="#formats">Formats</a><a href="#features">Autopilot</a><a href="#proof">Real videos</a><a href="niche-check.html">Niche checker</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a href="#proof">Real videos</a><a href="#how">How it works</a><a href="#get">What you get</a><a href="#guides">Guides</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="niche-check.html">Niche checker</a>
     </nav>
-    <a class="btn btn-hot btn-sm" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit</a>
+    <a class="btn btn-hot btn-sm" href="#pricing" data-buy="starter">Get the Kit</a>
   </div>
 </header>
 
@@ -565,7 +392,7 @@ html.co-open,html.co-open body{overflow:hidden}
         <ul class="qa" aria-label="Quick answers">
           <li>Posts for you, after your yes</li>
           <li>Runs inside Claude or ChatGPT on your Mac or PC</li>
-          <li><span><span data-price="monthly-short">$29/mo</span> or <span data-price="lifetime">$99 once</span> · 7-day refund</span></li>
+          <li><span>From <span data-price="starter">$29/mo</span> or <span data-price="lifetime">$199 once</span> · 7-day refund</span></li>
         </ul>
         <ol class="steps3">
           <li><span>1 · YOU</span><b>Tick topics</b><i>once a week</i></li>
@@ -573,16 +400,11 @@ html.co-open,html.co-open body{overflow:hidden}
           <li><span>3 · YOU</span><b>Say yes</b><i>it posts them for you</i></li>
         </ol>
         <div class="ctas">
-          <a class="btn btn-hot" id="hero-buy" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
+          <a class="btn btn-hot" id="hero-buy" href="#pricing" data-buy="starter">Get it · <span data-price="starter">$29/mo</span> <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
-        <p class="fine price-line"><span class="ph-only">$29/mo or $99 once · </span>7-day refund, no questions · Cancel anytime</p>
-        <a class="nc-hint nc-card" href="niche-check.html">
-          <span class="nc-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></span>
-          <span class="nc-tx"><b>Not sure your niche will work?</b><i>Free live check: are small faceless channels winning there?</i></span>
-          <span class="nc-go">Check my niche free <span aria-hidden="true">→</span></span>
-        </a>
-        <p class="fine studio-note">Plus <a href="#studio">your own Studio</a>: pick a look, a voice and a format in one click, and see every video on one page.</p>
+        <p class="fine price-line">7-day refund, no questions · Cancel anytime</p>
+        <p class="nc-hint"><a href="niche-check.html">Not sure your niche will work? Check it free →</a></p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No commands to type</span>
         </div>
@@ -617,33 +439,30 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
     <p class="reel-note">Every clip is real output. Orange tags: moving clips the Kit made from a one-line description. The rest: real footage from our own faceless channels, edited by the same pipeline.</p>
   </section>
 
-  
-
-
-  <section class="block studio-sec" id="studio">
+  <section class="block" id="proof">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">Your Studio</span>
-        <h2>Your whole channel on one page<span class="dot">.</span></h2>
-        <p class="lead">Say &ldquo;open my studio&rdquo; and it opens in your browser. It runs <mark>on your own computer</mark>: no account, no website to log in to, nothing uploaded anywhere.</p>
+        <span class="eyebrow">Real output</span>
+        <h2>Real videos, not mock-ups<span class="dot">.</span></h2>
+        <p class="lead">Each clip opens a full-length video from our own faceless channels, made by the same pipeline that powers the Kit. Tap one for sound.</p>
       </div>
-      <figure class="studio-shot"><div class="bar3" aria-hidden="true"><i></i><i></i><i></i><span>Your Studio &middot; on this computer</span></div><img src="v2/studio_home.jpg" alt="The Studio on a sample channel: a finished video waiting for a yes to upload, the autopilot spend for the week, and every video with its steps ticked off" width="1600" height="1266" loading="lazy"><figcaption>The real Studio, on a sample channel.</figcaption></figure>
-      <ul class="studio-list">
-        <li><b>Every video, at a glance</b>Its stage, its next step and its release day on a calendar.</li>
-        <li><b>Watch what was made</b>Play the finished MP4, its Shorts and its voice. Flip through the pictures.</li>
-        <li><b>Shape the channel</b>A look, a voice, the format, up to 4K and the captions. One click each.</li>
-        <li><b>Decide in one click</b>Tick this week's topics, pick the thumbnail, say yes to an upload.</li>
-        <li><b>Look after the Kit</b>Update it, pause autopilot or top it up, report a bug.</li>
-      </ul>
-      <div class="studio-picks">
-        <figure><img src="v2/studio_looks.jpg" alt="The Studio's look picker: ready-made looks, each shown with a real sample picture" width="560" height="758" loading="lazy"><figcaption>Pick the look</figcaption></figure>
-        <figure><img src="v2/studio_voice.jpg" alt="The Studio's voice picker: the style's own voice, describe a voice, use my voice, or pick a ready voice, with two voices to listen to" width="560" height="1246" loading="lazy"><figcaption>Pick the voice, listen first</figcaption></figure>
-        <figure><img src="v2/studio_formats.jpg" alt="The Studio's format picker: stills, b-roll, b-roll plus stills, AI video, stills plus AI clips, animated explainer" width="560" height="732" loading="lazy"><figcaption>Pick the format</figcaption></figure>
-      </div>
-    
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get your Studio · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
+      <div class="proofgrid">
+        <div class="pv">
+          <div class="vw"><video data-src="proof/broll_only.mp4" data-poster="proof/broll_only.jpg" muted loop playsinline preload="none" aria-label="B-roll only example"></video><button class="snd" type="button">Sound on</button></div>
+          <div class="meta"><span class="k">Footage-led</span><b>B-roll only</b><div class="tags"><span>Location caption</span><span>Highlight captions</span><span>Music bed</span></div></div>
+        </div>
+        <div class="pv">
+          <div class="vw"><video data-src="proof/broll_stills.mp4" data-poster="proof/broll_stills.jpg" muted loop playsinline preload="none" aria-label="B-roll + stills example"></video><button class="snd" type="button">Sound on</button></div>
+          <div class="meta"><span class="k">Hybrid</span><b>B-roll + stills</b><div class="tags"><span>Place + date callouts</span><span>Ken Burns motion</span><span>Highlight captions</span></div></div>
+        </div>
+        <div class="pv">
+          <div class="vw"><video data-src="proof/stills_stickfigure.mp4" data-poster="proof/stills_stickfigure.jpg" muted loop playsinline preload="none" aria-label="Stills only, stick figures example"></video><button class="snd" type="button">Sound on</button></div>
+          <div class="meta"><span class="k">Illustrated</span><b>Stills · stick figures</b><div class="tags"><span>Section card</span><span>Highlight captions</span><span>Animated checklist</span></div></div>
+        </div>
+        <div class="pv">
+          <div class="vw"><video data-src="proof/data_scenes.mp4" data-poster="proof/data_scenes.jpg" muted loop playsinline preload="none" aria-label="Data that moves example"></video><button class="snd" type="button">Sound on</button></div>
+          <div class="meta"><span class="k">Animated scenes</span><b>Data that moves</b><div class="tags"><span>Animated bar chart</span><span>Captions</span><span>Callout plate</span></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -653,273 +472,132 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
       <div class="head">
         <span class="eyebrow">How it works</span>
         <h2>Five steps. You do two of them<span class="dot">.</span></h2>
-        <p class="lead">By hand, one video takes 8–13 hours. Here, your AI assistant runs the Kit on your own computer. You pick the direction and say yes. Everything in between is made for you and checked before the next step starts. If something is missing, it stops and says exactly what.</p>
+        <p class="lead">Your AI assistant runs the Kit on your computer, and you see every video in your own Studio page. Each step is checked before the next one starts. Tap a screen to see it full size.</p>
       </div>
       <div class="how" id="howList">
         <div class="how-rail" aria-hidden="true"><i></i></div>
 
         <div class="hs"><span class="n">1</span>
-          <div><span class="who">You · once</span><span class="tools" aria-label="Kit tools"><b>Lane Research</b></span><h3>Pick a niche, or a channel you admire</h3><p>The Kit checks the niche against six gates before you commit, or reverse-engineers 1–3 hero channels. Then it sets up your channel: name, banner, description, cadence.</p></div>
-          <div class="hv"><span class="k">Niche check · history mysteries</span>
-            <div class="gate">Demand<b>PASS</b></div><div class="gate">Competition<b>PASS</b></div><div class="gate">Earnings potential<b>PASS</b></div><div class="gate">+ 3 more<b>6 of 6</b></div></div>
+          <div><span class="who">You · once</span><span class="tools" aria-label="Kit tools"><b>Lane Research</b></span><h3>Pick a niche, or a channel you admire</h3><p>It checks the niche against six gates, or studies 1–3 channels you like. Then it sets up your channel: name, banner, description, how often to post.</p></div>
+          <figure class="shot"><img src="email/d2_channel.jpg" alt="The Studio's channel setup: start from a topic or from channels you like" width="1160" height="550" loading="lazy"></figure>
         </div>
 
         <div class="hs"><span class="n">2</span>
-          <div><span class="who">You · weekly</span><span class="tools" aria-label="Kit tools"><b>Autopilot + Studio</b></span><h3>Tick this week's topics</h3><p>It finds what is rising in your lane right now and lays out the angles nobody has made yet. You tick the ones you want, all at once.</p></div>
-          <div class="hv"><span class="k">This week's slate · pick any</span>
-            <label class="t"><i></i>The Maya didn't vanish. They walked away.</label>
-            <label class="t"><i></i>The map that drew a door</label>
-            <label><i></i>Why Rome's concrete still stands</label></div>
+          <div><span class="who">You · weekly</span><span class="tools" aria-label="Kit tools"><b>Autopilot + Studio</b></span><h3>Tick this week's topics</h3><p>It finds what is rising in your lane and lays out angles nobody has made yet. You tick the ones you want. Autopilot makes them under a weekly spending limit you set.</p></div>
+          <figure class="shot"><img src="email/d6_home.jpg" alt="The Studio home: what needs you, the autopilot limit for the week and your videos" width="1160" height="650" loading="lazy"></figure>
         </div>
 
         <div class="hs"><span class="n">3</span>
-          <div><span class="who">Your AI · on its own</span><span class="tools" aria-label="Kit tools"><b>Script Writer</b><b>Video Maker</b><b>Highlight Captions</b></span><h3>Script, visuals, voice and captions</h3><p>A script that learns from the top videos in your lane, pictures in the look you chose, narration from your voice service, captions timed to the word.</p></div>
-          <div class="hv vid"><video data-src="v2/style_cartoon.mp4" data-poster="v2/style_cartoon.jpg" muted loop playsinline preload="none" aria-label="A clip the Kit made"></video></div>
+          <div><span class="who">Your AI · on its own</span><span class="tools" aria-label="Kit tools"><b>Script Writer</b><b>Video Maker</b><b>Highlight Captions</b></span><h3>Script, visuals, voice and captions</h3><p>A script that learns from the top videos in your lane, pictures in your look, narration from your voice service, captions timed to the word.</p></div>
+          <figure class="shot"><img src="v2/studio.jpg" alt="A video in the Studio: script, voice and captions done, pictures being made" width="1080" height="1170" loading="lazy"></figure>
         </div>
 
         <div class="hs"><span class="n">4</span>
-          <div><span class="who">You get</span><span class="tools" aria-label="Kit tools"><b>Lane Thumbnails</b><b>Shorts Cutter</b></span><h3>A finished MP4, thumbnail and Shorts</h3><p>Upload-ready video plus editable timelines for Final Cut, Premiere and Resolve. Up to five vertical Shorts cut from each video, the ones you tick.</p></div>
-          <div class="hv vid"><div class="pair"><video data-src="v2/style_fantasy.mp4" data-poster="v2/style_fantasy.jpg" muted loop playsinline preload="none" aria-label="The finished video"></video><video class="v" data-src="v2/short_dragon.mp4" data-poster="v2/short_dragon.jpg" muted loop playsinline preload="none" aria-label="Its Short"></video></div></div>
+          <div><span class="who">You get</span><span class="tools" aria-label="Kit tools"><b>Lane Thumbnails</b><b>Shorts Cutter</b></span><h3>A finished MP4, thumbnail and Shorts</h3><p>An upload-ready video, a thumbnail built on what gets clicks in your lane, and up to five vertical Shorts. You tick which.</p></div>
+          <figure class="shot"><img src="email/d4_video.jpg" alt="A finished video's steps in the Studio, with thumbnails to pick from" width="1160" height="531" loading="lazy"></figure>
         </div>
 
         <div class="hs"><span class="n">5</span>
-          <div><span class="who">You · one yes</span><span class="tools" aria-label="Kit tools"><b>Auto-Publish</b></span><h3>Say yes, and it publishes</h3><p>Your assistant fills in YouTube Studio in your own browser, no API keys, and schedules the video. Then it posts the Shorts to YouTube Shorts, TikTok, Instagram, X, Facebook and Threads, when you choose.</p></div>
-          <div class="hv"><span class="k">Ready to publish · The map that drew a door</span>
-            <div class="ask"><span class="y">Yes, schedule it</span><span>Not yet</span></div>
-            <span class="when">→ YouTube · Tue 3:00 PM &nbsp;·&nbsp; Shorts → YouTube, Instagram, X</span></div>
+          <div><span class="who">You · one yes</span><span class="tools" aria-label="Kit tools"><b>Auto-Publish</b></span><h3>Say yes, and it publishes</h3><p>Your assistant fills in YouTube Studio in your own browser and schedules the video. Then it posts the Shorts to YouTube, TikTok, Instagram, X, Facebook and Threads.</p></div>
+          <figure class="shot"><img src="v2/studio_home.jpg" alt="The Studio: a finished video waiting for a yes to upload" width="1600" height="1266" loading="lazy"></figure>
         </div>
-      </div>
-
-    
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
       </div>
     </div>
   </section>
 
-  
-
-  <section class="block" id="formats">
+  <section class="block" id="possible">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">Formats</span>
-        <h2>Any look. Long videos and Shorts<span class="dot">.</span></h2>
-        <p class="lead">Start from one of 12 ready-made looks, or describe your own, and every frame on the channel follows it. Footage, pictures, AI video, animated explainers, or a mix.</p>
-      </div>
-      <div class="bento">
-        <div class="bx w6">
-          <span class="k">12 ready-made looks</span>
-          <h3>Pick a look. The voice and captions come with it</h3>
-          <p>Each look brings its colours, a caption style and a voiceover made to suit it on the voice service you pick. One click, then change anything you like. Every sample below was drawn by the Kit in that look.</p>
-          <div class="lookgrid"><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCifEt75shtkt1jJGxZslgOOv8AOtHT/EsUQCX8qB2G7ds3A5OfwHbFcfCwcgXHzDsqgAdQP60ceWT/AAhiOnPXFQ2NHqKa7YmDd5kY7gCInNFcb4fn87TJo5nZ/LGV+UZA9M5opqmmDqW6H//Z)"><img src="looks/look_realistic.webp" alt="Realistic documentary: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Realistic documentary</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDi7JE+xAypkZJMm77goulhgCiGQyMCGLbcDGKzRL8hj25Vvera3qllzHt2gAgHg/UU76E21LF1fXMt0ZXj8sFBHsAwAAOOPWiq9zeSyOXLEAgdP0oouFj/2Q==)"><img src="looks/look_dark-fantasy.webp" alt="Dark fantasy: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Dark fantasy</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDg4nUCQMSd4x+oNaNu1uV23AdSGPCjJrGDfMc5wDkgVO0imRhHkKAMZ6+9c0onSnoac9zaoyeTFKEyc7zjcP8A9dFZCynIZhuAPIzRRyWDmXU//9k=)"><img src="looks/look_history.webp" alt="History (painted): a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>History (painted)</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCkLy1kj+0xhIJYnC7SmS5PduarSxRSWkz3DbZBKsnmSDlsZ6fXPT2qvcyvBahJf3krsWZwcZ44470/S79ITHLdGSaIN8kTAEDPfr6ZrHEylFp30XQ6aXK001q+p0Flo0psnFvMjwT4LKJAFPOeAOlFZFzqr28ciwRxxmQbXIUfNz+nXtRXnzp1+ZttK51+2UFy2X3f8E//2Q==)"><img src="looks/look_3d-animated.webp" alt="3D animated: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>3D animated</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmfPdltYI8t5gDTOw4X6V0GnRWTSCCe6yBwBxkewrlIg8gaOFlhRh82ASfwNaumJLJcvNY3BR4vmIkQYz+tZYnm5dJNM78NNP7Ny/frYNMY0uFZB0ycfp0zRXO3s04d45ihkH8SqB3orSjCailzMVXEU+b4Ef/2Q==)"><img src="looks/look_anime.webp" alt="Anime: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Anime</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzu0VHlCSDIJ/Ec1YKsLDZ5MZ/eZ8zb83Tpn0qgmQcg4+lXvPX7JtZCRu/vd8UEsr3CIkgRSCCoO73NFRScEY9KKBn/9k=)"><img src="looks/look_horror.webp" alt="Horror: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Horror</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmIXlSBdMZGxcN5mAM8qOuf88VlsiG52MqkFuSvPBBrQtXgie3uD5x2LOyqGH90Y/rms7zEUuqp8zD5WJ5XikA+1ihWymLyLnLALuAIOAQfpRVcMfsu3IPHcUUAf/Z)"><img src="looks/look_true-crime.webp" alt="True crime noir: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>True crime noir</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmLW4htPtBjQ3EoKlVySOOufWr2hyfaAM5YyMRIAP4yRim6og1GZIoFWAAjeFGBj6dzUGmyx27rDEpIRw7Fxkvz3/wr00pQly9DfHQ5VGF9EW9X8ldO2hl372crnBwMDHrRVaUJdLtk3bk3FemPmFFZ1Yubujz4JQVmf/Z)"><img src="looks/look_sci-fi.webp" alt="Sci-fi neon: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Sci-fi neon</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDf1bX53ntrSxk+yGRfNluGUMAvPyrnqTjrW2L0i3tmRTP5uAzgHA7EnA+tUrrw9ZXd611O0zkgDZu+UADH1qxBpaW1pHawTSCFCThjknnPWipFKN4avsTFt6P7y+ZUD7CSDnHQ4/Oio54vOC5ZlKur5Hsc4+nFFJxKuf/Z)"><img src="looks/look_flat-explainer.webp" alt="Flat explainer: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Flat explainer</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0t22IW2s2OyjJrNttYhex8+ZhuLEBVHJ7gY+mM1Z1EymAxQsELggv3Ue3vVPTdLjQF5cPzgDHX6/4UW0Fd3LmmPNJZh5yxYscE9xnj9KKt0VKVlYZ/9k=)"><img src="looks/look_whiteboard.webp" alt="Whiteboard doodle: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Whiteboard doodle</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0qo7iZLeFpZPurj9TiqVtps0N9cXL3O7zyCV+bjBHqfwqW9s5biF44rgxF2znbu7dKzGZ1nq5k1EJJ8qS4GDzhsAYHt3opbXQbi3C7tQLMr78+X3zn16UUxXP/9k=)"><img src="looks/look_stick-figure.webp" alt="Stick figure: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Stick figure</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDS+z3Ext49NuVtmLlpH25Yj2P1FdDGixI8R2+YwyQPfvj61ztmJLe4RFxwW25YnaOOOlaForGd7kkEjJIz1rjjHsa3uak97Co8lm2s3TJorEjuU1Eb9rYUkBW7L9fWilz9ylB9D//Z)"><img src="looks/look_watercolor.webp" alt="Watercolour: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Watercolour</figcaption></figure></div>
-        </div>
-        <div class="bx w3">
-          <span class="k">6 ways to make a video</span>
-          <h3>Footage, pictures, or full AI video</h3>
-          <ul class="fmts">
-            <li><b>Stills</b>a picture for every line</li>
-            <li><b>B-roll</b>real stock clips</li>
-            <li><b>B-roll + stills</b>clips, pictures where none fit</li>
-            <li><b>AI video</b>every shot moves</li>
-            <li><b>Stills + AI clips</b>the key moments move</li>
-            <li><b>Animated explainer</b>charts, maps and diagrams</li>
-          </ul>
-        </div>
-        
-        <div class="bx w3">
-          <span class="k">Sharp, captioned your way</span>
-          <h3>Up to 4K. Captions on, off, or a subtitle file</h3>
-          <p>1080p, 1440p or 4K per channel. Captions word-by-word in yellow or white, plain, or on a dark box. Or no captions on the picture, just a subtitle file for YouTube's CC button.</p>
-          <div class="chips2"><span>1080p</span><span>1440p</span><span>4K</span><span>5 caption looks</span><span>.srt</span></div>
-        </div>
-        
-        
-        <div class="bx w3">
-          <span class="k">Characters + languages</span>
-          <h3>The same face in every frame. Any language</h3>
-          <p>Lock a recurring character to one picture, yours or one the Kit draws, and every frame, thumbnail and clip uses it. Script, narration, captions and upload copy in Spanish, Hindi, Portuguese, Arabic and more. A voice that can't speak the language is refused before you pay.</p>
-          <div class="chips2"><span>Español</span><span>हिन्दी</span><span>Português</span><span>العربية</span><span>+ more</span></div>
-        </div>
-        <div class="bx w3">
-          <span class="k">AI clips · optional</span>
-          <h3>Turn any still into a moving clip</h3>
-          <div class="ba">
-            <figure><img src="v2/clip_still.jpg" alt="The still picture" loading="lazy"><figcaption>Before: a still</figcaption></figure>
-            <figure><video data-src="v2/clip_moving.mp4" data-poster="v2/clip_still.jpg" muted loop playsinline preload="none" aria-label="The same picture as a moving clip"></video><figcaption>After: it moves</figcaption></figure>
-          </div>
-          <p>Pick the pictures you want to move, or make every shot move with the AI video format. The Kit turns them into short video clips with the AI video service you pick (fal.ai, Higgsfield or Google Veo). It tells you the price first: this one was about $1.10, and nothing was spent until we said yes.</p>
-        </div>
-      </div>
-    
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Make videos like these · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="features">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Autopilot</span>
-        <h2>Videos get made while you're at work<span class="dot">.</span></h2>
-        <p class="lead">Turn on autopilot and the Kit makes your videos every day under a weekly spending limit you pick. It asks you for two things: which topics to make, and your yes before anything goes live. It also stops to ask if a video would go over your limit, if a service has no price, if a check fails, if a remake would cost money twice, or for anything else that needs your eye.</p>
-      </div>
-      <div class="bento">
-        <div class="bx w4 hot">
-          <span class="k">Autopilot</span>
-          <h3>A weekly cap you set. A channel that keeps moving</h3>
-          <p>Runs once a day from your assistant's own scheduler. Every paid step is priced before it starts; if it would cross your cap, it parks and asks: raise it for this week, or wait.</p>
-          <div class="ap" aria-label="Example autopilot status">
-            <div class="row2"><span>This week's spend</span><b>$9.40 of $25</b></div>
-            <div class="meter"><i></i></div>
-            <div class="row2"><span>Videos made this week</span><b>3</b></div>
-            <div class="wait">Waiting on you: 1 publish · a ping on your desktop (and phone, if you want)</div>
-          </div>
-        </div>
-        
-        
-        <div class="bx w2">
-          <span class="k">Your voice, your services</span>
-          <h3>Bring the tools you already like</h3>
-          <p>Works in Claude or ChatGPT on a Mac or Windows PC, and in Claude Code, Codex, Cursor or Gemini CLI on Linux too. Pictures and voice come from the services built in (fal.ai, Higgsfield, OpenAI, ElevenLabs or Fish Audio), or your own cloned voice. Quality is never set to the lowest tier, and you can lock it per channel. Research and stock footage work free out of the box.</p>
-        </div>
-        <div class="bx w3">
-          <span class="k">Change anything</span>
-          <h3>Don't like it? Click Change</h3>
-          <p>Every part of a video you can remake has a Change button in your Studio: the script, one picture or all of them, the AI clips, the thumbnail, the voice, the captions, the music, the title, the Shorts. Say what's wrong; your assistant remakes it and everything built from it. Anything that costs money twice asks your yes first, with the price.</p>
-        </div>
-        <div class="bx w3">
-          <span class="k">Help, built in</span>
-          <h3>Ask a question, get an answer</h3>
-          <p>A Help box in your Studio answers the common questions on the spot, free and offline. Anything else goes to your own AI assistant in one click, which knows your channel.</p>
-        </div>
-      </div>
-      <p class="bnote">Autopilot panel shows example numbers. Your spend depends on the services you pick.</p>
-    
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Put it on autopilot · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="proof">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Real output</span>
-        <h2>Real videos, not mock-ups<span class="dot">.</span></h2>
-        <p class="lead">Each clip is the opening of a full-length video made for our own faceless channels, by the same pipeline that powers the Kit. Section cards, highlight captions and animated scenes are all built by it. Under each: what a similar format earns for another small channel.</p>
-      </div>
-      <div class="proofgrid">
-          <div class="pv">
-            <div class="vw"><video data-src="proof/broll_only.mp4" data-poster="proof/broll_only.jpg" muted loop playsinline preload="none" aria-label="B-roll only example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Footage-led</span><b>B-roll only</b><div class="tags"><span>Location caption</span><span>Highlight captions</span><span>Music bed</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><a class="pm" href="https://www.youtube.com/watch?v=5o40dZSubNo" target="_blank" rel="noopener"><b>≈ $1.4K</b> ad revenue · est. up to $3.2K <span aria-hidden="true">↗</span></a><span class="ps">701K views · Process Lab · 7.6K subs · <a href="https://www.youtube.com/watch?v=5o40dZSubNo" rel="noopener">watch</a></span></div></div>
-          </div>
-          <div class="pv">
-            <div class="vw"><video data-src="proof/broll_stills.mp4" data-poster="proof/broll_stills.jpg" muted loop playsinline preload="none" aria-label="B-roll + stills example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Hybrid</span><b>B-roll + stills</b><div class="tags"><span>Place + date callouts</span><span>Ken Burns motion</span><span>Highlight captions</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><a class="pm" href="https://www.youtube.com/watch?v=Yu0O_VWWZCY" target="_blank" rel="noopener"><b>≈ $2.3K</b> ad revenue · est. up to $4.8K <span aria-hidden="true">↗</span></a><span class="ps">950K views · Beyond the Map · 15.1K subs · <a href="https://www.youtube.com/watch?v=Yu0O_VWWZCY" rel="noopener">watch</a></span></div></div>
-          </div>
-          <div class="pv">
-            <div class="vw"><video data-src="proof/stills_stickfigure.mp4" data-poster="proof/stills_stickfigure.jpg" muted loop playsinline preload="none" aria-label="Stills only · stick figures example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Illustrated</span><b>Stills only · stick figures</b><div class="tags"><span>Section card</span><span>Highlight captions</span><span>Animated checklist</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><a class="pm" href="https://www.youtube.com/watch?v=dI64rTyvAn0" target="_blank" rel="noopener"><b>≈ $8.9K</b> ad revenue · est. $1.4K–$16K <span aria-hidden="true">↗</span></a><span class="ps">2.05M views · The Affluent Mind · 43.6K subs · <a href="https://www.youtube.com/watch?v=dI64rTyvAn0" rel="noopener">watch</a></span></div></div>
-          </div>
-          <div class="pv">
-            <div class="vw"><video data-src="proof/data_scenes.mp4" data-poster="proof/data_scenes.jpg" muted loop playsinline preload="none" aria-label="Data that moves example"></video><button class="snd" type="button">Sound on</button></div>
-            <div class="meta"><span class="k">Animated scenes</span><b>Data that moves</b><div class="tags"><span>Animated bar chart</span><span>Captions</span><span>Callout plate</span></div><div class="pe"><span class="pk">A similar format, on another channel</span><a class="pm" href="https://www.youtube.com/watch?v=3OaBcc-A-kM" target="_blank" rel="noopener"><b>≈ $1.6K</b> ad revenue · est. $620–$2.7K <span aria-hidden="true">↗</span></a><span class="ps">930K views · DataSlides · 3K subs · <a href="https://www.youtube.com/watch?v=3OaBcc-A-kM" rel="noopener">watch</a></span></div></div>
-          </div>
-      </div>
-    
-      <p class="earn-note">Earnings lines are other creators' videos from 2026, not made by us or with the Kit, shown as what a similar format can do. NexLev estimates of YouTube ad revenue only; views as of 17 Oct 2026. Results vary and are not guaranteed.</p>
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="earning">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">What the format earns</span>
+        <span class="eyebrow">What's possible</span>
         <h2>Small faceless channels. Millions of views<span class="dot">.</span></h2>
-        <p class="lead">Three faceless videos from 2026, each on a channel under 70K subscribers. Every one is a format the Kit makes: AI stills, stills with text, and footage-led.</p>
+        <p class="lead">Faceless videos from 2026, each on a channel under 71K subscribers, in formats the Kit makes.</p>
       </div>
-      <div class="earn">
-        <div class="ec">
-          <span class="fmt">AI stills · long documentary</span>
-          <div class="v">2.84M<small>views</small></div>
-          <div class="money"><strong>≈ $40K</strong><span>ad revenue · est. range $22K–$59K</span></div>
+      <p class="wall-k"><b>Other creators' channels.</b> Not made by us or with the Kit.</p>
+      <div class="wall2">
+        <div class="ec"><span class="fmt">Science documentary</span><div class="v">8.1M<small>views</small></div>
+          <div class="money"><strong>≈ $71K</strong><span>ad revenue · est. $43K–$99K</span></div>
+          <p class="t">Why The Ocean's Deadliest Predator Refuses To Kill Us</p>
+          <div class="meta2"><span>OctoLab · 65.8K subs</span><span><b>49×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=VtrcKTkhDHU" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">Illustrated history explainer</span><div class="v">11.7M<small>views</small></div>
+          <div class="money"><strong>≈ $47K</strong><span>ad revenue · est. $19K–$53K</span></div>
+          <p class="t">How Long You'd Last in Every Prehistoric Era</p>
+          <div class="meta2"><span>Fossil · 24.5K subs</span><span><b>10.6×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=nAWpLtG-kNs" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">AI stills · long documentary</span><div class="v">2.84M<small>views</small></div>
+          <div class="money"><strong>≈ $40K</strong><span>ad revenue · est. $22K–$59K</span></div>
           <p class="t">4.5 Billion Years of Earth's History in JUST 1 Hour</p>
-          <div class="meta2"><span>Wild Horizons · 68K subs</span><span><b>12.6×</b> the channel's usual views</span></div>
-          <a href="https://www.youtube.com/watch?v=Me4hxOX8ULo">Watch on YouTube →</a>
-        </div>
-        <div class="ec">
-          <span class="fmt">Stills + text · money psychology</span>
-          <div class="v">2.05M<small>views</small></div>
-          <div class="money"><strong>≈ $8.9K</strong><span>ad revenue · est. range $1.4K–$16K</span></div>
+          <div class="meta2"><span>Wild Horizons · 68K subs</span><span><b>12.6×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=Me4hxOX8ULo" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">AI fantasy story</span><div class="v">9.6M<small>views</small></div>
+          <div class="money"><strong>≈ $24K</strong><span>ad revenue · est. up to $68K</span></div>
+          <p class="t">Beautiful Wolf Creature Saves the Man Running From Her</p>
+          <div class="meta2"><span>Mythforge · 19.9K subs</span><span><b>6.1×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=M7i7K4B2NEE" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">Footage-led · factory process</span><div class="v">9.5M<small>views</small></div>
+          <div class="money"><strong>≈ $23K</strong><span>ad revenue · est. up to $62K</span></div>
+          <p class="t">Inside the Giant Ajinomoto Factory (Full Process)</p>
+          <div class="meta2"><span>Swift Process · 70.9K subs</span><span><b>25×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=pzlgsQjMN_E" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">Stills + text · money psychology</span><div class="v">2.05M<small>views</small></div>
+          <div class="money"><strong>≈ $8.9K</strong><span>ad revenue · est. $1.4K–$16K</span></div>
           <p class="t">Why Your Brain Never Feels Rich Enough (And How to Rewire It)</p>
-          <div class="meta2"><span>The Affluent Mind · 43.6K subs</span><span><b>44×</b> the channel's usual views</span></div>
-          <a href="https://www.youtube.com/watch?v=dI64rTyvAn0">Watch on YouTube →</a>
-        </div>
-        <div class="ec">
-          <span class="fmt">Footage-led · factory process</span>
-          <div class="v">701K<small>views</small></div>
-          <div class="money"><strong>≈ $1.4K</strong><span>ad revenue · est. range up to $3.2K</span></div>
-          <p class="t">Inside a Giant Coconut Factory: From Whole Coconuts to Canned Coconut Milk</p>
-          <div class="meta2"><span>Process Lab · 7.6K subs</span><span><b>15×</b> the channel's usual views</span></div>
-          <a href="https://www.youtube.com/watch?v=5o40dZSubNo">Watch on YouTube →</a>
-        </div>
+          <div class="meta2"><span>The Affluent Mind · 43.6K subs</span><span><b>44×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=dI64rTyvAn0" target="_blank" rel="noopener">Watch on YouTube →</a></div>
       </div>
-      <p class="earn-note">Not made by us or with the Kit. Shown as examples of what these formats can do. Views as of 28 Sep 2026; earnings are NexLev estimates of YouTube ad revenue only. Results vary and are not guaranteed.</p>
-    
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Start your channel · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
-      </div>
+      <p class="note">Other creators' videos, not made by us or with the Kit; shown as what these formats can do. Views as of Sep–Oct 2026; earnings are NexLev estimates of YouTube ad revenue only. Results vary and are not guaranteed.</p>
     </div>
   </section>
 
-    <section class="block" id="nichecheck">
-    <div class="wrap">
-      <form class="nc" action="niche-check.html" method="get">
-        <div><span class="eyebrow">Free tool</span>
-          <h2>Not sure about your niche<span class="dot">?</span></h2>
-          <p class="lead">Check it free. We search YouTube live and tell you if small faceless channels are winning there.</p></div>
-        <div class="nc-row"><input name="q" type="text" maxlength="60" required placeholder="e.g. space facts" aria-label="Your niche"><button class="btn btn-hot" type="submit">Check my niche <span aria-hidden="true">→</span></button></div>
-      </form>
-    </div>
-  </section>
-
-  <section class="block" id="familiar">
+  <section class="block" id="get">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">Right now you might be thinking</span>
-        <h2>Sound familiar<span class="dot">?</span></h2>
+        <span class="eyebrow">What you get</span>
+        <h2>Open the folder. It's all there<span class="dot">.</span></h2>
       </div>
-      <div class="sf-grid">
-        <div class="sf"><q>I'm not techy.</q><p>No commands to type, no code. Your AI assistant sets it up with you in about 15 minutes. Every choice comes as a few options, one marked as recommended.</p></div>
-        <div class="sf"><q>Is this a website I log into?</q><p>No. It's a download that runs inside Claude or ChatGPT. You get your own Studio page on your computer.</p></div>
-        <div class="sf"><q>I've never made a video.</q><p>You won't edit anything. Pick a niche and add your AI service keys once (your assistant shows you where). Then tick a topic, read the script and say yes. You get a finished MP4.</p></div>
-        <div class="sf"><q>I don't want my face on camera.</q><p>Good. Every video is faceless. Nobody ever sees you.</p></div>
-        <div class="sf"><q>I don't have time.</q><p>Autopilot runs the week under a spending limit you set. It asks you for your topic picks and your OK to publish, and stops to ask before going over your limit, for a service with no price, or for anything that needs your eye.</p></div>
-        <div class="sf"><q>I've bought courses and never used them.</q><p>This isn't a course. There's nothing to watch first. Start with one video, below.</p></div>
-      </div>
-      <div class="sh">
-        <div>
-          <h3>Don't learn the Kit. Do this first.</h3>
-          <ol>
-            <li><b>Open your Studio</b> after setup.</li>
-            <li><b>Pick a niche</b>, or a channel you admire.</li>
-            <li><b>Tick one topic, read its script and say yes.</b> Your AI makes the rest.</li>
-          </ol>
-        </div>
-        <div class="sh-cta">
-          <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get it · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-          <p class="micro">Checkout takes a minute. 7-day refund.</p>
+      <div class="get">
+        <ul class="gl" aria-label="What every video comes with">
+          <li><b>A finished MP4</b>, upload-ready, 1080p up to 4K</li>
+          <li><b>The script</b>, yours to read and change before anything is made</li>
+          <li><b>A thumbnail</b> built on what gets clicks in your lane</li>
+          <li><b>Up to 5 vertical Shorts</b>, the ones you tick</li>
+          <li><b>Captions</b> on the video, or a .srt file for YouTube's CC button</li>
+          <li><b>Final Cut, Premiere and DaVinci Resolve timelines</b>, if you want to edit</li>
+          <li><b>Upload details</b>: title, description, tags and a pinned comment</li>
+        </ul>
+        <div class="gside">
+          <div class="tcard"><span class="k">Time per video</span>
+            <p class="tnum"><s>8–13 hours by hand</s><i aria-hidden="true">→</i><b>a few yeses</b></p>
+            <p>You tick the topic, read the script and say yes to the upload. Your AI assistant does the rest.</p></div>
+          <div class="ocard"><span class="k">Original</span><h3>Your script. Not a copy.</h3>
+            <p>The Kit studies the videos already winning your topic, works out why they work, then writes its own script with its own angle. Every title, thumbnail and script is checked against the channels you model. A near-copy is refused and remade.</p></div>
         </div>
       </div>
+      <div class="looks">
+        <div class="looks-h"><b>12 ready-made looks</b><span>Swipe. Every picture was drawn by the Kit in that look.</span></div>
+        <div class="lookgrid"><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCifEt75shtkt1jJGxZslgOOv8AOtHT/EsUQCX8qB2G7ds3A5OfwHbFcfCwcgXHzDsqgAdQP60ceWT/AAhiOnPXFQ2NHqKa7YmDd5kY7gCInNFcb4fn87TJo5nZ/LGV+UZA9M5opqmmDqW6H//Z)"><img src="looks/look_realistic.webp" alt="Realistic documentary: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Realistic documentary</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDi7JE+xAypkZJMm77goulhgCiGQyMCGLbcDGKzRL8hj25Vvera3qllzHt2gAgHg/UU76E21LF1fXMt0ZXj8sFBHsAwAAOOPWiq9zeSyOXLEAgdP0oouFj/2Q==)"><img src="looks/look_dark-fantasy.webp" alt="Dark fantasy: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Dark fantasy</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDg4nUCQMSd4x+oNaNu1uV23AdSGPCjJrGDfMc5wDkgVO0imRhHkKAMZ6+9c0onSnoac9zaoyeTFKEyc7zjcP8A9dFZCynIZhuAPIzRRyWDmXU//9k=)"><img src="looks/look_history.webp" alt="History (painted): a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>History (painted)</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCkLy1kj+0xhIJYnC7SmS5PduarSxRSWkz3DbZBKsnmSDlsZ6fXPT2qvcyvBahJf3krsWZwcZ44470/S79ITHLdGSaIN8kTAEDPfr6ZrHEylFp30XQ6aXK001q+p0Flo0psnFvMjwT4LKJAFPOeAOlFZFzqr28ciwRxxmQbXIUfNz+nXtRXnzp1+ZttK51+2UFy2X3f8E//2Q==)"><img src="looks/look_3d-animated.webp" alt="3D animated: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>3D animated</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmfPdltYI8t5gDTOw4X6V0GnRWTSCCe6yBwBxkewrlIg8gaOFlhRh82ASfwNaumJLJcvNY3BR4vmIkQYz+tZYnm5dJNM78NNP7Ny/frYNMY0uFZB0ycfp0zRXO3s04d45ihkH8SqB3orSjCailzMVXEU+b4Ef/2Q==)"><img src="looks/look_anime.webp" alt="Anime: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Anime</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzu0VHlCSDIJ/Ec1YKsLDZ5MZ/eZ8zb83Tpn0qgmQcg4+lXvPX7JtZCRu/vd8UEsr3CIkgRSCCoO73NFRScEY9KKBn/9k=)"><img src="looks/look_horror.webp" alt="Horror: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Horror</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmIXlSBdMZGxcN5mAM8qOuf88VlsiG52MqkFuSvPBBrQtXgie3uD5x2LOyqGH90Y/rms7zEUuqp8zD5WJ5XikA+1ihWymLyLnLALuAIOAQfpRVcMfsu3IPHcUUAf/Z)"><img src="looks/look_true-crime.webp" alt="True crime noir: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>True crime noir</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDmLW4htPtBjQ3EoKlVySOOufWr2hyfaAM5YyMRIAP4yRim6og1GZIoFWAAjeFGBj6dzUGmyx27rDEpIRw7Fxkvz3/wr00pQly9DfHQ5VGF9EW9X8ldO2hl372crnBwMDHrRVaUJdLtk3bk3FemPmFFZ1Yubujz4JQVmf/Z)"><img src="looks/look_sci-fi.webp" alt="Sci-fi neon: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Sci-fi neon</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDf1bX53ntrSxk+yGRfNluGUMAvPyrnqTjrW2L0i3tmRTP5uAzgHA7EnA+tUrrw9ZXd611O0zkgDZu+UADH1qxBpaW1pHawTSCFCThjknnPWipFKN4avsTFt6P7y+ZUD7CSDnHQ4/Oio54vOC5ZlKur5Hsc4+nFFJxKuf/Z)"><img src="looks/look_flat-explainer.webp" alt="Flat explainer: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Flat explainer</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0t22IW2s2OyjJrNttYhex8+ZhuLEBVHJ7gY+mM1Z1EymAxQsELggv3Ue3vVPTdLjQF5cPzgDHX6/4UW0Fd3LmmPNJZh5yxYscE9xnj9KKt0VKVlYZ/9k=)"><img src="looks/look_whiteboard.webp" alt="Whiteboard doodle: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Whiteboard doodle</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0qo7iZLeFpZPurj9TiqVtps0N9cXL3O7zyCV+bjBHqfwqW9s5biF44rgxF2znbu7dKzGZ1nq5k1EJJ8qS4GDzhsAYHt3opbXQbi3C7tQLMr78+X3zn16UUxXP/9k=)"><img src="looks/look_stick-figure.webp" alt="Stick figure: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Stick figure</figcaption></figure><figure style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAQTGF2YzYyLjI4LjEwMgD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDS+z3Ext49NuVtmLlpH25Yj2P1FdDGixI8R2+YwyQPfvj61ztmJLe4RFxwW25YnaOOOlaForGd7kkEjJIz1rjjHsa3uak97Co8lm2s3TJorEjuU1Eb9rYUkBW7L9fWilz9ylB9D//Z)"><img src="looks/look_watercolor.webp" alt="Watercolour: a sample picture in this look" width="480" height="270" loading="lazy" decoding="async"><figcaption>Watercolour</figcaption></figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="guides">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Guides</span>
+        <h2>Every step, on video<span class="dot">.</span></h2>
+        <p class="lead">Eight short guides, about a minute each, filmed in the real Studio. Tap one to watch it here.</p>
+      </div>
+      <div class="gg">
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g01_install/guide.mp4" data-vtt="guides/g01_install/captions.vtt" data-poster="guides/g01_install/poster.jpg" aria-label="Play guide 1: Install &amp; set up (1:34)"><img src="guides/g01_install/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:34</span></button><div class="gv-t"><b>1 · Install &amp; set up</b><span>One file for Claude Desktop or ChatGPT. About 15 minutes, and your assistant does the work.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g02_studio-tour/guide.mp4" data-vtt="guides/g02_studio-tour/captions.vtt" data-poster="guides/g02_studio-tour/poster.jpg" aria-label="Play guide 2: Tour of your Studio (1:07)"><img src="guides/g02_studio-tour/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:07</span></button><div class="gv-t"><b>2 · Tour of your Studio</b><span>Your whole channel on one page, in your own browser.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g03_niche/guide.mp4" data-vtt="guides/g03_niche/captions.vtt" data-poster="guides/g03_niche/poster.jpg" aria-label="Play guide 3: Check a niche or a hero channel (1:08)"><img src="guides/g03_niche/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:08</span></button><div class="gv-t"><b>3 · Check a niche or a hero channel</b><span>Lane Research: six gates on a niche, or 1 to 3 channels you admire.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g04_weekly-topics/guide.mp4" data-vtt="guides/g04_weekly-topics/captions.vtt" data-poster="guides/g04_weekly-topics/poster.jpg" aria-label="Play guide 4: Tick this week&#x27;s topics (1:08)"><img src="guides/g04_weekly-topics/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:08</span></button><div class="gv-t"><b>4 · Tick this week&#x27;s topics</b><span>Once a week: tick the topics you want, all at once.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g05_script/guide.mp4" data-vtt="guides/g05_script/captions.vtt" data-poster="guides/g05_script/poster.jpg" aria-label="Play guide 5: Read the script and Change it (1:07)"><img src="guides/g05_script/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:07</span></button><div class="gv-t"><b>5 · Read the script and Change it</b><span>Read every word of it. One button to change any part.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g06_finished-video/guide.mp4" data-vtt="guides/g06_finished-video/captions.vtt" data-poster="guides/g06_finished-video/poster.jpg" aria-label="Play guide 6: Your finished video (1:02)"><img src="guides/g06_finished-video/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:02</span></button><div class="gv-t"><b>6 · Your finished video</b><span>Watch it, then check the look, voice, captions and thumbnail.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g07_shorts/guide.mp4" data-vtt="guides/g07_shorts/captions.vtt" data-poster="guides/g07_shorts/poster.jpg" aria-label="Play guide 7: Shorts: tick up to 5 (1:02)"><img src="guides/g07_shorts/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:02</span></button><div class="gv-t"><b>7 · Shorts: tick up to 5</b><span>1 to 5 vertical Shorts from every video. You tick which.</span></div></div>
+        <div class="gv"><button class="gv-p" type="button" data-mp4="guides/g08_publish-autopilot/guide.mp4" data-vtt="guides/g08_publish-autopilot/captions.vtt" data-poster="guides/g08_publish-autopilot/poster.jpg" aria-label="Play guide 8: Say yes + autopilot (1:11)"><img src="guides/g08_publish-autopilot/poster.jpg" alt="" width="1600" height="900" loading="lazy"><span class="gv-pl" aria-hidden="true"></span><span class="gv-d">1:11</span></button><div class="gv-t"><b>8 · Say yes + autopilot</b><span>Nothing goes live without your yes. Autopilot keeps a weekly money limit.</span></div></div>
+      </div>
+      <p class="note">Stuck after you buy? The Studio has a Help box with instant answers and hands you to your own AI assistant, which knows your channel. One click sends us a bug report.</p>
     </div>
   </section>
 
@@ -927,42 +605,49 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
     <div class="wrap">
       <div class="head center">
         <span class="eyebrow">Pricing</span>
-        <h2>Two ways to get it<span class="dot">.</span></h2>
-        <p class="lead">Monthly, or pay once and keep it. Same Kit, same updates. No price rises planned.</p>
+        <h2>Pick your plan<span class="dot">.</span></h2>
+        <p class="lead">The same Kit and every update on all three. 7-day refund, no questions.</p>
       </div>
-      <div class="vbox" aria-label="Everything included with your Kit">
-        <p class="vbox-h"><b>Included</b> with your Kit</p>
-        <div class="vgrid"><article class="vb"><div class="vb-cov" data-bg="v2/studio_home.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Lane<br>Research</span></div><div class="vb-txt"><h3>Niche + Lane <em>Research</em></h3><p>Finds the topics already pulling views in your niche and studies the channels winning them. You start where the demand already is.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like NexLev Pro</span><span class="vb-v">Value: <b>$42/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="proof/data_scenes.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Script<br>Writer</span></div><div class="vb-txt"><h3>Competitor-Informed <em>Script Writer</em></h3><p>Reads the scripts of the videos winning your topic, then writes yours with a stronger hook. No blank page.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like TubeMagic</span><span class="vb-v">Value: <b>$41/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="v2/hero_main.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Video<br>Maker</span></div><div class="vb-txt"><h3>No-Edit <em>Video Maker</em></h3><p>Voice, pictures in the look you pick, music and the edit, put together into a finished MP4. No editing software.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like InVideo AI</span><span class="vb-v">Value: <b>$20/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="proof/broll_stills.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Highlight<br>Captions</span></div><div class="vb-txt"><h3>Highlight <em>Captions</em></h3><p>Bold captions that light up the key words as they're spoken. Pick a style once and every video gets it.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like Submagic</span><span class="vb-v">Value: <b>$19/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="looks/look_true-crime.webp"><span class="vb-brand">FVK</span><span class="vb-t">Lane<br>Thumbnails</span></div><div class="vb-txt"><h3>Lane-Tested <em>Thumbnails</em></h3><p>A thumbnail built around what's getting clicks in your lane, made with the picture service you pick.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like Pikzels</span><span class="vb-v">Value: <b>$40/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="v2/hero_short.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Shorts<br>Cutter</span></div><div class="vb-txt"><h3>Shorts <em>Cutter</em></h3><p>Cuts up to 5 Shorts from every long video. You tick the ones you like.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like OpusClip</span><span class="vb-v">Value: <b>$15/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="v2/clip_still.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Auto<br>Publish</span></div><div class="vb-txt"><h3>Auto-Publish <em>Everywhere</em></h3><p>Uploads to YouTube and posts your Shorts to TikTok, Instagram, X, Facebook and Threads, after your yes.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Like Buffer, 6 channels</span><span class="vb-v">Value: <b>$30/mo</b></span></div></article><article class="vb"><div class="vb-cov" data-bg="v2/studio.jpg"><span class="vb-brand">FVK</span><span class="vb-t">Autopilot<br>+ Studio</span></div><div class="vb-txt"><h3>Autopilot + <em>Your Studio</em></h3><p>Runs the whole week on its own under a spending limit you set. Every video, on one page.</p></div><div class="vb-foot"><span class="vb-acc">&#9889; Instant access</span><span class="vb-like">Only in the Kit</span><span class="vb-v vb-incl">Included</span></div></article></div>
-        <div class="vtot"><span>Total value</span><s>$207 / month</s></div>
-        <div class="vyou"><span>Yours today</span><b><span data-price="monthly-short">$29/mo</span> or <span data-price="lifetime">$99 once</span></b></div>
-        <p class="vbyo">Images, clips and voice: built in for ElevenLabs, Higgsfield, OpenAI (ChatGPT’s image model and voices), Google Veo, fal.ai or Fish Audio. You pay the service direct, at its own price, and the Kit shows the cost first.</p>
-      </div>
-      <p class="vs-note">Value = what a similar standalone tool charges on its lowest paid plan with that feature, Oct 2026 (monthly billing where offered; TubeMagic bills yearly only). Not affiliated.</p>
       <div class="prices">
         <div class="price">
-          <h3>Monthly</h3>
+          <h3>Starter</h3>
           <div class="amt"><strong>$29</strong><span>/ month</span></div>
-          <p class="sub">Cancel any time.</p>
-          <a class="btn btn-ghost" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Choose monthly</a>
+          <p class="sub"><b>1 channel.</b> Cancel any time.</p>
+          <a class="btn btn-ghost" href="#pricing" data-buy="starter">Choose Starter</a>
         </div>
         <div class="price best">
-          <span class="flag">PAY ONCE</span>
+          <span class="flag">BEST FOR MORE THAN ONE CHANNEL</span>
+          <h3>Pro</h3>
+          <div class="amt"><strong>$49</strong><span>/ month</span></div>
+          <p class="sub"><b>Unlimited channels.</b> Cancel any time.</p>
+          <a class="btn btn-hot" href="#pricing" data-buy="pro">Choose Pro <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="price">
+          <span class="flag g">PAY ONCE</span>
           <h3>Lifetime</h3>
-          <div class="amt"><strong>$99</strong><span>once</span></div>
-          <p class="sub">Pay once, keep it for life. Updates included.</p>
-          <a class="btn btn-hot" href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime">Choose lifetime <span aria-hidden="true">→</span></a>
+          <div class="amt"><strong>$199</strong><span>once</span></div>
+          <p class="sub"><b>Unlimited channels.</b> Pay once, keep it for life.</p>
+          <a class="btn btn-ghost" href="#pricing" data-buy="lifetime">Choose Lifetime</a>
         </div>
       </div>
-      <ul class="inc">
-        <li>Every step, niche to published video</li>
-        <li>Autopilot under a weekly spending limit you set</li>
-        <li>Shorts + auto-publish: YouTube, TikTok, Instagram, X, Facebook, Threads</li>
-        <li>Finished MP4 + Final Cut, Premiere, Resolve timelines</li>
-        <li>Works with Claude, ChatGPT, Codex, Cursor, Gemini CLI</li>
-        <li>One-tap updates and one-click bug reports</li>
-      </ul>
-      <div class="spots"><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span></div>
-      <p class="svcline">Pictures, clips and voice come from the AI services the Kit has built in (ElevenLabs, Higgsfield, OpenAI (ChatGPT’s image model and voices), Google Veo, fal.ai or Fish Audio), or your own files. The Kit shows each price before it spends. Research and stock footage are free. Runs on Mac or Windows, and on Linux through Claude Code, Codex, Cursor or Gemini CLI.</p>
+      <div class="cmp">
+        <table>
+          <thead><tr><th scope="col"><span class="sr">Plan</span></th><th scope="col">Starter</th><th scope="col">Pro</th><th scope="col">Lifetime</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Channels</th><td>1</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Price</th><td>$29/mo</td><td>$49/mo</td><td>$199 once</td></tr>
+            <tr><th scope="row">Niche → published video</th><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Autopilot, Shorts, posting</th><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+            <tr><th scope="row">MP4 + editor timelines</th><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Updates</th><td>While subscribed</td><td>While subscribed</td><td>For life</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="paybox">
+        <h3>What else will I pay for?</h3>
+        <p>Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works; ChatGPT needs a paid plan.</p>
+      </div>
+      <div class="spots"><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span><span>Runs on Mac or Windows</span></div>
     </div>
   </section>
 
@@ -973,20 +658,14 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
         <h2>Before you buy<span class="dot">.</span></h2>
       </div>
       <div class="faq">
-        <details><summary>How is this different from just asking ChatGPT or Claude?</summary><p>On its own, your AI assistant can write a script. It can't make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes.</p></details>
-        <details><summary>Is it a website or an app I log into?</summary><p>No. It's a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video.</p></details>
-        <details><summary>Do I need any tech or editing skills?</summary><p>No. Setup takes about 15 minutes, and your AI assistant does it with you. No commands to type. With ChatGPT you double-click an installer: on a Mac it asks for your Mac password once (Open Anyway) and you press Return in its window; on Windows you click More info, then Run anyway, and press Enter. Every decision comes as a few options with one marked as recommended, so you just pick.</p></details>
-        <details><summary>What else will I pay for?</summary><p>Pictures, clips and voice come from the AI services the Kit has built in (ElevenLabs, Higgsfield, OpenAI (ChatGPT’s image model and voices), Google Veo, fal.ai or Fish Audio), paid direct at their own price, or you can use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works. ChatGPT needs a paid plan.</p></details>
-        <details><summary>Which kinds of videos can it make?</summary><p>Long videos and Shorts, in 12 looks: photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more. Captions, music, animated charts and a thumbnail are included. You get a finished MP4. Final Cut, Premiere and DaVinci Resolve timelines are there if you want them.</p></details>
-        <details><summary>Will it post for me?</summary><p>Yes, after you say yes. It uploads to YouTube and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK.</p></details>
-        <details><summary>What if I get stuck?</summary><p>The Studio has a Help box with instant answers, and it can hand you over to your own AI assistant. If something breaks, one click sends us a bug report, and we tell you when it's fixed.</p></details>
-        <details><summary>What if it's not for me?</summary><p>Ask for a refund within 7 days. No questions. Monthly cancels any time. When a membership ends the Kit stops, but every video you made stays on your computer.</p></details>
-        <details><summary>Will my channel make money?</summary><p>We can't promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube's own rules. The Kit makes the videos. Growing the channel is still up to you.</p></details>
-      </div>
-    
-      <div class="secbuy">
-        <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit · <span data-price="monthly-short">$29/mo</span> <span aria-hidden="true">→</span></a>
-        <p class="micro">or <a href="https://whop.com/checkout/plan_hPS32cvM4Glzd" data-buy="lifetime"><span data-price="lifetime">$99 once</span>, yours for life</a> · 7-day refund</p>
+        <details><summary>What else will I pay for?</summary><p>Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude&#x27;s free plan works; ChatGPT needs a paid plan.</p></details>
+        <details><summary>Will it post for me?</summary><p>Yes, after you say yes. It uploads to YouTube in your own browser and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK.</p></details>
+        <details><summary>Is it a website or an app I log into?</summary><p>No. It&#x27;s a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video.</p></details>
+        <details><summary>Do I need any tech or editing skills?</summary><p>No. Setup takes about 15 minutes and your AI assistant does it with you. No commands to type, and you never edit: tick a topic, read the script, say yes. Every choice comes as a few options with one marked as recommended. With ChatGPT you double-click an installer once.</p></details>
+        <details><summary>How is this different from just asking ChatGPT or Claude?</summary><p>On its own, your AI assistant can write a script. It can&#x27;t make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes.</p></details>
+        <details><summary>What if it&#x27;s not for me?</summary><p>Ask for a refund within 7 days. No questions. Monthly plans cancel any time. When a plan ends the Kit stops, but every video you made stays on your computer.</p></details>
+        <details><summary>Will my channel make money?</summary><p>We can&#x27;t promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube&#x27;s own rules. The Kit makes the videos. Growing the channel is still up to you.</p></details>
+        <details><summary>Which kinds of videos can it make?</summary><p>Long videos and Shorts in 12 looks (photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more) or one you describe. Stills, b-roll, AI video, animated explainers or a mix. Up to 4K, captions your way, music, and the same character in every frame if you want one. Script, voice and captions in Spanish, Hindi, Portuguese, Arabic and more.</p></details>
       </div>
     </div>
   </section>
@@ -995,11 +674,11 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
     <span class="eyebrow">Your channel starts here</span>
     <h2>Your first video is a few yeses away<span class="dot">.</span></h2>
     <p class="lead">Pick a niche. Say yes. Upload.</p>
-    <a class="btn btn-hot" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Faceless Video Kit <span aria-hidden="true">→</span></a>
-    <p class="micro" style="margin-top:12px">Checkout takes a minute. Setup about 15, with your AI.</p>
+    <a class="btn btn-hot" href="#pricing" data-buy="starter">Get the Faceless Video Kit <span aria-hidden="true">→</span></a>
+    <p class="micro">Checkout takes a minute. Setup about 15, with your AI.</p>
   </section>
 
-<div class="mbar" id="mbar" aria-label="Get the Kit"><span class="mbar-t"><b data-price="monthly-short">$29/mo</b> or <span data-price="lifetime">$99 once</span><br>7-day refund</span><a class="btn btn-hot btn-sm" href="https://whop.com/checkout/plan_Tq2Jx3iNfSWBg" data-buy="monthly">Get the Kit <span aria-hidden="true">→</span></a></div>
+<div class="mbar" id="mbar" aria-label="Get the Kit"><span class="mbar-t"><b>From <span data-price="starter">$29/mo</span></b> or <span data-price="lifetime">$199 once</span><br>7-day refund</span><a class="btn btn-hot btn-sm" href="#pricing" data-buy="starter">Get the Kit <span aria-hidden="true">→</span></a></div>
 <script>/* sticky bar: phones only; shows once the hero Buy is off screen, hides over pricing and the final Buy */
 (function(){var b=document.getElementById('mbar'),h=document.documentElement;if(!b||!('IntersectionObserver' in window))return;
 var seen={},t=[document.getElementById('hero-buy'),document.getElementById('pricing'),document.querySelector('.final')].filter(Boolean);
@@ -1018,32 +697,33 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
 <script>
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* sound: one player at a time, across proof players and bento clips */
-  /* 16 Oct 2026: the phone hero clip (.hs-main) has a Sound on button too; its label sits in a <span> beside an icon */
+  /* sound: one player at a time, across the proof clips, the phone hero clip and the guides */
   function lab(b,t){var s=b.querySelector('span');(s||b).textContent=t}
+  function hush(except){document.querySelectorAll('.pv video,.hs-main video').forEach(function(o){if(o!==except)o.muted=true});
+    document.querySelectorAll('.snd').forEach(function(x){lab(x,'Sound on')});
+    document.querySelectorAll('.gv-p video').forEach(function(g){if(g!==except&&!g.paused)g.pause()})}
   document.querySelectorAll('.pv,.hs-main').forEach(function(c){var v=c.querySelector('video'),b=c.querySelector('.snd');if(!v||!b)return;
-    b.addEventListener('click',function(){var on=v.muted;document.querySelectorAll('.pv video,.hs-main video').forEach(function(o){o.muted=true});document.querySelectorAll('.snd').forEach(function(x){lab(x,x.closest('.vshort')?'Sound':'Sound on')});
-      var src=v.dataset.src||v.dataset.heroSrc;if(on){v.dataset.user='1';if(!v.src&&src)v.src=src;v.muted=false;v.currentTime=0;v.play().catch(function(){});lab(b,'Mute')}});});
+    b.addEventListener('click',function(){var on=v.muted;hush(v);
+      var src=v.dataset.src||v.dataset.heroSrc;if(on){v.dataset.user='1';if(!v.src&&src)v.src=src;v.muted=false;v.currentTime=0;v.play().catch(function(){});lab(b,'Mute')}else{v.muted=true}});});
   /* 15 Oct 2026 Clarity dead taps: tapping a proof clip works like its Sound button; the hero clip and the reel
-     (silent) jump to the proof clips with sound; the Studio picture opens full size */
+     (silent on a computer) jump to the real videos */
   document.querySelectorAll('.pv .vw video').forEach(function(v){v.addEventListener('click',function(){var b=v.parentNode.querySelector('.snd');if(b)b.click()})});
   function toProof(){var p=document.getElementById('proof');if(p)p.scrollIntoView({behavior:reduce?'auto':'smooth'})}
-  /* 16 Oct 2026: where the hero clip has a Sound on button (phones), tapping the clip works like that button */
   document.querySelectorAll('.hs-main,.hs-short,.reel').forEach(function(el){el.addEventListener('click',function(e){var b=el.querySelector('.snd');if(b){if(!e.target.closest('.snd'))b.click();return}toProof()})});
-  /* Studio picture: opens full size; tap anywhere, the close button or Esc shuts it; keyboard can open it too and focus
-     goes back to the picture */
-  var sImg=document.querySelector('.studio-shot img');
-  function lbOpen(){if(document.querySelector('.lbx'))return;var o=document.createElement('div');o.className='lbx';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Studio picture, full size');
-    o.innerHTML='<button type="button" aria-label="Close">&times;</button>';var i=new Image();i.src=sImg.currentSrc||sImg.src;i.alt=sImg.alt;o.appendChild(i);
-    function shut(){o.remove();removeEventListener('keydown',esc);document.documentElement.style.overflow='';sImg.focus({preventScroll:true})}
+  /* Studio screens under How it works open full size; tap anywhere, the close button or Esc shuts it */
+  function lbOpen(img){if(document.querySelector('.lbx'))return;var o=document.createElement('div');o.className='lbx';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',img.alt||'Picture, full size');
+    o.innerHTML='<button type="button" aria-label="Close">&times;</button>';var i=new Image();i.src=img.currentSrc||img.src;i.alt=img.alt;o.appendChild(i);
+    function shut(){o.remove();removeEventListener('keydown',esc);document.documentElement.style.overflow='';img.focus({preventScroll:true})}
     function esc(e){if(e.key==='Escape')shut();else if(e.key==='Tab'){e.preventDefault();o.querySelector('button').focus()}}
     o.addEventListener('click',shut);addEventListener('keydown',esc);document.body.appendChild(o);document.documentElement.style.overflow='hidden';o.querySelector('button').focus()}
-  if(sImg){sImg.tabIndex=0;sImg.setAttribute('role','button');sImg.setAttribute('aria-label','Open the Studio picture full size');sImg.addEventListener('click',lbOpen);
-    sImg.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();lbOpen()}})}
-  /* 16 Oct 2026 Clarity: the Studio feature cards under the picture ('Every video, at a glance'…) were tapped like
-     buttons and did nothing; each now opens the Studio picture full size */
-  if(sImg)document.querySelectorAll('.studio-list li').forEach(function(li){li.addEventListener('click',lbOpen)});
-  if(reduce){document.querySelectorAll('.pv video').forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
+  document.querySelectorAll('.shot img').forEach(function(img){img.tabIndex=0;img.setAttribute('role','button');
+    img.addEventListener('click',function(){lbOpen(img)});
+    img.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();lbOpen(img)}})});
+  /* guides: the poster turns into the video, with sound and captions, right where it is */
+  document.querySelectorAll('.gv-p').forEach(function(b){b.addEventListener('click',function(){if(b.querySelector('video'))return;
+    var v=document.createElement('video');v.src=b.dataset.mp4;v.poster=b.dataset.poster;v.controls=true;v.playsInline=true;v.preload='none';v.setAttribute('playsinline','');
+    var t=document.createElement('track');t.kind='captions';t.srclang='en';t.label='English';t.src=b.dataset.vtt;t.default=true;v.appendChild(t);
+    b.innerHTML='';b.appendChild(v);b.removeAttribute('aria-label');hush(v);v.addEventListener('play',function(){hush(v)});v.play().catch(function(){})})});
   /* a clip the phone refuses to autoplay (iOS Low Power Mode) becomes its animated WebP */
   function still(v){if(reduce||!v.dataset.webp||!v.isConnected)return;var i=new Image();i.src=v.dataset.webp;i.alt="";i.className=v.className;i.setAttribute('aria-hidden','true');v.replaceWith(i)}
   function go(v){var p=v.play();if(p&&p.catch)p.catch(function(){still(v)});setTimeout(function(){if(v.isConnected&&v.paused&&v.readyState>=2&&!v.dataset.user)still(v)},2500)}
@@ -1051,10 +731,9 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
      its posters first; the two clips start only after the page has loaded. */
   function heroGo(){document.querySelectorAll('.hstack video[data-hero-src]').forEach(function(v){if(!v.src){v.src=v.dataset.heroSrc;v.preload='auto'}if(!reduce)go(v)})}
   if(document.readyState==='complete')setTimeout(heroGo,800);else addEventListener('load',function(){setTimeout(heroGo,800)});
-  /* 14 Oct 2026 perf: posters + card pictures load only as they come near the screen */
-  var near=document.querySelectorAll('video[data-poster],[data-bg]');
-  function show(el){if(el.dataset.poster){el.poster=el.dataset.poster;el.removeAttribute('data-poster')}if(el.dataset.bg){el.style.backgroundImage="url('"+el.dataset.bg+"')";el.removeAttribute('data-bg')}}
-  /* clips inside the sliding reel are clipped by it, so the reel itself is watched and all its posters load together */
+  /* 14 Oct 2026 perf: posters load only as they come near the screen; the sliding reel is watched as one */
+  var near=document.querySelectorAll('video[data-poster]');
+  function show(el){el.poster=el.dataset.poster;el.removeAttribute('data-poster')}
   if('IntersectionObserver' in window){var po=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;if(t.classList.contains('reel'))t.querySelectorAll('[data-poster]').forEach(show);else show(t);po.unobserve(t)}})},{rootMargin:'900px 0px'});
     near.forEach(function(el){if(!el.closest('.reel'))po.observe(el)});document.querySelectorAll('.reel').forEach(function(r){po.observe(r)})}else{near.forEach(show)}
   /* lazy clips: load and play only while on screen */
@@ -1070,7 +749,7 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
   if(reduce||!('IntersectionObserver' in window)){steps.forEach(function(x){x.classList.add('on')});return}
   var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on')})},{rootMargin:'0px 0px -35% 0px'});
   steps.forEach(function(x){so.observe(x)});
-  function fill(){var r=how.getBoundingClientRect(),vh=innerHeight,p=(vh*.65-r.top)/r.height;p=Math.max(0,Math.min(1,p));rail.style.setProperty('--p',(p*100).toFixed(1)+'%');rail.style.height=(p*100).toFixed(1)+'%'}
+  function fill(){var r=how.getBoundingClientRect(),vh=innerHeight,p=(vh*.65-r.top)/r.height;p=Math.max(0,Math.min(1,p));rail.style.height=(p*100).toFixed(1)+'%'}
   addEventListener('scroll',fill,{passive:true});addEventListener('resize',fill);fill();
 })();
 </script>
@@ -1080,50 +759,62 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
   <div class="co-box">
     <div class="co-top"><b id="co-title">Get the Faceless Video Kit</b><button class="co-x" id="co-x" type="button" aria-label="Close checkout">×</button></div>
     <div class="co-tabs" role="group" aria-label="Plan">
-      <button type="button" data-plan-tab="monthly" aria-pressed="true"><span data-price="monthly">$29 / month</span><small data-note="monthly">Cancel any time</small></button>
-      <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$99 once</span><small data-note="lifetime">Pay once, yours for life</small></button>
+      <button type="button" data-plan-tab="starter" aria-pressed="true"><span data-price="starter">$29/mo</span><small data-note="starter">Starter · 1 channel</small></button>
+      <button type="button" data-plan-tab="pro" aria-pressed="false"><span data-price="pro">$49/mo</span><small data-note="pro">Pro · unlimited</small></button>
+      <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$199 once</span><small data-note="lifetime">Lifetime · unlimited</small></button>
     </div>
-    <div class="co-pane" id="co-pane"><div id="co-how-slot"></div><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="button" id="co-buyhere" hidden>or pay on this phone instead</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-saved" id="co-saved" role="status" hidden></p><div class="co-how" id="co-phone" role="group" aria-label="How do you want to buy?" hidden><button type="button" id="co-payhere" aria-pressed="true">Pay on this phone</button><button type="button" id="co-later" aria-pressed="false">Send it to my computer</button></div><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: $70 more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $99</li><li>Same key, same Kit: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · $70</button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
-    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions asked · Cancel the monthly plan anytime</p>
+    <div class="co-pane" id="co-pane"><div id="co-how-slot"></div><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="button" id="co-buyhere" hidden>or pay on this phone instead</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-saved" id="co-saved" role="status" hidden></p><div class="co-how" id="co-phone" role="group" aria-label="How do you want to buy?" hidden><button type="button" id="co-payhere" aria-pressed="true">Pay on this phone</button><button type="button" id="co-later" aria-pressed="false">Send it to my computer</button></div><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: <span data-price="upgrade">$170</span> more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $199</li><li>Same key, same Kit, now unlimited channels: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · <span data-price="upgrade">$170</span></button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
+    <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions asked · Cancel a monthly plan anytime</p>
   </div>
 </div>
-<script id="fvk-plans">window.FVK_PLANS={"monthly":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29 / month","short":"$29/mo","note":"Cancel any time"},"lifetime":{"id":"plan_hPS32cvM4Glzd","price":"$99 once","short":"$99 once","note":"Pay once, yours for life"}};</script>
+<script id="fvk-plans">/* The ONE place for Whop plan ids and prices. Every Buy button, price label, checkout tab, pixel value and the
+   post-purchase upgrade read from here. The PLAN_ID_* values are placeholders until the new Whop plans exist
+   (Starter $29/mo 1 channel, Pro $49/mo unlimited, Lifetime $199 once, hidden upgrade $170 = Starter -> Lifetime);
+   offerPrice is the lifetime price with the recovery email's one-use $20-off code. */
+window.FVK_PLANS={
+ "starter":{"id":"PLAN_ID_STARTER_29","price":"$29/mo","value":29,"note":"Starter · 1 channel"},
+ "pro":{"id":"PLAN_ID_PRO_49","price":"$49/mo","value":49,"note":"Pro · unlimited"},
+ "lifetime":{"id":"PLAN_ID_LIFETIME_199","price":"$199 once","value":199,"note":"Lifetime · unlimited","offerPrice":"$179 once","offerValue":179,"offerNote":"Your $20-off code is applied"},
+ "upgrade":{"id":"PLAN_ID_UPGRADE_170","price":"$170","value":170}
+};</script>
+
 <script>
 (function(){
   var P=window.FVK_PLANS, co=document.getElementById('co'), pane=document.getElementById('co-pane'),
       wait=document.getElementById('co-wait'), mountEl=document.getElementById('co-mount'), form=document.getElementById('co-email'),
       emIn=document.getElementById('co-em'), emErr=document.getElementById('co-err'), who=document.getElementById('co-who'),
-      current='monthly', lastFocus=null, handle=null, mountedKey='', readyTimer=0, sdk=null;
+      current='starter', lastFocus=null, handle=null, mountedKey='', readyTimer=0, sdk=null;
   var RETURN=location.origin+location.pathname+'?checkout=done';
   // 6 Oct 2026: a buyer paid in this embedded checkout, landed in Whop's hub (chat only) and never saw his key.
   // On success, go straight to the licence relay's key page for THIS payment (key + download + START HERE).
   var CLAIM='https://fvk-licence.facelessvideokit.workers.dev/v1/claim?payment_id=';
   function toClaim(id){if(/^pay_[A-Za-z0-9]{6,40}$/.test(id||'')){location.href=CLAIM+encodeURIComponent(id);return true}return false}
-  // 10 Oct 2026 (owner): right after a $29 purchase, ONE offer before the key page: lifetime for $70 more
-  // (the $29 counts toward the $99). Hidden Whop plan; the relay links it to the monthly, stops the renewal
+  // 10 Oct 2026 (owner), repriced Oct 2026: right after a Starter purchase, ONE offer before the key page: lifetime for
+  // $170 more (the $29 counts toward the $199). Hidden Whop plan; the relay links it to the monthly, stops the renewal
   // and keeps the same key working. No thanks / close / any checkout error -> straight to the key page.
-  var UPG='plan_o5Dd8K2JJKSFT', upFrom='';
+  var UPG=P.upgrade.id, upFrom='';
   // 8 Oct 2026: Whop retires the legacy embed (js.whop.com loader.js) on 21 Oct 2026. This is Whop Elements.
   // Elements has no "email captured" event. 12 Oct 2026 (owner): on a computer the checkout opens straight away
   // and Whop asks for the email itself (3 of 4 checkout openers left at our own email box). Our email box now
   // only serves the phone 'email me the link' flow; a recovery-email link (?email=) still prefills Whop.
   var LEAD='https://fvk-licence.facelessvideokit.workers.dev/v1/lead', email='', told='';
+  function plan(k){return k&&k!=='upgrade'&&P[k]?k:''}
   function okEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
   // Meta: the _fbp/_fbc cookies go with the lead so the relay's server Purchase matches this browser
   function ck(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''}
-  var PRICE={monthly:29,lifetime:99}, ic='';
+  var PRICE={}, ic='';Object.keys(P).forEach(function(k){PRICE[k]=P[k].value});
   function fb(){try{if(window.fbq)fbq.apply(null,arguments)}catch(e){}}
-  function trackIC(){if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:(OFFER&&current==='lifetime')?79:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id],content_type:'product'})}}
+  function trackIC(){if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:(OFFER&&current==='lifetime')?P.lifetime.offerValue:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id],content_type:'product'})}}
   function tellLead(){trackIC();if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
     try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,fbp:ck('_fbp'),fbc:ck('_fbc'),aff:AFF||undefined}),keepalive:true}).catch(function(){})}catch(e){}}
   // Purchase in the browser, eventID = the Whop payment id (the relay sends the same id, Meta keeps one)
-  function bought(id,k,then){var v=(OFFER&&k==='lifetime')?79:PRICE[k]||PRICE.monthly;
-    fb('track','Purchase',{value:v,currency:'USD',content_name:'Faceless Video Kit',content_ids:[(P[k]||P.monthly).id],content_type:'product'},id?{eventID:id}:undefined);
+  function bought(id,k,then){var v=(OFFER&&k==='lifetime')?P.lifetime.offerValue:PRICE[k]||PRICE.starter;
+    fb('track','Purchase',{value:v,currency:'USD',content_name:'Faceless Video Kit',content_ids:[(P[k]||P.starter).id],content_type:'product'},id?{eventID:id}:undefined);
     setTimeout(then,450)}
-  // the $79 lifetime link from the recovery email: ?offer=<one-use code>
+  // the discounted lifetime link from the recovery email: ?offer=<one-use code>
   var q0=new URLSearchParams(location.search), OFFER=(q0.get('offer')||'').trim();
   if(!/^[A-Za-z0-9_-]{3,40}$/.test(OFFER))OFFER='';
-  if(OFFER){P.lifetime.price='$79 once';P.lifetime.note='Your $20-off code is applied'}
+  if(OFFER){P.lifetime.price=P.lifetime.offerPrice;P.lifetime.note=P.lifetime.offerNote}
   var E0=(q0.get('email')||'').trim(); if(okEmail(E0)){emIn.value=E0;email=E0}
   // 16 Oct 2026 (owner): Whop affiliates. An affiliate's external link lands here with ?a=<username>;
   // kept 30 days in this browser (Whop's own window) and handed to every checkout and lead, so the
@@ -1136,8 +827,7 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
     catch(e){if(AFF_RE.test(a))AFF=a}})();
   function checkoutUrl(k){return 'https://whop.com/checkout/'+P[k].id+(AFF?'?a='+encodeURIComponent(AFF):'');}
   // keep every price label and fallback link in step with the plan block
-  document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');
-    if(k==='monthly-short'){el.textContent=P.monthly.short}else if(P[k]){el.textContent=P[k].price}});
+  document.querySelectorAll('[data-price]').forEach(function(el){var k=el.getAttribute('data-price');if(P[k])el.textContent=P[k].price});
   document.querySelectorAll('[data-note]').forEach(function(el){var k=el.getAttribute('data-note');if(P[k])el.textContent=P[k].note});
   document.querySelectorAll('a[data-buy]').forEach(function(a){a.href=checkoutUrl(a.getAttribute('data-buy'))});
   // Whop Elements script: loaded once, the first time checkout opens (cdn.whop.com)
@@ -1155,7 +845,7 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
     loadSdk(function(w){if(mountedKey!==key)return;
       var opts={plan:P[current].id,returnUrl:RETURN+'&plan='+current,appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
         onComplete:function(r){var id=r&&r.result==='payment'?r.paymentId:'';
-          bought(id,current,function(){if(current==='monthly'&&offerUpgrade(id))return;if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
+          bought(id,current,function(){if(current==='starter'&&offerUpgrade(id))return;if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
       if(OFFER&&current==='lifetime')opts.promoCode=OFFER;
       if(AFF)opts.affiliateCode=AFF;
       try{handle=w.checkout.create(opts);
@@ -1186,7 +876,7 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
   // choices on top: Pay on this phone / Send it to my computer (the old grey link was never tapped in Clarity).
   // 14 Oct 2026 (owner, reversing 12 Oct): on a phone the checkout opens straight away like on a computer: the
   // email-first sheet got 5 buy-sheet opens, 1 lead and 0 sales. The download link reaches their email anyway,
-  // and 'Email me the link instead' (relay sends it at once; the $79 email follows in 24 h) stays one tap away.
+  // and 'Email me the link instead' (relay sends it at once; the discount email follows in 24 h) stays one tap away.
   var PHONE=!!(window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches&&Math.min(screen.width,screen.height)<768),
       later=false, phoneLine=document.getElementById('co-phone'), sent=document.getElementById('co-sent'), goBtn=document.getElementById('co-go'), buyHere=document.getElementById('co-buyhere'),
       lbl=form.querySelector('label'), LBL0=lbl.innerHTML;
@@ -1214,7 +904,7 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
   function show(k){current=k;
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
     if(later)return;tellLead();mount();}
-  var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:(OFFER&&k==='lifetime')?79:PRICE[k],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[k].id],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
+  var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:(OFFER&&k==='lifetime')?P.lifetime.offerValue:PRICE[k],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[k].id],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
     laterMode(later);if(later){showEmailStep()}else{goPay();/* 18 Oct 2026 Clarity: both phone checkout openers tapped straight into Whop, typed nothing in our box, so no recovery email. On a phone with no address yet, the cursor (and keyboard) starts in our email box; a typed address is saved at once (takeEmail). */if(PHONE&&!email){emIn.focus()}else{document.getElementById('co-x').focus()}}}
   function close(){clearTimeout(typeT);if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
@@ -1225,17 +915,18 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
   co.addEventListener('click',function(e){if(e.target===co)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!co.hidden)close()});
   var q=new URLSearchParams(location.search);
-  // links from the recovery emails open the checkout straight away
-  if(OFFER||P[q.get('resume')])laterMode(false);
-  if(OFFER){open('lifetime')}else if(P[q.get('resume')]){open(q.get('resume'))}
+  // links from the recovery emails open the checkout straight away (emails sent before Oct 2026 say resume=monthly)
+  var RES=plan({monthly:'starter'}[q.get('resume')]||q.get('resume'));
+  if(OFFER||RES)laterMode(false);
+  if(OFFER){open('lifetime')}else if(RES){open(RES)}
   // back from an off-site payment step (3DS, bank page). Elements appends payment=pay_… and
   // status=succeeded|failed|canceled; the legacy embed sent payment_id/receipt_id and success|error.
   if(q.get('checkout')==='done'){var st=q.get('status')||'';var ok=(st==='succeeded'||st==='success');
     var pid=q.get('payment')||q.get('payment_id')||q.get('receipt_id')||'';
     // back from 3DS / a bank page: count the sale here (onComplete never ran), unless it already did
     if(q.get('plan')==='upgrade'&&toClaim(q.get('from')))return;
-    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){var pl=q.get('plan')==='lifetime'?'lifetime':'monthly';
-      bought(pid,pl,function(){history.replaceState(null,'',location.pathname);if(pl==='monthly'&&offerUpgrade(pid))return;if(!toClaim(pid))location.replace(location.pathname)});return}
+    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){var pl=plan(q.get('plan'))||'starter';
+      bought(pid,pl,function(){history.replaceState(null,'',location.pathname);if(pl==='starter'&&offerUpgrade(pid))return;if(!toClaim(pid))location.replace(location.pathname)});return}
     if(ok&&toClaim(pid))return;
     var n=document.createElement('div');
     n.className='co-note'+(ok?'':' err');n.setAttribute('role','status');
