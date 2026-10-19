@@ -35,6 +35,10 @@ fbq('track','PageView');
 @font-face{font-family:"Manrope FallbackR";font-weight:600 800;src:local("Roboto Bold"),local("Roboto-Bold");size-adjust:106.3%;ascent-override:100.3%;descent-override:28.2%;line-gap-override:0%}
 @font-face{font-family:"Bricolage Fallback";font-weight:500 900;src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");size-adjust:95.2%;ascent-override:97.7%;descent-override:28.4%;line-gap-override:0%}
 @font-face{font-family:"Bricolage FallbackR";font-weight:500 900;src:local("Roboto Bold"),local("Roboto-Bold");size-adjust:101.6%;ascent-override:91.5%;descent-override:26.6%;line-gap-override:0%}
+/* 19 Oct 2026: Bricolage is optical-sized, so at the phone H1 size (42px) it is ~4% wider than at 70px. The fallbacks above match it at 70px;
+   these match it at 42px, so the H1 keeps its line count when the web font swaps in (was a 0.148 CLS on phones). */
+@font-face{font-family:"Bricolage FallbackS";font-weight:500 900;src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");size-adjust:99%;ascent-override:97.7%;descent-override:28.4%;line-gap-override:0%}
+@font-face{font-family:"Bricolage FallbackRS";font-weight:500 900;src:local("Roboto Bold"),local("Roboto-Bold");size-adjust:105.7%;ascent-override:91.5%;descent-override:26.6%;line-gap-override:0%}
 :root{
   color-scheme:dark;
   --bg:#0B0A0C; --bg2:#121015; --card:#17151B; --line:#2A2630; --line2:#3A3542;
@@ -84,6 +88,7 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 14px 6px 8px;font-size:13px;color:var(--ink2);background:rgba(23,21,27,.7);text-decoration:none}
 .badge b{background:var(--hot);color:#fff;border-radius:999px;padding:2px 9px;font-size:11px;letter-spacing:.06em;font-family:var(--mono)}
 .hero h1{font-size:clamp(42px,5.1vw,70px);font-weight:800;margin-block:22px 22px}
+@media (max-width:823px){.hero h1{font-family:"Bricolage Grotesque","Bricolage FallbackS","Bricolage FallbackRS","Manrope",system-ui,sans-serif}}
 .hero h1 .yes{background:linear-gradient(90deg,var(--hot),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .chips{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:14px;color:var(--ink2)}
