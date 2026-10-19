@@ -132,11 +132,13 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 @media (max-width:640px){.hero{padding-block:20px 24px}.hero .wrap{display:flex;flex-direction:column;gap:12px}.hero .wrap>div:first-child{display:contents}
 .hero .wrap>div:first-child>*{order:2}
 .hero .wrap>div:first-child>.badge{order:-7;align-self:flex-start}.hero .wrap>div:first-child>h1{order:-6;margin-block:14px 8px}
-.hero .wrap>div:has(.hstack){order:-5}.hero .wrap>div:first-child>.qa{order:-4;display:grid}
+.hero .wrap>div:has(.hstack){order:-5;align-self:stretch}.hero .wrap>div:first-child>.qa{order:-4;display:grid}
 .hero .wrap>div:first-child>.steps3{order:-3;margin:0;width:100%;max-width:none}.hero .wrap>div:first-child>.ctas{order:-2;margin-top:0}
 .hero .wrap>div:first-child>.fine.price-line{order:-1;margin:0}.hero .wrap>div:first-child>.nc-hint{order:-1;margin:0 0 6px}
 .hero .wrap>div:first-child>.where,.hero .wrap>div:first-child>.need,.hero .wrap>div:first-child>.lead{display:none}
 .hs-main{width:76%}.hs-short{width:27%}.hero .hstack{padding-bottom:5.5%}
+/* 19 Oct 2026: align-self:stretch above: .wrap centres its children, so before the posters load the video box sized to
+   the <video> default 300px and then grew to full width, pushing the page down (0.148 CLS). Now it is full width from first paint. */
 /* the example autopilot card and its note move the Buy button off the first screen; the headline already says autopilot */
 .hero .hs-ap,.hero .herovid-note{display:none}}
 .hs-main,.hs-short,.reel .rt,.pv .vw video{cursor:pointer}
