@@ -272,6 +272,17 @@ section.block{padding-block:92px 0}
 .cmp thead th{border-top:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:600}
 .cmp tbody th{text-align:left;color:var(--ink)}
 .cmp .y{color:var(--ok);font-weight:800}
+.cmp .no{color:var(--mute);font-weight:700}
+.es-steps{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;counter-reset:es}
+.es-steps li{counter-increment:es;border:1px solid var(--line2);border-radius:14px;background:var(--bg2);padding:14px 12px;display:grid;gap:4px;align-content:start}
+.es-steps li::before{content:counter(es);font-family:var(--mono);font-size:12px;color:var(--hot)}
+.es-steps b{color:var(--ink);font-size:15px;line-height:1.25}
+.es-steps i{font-style:normal;color:var(--mute);font-size:13px;line-height:1.35}
+.es-cmp{margin-top:22px}
+.es-cmp tbody th{font-weight:600}
+.es-note{max-width:1040px;margin:12px auto 0;color:var(--mute);font-size:13px;text-align:center}
+@media (max-width:960px){.es-steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:640px){.es-steps{grid-template-columns:1fr 1fr;gap:8px}.es-steps li{padding:12px 10px}.es-steps li:last-child{grid-column:1/-1}.es-cmp th,.es-cmp td{padding:8px 6px}.es-cmp tbody th{padding-left:12px}.es-cmp thead th{font-size:10px}}
 .paybox{max-width:1040px;margin:16px auto 0;border:1px solid rgba(255,194,75,.45);border-radius:18px;padding:18px 22px;background:linear-gradient(90deg,rgba(255,194,75,.10),rgba(255,194,75,.02))}
 .paybox h3{font-size:19px;margin-bottom:6px}
 .paybox p{color:var(--ink2);font-size:15px}
@@ -376,7 +387,7 @@ html.co-open,html.co-open body{overflow:hidden}
   <div class="wrap">
     <a class="logo" href="#top"><i aria-hidden="true"></i>Faceless Video Kit</a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#proof">Real videos</a><a href="#how">How it works</a><a href="#get">What you get</a><a href="#guides">Guides</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="niche-check.html">Niche checker</a>
+      <a href="#proof">Real videos</a><a href="#how">How it works</a><a href="#every-step">Every step</a><a href="#get">What you get</a><a href="#guides">Guides</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="niche-check.html">Niche checker</a>
     </nav>
     <a class="btn btn-hot btn-sm" href="#pricing" data-buy="starter">Get the Kit</a>
   </div>
@@ -386,8 +397,8 @@ html.co-open,html.co-open body{overflow:hidden}
   <section class="hero">
     <div class="wrap">
       <div>
-        <a class="badge" href="#proof"><b>FOR YOUTUBE</b> Long videos and Shorts</a>
-        <h1>Faceless YouTube videos <span class="yes">and Shorts, made on autopilot.</span></h1>
+        <a class="badge" href="#every-step"><b>ON AUTOPILOT</b> Faceless videos and Shorts</a>
+        <h1>From empty channel to posted video. <span class="yes">Your AI does every step.</span></h1>
         <p class="where">Runs on your own computer, inside Claude or ChatGPT.</p>
         <div class="need" aria-label="What you need">
           <span>What you need</span>
@@ -395,7 +406,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <span><b>Claude or ChatGPT</b>Claude: free OK<br>ChatGPT: paid</span>
           <span><b>15 min setup</b>your AI does it</span>
         </div>
-        <p class="lead">Faceless Video Kit is a download that plugs into <mark>Claude or ChatGPT</mark>. You pick the topics and say yes. Your AI assistant makes the script, voice, visuals in the look you pick, captions, thumbnail and <mark>finished video</mark>, cuts up to 5 <mark>Shorts</mark>, and posts them.</p>
+        <p class="lead">Faceless Video Kit is a download that runs inside your own <mark>Claude or ChatGPT</mark>. It sets up your channel, picks your topics, writes the scripts, makes the <mark>finished videos</mark> and <mark>Shorts</mark>, and posts them. Autopilot runs it every week. You say yes.</p>
         <ul class="qa" aria-label="Quick answers">
           <li>Posts for you, after your yes</li>
           <li>Runs inside Claude or ChatGPT on your Mac or PC</li>
@@ -509,6 +520,44 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
           <figure class="shot"><img src="v2/studio_home.jpg" alt="The Studio: a finished video waiting for a yes to upload" width="1600" height="1266" loading="lazy"></figure>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block" id="every-step">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">One kit</span>
+        <h2>One kit. Every step<span class="dot">.</span></h2>
+        <p class="lead">Most AI video tools make the video. The Kit builds the whole channel around it: niche, setup, topics, scripts, videos, Shorts and posting. Autopilot runs it every week inside a spending limit you set.</p>
+      </div>
+      <ol class="es-steps" aria-label="Every step the Kit does">
+        <li><b>Pick your niche</b><i>checks it's worth it first</i></li>
+        <li><b>Set up your channel</b><i>name, handle, profile picture, banner</i></li>
+        <li><b>Get topics</b><i>from what's winning right now</i></li>
+        <li><b>Get scripts</b><i>shaped by the top channels in your niche</i></li>
+        <li><b>Make the video</b><i>pictures, voice, captions, music, MP4</i></li>
+        <li><b>Cut the Shorts</b><i>pick 1–5 per video</i></li>
+        <li><b>Post it</b><i>YouTube + 5 socials, after your yes</i></li>
+      </ol>
+      <div class="cmp es-cmp">
+        <table>
+          <thead><tr><th scope="col"><span class="sr">What it does</span></th><th scope="col">Most AI video tools</th><th scope="col">Faceless Video Kit</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Checks if your niche is worth it</th><td>Rarely</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Learns from a channel you admire, without copying it</th><td>Rarely</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Sets up your channel: name, banner, profile picture</th><td class="no">✗</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Topics from what's winning right now</th><td>Some</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Scripts shaped by the top channels in your niche</th><td>Rarely</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Pictures, voice, captions, music, finished video</th><td class="y">✓</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Shorts from every video</th><td>Some</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Posts to YouTube, TikTok, Instagram, X, Facebook, Threads</th><td>Some</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Autopilot with a weekly spending limit you set</th><td>Rarely</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Any style, any language</th><td>Some</td><td class="y">✓</td></tr>
+            <tr><th scope="row">Runs inside your own Claude or ChatGPT</th><td class="no">✗</td><td class="y">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine es-note">"Most AI video tools" = the web-based faceless video makers and YouTube AI tools we compared the Kit against, October 2026.</p>
     </div>
   </section>
 
