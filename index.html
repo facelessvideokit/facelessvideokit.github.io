@@ -345,6 +345,26 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 html.mbar-on .mbar{transform:none}html.mbar-on body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 html.co-open .mbar{display:none}}
 @media (max-width:380px){.nav .logo{white-space:nowrap;font-size:15px}.nav .btn-sm{white-space:nowrap;padding:10px 14px}}
+
+/* Trustpilot proof: hidden until reviews.json min_reviews/min_score are met */
+.tp-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:6px 0 0;font-size:14px;color:var(--ink2)}
+.tp-line[hidden],.tp-quotes[hidden]{display:none}
+.tp-line.center{justify-content:center;margin:18px 0 0}
+.tp-line a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tp-line a:hover b{text-decoration:underline}
+.tp-stars{display:inline-flex;gap:2px}
+.tp-stars i{width:18px;height:18px;background:#00B67A;display:inline-grid;place-items:center;font-style:normal;color:#fff;font-size:13px;line-height:1}
+.tp-stars i.off{background:var(--line2)}
+.tp-quotes{margin:28px 0 0}
+.tp-h{text-align:center;font-weight:700;color:var(--ink);margin:0 0 12px}
+.tp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.tp-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0}
+.tp-q p{margin:8px 0;color:var(--ink);font-size:15px;line-height:1.45}
+.tp-q footer{font-size:13px;color:var(--mute)}
+.tp-q footer a{color:var(--mute)}
+.tp-faq{border-left:3px solid #00B67A;margin:10px 0 0;padding:4px 0 4px 12px;color:var(--ink2);font-size:14px}
+.tp-faq footer{font-size:12px;color:var(--mute);margin-top:4px}
+@media (max-width:640px){.hero .wrap>div:first-child>.tp-line{order:-1;margin:0}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
@@ -452,6 +472,7 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
         <p class="fine price-line">7-day refund, no questions · Cancel anytime</p>
+        <p class="tp-line" data-tp hidden></p>
         <p class="nc-hint"><a href="niche-check.html">Not sure your niche will work? Check it free →</a></p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No commands to type</span>
@@ -733,6 +754,8 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
         <h3>What else will I pay for?</h3>
         <p>Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works; ChatGPT needs a paid plan.</p>
       </div>
+      <div class="tp-quotes" id="tp-quotes" hidden><p class="tp-h">What buyers say on Trustpilot</p><div class="tp-grid"></div></div>
+      <p class="tp-line center" data-tp hidden></p>
       <div class="spots"><span><b>7-day</b> refund, no questions</span><span>Secure checkout on Whop</span><span>Runs on Mac or Windows</span></div>
     </div>
   </section>
@@ -1097,6 +1120,49 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
    Loaded 2.5 s after the page has fully loaded, so it never competes with the hero, the Meta Pixel or LCP. */
 if(!window.FVK_TEST)window.addEventListener('load',function(){setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yxksij4ckw");},2500)});
+</script>
+
+<script>
+/* Trustpilot proof (22 Oct 2026). Shows nothing until the live profile has
+   min_reviews+ reviews at min_score+. Quotes come only from reviews.json
+   (real reviews, word for word). Any failure = stays hidden. */
+(async () => {
+  let cfg, bu;
+  try { cfg = await (await fetch('reviews.json', {cache: 'no-cache'})).json(); } catch (e) { return; }
+  try {
+    const r = await fetch('https://widget.trustpilot.com/trustbox-data/56278e9abfbbba0bdcd568bc?businessUnitId='
+      + encodeURIComponent(cfg.business_unit) + '&locale=en-US');
+    bu = (await r.json()).businessUnit;
+  } catch (e) { return; }
+  const n = bu && bu.numberOfReviews ? bu.numberOfReviews.total : 0;
+  const score = bu ? Number(bu.trustScore) : 0;
+  if (!(n >= (cfg.min_reviews ?? 3) && score >= (cfg.min_score ?? 4))) return;
+  const el = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; };
+  const stars = v => { const s = el('span', 'tp-stars'); s.setAttribute('aria-hidden', 'true');
+    for (let i = 1; i <= 5; i++) s.appendChild(el('i', i <= Math.round(v) ? '' : 'off', '★')); return s; };
+  document.querySelectorAll('[data-tp]').forEach(p => {
+    const a = el('a'); a.href = cfg.profile_url; a.target = '_blank'; a.rel = 'noopener';
+    a.setAttribute('aria-label', 'TrustScore ' + score.toFixed(1) + ' out of 5 from ' + n + ' reviews on Trustpilot');
+    a.append(stars(score), el('b', '', score.toFixed(1)), el('span', '', 'on Trustpilot · ' + n + ' reviews'));
+    p.replaceChildren(a); p.hidden = false;
+  });
+  const qs = (cfg.quotes || []).filter(q => q && q.text && Number(q.stars) >= 4);
+  if (!qs.length) return;
+  const box = document.getElementById('tp-quotes'), grid = box.querySelector('.tp-grid');
+  qs.slice(0, 3).forEach(q => {
+    const f = el('figure', 'tp-q'); f.append(stars(q.stars), el('p', '', '“' + q.text + '”'));
+    const ft = el('footer', '', (q.name || 'Verified buyer') + ' · '); const l = el('a', '', 'on Trustpilot');
+    l.href = q.url || cfg.profile_url; l.target = '_blank'; l.rel = 'noopener'; ft.appendChild(l); f.appendChild(ft);
+    grid.appendChild(f);
+  });
+  box.hidden = false;
+  qs.filter(q => q.faq).forEach(q => {
+    const d = [...document.querySelectorAll('#faq details')].find(x => x.querySelector('summary').textContent.trim() === q.faq.trim());
+    if (!d) return;
+    const b = el('blockquote', 'tp-faq', '“' + q.text + '”'); b.appendChild(el('footer', '', '— ' + (q.name || 'Verified buyer') + ', on Trustpilot'));
+    d.appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

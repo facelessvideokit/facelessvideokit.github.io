@@ -1,0 +1,8 @@
+{
+  "_readme": "Trustpilot proof on the landing page. Stars + review count are read LIVE from Trustpilot's public TrustBox data (Review Collector, free plan) and show only once the profile has min_reviews or more AND a TrustScore of min_score or more. Quotes: copy real Trustpilot reviews here word for word (never edit, never invent), 4-5 stars only, with the review's own Trustpilot link. Optional 'faq' = the exact FAQ question text the quote answers (it then also shows under that FAQ). Quotes show only when the live count passes min_reviews.",
+  "business_unit": "6ad26672c306c18a13305510",
+  "profile_url": "https://www.trustpilot.com/review/facelessvideokit.github.io",
+  "min_reviews": 3,
+  "min_score": 4.0,
+  "quotes": []
+}
