@@ -392,6 +392,12 @@ whop.track("page");
 .co-pack small{display:block;font-size:12px;color:var(--mute);line-height:1.3;margin-top:1px}
 .co-pack:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
 .co-pack:focus-within{outline:2px solid var(--gold);outline-offset:2px}
+/* 22 Oct 2026 (owner): the Launch Bundle upgrade tick, shown under the Niche Pack tick */
+.co-tt{margin:2px 0 0 29px;padding:7px 10px;border:1px dashed var(--line2);border-radius:10px;display:grid;gap:5px}
+.co-tt[hidden]{display:none}
+.co-tt:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.co-tt .co-pack-in{padding:0 0 0 29px}.co-tt .co-pack-more{margin:0 0 0 29px}
+.co-fit{margin:0;font-size:12px;line-height:1.35;color:var(--ink2)}.co-fit b{color:var(--ink)}
 </style>
 
 <style id="fvk-checkout-css">
@@ -424,7 +430,7 @@ whop.track("page");
 .co-note.err{border-color:var(--hot)}
 html.co-open,html.co-open body{overflow:hidden}
 /* 22 Oct 2026 (owner): on a phone the buy box fills the screen, so Whop's pay button is one short scroll away */
-@media (max-width:640px){.co{padding:0;place-items:stretch}.co-box{width:100%;height:100dvh;max-height:100dvh;border:0;border-radius:0;padding:8px 14px 14px;gap:6px;align-content:start}.co-top b{font-size:18px}.co-x{width:32px;height:32px}.co-expect{font-size:13px;padding:5px 10px}.co-how{margin:0 0 6px}.co-how button{padding:8px 6px;font-size:13.5px}.co-plan{gap:6px}.co-pack{gap:2px}.co-pack-more{padding:0;line-height:1.3}}
+@media (max-width:640px){.co{padding:0;place-items:stretch}.co-box{width:100%;height:100dvh;max-height:100dvh;border:0;border-radius:0;padding:8px 14px 14px;gap:6px;align-content:start}.co-top b{font-size:18px}.co-x{width:32px;height:32px}.co-expect{font-size:13px;padding:5px 10px}.co-how{margin:0 0 6px}.co-how button{padding:8px 6px;font-size:13.5px}.co-plan{gap:6px}.co-pack{gap:2px}.co-tt{margin-left:0}.co-tt.open .co-pack-in{display:block}.co-pack-more{padding:0;line-height:1.3}}
 </style>
 <link rel="canonical" href="https://facelessvideokit.github.io/">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Faceless Video Kit", "url": "https://facelessvideokit.github.io/", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "description": "A download that plugs into Claude or ChatGPT on your Mac or PC and makes faceless YouTube videos and Shorts: script, voice, pictures, captions, thumbnail and a finished MP4, posted only when you say yes.", "image": "https://facelessvideokit.github.io/og.png", "offers": [{"@type": "Offer", "name": "Starter (1 channel, monthly)", "price": "29.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Pro (unlimited channels, monthly)", "price": "49.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Lifetime (unlimited channels, once)", "price": "199.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What else will I pay for?", "acceptedAnswer": {"@type": "Answer", "text": "Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works; ChatGPT needs a paid plan."}}, {"@type": "Question", "name": "Will it post for me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, after you say yes. It uploads to YouTube in your own browser and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK."}}, {"@type": "Question", "name": "Is it a website or an app I log into?", "acceptedAnswer": {"@type": "Answer", "text": "No. It's a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video."}}, {"@type": "Question", "name": "Do I need any tech or editing skills?", "acceptedAnswer": {"@type": "Answer", "text": "No. Setup takes about 15 minutes and your AI assistant does it with you. No commands to type, and you never edit: tick a topic, read the script, say yes. Every choice comes as a few options with one marked as recommended. With ChatGPT you double-click an installer once."}}, {"@type": "Question", "name": "How is this different from just asking ChatGPT or Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On its own, your AI assistant can write a script. It can't make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes."}}, {"@type": "Question", "name": "What if it's not for me?", "acceptedAnswer": {"@type": "Answer", "text": "Ask for a refund within 7 days. No questions. Monthly plans cancel any time. When a plan ends the Kit stops, but every video you made stays on your computer."}}, {"@type": "Question", "name": "Will my channel make money?", "acceptedAnswer": {"@type": "Answer", "text": "We can't promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube's own rules. The Kit makes the videos. Growing the channel is still up to you."}}, {"@type": "Question", "name": "Which kinds of videos can it make?", "acceptedAnswer": {"@type": "Answer", "text": "Long videos and Shorts in 12 looks (photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more) or one you describe. Stills, b-roll, AI video, animated explainers or a mix. Up to 4K, captions your way, music, and the same character in every frame if you want one. Script, voice and captions in Spanish, Hindi, Portuguese, Arabic and more."}}]}]</script>
@@ -880,12 +886,26 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
         <div class="co-pack-in" id="co-pack-in">
           <ul>
             <li><b>5 niches already researched</b>: why each one is winning right now, with proof from small channels</li>
-            <li><b>100 video ideas ready to make</b>: each with its title and opening line</li>
-            <li><b>Your channel, set up for you</b>: names, look, video length, how often to post, thumbnail style</li>
+            <li><b>100 video topics ready to make</b>: each with its angle and opening line</li>
+            <li><b>Your channel, set up for you</b>: names, look, video length, how often to post, what each thumbnail shows</li>
             <li><b>Plugs straight into the Kit</b>: tap &ldquo;Start from my Niche Pack&rdquo; and your channel and topics are set up in one go, no research step</li>
             <li><b>New topics every month, included</b>: for as long as your Kit is active, one-time Lifetime included</li>
           </ul>
           <p class="co-pack-n"><i>Megaprojects · Military history · Company collapses · History mysteries · Ghost towns</i></p>
+        </div>
+        <div class="co-tt" id="co-tt-row" hidden>
+          <label class="co-pack-l"><input type="checkbox" id="co-tt"><span><b>Upgrade to the Launch Bundle &mdash; <em>both packs $29</em></b><small class="co-pack-sub"><b>+ Thumbnail &amp; Title Pack for $10 more.</b><span id="co-tt-tot"></span></small></span></label>
+          <p class="co-fit"><b>No overlap, made to fit together:</b> the Niche Pack decides <b>what</b> each video is about and what its thumbnail shows. The Thumbnail &amp; Title Pack turns that into the title and layout people <b>click</b>.</p>
+          <button type="button" class="co-pack-more" id="co-tt-more" aria-expanded="false" aria-controls="co-tt-in">What&rsquo;s inside &#9662;</button>
+          <div class="co-pack-in" id="co-tt-in">
+            <ul>
+              <li><b>40 title formulas</b>: 8 for each Niche Pack niche, each taken from real videos winning there right now</li>
+              <li><b>6 thumbnail layouts</b>, each shown with the real thumbnails it came from</li>
+              <li><b>Your Kit uses it by itself</b>: every video gets its title and thumbnail layout from the pack, no guessing</li>
+              <li><b>New winners every month, included</b>, for as long as your Kit is active</li>
+            </ul>
+            <p class="co-pack-n"><i>Niche Pack: the niche, topics and look · Thumbnail &amp; Title Pack: the title and thumbnail layout. Together: a channel ready to launch.</i></p>
+          </div>
         </div>
       </div>
     </div>
@@ -898,16 +918,21 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
    (Starter $29/mo 1 channel, Pro $49/mo unlimited, Lifetime $199 once, hidden upgrade $170 = Starter -> Lifetime);
    offerPrice is the lifetime price with the recovery email's one-use $50-off code (KIT149...; an older KIT79... code still opens the old $99 plan at $79). */
 window.FVK_PLANS={
- "starter":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29/mo","value":29,"note":"Starter · 1 channel","pack":"plan_AqcawxCrX8IW3","packTotal":"$48 today, then $29/mo"},
- "pro":{"id":"plan_nYpiZvrMrTVVO","price":"$49/mo","value":49,"note":"Pro · unlimited","pack":"plan_4IlnaThjBKDLK","packTotal":"$68 today, then $49/mo"},
+ "starter":{"id":"plan_Tq2Jx3iNfSWBg","price":"$29/mo","value":29,"note":"Starter · 1 channel","pack":"plan_AqcawxCrX8IW3","packTotal":"$48 today, then $29/mo","launch":"plan_ErFa8b9j3uqII","launchTotal":"$58 today, then $29/mo"},
+ "pro":{"id":"plan_nYpiZvrMrTVVO","price":"$49/mo","value":49,"note":"Pro · unlimited","pack":"plan_4IlnaThjBKDLK","packTotal":"$68 today, then $49/mo","launch":"plan_RDW5oQCWA3Ixb","launchTotal":"$78 today, then $49/mo"},
  "lifetime":{"id":"plan_uUSJ5QofypAlK","price":"$199 once","value":199,"note":"Lifetime · unlimited","offerPrice":"$149 once","offerValue":149,"offerNote":"Your $50-off code is applied",
-   "pack":"plan_Gm4iCvteBu1HX","packTotal":"$218 once","packOffer":"plan_6XdutDFmsV4St","packOfferTotal":"$168 once"},
+   "pack":"plan_Gm4iCvteBu1HX","packTotal":"$218 once","packOffer":"plan_6XdutDFmsV4St","packOfferTotal":"$168 once",
+   "launch":"plan_8YK9zD1zxT5u3","launchTotal":"$228 once","launchOffer":"plan_QPu2Ley35SeGR","launchOfferTotal":"$178 once"},
  "upgrade":{"id":"plan_5v7A0o2xCXi8l","price":"$170","value":170}
 };
 /* 21 Oct 2026 (owner): "+ Done-for-you Niche Pack $19" tickbox in checkout. Whop has no checkout bump, so ticking swaps
    the plan for its hidden bundle plan (pack): Starter $48 then $29/mo, Pro $68 then $49/mo, Lifetime $218; with the $149
    price (a KIT149 recovery code or launch week) the lifetime bundle is packOffer at $168 and no code is needed. */
 window.FVK_PACK_PRICE=19;
+/* 22 Oct 2026 (owner): the Launch Bundle = Niche Pack + Thumbnail & Title Pack for $29 on top (one more tick under the
+   Niche Pack). Ticked, the plan becomes its hidden Launch plan (launch / launchOffer): Starter $58 then $29/mo, Pro $78
+   then $49/mo, Lifetime $228, or $178 at the $149 price. The relay gives these plans both packs (relay/src/bundles.js). */
+window.FVK_LAUNCH_PRICE=29;
 /* 21 Oct 2026 (owner): launch week. From opens to ends (Fri 23 Oct 00:00 IST = Thu 22 Oct 11:30 PDT to Mon 2 Nov 00:00 PST, US Pacific; DST ends 1 Nov) Lifetime is
    $149 for everyone: the public Whop code (launch149: $50 off the $199 plan only, expires at ends) is applied in checkout,
    a banner counts down, and the page puts itself back to $199 at ends. Before opens: nothing is shown. */
@@ -968,13 +993,19 @@ window.FVK_LAUNCH={"opens":"2026-10-22T18:30:00Z","ends":"2026-11-02T08:00:00Z",
   var PACK=false, PACKP=window.FVK_PACK_PRICE||19, packRow=document.getElementById('co-pack-row'), packBox=document.getElementById('co-pack'), packTot=document.getElementById('co-pack-tot');
   function packable(k){return !!(P[k]&&P[k].pack)&&!(k==='lifetime'&&/^KIT79/i.test(OFFER))}
   function withPack(k){return PACK&&packable(k)}
-  function planId(k){var p=P[k];if(!withPack(k))return p.id;return (k==='lifetime'&&PROMO)?p.packOffer:p.pack}
-  function val(k){return ((PROMO&&k==='lifetime')?P.lifetime.offerValue:PRICE[k])+(withPack(k)?PACKP:0)}
-  function mkey(){return current+'|'+email+'|'+(withPack(current)?1:0)}
-  function packUi(){packRow.hidden=!packable(current)||!!upFrom;packBox.checked=PACK;packTot.textContent=withPack(current)?(' · '+((current==='lifetime'&&PROMO)?P.lifetime.packOfferTotal:P[current].packTotal)):''}
+  // 22 Oct 2026: the Launch Bundle tick (both packs, $29) sits under the Niche Pack tick and implies it
+  var TT=false, TTP=window.FVK_LAUNCH_PRICE||29, ttRow=document.getElementById('co-tt-row'), ttBox=document.getElementById('co-tt'), ttTot=document.getElementById('co-tt-tot');
+  function withTT(k){return TT&&withPack(k)&&!!P[k].launch}
+  function planId(k){var p=P[k];if(!withPack(k))return p.id;if(withTT(k))return (k==='lifetime'&&PROMO)?p.launchOffer:p.launch;return (k==='lifetime'&&PROMO)?p.packOffer:p.pack}
+  function val(k){return ((PROMO&&k==='lifetime')?P.lifetime.offerValue:PRICE[k])+(withTT(k)?TTP:withPack(k)?PACKP:0)}
+  function mkey(){return current+'|'+email+'|'+(withTT(current)?2:withPack(current)?1:0)}
+  function packUi(){packRow.hidden=!packable(current)||!!upFrom;packBox.checked=PACK;packTot.textContent=withPack(current)&&!withTT(current)?(' · '+((current==='lifetime'&&PROMO)?P.lifetime.packOfferTotal:P[current].packTotal)):'';
+    ttRow.hidden=!(packable(current)&&P[current].launch);ttBox.checked=withTT(current);ttTot.textContent=withTT(current)?(' · '+((current==='lifetime'&&PROMO)?P.lifetime.launchOfferTotal:P[current].launchTotal)):''}
   // 22 Oct 2026 (owner): on a phone (<=600px) the pack shows two lines and "What's inside"; opening it only shows the list
   var packMore=document.getElementById('co-pack-more');packMore.addEventListener('click',function(){var on=!packRow.classList.contains('open');packRow.classList.toggle('open',on);packMore.setAttribute('aria-expanded',String(on));packMore.innerHTML=on?'What\u2019s inside &#9652;':'What\u2019s inside &#9662;'});
-  packBox.addEventListener('change',function(){PACK=packBox.checked;packUi();if(!later){tellLead();mount()}});
+  packBox.addEventListener('change',function(){PACK=packBox.checked;if(!PACK)TT=false;packUi();if(!later){tellLead();mount()}});
+  ttBox.addEventListener('change',function(){TT=ttBox.checked;if(TT)PACK=true;packUi();if(!later){tellLead();mount()}});
+  var ttMore=document.getElementById('co-tt-more');ttMore.addEventListener('click',function(){var on=!ttRow.classList.contains('open');ttRow.classList.toggle('open',on);ttMore.setAttribute('aria-expanded',String(on));ttMore.innerHTML=on?'What\u2019s inside &#9652;':'What\u2019s inside &#9662;'});
   var E0=(q0.get('email')||'').trim(); if(okEmail(E0)){emIn.value=E0;email=E0}
   // 16 Oct 2026 (owner): Whop affiliates. An affiliate's external link lands here with ?a=<username>;
   // kept 30 days in this browser (Whop's own window) and handed to every checkout and lead, so the
@@ -1003,7 +1034,7 @@ window.FVK_LAUNCH={"opens":"2026-10-22T18:30:00Z","ends":"2026-11-02T08:00:00Z",
   function mount(){var key=mkey();if(key===mountedKey)return;unmount();mountedKey=key;
     wait.hidden=false;
     loadSdk(function(w){if(mountedKey!==key)return;
-      var opts={plan:planId(current),returnUrl:RETURN+'&plan='+current+(withPack(current)?'&pack=1':''),appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
+      var opts={plan:planId(current),returnUrl:RETURN+'&plan='+current+(withTT(current)?'&pack=2':withPack(current)?'&pack=1':''),appearance:{theme:{appearance:'dark',accentColor:'orange',grayColor:'auto'}},
         onComplete:function(r){var id=r&&r.result==='payment'?r.paymentId:'';
           bought(id,current,function(){if(current==='starter'&&offerUpgrade(id))return;if(id&&toClaim(id))return;location.href=RETURN+'&status=succeeded&counted=1'})}};
       if(PROMO&&current==='lifetime'&&!withPack(current))opts.promoCode=PROMO;
@@ -1077,7 +1108,7 @@ window.FVK_LAUNCH={"opens":"2026-10-22T18:30:00Z","ends":"2026-11-02T08:00:00Z",
     var pid=q.get('payment')||q.get('payment_id')||q.get('receipt_id')||'';
     // back from 3DS / a bank page: count the sale here (onComplete never ran), unless it already did
     if(q.get('plan')==='upgrade'&&toClaim(q.get('from')))return;
-    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){var pl=plan(q.get('plan'))||'starter';PACK=q.get('pack')==='1';
+    if(ok&&q.get('counted')!=='1'&&/^pay_/.test(pid)){var pl=plan(q.get('plan'))||'starter';PACK=/^[12]$/.test(q.get('pack')||'');TT=q.get('pack')==='2';
       bought(pid,pl,function(){history.replaceState(null,'',location.pathname);if(pl==='starter'&&offerUpgrade(pid))return;if(!toClaim(pid))location.replace(location.pathname)});return}
     if(ok&&toClaim(pid))return;
     var n=document.createElement('div');
