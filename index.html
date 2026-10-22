@@ -7,6 +7,10 @@
 <!-- Meta Pixel (14 Oct 2026: moved to the top of <head>, ahead of the font stylesheet, so a slow Instagram in-app load still counts the landing): FVK's own dataset "FVK Site" (FVK Ads account), since Whop's ad BM was banned 9 Oct 2026.
      Purchase is also sent server-side by the relay with the same event id (relay/src/metacapi.js). -->
 <script>
+/* 22 Oct 2026 (owner): test mode. ?fvktest=1 (remembered in this browser until ?fvktest=0) loads no Meta pixel,
+   no Whop pixel and no Clarity; every fbq call lands in window.FVK_PIXEL_LOG instead. EVERY test run uses it. */
+window.FVK_TEST=(function(){var q=(location.search.match(/[?&]fvktest=([01])/)||[])[1];try{if(q==='1')localStorage.setItem('fvk_test','1');if(q==='0')localStorage.removeItem('fvk_test');return q==='1'||(q!=='0'&&localStorage.getItem('fvk_test')==='1')}catch(e){return q==='1'}})();
+if(window.FVK_TEST){window.FVK_PIXEL_LOG=[];window.fbq=function(){window.FVK_PIXEL_LOG.push([].slice.call(arguments))}}
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1448862650539340');
 fbq('track','PageView');
@@ -344,9 +348,11 @@ html.co-open .mbar{display:none}}
 </style>
 <!-- Whop Pixel (Whop Ads attribution) -->
 <script>
+if(!window.FVK_TEST){
 !function(w,d,s,u,n,a,b){if(w[n])return;a=w[n]={q:[],t:+new Date,s:[],o:u,track:function(){a.q.push([+new Date].concat([].slice.call(arguments)))},setScope:function(){a.s=[].slice.call(arguments).filter(function(x){return typeof x==="string"});a.q.push([+new Date,"setScope"].concat(a.s))},scope:function(){var c=[].slice.call(arguments);return{track:function(){a.q.push([+new Date].concat([].slice.call(arguments)).concat([{__scope:c}]))}}}};function L(){b=d.createElement(s);b.async=1;b.src=u+"/s.js";d.head.appendChild(b)}if(d.readyState==="complete")setTimeout(L,1500);else w.addEventListener("load",function(){setTimeout(L,1500)})}(window,document,"script","https://t.whop.tw","whop");
 whop.setScope("biz_U40fQX45fci3MA");
 whop.track("page");
+}
 </script>
 <!-- End Whop Pixel -->
 <style id="fvk-launch-css">
@@ -899,8 +905,15 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
   function ck(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''}
   var PRICE={}, ic='';Object.keys(P).forEach(function(k){PRICE[k]=P[k].value});
   function fb(){try{if(window.fbq)fbq.apply(null,arguments)}catch(e){}}
-  function trackIC(){if(ic!==current){ic=current;fb('track','InitiateCheckout',{value:val(current),currency:'USD',content_name:'Faceless Video Kit',content_ids:[planId(current)],content_type:'product'})}}
-  function tellLead(){trackIC();if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
+  // 22 Oct 2026 (owner): InitiateCheckout fires ONCE per page visit, when the buyer starts Whop's form: the first time
+  // focus moves into Whop's checkout frame (a tap or click on its email, card or wallet button). Whop Elements gives the
+  // page no field/state callback (checked in elements.js 22 Oct) and its postMessages are internal. One event id per
+  // visit (Meta de-duplicates on it). Before: it fired on every box open and plan tab. The ads guard's "$15 with no
+  // checkout" rule reads this event (adsops ads_lib.CHECKOUT_TYPES). AddToCart is no longer sent.
+  var IC_ID='ic.'+Date.now().toString(36)+'.'+Math.random().toString(36).slice(2,8);
+  function trackIC(){if(ic)return;ic=IC_ID;fb('track','InitiateCheckout',{value:val(current),currency:'USD',content_name:'Faceless Video Kit',content_ids:[planId(current)],content_type:'product'},{eventID:IC_ID})}
+  addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME'&&mountEl.contains(a)&&mountedKey&&mountedKey!=='upgrade')trackIC()},0)});
+  function tellLead(){if(!email)return;var k=email+'|'+current;if(k===told)return;told=k;
     try{fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,fbp:ck('_fbp'),fbc:ck('_fbc'),aff:AFF||undefined}),keepalive:true}).catch(function(){})}catch(e){}}
   // Purchase in the browser, eventID = the Whop payment id (the relay sends the same id, Meta keeps one)
   function bought(id,k,then){var v=P[k]?val(k):PRICE.starter;
@@ -1005,7 +1018,7 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
     packUi();
     if(later)return;tellLead();mount();}
-  var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:val(k),currency:'USD',content_name:'Faceless Video Kit',content_ids:[planId(k)],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
+  function open(k){lastFocus=document.activeElement;co.hidden=false;document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
     laterMode(later);if(later){showEmailStep()}else{goPay();document.getElementById('co-x').focus()}}
   function close(){if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
@@ -1067,7 +1080,7 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
 <script>
 /* Microsoft Clarity session recordings + heatmaps (owner, 14 Oct 2026: find where buyers drop before paying).
    Loaded 2.5 s after the page has fully loaded, so it never competes with the hero, the Meta Pixel or LCP. */
-window.addEventListener('load',function(){setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+if(!window.FVK_TEST)window.addEventListener('load',function(){setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yxksij4ckw");},2500)});
 </script>
 </body>
