@@ -325,8 +325,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .lookgrid{margin-inline:-16px;padding-inline:16px}.lookgrid figure{flex-basis:168px}
   .gl{padding:18px}.gl li{font-size:14.5px}.tcard,.ocard{padding:18px}
 }
-.co-alt[hidden]{display:none}.co-how{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}.co-how[hidden]{display:none}.co-how button{font:600 14px/1.25 var(--body);padding:12px 10px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer}.co-how button[aria-pressed="true"]{border-color:var(--gold);color:var(--ink);box-shadow:0 0 0 1px var(--gold) inset}.co-saved{font-size:13px;color:var(--ok);margin:2px 2px 8px}.co-saved[hidden]{display:none}.co-pane .co-email{margin-bottom:10px}#co-go[hidden]{display:none!important}
-.co-alt{display:block;margin:12px auto 0;background:none;border:0;color:var(--mute);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;min-height:40px}
+.co-how{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}.co-how[hidden]{display:none}.co-how button{font:600 14px/1.25 var(--body);padding:9px 8px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer}.co-how button[aria-pressed="true"]{border-color:var(--gold);color:var(--ink);box-shadow:0 0 0 1px var(--gold) inset}.co-pane .co-email{margin-bottom:10px}
+
 @media (max-width:640px){.co-row{flex-wrap:wrap}.co-row input,.co-row .btn{flex:1 1 100%;width:100%}}
 .co-sent{text-align:center;padding:8px 0 4px}.co-sent-h{font-weight:700;font-size:18px;margin:0 0 6px}.co-sent p{margin:0}
 
@@ -359,11 +359,11 @@ whop.track("page");
 .lb-a{color:var(--gold);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .amt s.was{font-family:var(--display);font-size:24px;color:var(--mute);font-weight:700;margin-right:2px}.amt s.was[hidden]{display:none}
 @media (max-width:640px){.lb{margin-inline:-16px;font-size:13.5px}.lb-in{padding:8px 16px}}
-.co-pack{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:11px 12px;border:1px dashed var(--line2);border-radius:12px;background:var(--card);cursor:pointer;font-size:14px;color:var(--ink2)}
+.co-pack{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:center;padding:7px 10px;border:1px dashed var(--line2);border-radius:12px;background:var(--card);cursor:pointer;font-size:14px;color:var(--ink2)}
 .co-pack[hidden]{display:none}
 .co-pack input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--hot);cursor:pointer}
 .co-pack b{color:var(--ink);font-weight:700}.co-pack em{font-style:normal;color:var(--gold)}
-.co-pack small{display:block;font-size:12.5px;color:var(--mute);line-height:1.4;margin-top:2px}
+.co-pack small{display:block;font-size:12px;color:var(--mute);line-height:1.3;margin-top:1px}
 .co-pack:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
 .co-pack:focus-within{outline:2px solid var(--gold);outline-offset:2px}
 </style>
@@ -373,18 +373,21 @@ whop.track("page");
    close button, a plan tab and Continue off the right edge on phones (QA at 320/390/412 px). */
 .co{position:fixed;inset:0;z-index:100;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:16px;background:rgba(6,5,8,.78);backdrop-filter:blur(6px)}
 .co[hidden]{display:none!important}
+/* 22 Oct 2026 (owner): what the buyer needs, said inside the buy box before the payment form; plan + pack in one compact block */
+.co-expect{margin:0;padding:7px 11px;border:1px solid var(--line2);border-left:3px solid var(--gold);border-radius:10px;background:var(--card);font-size:13.5px;line-height:1.4;color:var(--ink2)}.co-expect b{color:var(--ink)}
+.co-plan{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;min-width:0}.co-plan[hidden]{display:none!important}
 .co-box{box-sizing:border-box;min-width:0;grid-template-columns:minmax(0,1fr);width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--bg2);border:1px solid var(--line2);border-radius:18px;padding:20px 18px 18px;display:grid;gap:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
 .co-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .co-top b{font-family:var(--display);font-size:20px;color:var(--ink)}
 .co-x{background:none;border:1px solid var(--line2);color:var(--ink2);border-radius:999px;width:36px;height:36px;font-size:18px;cursor:pointer}
 .co-x:focus-visible,.co-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .co-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.co-tabs button{min-width:0;font:600 15px/1.25 var(--body);text-align:left;padding:10px 11px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
-.co-tabs button small{font-weight:500;font-size:12px;color:var(--mute)}
+.co-tabs button{min-width:0;font:600 15px/1.2 var(--body);text-align:left;padding:7px 9px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
+.co-tabs button small{font-weight:500;font-size:11.5px;line-height:1.25;color:var(--mute)}
 .co-tabs button[aria-pressed="true"]{border-color:var(--hot);color:var(--ink);box-shadow:0 0 0 1px var(--hot) inset}
 .co-pane{min-width:0;min-height:420px}.co-pane:has(.co-email:not([hidden])){min-height:0}
 .co-wait{color:var(--mute);font-size:14px;padding:30px 4px;text-align:center}
-.co-email{min-width:0;grid-template-columns:minmax(0,1fr);display:grid;gap:8px;padding:6px 2px 4px}.co-email label{font-size:14px;color:var(--ink2)}.co-email .co-row{display:flex;gap:8px}.co-email input{flex:1;min-width:0;font:500 16px/1.2 var(--body);padding:14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink)}.co-email input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.co-email .btn-hot{width:auto;padding:14px 20px;font-size:16px}.co-email .co-err{color:var(--hot);font-size:13px;margin:0}.co-email[hidden],.co-who[hidden]{display:none!important}.co-who{font-size:13px;color:var(--mute);margin:0 2px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}.co-who button{all:unset;color:var(--gold);cursor:pointer;text-decoration:underline;font-size:13px}.co-who button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.co-email{min-width:0;grid-template-columns:minmax(0,1fr);display:grid;gap:8px;padding:6px 2px 4px}.co-email label{font-size:14px;color:var(--ink2)}.co-email .co-row{display:flex;gap:8px}.co-email input{flex:1;min-width:0;font:500 16px/1.2 var(--body);padding:14px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink)}.co-email input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.co-email .btn-hot{width:auto;padding:14px 20px;font-size:16px}.co-email .co-err{color:var(--hot);font-size:13px;margin:0}.co-email[hidden]{display:none!important}
 .co-foot{font-size:12px;color:var(--mute);text-align:center;margin:0}
 .co-up{min-width:0;grid-template-columns:minmax(0,1fr);display:grid;gap:12px;padding:4px 2px}.co-up[hidden],.co-tabs[hidden]{display:none!important}
 .co-up-h{margin:0;font:700 19px/1.3 var(--body);color:var(--ink)}.co-up-h b{color:var(--gold)}
@@ -394,6 +397,8 @@ whop.track("page");
 .co-note{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:101;max-width:calc(100% - 32px);background:var(--card);border:1px solid var(--ok);color:var(--ink);padding:12px 16px;border-radius:12px;font-size:15px}
 .co-note.err{border-color:var(--hot)}
 html.co-open,html.co-open body{overflow:hidden}
+/* 22 Oct 2026 (owner): on a phone the buy box fills the screen, so Whop's pay button is one short scroll away */
+@media (max-width:640px){.co{padding:0;place-items:stretch}.co-box{width:100%;height:100dvh;max-height:100dvh;border:0;border-radius:0;padding:10px 14px 14px;gap:9px;align-content:start}.co-top b{font-size:18px}.co-x{width:34px;height:34px}.co-expect{font-size:13px;padding:6px 10px}.co-how{margin:0 0 8px}.co-how button{padding:8px 6px;font-size:13.5px}}
 </style>
 <link rel="canonical" href="https://facelessvideokit.github.io/">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Faceless Video Kit", "url": "https://facelessvideokit.github.io/", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows", "description": "A download that plugs into Claude or ChatGPT on your Mac or PC and makes faceless YouTube videos and Shorts: script, voice, pictures, captions, thumbnail and a finished MP4, posted only when you say yes.", "image": "https://facelessvideokit.github.io/og.png", "offers": [{"@type": "Offer", "name": "Starter (1 channel, monthly)", "price": "29.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Pro (unlimited channels, monthly)", "price": "49.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}, {"@type": "Offer", "name": "Lifetime (unlimited channels, once)", "price": "199.00", "priceCurrency": "USD", "url": "https://facelessvideokit.github.io/#pricing"}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What else will I pay for?", "acceptedAnswer": {"@type": "Answer", "text": "Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude's free plan works; ChatGPT needs a paid plan."}}, {"@type": "Question", "name": "Will it post for me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, after you say yes. It uploads to YouTube in your own browser and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK."}}, {"@type": "Question", "name": "Is it a website or an app I log into?", "acceptedAnswer": {"@type": "Answer", "text": "No. It's a download that plugs into Claude or ChatGPT on your Mac or PC. After setup you get your own Studio page on your computer, where you pick looks and voices and see every video."}}, {"@type": "Question", "name": "Do I need any tech or editing skills?", "acceptedAnswer": {"@type": "Answer", "text": "No. Setup takes about 15 minutes and your AI assistant does it with you. No commands to type, and you never edit: tick a topic, read the script, say yes. Every choice comes as a few options with one marked as recommended. With ChatGPT you double-click an installer once."}}, {"@type": "Question", "name": "How is this different from just asking ChatGPT or Claude?", "acceptedAnswer": {"@type": "Answer", "text": "On its own, your AI assistant can write a script. It can't make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes."}}, {"@type": "Question", "name": "What if it's not for me?", "acceptedAnswer": {"@type": "Answer", "text": "Ask for a refund within 7 days. No questions. Monthly plans cancel any time. When a plan ends the Kit stops, but every video you made stays on your computer."}}, {"@type": "Question", "name": "Will my channel make money?", "acceptedAnswer": {"@type": "Answer", "text": "We can't promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube's own rules. The Kit makes the videos. Growing the channel is still up to you."}}, {"@type": "Question", "name": "Which kinds of videos can it make?", "acceptedAnswer": {"@type": "Answer", "text": "Long videos and Shorts in 12 looks (photo-real, 3D cartoon, fantasy, stick figures, archival film, stock footage and more) or one you describe. Stills, b-roll, AI video, animated explainers or a mix. Up to 4K, captions your way, music, and the same character in every frame if you want one. Script, voice and captions in Spanish, Hindi, Portuguese, Arabic and more."}}]}]</script>
@@ -681,7 +686,7 @@ m.poster=ph?'v2/style_fantasy.jpg':'v2/hero_main.jpg';s.poster=ph?'v2/short_drag
       <div class="head center">
         <span class="eyebrow">Pricing</span>
         <h2>Pick your plan<span class="dot">.</span></h2>
-        <p class="lead">The same Kit and every update on all three. 7-day refund, no questions.</p>
+        <p class="lead">The same Kit and every update on all three. Runs on your Mac or PC inside Claude or ChatGPT, with about 15 minutes of setup. 7-day refund, no questions.</p>
       </div>
       <div class="prices">
         <div class="price">
@@ -833,13 +838,16 @@ window.addEventListener('scroll',function(){if(window.scrollY<=300)h.classList.r
 <div class="co" id="co" role="dialog" aria-modal="true" aria-labelledby="co-title" hidden>
   <div class="co-box">
     <div class="co-top"><b id="co-title">Get the Faceless Video Kit</b><button class="co-x" id="co-x" type="button" aria-label="Close checkout">×</button></div>
-    <div class="co-tabs" role="group" aria-label="Plan">
-      <button type="button" data-plan-tab="starter" aria-pressed="true"><span data-price="starter">$29/mo</span><small data-note="starter">Starter · 1 channel</small></button>
-      <button type="button" data-plan-tab="pro" aria-pressed="false"><span data-price="pro">$49/mo</span><small data-note="pro">Pro · unlimited</small></button>
-      <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$199 once</span><small data-note="lifetime">Lifetime · unlimited</small></button>
+    <p class="co-expect" id="co-expect">Runs on your <b>Mac or PC</b> inside Claude or ChatGPT · about 15&#8209;minute setup · 7&#8209;day refund</p>
+    <div class="co-plan" id="co-plan">
+      <div class="co-tabs" role="group" aria-label="Plan">
+        <button type="button" data-plan-tab="starter" aria-pressed="true"><span data-price="starter">$29/mo</span><small data-note="starter">Starter · 1 channel</small></button>
+        <button type="button" data-plan-tab="pro" aria-pressed="false"><span data-price="pro">$49/mo</span><small data-note="pro">Pro · unlimited</small></button>
+        <button type="button" data-plan-tab="lifetime" aria-pressed="false"><span data-price="lifetime">$199 once</span><small data-note="lifetime">Lifetime · unlimited</small></button>
+      </div>
+      <label class="co-pack" id="co-pack-row" hidden><input type="checkbox" id="co-pack"><span><b>+ Done-for-you Niche Pack <em>$19</em></b><small>5 researched niches, fresh topics every month<span id="co-pack-tot"></span></small></span></label>
     </div>
-    <label class="co-pack" id="co-pack-row" hidden><input type="checkbox" id="co-pack"><span><b>+ Done-for-you Niche Pack <em>$19</em></b><small>Five researched faceless niches, each with its look and format decided, plus ready topics. Fresh topics every month. <span id="co-pack-tot"></span></small></span></label>
-    <div class="co-pane" id="co-pane"><div id="co-how-slot"></div><form class="co-email" id="co-email" novalidate><label for="co-em">Your email &mdash; your licence key and download link go here</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Continue</button></div><button class="co-alt" type="button" id="co-buyhere" hidden>or pay on this phone instead</button><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><p class="co-who" id="co-who" hidden></p><p class="co-saved" id="co-saved" role="status" hidden></p><div class="co-how" id="co-phone" role="group" aria-label="How do you want to buy?" hidden><button type="button" id="co-payhere" aria-pressed="true">Pay on this phone</button><button type="button" id="co-later" aria-pressed="false">Send it to my computer</button></div><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: <span data-price="upgrade">$170</span> more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $199</li><li>Same key, same Kit, now unlimited channels: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · <span data-price="upgrade">$170</span></button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
+    <div class="co-pane" id="co-pane"><div class="co-how" id="co-phone" role="group" aria-label="How do you want to buy?" hidden><button type="button" id="co-payhere" aria-pressed="true">Pay on this phone</button><button type="button" id="co-later" aria-pressed="false">Send it to my computer</button></div><form class="co-email" id="co-email" novalidate hidden><label for="co-em">The Kit runs on your <b>Mac or PC</b>. We&rsquo;ll email you the link to open there.</label><div class="co-row"><input id="co-em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required><button class="btn btn-hot" type="submit" id="co-go">Email me the link</button></div><p class="co-err" id="co-err" hidden>Enter a valid email address.</p></form><div class="co-sent" id="co-sent" role="status" hidden><p class="co-sent-h">Sent. Check your email on your computer.</p><p id="co-sent-to"></p></div><p class="co-wait" id="co-wait" hidden>Loading secure checkout…</p><div class="co-up" id="co-up" hidden><p class="co-up-h">Make it <b>lifetime</b>: <span data-price="upgrade">$170</span> more, never pay monthly again.</p><ul class="co-up-l"><li>Your $29 counts toward the $199</li><li>Same key, same Kit, now unlimited channels: nothing to set up again</li><li>Your monthly plan won't renew; every update stays included</li></ul><button class="btn btn-hot" type="button" id="co-up-yes">Make it lifetime · <span data-price="upgrade">$170</span></button><button class="co-up-no" type="button" id="co-up-no">No thanks, take me to my Kit →</button></div><div id="co-mount"></div></div>
     <p class="co-foot">Secure checkout by Whop · 7-day refund, no questions asked · Cancel a monthly plan anytime</p>
   </div>
 </div>
@@ -867,7 +875,7 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
 (function(){
   var P=window.FVK_PLANS, co=document.getElementById('co'), pane=document.getElementById('co-pane'),
       wait=document.getElementById('co-wait'), mountEl=document.getElementById('co-mount'), form=document.getElementById('co-email'),
-      emIn=document.getElementById('co-em'), emErr=document.getElementById('co-err'), who=document.getElementById('co-who'),
+      emIn=document.getElementById('co-em'), emErr=document.getElementById('co-err'), planBox=document.getElementById('co-plan'),
       current='starter', lastFocus=null, handle=null, mountedKey='', readyTimer=0, sdk=null;
   var RETURN=location.origin+location.pathname+'?checkout=done';
   // 6 Oct 2026: a buyer paid in this embedded checkout, landed in Whop's hub (chat only) and never saw his key.
@@ -879,9 +887,11 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
   // and keeps the same key working. No thanks / close / any checkout error -> straight to the key page.
   var UPG=P.upgrade.id, upFrom='';
   // 8 Oct 2026: Whop retires the legacy embed (js.whop.com loader.js) on 21 Oct 2026. This is Whop Elements.
-  // Elements has no "email captured" event. 12 Oct 2026 (owner): on a computer the checkout opens straight away
-  // and Whop asks for the email itself (3 of 4 checkout openers left at our own email box). Our email box now
-  // only serves the phone 'email me the link' flow; a recovery-email link (?email=) still prefills Whop.
+  // Elements has no "email captured" event (checked 22 Oct 2026: no email callback, no button-label option).
+  // 22 Oct 2026 (owner): our own email box above Whop's form is gone: the email was asked twice and the phone
+  // checkout ran two screens deep. Whop's form asks for it once. Our box only serves 'Send it to my computer';
+  // a recovery-email link (?email=) still prefills Whop. Non-payers who typed an email into Whop's form are still
+  // followed up by the relay's cron through Whop's People list (src/recover.js, step 3).
   var LEAD='https://fvk-licence.facelessvideokit.workers.dev/v1/lead', email='', told='';
   function plan(k){return k&&k!=='upgrade'&&P[k]?k:''}
   function okEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
@@ -912,7 +922,7 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
   function planId(k){var p=P[k];if(!withPack(k))return p.id;return (k==='lifetime'&&PROMO)?p.packOffer:p.pack}
   function val(k){return ((PROMO&&k==='lifetime')?P.lifetime.offerValue:PRICE[k])+(withPack(k)?PACKP:0)}
   function mkey(){return current+'|'+email+'|'+(withPack(current)?1:0)}
-  function packUi(){packRow.hidden=!packable(current)||!!upFrom;packBox.checked=PACK;packTot.textContent=packable(current)?('With it: '+((current==='lifetime'&&PROMO)?P.lifetime.packOfferTotal:P[current].packTotal)+'.'):''}
+  function packUi(){packRow.hidden=!packable(current)||!!upFrom;packBox.checked=PACK;packTot.textContent=withPack(current)?(' · '+((current==='lifetime'&&PROMO)?P.lifetime.packOfferTotal:P[current].packTotal)):''}
   packBox.addEventListener('change',function(){PACK=packBox.checked;packUi();if(!later){tellLead();mount()}});
   var E0=(q0.get('email')||'').trim(); if(okEmail(E0)){emIn.value=E0;email=E0}
   // 16 Oct 2026 (owner): Whop affiliates. An affiliate's external link lands here with ?a=<username>;
@@ -938,7 +948,7 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
     s.onerror=bail;document.head.appendChild(s);}
   // anything goes wrong loading Whop's checkout: send the buyer to the same plan's hosted checkout page
   function bail(){location.href=checkoutUrl(current)}
-  function unmount(){touched=false;clearTimeout(readyTimer);if(handle){try{handle.destroy()}catch(e){}}handle=null;mountedKey='';mountEl.innerHTML=''}
+  function unmount(){clearTimeout(readyTimer);if(handle){try{handle.destroy()}catch(e){}}handle=null;mountedKey='';mountEl.innerHTML=''}
   function mount(){var key=mkey();if(key===mountedKey)return;unmount();mountedKey=key;
     wait.hidden=false;
     loadSdk(function(w){if(mountedKey!==key)return;
@@ -955,9 +965,9 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
       readyTimer=setTimeout(function(){if(!wait.hidden)bail()},12000);});}
   function offerUpgrade(pid){if(!/^pay_[A-Za-z0-9]{6,40}$/.test(pid||''))return false;
     upFrom=pid;unmount();co.hidden=false;document.documentElement.classList.add('co-open');
-    var tabs=co.querySelector('.co-tabs');if(tabs)tabs.hidden=true;packRow.hidden=true;
+    planBox.hidden=true;packRow.hidden=true;phoneLine.hidden=true;
     document.getElementById('co-title').textContent="You're in. One offer before your Kit";
-    form.hidden=true;who.hidden=true;wait.hidden=true;var ft=co.querySelector('.co-foot');if(ft)ft.hidden=true;var up=document.getElementById('co-up');up.hidden=false;
+    form.hidden=true;wait.hidden=true;var ft=co.querySelector('.co-foot');if(ft)ft.hidden=true;var up=document.getElementById('co-up');up.hidden=false;
     document.getElementById('co-up-yes').focus();return true}
   function upgradeNow(){var pid=upFrom;document.getElementById('co-up').hidden=true;wait.hidden=false;mountedKey='upgrade';
     loadSdk(function(w){
@@ -969,45 +979,36 @@ window.FVK_LAUNCH={"opens":"2026-10-24T07:00:00Z","ends":"2026-11-02T08:00:00Z",
       readyTimer=setTimeout(function(){if(!wait.hidden)toClaim(pid)},12000);});}
   document.getElementById('co-up-yes').addEventListener('click',upgradeNow);
   document.getElementById('co-up-no').addEventListener('click',function(){toClaim(upFrom)});
-  // 17 Oct 2026 (owner): email box ABOVE Whop's checkout, both on screen at once (no separate step, no page reload).
-  // A real address is saved to the relay as soon as it's typed (reminder emails reach every checkout starter) and
-  // Whop is remounted once with it prefilled, unless the buyer already clicked into Whop. Phones get two clear
-  // choices on top: Pay on this phone / Send it to my computer (the old grey link was never tapped in Clarity).
-  // 14 Oct 2026 (owner, reversing 12 Oct): on a phone the checkout opens straight away like on a computer: the
-  // email-first sheet got 5 buy-sheet opens, 1 lead and 0 sales. The download link reaches their email anyway,
-  // and 'Email me the link instead' (relay sends it at once; the discount email follows in 24 h) stays one tap away.
+  // 14 Oct 2026 (owner): on a phone the checkout opens straight away like on a computer (Pay on this phone is the
+  // default). 'Send it to my computer' asks for an email and the relay sends the link at once (the discount email
+  // follows in 24 h). 22 Oct 2026 (owner): no email box above Whop's form; Whop asks for it once.
   var PHONE=!!(window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches&&Math.min(screen.width,screen.height)<768),
-      later=false, phoneLine=document.getElementById('co-phone'), sent=document.getElementById('co-sent'), goBtn=document.getElementById('co-go'), buyHere=document.getElementById('co-buyhere'),
-      lbl=form.querySelector('label'), LBL0=lbl.innerHTML;
-  var saved=document.getElementById('co-saved'),payHere=document.getElementById('co-payhere'),touched=false,typeT=0;document.getElementById('co-how-slot').appendChild(phoneLine);addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME'&&mountEl.contains(a))touched=true},0)});function laterMode(on){later=on;goBtn.textContent='Email me the link';goBtn.hidden=!on;buyHere.hidden=true;phoneLine.hidden=!PHONE;payHere.setAttribute('aria-pressed',String(!on));document.getElementById('co-later').setAttribute('aria-pressed',String(on));
-    lbl.innerHTML=on?'The Kit runs on your <b>Mac or PC</b>. We\u2019ll email you the link to open there.':'Your email: your licence key and download link go here'}
-  buyHere.addEventListener('click',function(){laterMode(false);emErr.hidden=true;
-    var v=emIn.value.trim();if(okEmail(v))email=v;goPay();});
-  document.getElementById('co-later').addEventListener('click',function(){laterMode(true);showEmailStep()});payHere.addEventListener('click',function(){if(!later)return;laterMode(false);emErr.hidden=true;goPay()});function takeEmail(v,loud){v=(v||'').trim();if(!okEmail(v)){if(loud){emErr.textContent='Enter a valid email address.';emErr.hidden=false;emIn.focus()}return}emErr.hidden=true;if(v===email&&mountedKey===current+'|'+v+'|'+(withPack(current)?1:0))return;email=v;tellLead();saved.textContent='\u2713 Saved. Your key and download link go to '+email;saved.hidden=false;if(!touched)mount()}emIn.addEventListener('input',function(){if(later)return;clearTimeout(typeT);typeT=setTimeout(function(){takeEmail(emIn.value)},1200)});emIn.addEventListener('blur',function(){if(later)return;clearTimeout(typeT);takeEmail(emIn.value)});
+      later=false, phoneLine=document.getElementById('co-phone'), sent=document.getElementById('co-sent'), goBtn=document.getElementById('co-go'),
+      payHere=document.getElementById('co-payhere');
+  function laterMode(on){later=on;phoneLine.hidden=!PHONE;payHere.setAttribute('aria-pressed',String(!on));document.getElementById('co-later').setAttribute('aria-pressed',String(on))}
+  document.getElementById('co-later').addEventListener('click',function(){laterMode(true);showEmailStep()});
+  payHere.addEventListener('click',function(){if(!later)return;laterMode(false);emErr.hidden=true;goPay()});
   function sendLater(){sent.hidden=true;goBtn.disabled=true;
     fetch(LEAD,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:email,plan:current,later:true,fbp:ck('_fbp'),fbc:ck('_fbc'),aff:AFF||undefined})})
       .then(function(r){if(!r.ok)throw 0;fb('track','Lead',{value:PRICE[current],currency:'USD',content_name:'Faceless Video Kit',content_ids:[P[current].id]});
         form.hidden=true;sent.hidden=false;document.getElementById('co-sent-to').textContent='We sent the link to '+email+'. Open it on your Mac or PC; your plan is saved there.'})
-      .catch(function(){laterMode(false);emErr.textContent='Couldn\u2019t send the email just now. You can buy here instead.';emErr.hidden=false})
+      .catch(function(){emErr.textContent='Couldn\u2019t send the email just now. Try again, or tap Pay on this phone.';emErr.hidden=false})
       .then(function(){goBtn.disabled=false})}
-  function showEmailStep(){form.hidden=false;who.hidden=true;saved.hidden=true;sent.hidden=true;unmount();wait.hidden=true;emIn.focus()}
+  function showEmailStep(){form.hidden=false;sent.hidden=true;unmount();wait.hidden=true;emIn.focus()}
   // straight to Whop's own checkout (it asks for the email itself unless we already have one)
-  function goPay(){form.hidden=false;goBtn.hidden=true;sent.hidden=true;who.hidden=true;phoneLine.hidden=!PHONE;if(email){emIn.value=email;saved.textContent='\u2713 Saved. Your key and download link go to '+email;saved.hidden=false}else{saved.hidden=true}tellLead();mount();}
-  function showWho(){who.innerHTML='';who.appendChild(document.createTextNode('Key goes to '+email+' · '));
-    var b=document.createElement('button');b.type='button';b.textContent='change';b.addEventListener('click',showEmailStep);who.appendChild(b);
-    form.hidden=true;who.hidden=false;}
+  function goPay(){form.hidden=true;sent.hidden=true;phoneLine.hidden=!PHONE;tellLead();mount();}
   form.addEventListener('submit',function(e){e.preventDefault();var v=emIn.value.trim();
     if(!okEmail(v)){emErr.textContent='Enter a valid email address.';emErr.hidden=false;emIn.focus();return}emErr.hidden=true;email=v;
     if(later){sendLater();return}
-    takeEmail(v,true);});
+    goPay();});
   function show(k){current=k;
     document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-plan-tab')===k))});
     packUi();
     if(later)return;tellLead();mount();}
   var atc={};function open(k){lastFocus=document.activeElement;co.hidden=false;if(!atc[k]&&P[k]){atc[k]=1;fb('track','AddToCart',{value:val(k),currency:'USD',content_name:'Faceless Video Kit',content_ids:[planId(k)],content_type:'product'})}document.documentElement.classList.add('co-open');show(k);
     loadSdk(function(){});
-    laterMode(later);if(later){showEmailStep()}else{goPay();/* 18 Oct 2026 Clarity: both phone checkout openers tapped straight into Whop, typed nothing in our box, so no recovery email. On a phone with no address yet, the cursor (and keyboard) starts in our email box; a typed address is saved at once (takeEmail). */if(PHONE&&!email){emIn.focus()}else{document.getElementById('co-x').focus()}}}
-  function close(){clearTimeout(typeT);if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
+    laterMode(later);if(later){showEmailStep()}else{goPay();document.getElementById('co-x').focus()}}
+  function close(){if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
     if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
   document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-plan-tab'))})});
