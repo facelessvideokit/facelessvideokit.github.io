@@ -126,6 +126,14 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 .hs-ap .w{color:var(--gold)}
 .herovid-note{font-size:12.5px;color:var(--mute);margin-top:10px;text-align:center}
 @media (min-width:641px) and (max-width:960px){.hero .wrap>div:has(.hstack){order:-1}}
+/* 23 Oct 2026 Clarity (phones): 61% left on screen 1-2 and only 11% reached pricing, so Buy + price sit right under the
+   hero video and the four most-tapped questions live in the hero (phones only; the full FAQ stays at the bottom). */
+.hfaq{display:none;width:100%}
+.hfaq details{border:1px solid var(--line2);border-radius:12px;background:rgba(23,21,27,.7);margin:0 0 6px}
+.hfaq summary{cursor:pointer;padding:10px 12px;font-size:14.5px;font-weight:600;color:var(--ink);list-style:none}
+.hfaq summary::-webkit-details-marker{display:none}
+.hfaq summary::after{content:"+";float:right;color:var(--mute)}.hfaq details[open] summary::after{content:"–"}
+.hfaq p{margin:0;padding:0 12px 12px;font-size:14px;line-height:1.45;color:var(--ink2)}
 /* 15-16 Oct 2026 Clarity (phones): the first screen is headline, the real video + its Short with a big Sound on,
    three quick answers, the 3 steps, then Buy and price. Desktop unchanged. */
 .qa{display:none;list-style:none;margin:0;padding:0;gap:5px;width:100%}
@@ -136,9 +144,10 @@ mark{background:none;color:var(--ink);font-weight:700;background-image:linear-gr
 @media (max-width:640px){.hero{padding-block:20px 24px}.hero .wrap{display:flex;flex-direction:column;gap:12px}.hero .wrap>div:first-child{display:contents}
 .hero .wrap>div:first-child>*{order:2}
 .hero .wrap>div:first-child>.badge{order:-7;align-self:flex-start}.hero .wrap>div:first-child>h1{order:-6;margin-block:14px 8px}
-.hero .wrap>div:has(.hstack){order:-5;align-self:stretch}.hero .wrap>div:first-child>.qa{order:-4;display:grid}
-.hero .wrap>div:first-child>.steps3{order:-3;margin:0;width:100%;max-width:none}.hero .wrap>div:first-child>.ctas{order:-2;margin-top:0}
-.hero .wrap>div:first-child>.fine.price-line{order:-1;margin:0}.hero .wrap>div:first-child>.nc-hint{order:-1;margin:0 0 6px}
+.hero .wrap>div:has(.hstack){order:-5;align-self:stretch}.hero .wrap>div:first-child>.ctas{order:-4;margin-top:0}
+.hero .wrap>div:first-child>.fine.price-line{order:-4;margin:0}.hero .wrap>div:first-child>.qa{order:-3;display:grid}
+.hero .wrap>div:first-child>.steps3{order:-3;margin:0;width:100%;max-width:none}.hero .wrap>div:first-child>.hfaq{order:-2;display:block}
+.hero .wrap>div:first-child>.nc-hint{order:-1;margin:0 0 6px}
 .hero .wrap>div:first-child>.where,.hero .wrap>div:first-child>.need,.hero .wrap>div:first-child>.lead{display:none}
 .hs-main{width:76%}.hs-short{width:27%}.hero .hstack{padding-bottom:5.5%}
 /* 19 Oct 2026: align-self:stretch above: .wrap centres its children, so before the posters load the video box sized to
@@ -466,7 +475,6 @@ html.co-open,html.co-open body{overflow:hidden}
         <ul class="qa" aria-label="Quick answers">
           <li>Posts for you, after your yes</li>
           <li>Runs inside Claude or ChatGPT on your Mac or PC</li>
-          <li><span>From <span data-price="starter">$29/mo</span> or <span data-price="lifetime">$199 once</span> · 7-day refund</span></li>
         </ul>
         <ol class="steps3">
           <li><span>1 · YOU</span><b>Tick topics</b><i>once a week</i></li>
@@ -477,8 +485,14 @@ html.co-open,html.co-open body{overflow:hidden}
           <a class="btn btn-hot" id="hero-buy" href="#pricing" data-buy="starter">Get it · <span data-price="starter">$29/mo</span> <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#proof">See real videos</a>
         </div>
-        <p class="fine price-line">7-day refund, no questions · Cancel anytime</p>
+        <p class="fine price-line">Or <span data-price="lifetime">$199 once</span>, yours for life · 7-day refund, no questions</p>
         <p class="tp-line" data-tp hidden></p>
+        <div class="hfaq" aria-label="Before you buy">
+          <details><summary>What else will I pay for?</summary><p>Pictures, clips and voice come from the AI services the Kit has built in (fal.ai, Higgsfield, OpenAI, ElevenLabs, Fish Audio or Google Veo), paid to them direct at their own price, or you use your own files. You pick the model from a menu with prices. The Kit shows the price before every spend, and autopilot stays under a weekly limit you set. Topic research and stock footage are free. Claude&#x27;s free plan works; ChatGPT needs a paid plan.</p></details>
+          <details><summary>Will it post for me?</summary><p>Yes, after you say yes. It uploads to YouTube in your own browser and posts Shorts to TikTok, Instagram, X, Facebook and Threads. Nothing goes public without your OK.</p></details>
+          <details><summary>Will my channel make money?</summary><p>We can&#x27;t promise that. Nobody honest can. Earnings depend on your niche, how often you post and YouTube&#x27;s own rules. The Kit makes the videos. Growing the channel is still up to you.</p></details>
+          <details><summary>How is this different from just asking ChatGPT or Claude?</summary><p>On its own, your AI assistant can write a script. It can&#x27;t make the voice, pictures, captions, thumbnail and finished video, check each step, cut the Shorts and post them. The Kit gives it the tools and the step-by-step method to do all of that on your computer. It also studies the videos already winning your topic before it writes.</p></details>
+        </div>
         <p class="nc-hint"><a href="niche-check.html">Not sure your niche will work? Check it free →</a></p>
         <div class="chips">
           <span>No camera, no mic</span><span>No editing skills</span><span>No commands to type</span>
