@@ -1106,7 +1106,11 @@ window.FVK_LAUNCH={"opens":"2026-10-22T18:30:00Z","ends":"2026-11-02T08:00:00Z",
     laterMode(later);if(later){showEmailStep()}else{goPay();document.getElementById('co-x').focus()}}
   function close(){if(upFrom){toClaim(upFrom);return}co.hidden=true;document.documentElement.classList.remove('co-open');if(lastFocus)lastFocus.focus();}
   document.addEventListener('click',function(e){var a=e.target.closest('a[data-buy]');
-    if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();open(a.getAttribute('data-buy'))}});
+    if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey){e.preventDefault();pressed(a.getAttribute('data-buy'));open(a.getAttribute('data-buy'))}});
+  // 23 Oct 2026 (owner: "how do you know ... no Get Kit button was pressed?"): Meta ViewContent = a Get Kit press, once per
+  // visit, separate from InitiateCheckout (the ads guard's checkout line). The FVK Ads board shows it as "Get Kit pressed".
+  var VC_ID='vc.'+Date.now().toString(36)+'.'+Math.random().toString(36).slice(2,8), vc='';
+  function pressed(k){if(vc)return;vc=VC_ID;var pk=P[k]?k:'starter';fb('track','ViewContent',{value:val(pk),currency:'USD',content_name:'Faceless Video Kit',content_ids:[planId(pk)],content_type:'product'},{eventID:VC_ID})}
   document.querySelectorAll('[data-plan-tab]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-plan-tab'))})});
   document.getElementById('co-x').addEventListener('click',close);
   co.addEventListener('click',function(e){if(e.target===co)close()});
