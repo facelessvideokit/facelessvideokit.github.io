@@ -396,7 +396,7 @@ whop.track("page");
 @media (max-width:640px){.lb{margin-inline:-16px;font-size:13.5px}.lb-in{padding:8px 16px}}
 .co-pack{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:7px 10px;border:1px dashed var(--line2);border-radius:12px;background:var(--card);font-size:14px;color:var(--ink2)}
 .co-pack[hidden]{display:none}
-.co-pack-l{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:center;cursor:pointer}.co-pack input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--hot);cursor:pointer}.co-pack-sub b{font-weight:700;color:var(--ink2)}.co-pack-in{padding:0 0 0 29px}.co-pack-in ul{margin:0;padding:0 0 0 14px;display:grid;gap:3px;font-size:12.5px;line-height:1.35;color:var(--ink2)}.co-pack-in li b{color:var(--ink)}.co-pack-n{margin:6px 0 0;font-size:12px;color:var(--mute)}.co-pack-more{display:none;justify-self:start;margin:0 0 0 29px;padding:2px 0;background:none;border:0;color:var(--gold);font:600 12.5px var(--body);cursor:pointer;text-decoration:underline}.co-pack-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px}@media (max-width:600px){.co-pack-more{display:block}.co-pack-in{display:none}.co-pack.open .co-pack-in{display:block}}
+.co-pack-l{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:center;cursor:pointer}.co-pack input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--hot);cursor:pointer}.co-pack-sub b{font-weight:700;color:var(--ink2)}.co-pack-in{padding:0 0 0 29px}.co-pack-in ul{margin:0;padding:0 0 0 14px;display:grid;gap:3px;font-size:12.5px;line-height:1.35;color:var(--ink2)}.co-pack-in li b{color:var(--ink)}.co-pack-n{margin:6px 0 0;font-size:12px;color:var(--mute)}.co-pack-more{display:none;justify-self:start;margin:0 0 0 29px;padding:2px 0;background:none;border:0;color:var(--gold);font:600 12.5px var(--body);cursor:pointer;text-decoration:underline}.co-pack-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px}@media (max-width:600px){.co-pack-more{display:block}.co-pack-in{display:none}.co-pack.open>.co-pack-in{display:block}}
 .co-pack b{color:var(--ink);font-weight:700}.co-pack em{font-style:normal;color:var(--gold)}
 .co-pack small{display:block;font-size:12px;color:var(--mute);line-height:1.3;margin-top:1px}
 .co-pack:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
@@ -407,6 +407,17 @@ whop.track("page");
 .co-tt:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
 .co-tt .co-pack-in{padding:0 0 0 29px}.co-tt .co-pack-more{margin:0 0 0 29px}
 .co-fit{margin:0;font-size:12px;line-height:1.35;color:var(--ink2)}.co-fit b{color:var(--ink)}
+/* 24 Oct 2026 (owner, Clarity: 3 of 3 phone Get-Kit openers left inside the box before Whop's form): the bumps stay
+   at billing, above Pay (Wendt-style), but on a phone each is ONE line (tick, name, price, What's inside) so
+   Whop's form starts on the first screen. Pitch lines are cut; the running total still shows. */
+@media (max-width:640px){
+  .co-pack,.co-tt{grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:8px;row-gap:4px;padding:6px 9px}
+  .co-pack-sub>b,.co-fit{display:none}
+  .co-pack-l{gap:8px;font-size:13.5px}.co-pack small{margin-top:0}
+  .co-pack-more{margin:0;font-size:12px;white-space:nowrap}.co-tt .co-pack-more{margin:0}
+  .co-pack-in,.co-tt{grid-column:1/-1}
+  .co-pack-in,.co-tt .co-pack-in{padding:0 0 0 28px}
+}
 </style>
 
 <style id="fvk-checkout-css">
