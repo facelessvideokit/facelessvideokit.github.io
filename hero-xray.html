@@ -152,7 +152,7 @@ input::placeholder{color:var(--mute)}
     if(o.step==='start')pace(function(){mark('start','done',o.cached?'Found this week\'s X-ray of this channel':'Looked up the channel');mark('channel','run')});
     else if(o.step==='channel')pace(function(){mark('channel','done','Found '+o.title+(o.subs!==null&&o.subs!==undefined?' · '+k(o.subs)+' subscribers':''));mark('scan','run')});
     else if(o.step==='scan')pace(function(){mark('scan','done','Read its latest '+o.videos+' uploads');mark('verdict','run')});
-    else if(o.step==='verdict')pace(function(){mark('verdict','done','Verdict ready');show(o)});
+    else if(o.step==='verdict')pace(function(){mark('verdict','done','X-ray ready');show(o)});
     else if(o.step==='busy')pace(function(){mark('start','');busyOut()});
     else if(o.step==='error')pace(function(){say(o.reason||'Something went wrong. Try again in a minute.',true);go.disabled=false});
   }
