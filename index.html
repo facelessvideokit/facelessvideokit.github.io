@@ -189,11 +189,15 @@ footer .sp{margin-left:auto}
 .mx tr:last-child th,.mx tr:last-child td{border-bottom:0}
 .mx i{font-style:normal;font-weight:800;font-size:16px}.y{color:var(--ok)}.n{color:var(--hot)}.q{color:var(--mute)}
 @media(min-width:820px){.mx table{font-size:15px}.mx th,.mx td{padding:14px 12px}.mx thead th{font-size:14px}.mx tbody th{font-size:14.5px}}
+.feat h3{font-size:18px}.feat .only{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.more.rail{grid-auto-columns:78%}
+@media(min-width:900px){.more.rail{grid-template-columns:repeat(4,1fr)}}
 .gcard img.tl{object-position:left center}
 .gcard>img{height:auto;flex:none}
 .walk video{max-width:760px}
 .fstep{grid-template-columns:44% minmax(0,1fr)}
 @media(min-width:820px){.fstep{grid-template-columns:220px minmax(0,1fr)}}
+.mx tbody th small{display:block;font-size:11px;color:var(--mute);font-weight:500;margin-top:2px}
 .mx td small{display:block;font-size:11px;color:var(--mute);font-weight:500;line-height:1.25;margin-top:2px}
 /* What's possible (from the Kit page) */
 .ec{background:linear-gradient(180deg,#1B1720,var(--card));border:1px solid var(--line2);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-width:0}
@@ -284,7 +288,7 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
 <body>
 <header class="nav"><div class="wrap">
   <a class="logo" href="#top"><i></i>Faceless Video Kit</a>
-  <nav><a href="#possible">What&rsquo;s possible</a><a href="#flow">How it works</a><a href="#cost">Costs</a><a href="#get">What you get</a><a href="#prices">Plans</a><a href="#faq">FAQ</a></nav>
+  <nav><a href="#possible">What&rsquo;s possible</a><a href="#flow">How it works</a><a href="#cost">Costs</a><a href="#get">What you get</a><a href="#more">Autopilot</a><a href="#prices">Plans</a><a href="#faq">FAQ</a></nav>
   <a class="btn" href="https://app.facelessvideokit.com/">Sign in</a>
 </div></header>
 
@@ -466,34 +470,55 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
   </div>
 </div></section>
 
+<section class="block" id="more"><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">New in the app</span>
+    <h2>Built to run a channel, not just make a video</h2>
+    <p>Set it up once. It plans, makes and keeps your channel going.</p>
+  </div>
+  <div class="feats more rail">
+    <div class="feat"><span class="only">Only here</span><h3>Autopilot on your budget</h3><p>Pick your posting days and a weekly budget. Each night it starts the next video two days ahead; you pick the topic and okay the script. It never spends past your budget.</p></div>
+    <div class="feat"><span class="only">Only here</span><h3>Your content calendar</h3><p>Every coming posting day and every finished video on one calendar, in your own time zone.</p></div>
+    <div class="feat"><span class="only">Only here</span><h3>Learn from channels already winning</h3><p>Name up to three channels you admire. We study their titles, thumbnails and scripts and give your channel 20 ideas of its own. Never copies.</p></div>
+    <div class="feat"><span class="only">Only here</span><h3>A niche check first</h3><p>Before you commit, see if a niche is worth it: a clear go or no-go, with the evidence.</p></div>
+    <div class="feat"><h3>Same characters, every scene</h3><p>Your cast keeps the same faces from scene to scene. Use the pictures we draw, or upload your own.</p></div>
+    <div class="feat"><h3>A voice that&rsquo;s yours</h3><p>Describe a narrator and keep the one you like, or record your own voice.</p></div>
+    <div class="feat"><h3>Your language</h3><p>Script, voice and captions in your channel&rsquo;s language.</p></div>
+    <div class="feat"><h3>Shorts from every long video</h3><p>Up to 5 Shorts cut from each long video, ready to post.</p></div>
+  </div>
+</div></section>
+
 <section class="block" id="familiar"><div class="wrap">
   <div class="head"><h2>Sound familiar?</h2></div>
   <div class="objs">
     <div class="obj"><q>I don&rsquo;t want to be on camera.</q><p>You never are. The voice is AI, the pictures are drawn or filmed for you.</p></div>
     <div class="obj"><q>I don&rsquo;t have time to edit.</q><p>You make three calls: the topic, the title and thumbnail, the script. The editing is done.</p></div>
     <div class="obj"><q>These tools cost $99 a month.</q><p>Ours starts at $29, and every video shows its price before it starts.</p></div>
-    <div class="obj"><q>I don&rsquo;t know what to make videos about.</q><p>Each week you get topics already working in your lane. Or add the Niche Pack: 100 researched topics waiting.</p></div>
+    <div class="obj"><q>I don&rsquo;t know what to make videos about.</q><p>Each week you get topics already working in your lane, or ideas from a channel you admire. Or add the Niche Pack: 100 researched topics waiting.</p></div>
   </div>
 </div></section>
 
 <section class="block" id="compare"><div class="wrap">
   <div class="head">
     <h2>Long videos from $29 a month</h2>
-    <p>Other long-video tools start at $39&ndash;99 a month. Here&rsquo;s how we compare, honestly.</p>
+    <p>Other long-video tools start at $39&ndash;99 a month. Here&rsquo;s what you only get here, checked against their own websites.</p>
   </div>
   <div class="mx"><table>
     <thead><tr><th></th><th class="us">Faceless Video Kit</th><th>VidRush</th><th>Long&shy;Stories</th><th>AI&shy;Tuber</th></tr></thead>
     <tbody>
       <tr><th scope="row">Cheapest plan</th><td class="us">$29</td><td>$99</td><td>$59</td><td>$39</td></tr>
       <tr><th scope="row">One 10-minute video</th><td class="us">~$5.60</td><td>~$22</td><td>~$30<small>no animation</small></td><td><i class="q">—</i></td></tr>
-      <tr><th scope="row">10-minute videos a month on it</th><td class="us">5</td><td>4</td><td>1</td><td><i class="q">—</i></td></tr>
-      <tr><th scope="row">You approve title, thumbnail &amp; script first</th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
-      <tr><th scope="row">Unused credits</th><td class="us">roll over<small>a month&rsquo;s worth</small></td><td>roll over<small>up to half</small></td><td>roll over</td><td>never expire</td></tr>
-      <tr><th scope="row">Final Cut / Resolve project</th><td class="us"><i class="y">✓</i></td><td><i class="n">✗</i><small>in-app editor</small></td><td><i class="n">✗</i><small>download only</small></td><td><i class="n">✗</i></td></tr>
-      <tr><th scope="row">Posts to YouTube for you</th><td class="us">soon</td><td><i class="q">—</i></td><td><i class="y">✓</i></td><td><i class="y">✓</i><small>scheduled</small></td></tr>
+      <tr><th scope="row">Autopilot on a weekly budget</th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i><small>autopilot, no budget cap</small></td></tr>
+      <tr><th scope="row">Content calendar</th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
+      <tr><th scope="row">Niche + 100 topics, done for you</th><td class="us"><i class="y">✓</i><small>Niche Pack add-on</small></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
+      <tr><th scope="row">Learns from winning channels</th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
+      <tr><th scope="row">Niche check first</th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
+      <tr><th scope="row">Channel kit<small>pictures, banners, @handle</small></th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
+      <tr><th scope="row">You okay title, thumbnail &amp; script first</th><td class="us"><i class="y">✓</i></td><td><i class="q">—</i><small>review after the draft</small></td><td><i class="q">—</i></td><td><i class="q">—</i></td></tr>
+      <tr><th scope="row">Editor timeline<small>Final Cut, Resolve, Premiere</small></th><td class="us"><i class="y">✓</i></td><td><i class="n">✗</i><small>in-app editor</small></td><td><i class="n">✗</i><small>download only</small></td><td><i class="n">✗</i></td></tr>
     </tbody>
   </table></div>
-  <p class="note"><i class="q">—</i> = not on their pricing page. From each tool&rsquo;s public pricing page, checked 26 October 2026, on its cheapest plan. VidRush: 45 minutes of video for $99. LongStories: about 2,300 of its 4,500 credits for 10 minutes with no animation; animated videos cost more. Ours: about 385 of Starter&rsquo;s 2,000 credits. Our one-tap publishing to YouTube is coming soon; today you get the title, description and tags ready to paste.</p>
+  <p class="note"><i class="q">—</i> = not on their website. From each tool&rsquo;s home and pricing pages, checked 27 October 2026; prices are each tool&rsquo;s cheapest plan. VidRush: 45 minutes of video for $99, and you review the video after its first draft. LongStories: about 2,300 of its 4,500 credits for 10 minutes with no animation; animated videos cost more. AITuber runs autopilot channels but states no spending cap. Ours: about 385 of Starter&rsquo;s 2,000 credits. The Niche Pack is a one-time add-on at checkout.</p>
 </div></section>
 
 <section class="block" id="prices"><div class="wrap">
