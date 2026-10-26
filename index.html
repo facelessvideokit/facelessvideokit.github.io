@@ -290,6 +290,20 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
   <span class="sp">Payments and sign-in by Whop</span>
 </div></footer>
 <script>
+// Whop checkouts that land the buyer in the app after paying (?welcome=1): plan id -> checkout (whop_checkouts.py)
+window.FVK_CHECKOUT = {
+ "plan_557ijfaENTgIP": "https://whop.com/checkout/ch_UmvttjvoLEjyPeZ/",
+ "plan_zkcEQBNCoO2MX": "https://whop.com/checkout/ch_3mmsp1F4fcYH9TD/",
+ "plan_iNO3OPr33H5hA": "https://whop.com/checkout/ch_RtdqOlIo4QEhvqt/",
+ "plan_YfGOpRrdqx4PG": "https://whop.com/checkout/ch_7IJNwnGyzZ5p8vA/",
+ "plan_ol75saT543qsF": "https://whop.com/checkout/ch_zanlxEdB8vhEsMy/",
+ "plan_WvxHRQK578SSh": "https://whop.com/checkout/ch_uaJw8kP0qIaCA0j/",
+ "plan_ExG1AQqvtvZii": "https://whop.com/checkout/ch_4VSbPgIikKVzjtY/",
+ "plan_IW26CcRhru6Lj": "https://whop.com/checkout/ch_exGFpg992hyCICj/",
+ "plan_ofwdT9GuU0X66": "https://whop.com/checkout/ch_TbqPHZeSf1rKrU4/"
+};
+</script>
+<script>
 // the pack add-on swaps each plan's checkout link (launch, owner 26 Oct: packs as checkout add-ons)
 (function () {
   var go = function () {
