@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Faceless Video Kit · Faceless long videos, made in your browser</title>
+<meta name="description" content="Faceless YouTube videos of 6 to 20 minutes, and Shorts. See the title and thumbnail first, approve the script, get the finished video and a Final Cut project. From $29 a month, credit included.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FF4D2E'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:dark;
+  --bg:#0B0A0C;--bg2:#121015;--card:#17151B;--line:#2A2630;--line2:#3A3542;
+  --ink:#F5F2EE;--ink2:#C9C3CF;--mute:#8E8797;--hot:#FF4D2E;--hot2:#FF7A45;--gold:#FFC24B;--ok:#3DDC97;
+  --display:"Bricolage Grotesque","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;--wrap:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(40px,7vw,72px);font-weight:800}
+h2{font-size:clamp(30px,4.6vw,46px);font-weight:800}
+h3{font-size:20px;font-weight:600}
+p{margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:12px;font-weight:700;text-decoration:none;font-size:16px;border:1px solid var(--line2);background:var(--card);color:var(--ink)}
+.btn-hot{background:linear-gradient(135deg,var(--hot),var(--hot2));border:0;color:#fff}
+.btn:hover{filter:brightness(1.08)}
+.nav{position:sticky;top:0;z-index:20;background:rgba(11,10,12,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;font-family:var(--display);font-size:18px;white-space:nowrap}
+.logo i{width:28px;height:28px;border-radius:8px;background:var(--hot);display:grid;place-items:center;flex:none}
+.logo i:after{content:"";border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.nav nav{display:flex;gap:22px;margin-left:auto;font-size:15px}
+.nav nav a{text-decoration:none;color:var(--ink2)}
+.nav .btn{min-height:40px;padding:8px 16px;font-size:15px}
+@media(max-width:720px){.nav nav{display:none}.nav .btn{margin-left:auto}}
+.hero{padding:64px 0 40px}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--hot2);white-space:nowrap}
+.hero .sub{font-size:19px;color:var(--ink2);margin:20px 0 28px;max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.fine{font-size:14px;color:var(--mute);margin-top:14px}
+.frame{border-radius:16px;overflow:hidden;border:1px solid var(--line2);background:#000;aspect-ratio:16/9;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.frame video{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.hero{padding:40px 0 24px}.hero .grid{grid-template-columns:1fr;gap:28px}}
+section.block{padding:72px 0;border-top:1px solid var(--line)}
+.head{max-width:720px;margin-bottom:36px}
+.head p{margin-top:14px;color:var(--ink2);font-size:18px}
+@media(max-width:720px){section.block{padding:52px 0}}
+.samples{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sample{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sample video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+.sample .cap{padding:12px 14px}
+.sample .cap b{display:block;font-size:16px}
+.sample .cap span{font-size:14px;color:var(--mute)}
+@media(max-width:900px){.samples{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.samples{grid-template-columns:1fr}}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--hot);font-weight:800;margin-bottom:16px}
+.step p{color:var(--ink2);margin-top:8px;font-size:16px}
+.step .who{font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-top:14px}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--bg2)}
+.feat p{color:var(--ink2);margin-top:8px;font-size:16px}
+@media(max-width:900px){.feats{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.feats{grid-template-columns:1fr}}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);background:var(--bg2)}
+tr:last-child td{border-bottom:0}
+td.us{background:rgba(255,77,46,.08);font-weight:700}
+@media(max-width:640px){.tablewrap{border:0;overflow:visible}table,tbody,tr,td{display:block;min-width:0}thead{display:none}
+ tr{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}td{border:0;padding:8px 16px;display:flex;gap:12px;justify-content:space-between}
+ td:first-child{font-family:var(--display);font-size:18px;font-weight:800;padding-top:14px}td[data-l]:before{content:attr(data-l);color:var(--mute);font-weight:500;flex:none;max-width:45%;text-align:left}
+ td[data-l]{text-align:right}td.us{background:transparent}tr.us{border-color:var(--hot);background:rgba(255,77,46,.08)}}
+.note{font-size:14px;color:var(--mute);margin-top:12px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.plan{border:1px solid var(--line2);border-radius:16px;padding:26px;background:var(--card);display:flex;flex-direction:column}
+.plan.pick{border-color:var(--hot);box-shadow:0 0 0 1px var(--hot) inset}
+.plan .flag{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--hot2);text-transform:uppercase;min-height:18px}
+.plan h3{margin-top:6px}
+.amt{font-family:var(--display);font-size:46px;font-weight:800;margin:10px 0 2px}
+.amt span{font-size:16px;color:var(--mute);font-family:var(--body);font-weight:500}
+.credit{color:var(--ok);font-weight:700}
+.plan ul{list-style:none;padding:0;margin:18px 0 22px;flex:1}
+.plan li{padding:6px 0 6px 26px;position:relative;color:var(--ink2);font-size:15px}
+.plan li:before{content:"";position:absolute;left:2px;top:12px;width:12px;height:6px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
+.topups{margin-top:18px;font-size:15px;color:var(--ink2)}
+.topups a{color:var(--gold)}
+@media(max-width:900px){.plans{grid-template-columns:1fr}}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--hot2);font-size:22px;line-height:1}
+.faq details[open] summary:after{content:"\2013"}
+.faq details p{color:var(--ink2);margin-top:10px;max-width:760px}
+.faq details a{color:var(--gold)}
+.final{text-align:center;padding:84px 0;border-top:1px solid var(--line)}
+.final p{color:var(--ink2);margin:16px auto 28px;max-width:560px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+footer a{color:var(--ink2)}
+footer .sp{margin-left:auto}
+@media(max-width:560px){footer .sp{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><i></i>Faceless Video Kit</a>
+  <nav><a href="#samples">Videos</a><a href="#how">How it works</a><a href="#prices">Prices</a><a href="#faq">FAQ</a></nav>
+  <a class="btn" href="https://app.facelessvideokit.com/">Sign in</a>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap grid">
+  <div>
+    <span class="eyebrow">Faceless YouTube, done for you</span>
+    <h1>Faceless long videos, <em>6&ndash;20&nbsp;minutes.</em> You approve. It&rsquo;s made.</h1>
+    <p class="sub">Pick a topic. See the title and thumbnail first, read the script, say yes. You get the finished video, ready to upload, plus a Final Cut project if you want to touch it up. Shorts too.</p>
+    <div class="cta">
+      <a class="btn btn-hot" href="#prices">Start my channel</a>
+      <a class="btn" href="#samples">Watch real videos</a>
+    </div>
+    <p class="fine">From $29 a month with video credit included &middot; works in your browser, nothing to install</p>
+  </div>
+  <div class="frame"><video src="../v2/hero_main.mp4" poster="../v2/hero_main.jpg" autoplay muted loop playsinline aria-label="A finished faceless video made with Faceless Video Kit"></video></div>
+</div></section>
+
+<section class="block" id="samples"><div class="wrap">
+  <div class="head">
+    <h2>Real videos. Not mock&#8209;ups.</h2>
+    <p>Every clip below was made start to finish by Faceless Video Kit. Pick the look that fits your channel.</p>
+  </div>
+  <div class="samples">
+    <figure class="sample"><video src="../proof/broll_only.mp4" poster="../proof/broll_only.jpg" controls muted playsinline preload="none"></video><figcaption class="cap"><b>Stock footage</b><span>Real video clips, cut to the voice</span></figcaption></figure>
+    <figure class="sample"><video src="../proof/broll_stills.mp4" poster="../proof/broll_stills.jpg" controls muted playsinline preload="none"></video><figcaption class="cap"><b>Footage + pictures</b><span>Clips, with drawn pictures where no clip fits</span></figcaption></figure>
+    <figure class="sample"><video src="../proof/data_scenes.mp4" poster="../proof/data_scenes.jpg" controls muted playsinline preload="none"></video><figcaption class="cap"><b>Animated explainer</b><span>Charts and numbers that move</span></figcaption></figure>
+    <figure class="sample"><video src="../proof/stills_stickfigure.mp4" poster="../proof/stills_stickfigure.jpg" controls muted playsinline preload="none"></video><figcaption class="cap"><b>Drawn pictures</b><span>A picture for every line</span></figcaption></figure>
+    <figure class="sample"><video src="../v2/style_fantasy.mp4" poster="../v2/style_fantasy.jpg" controls muted playsinline preload="none"></video><figcaption class="cap"><b>Cinematic</b><span>Any style you describe</span></figcaption></figure>
+    <figure class="sample"><video src="../v2/style_cartoon.mp4" poster="../v2/style_cartoon.jpg" controls muted playsinline preload="none"></video><figcaption class="cap"><b>Cartoon</b><span>Same characters, every scene</span></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="block" id="how"><div class="wrap">
+  <div class="head">
+    <h2>Three steps. You do the easy part.</h2>
+    <p>You make the calls a channel owner should make. Faceless Video Kit does the rest.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><h3>Set up your channel</h3><p>Shorts or long videos, the length, the look, the voice and how often you post. About 3 minutes, once.</p><div class="who">You</div></div>
+    <div class="step"><h3>Say yes to the title, thumbnail and script</h3><p>Pick a topic. The title and thumbnail come first, then a script written to deliver on them. Ask for changes until it&rsquo;s right.</p><div class="who">You approve</div></div>
+    <div class="step"><h3>Get the finished video</h3><p>Pictures or footage, voice, captions and music, put together. Download the video and the thumbnail, or the Final Cut project.</p><div class="who">Done for you</div></div>
+  </div>
+</div></section>
+
+<section class="block" id="control"><div class="wrap">
+  <div class="head">
+    <h2>You stay in charge of every video</h2>
+    <p>No surprise topics, no surprise bills.</p>
+  </div>
+  <div class="feats">
+    <div class="feat"><h3>Title and thumbnail first</h3><p>You see what viewers will click on before a word of the script is written. Want another thumbnail? Ask for one.</p></div>
+    <div class="feat"><h3>Read the script before anything is made</h3><p>Nothing is drawn or filmed until you say the script is right.</p></div>
+    <div class="feat"><h3>See the price before you press Go</h3><p>Every video shows the most it can use from your credit. Anything it doesn&rsquo;t use stays in your wallet.</p></div>
+    <div class="feat"><h3>Pick your AI models</h3><p>Seven AI video models and four picture models, from Kling and Hailuo to GPT Image. Set them once for each channel.</p></div>
+    <div class="feat"><h3>Footage that fits, never repeated</h3><p>Stock clips are checked against each line and the real place you&rsquo;re talking about. A clip used once on your channel is never used again.</p></div>
+    <div class="feat"><h3>Close the tab. It keeps going.</h3><p>A live progress bar with a time estimate. Lose your connection and come back later: your video is where you left it. We email you when it&rsquo;s ready.</p></div>
+  </div>
+</div></section>
+
+<section class="block" id="compare"><div class="wrap">
+  <div class="head">
+    <h2>A 10-minute video, without the $99 plan</h2>
+    <p>Long-form tools usually start at $59&ndash;99 a month. Faceless Video Kit starts at $29, and every video tells you the most it can cost before it starts.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th></th><th>Cheapest plan</th><th>A 10-minute video</th><th>Approve the script first</th><th>Final Cut project</th></tr></thead>
+    <tbody>
+      <tr class="us"><td class="us">Faceless Video Kit</td><td class="us" data-l="Cheapest plan">$29/mo, $10 credit included</td><td class="us" data-l="A 10-minute video">about $4&ndash;11 of credit, depending on the look</td><td class="us" data-l="Approve the script first">Yes, plus title and thumbnail first</td><td class="us" data-l="Final Cut project">Yes</td></tr>
+      <tr><td>VidRush</td><td data-l="Cheapest plan">$99/mo</td><td data-l="A 10-minute video">about $22&ndash;27</td><td data-l="Approve the script first">Plan approval</td><td data-l="Final Cut project">No</td></tr>
+      <tr><td>LongStories</td><td data-l="Cheapest plan">$59/mo (videos up to 10 min)</td><td data-l="A 10-minute video">not stated</td><td data-l="Approve the script first">&mdash;</td><td data-l="Final Cut project">No</td></tr>
+      <tr><td>AITuber</td><td data-l="Cheapest plan">$39/mo</td><td data-l="A 10-minute video">not stated (long videos up to 20 min)</td><td data-l="Approve the script first">&mdash;</td><td data-l="Final Cut project">No</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Other tools&rsquo; prices are from their public pricing pages, checked 26 October 2026. VidRush&rsquo;s figure is its per-minute rate on its monthly plans. Our range is the most a 10-minute video can use (stock footage at the low end, drawn pictures at the high end); you are charged what your video actually uses, which is often less.</p>
+</div></section>
+
+<section class="block" id="prices"><div class="wrap">
+  <div class="head">
+    <h2>Pick your plan</h2>
+    <p>Every plan includes monthly credit that pays for your videos. Need more? Top up any time. Cancel any time.</p>
+  </div>
+  <div class="plans">
+    <div class="plan"><div class="flag"></div><h3>Starter</h3><div class="amt">$29<span>/month</span></div><div class="credit">$10 of video credit every month</div>
+      <ul><li>Shorts and long videos, 6&ndash;20 minutes</li><li>Every look, voice and AI model</li><li>Finished video, thumbnail and Final Cut project</li></ul>
+      <a class="btn btn-hot" href="https://whop.com/checkout/plan_557ijfaENTgIP">Start with Starter</a></div>
+    <div class="plan"><div class="flag"></div><h3>Creator</h3><div class="amt">$59<span>/month</span></div><div class="credit">$20 of video credit every month</div>
+      <ul><li>Everything in Starter</li><li>Twice Starter&rsquo;s monthly credit</li></ul>
+      <a class="btn btn-hot" href="https://whop.com/checkout/plan_YfGOpRrdqx4PG">Start with Creator</a></div>
+    <div class="plan pick"><div class="flag">Most credit per dollar</div><h3>Studio</h3><div class="amt">$129<span>/month</span></div><div class="credit">$50 of video credit every month</div>
+      <ul><li>Everything in Creator</li><li>Five times Starter&rsquo;s monthly credit</li></ul>
+      <a class="btn btn-hot" href="https://whop.com/checkout/plan_ExG1AQqvtvZii">Start with Studio</a></div>
+  </div>
+  <p class="topups">Top-ups: <b>$10, $25, $50 or $100</b>, from your wallet in the app. Top-up credit lasts 12 months; plan credit lasts a month. After checkout, sign in at <a href="https://app.facelessvideokit.com/">app.facelessvideokit.com</a> with the same Whop account.</p>
+</div></section>
+
+<section class="block faq" id="faq"><div class="wrap">
+  <div class="head"><h2>Before you buy</h2></div>
+  <details><summary>Do I need to install anything, or have my own AI accounts?</summary><p>No. It all runs in your browser. The writing, pictures, voice and footage are included and paid from your credit.</p></details>
+  <details><summary>How does the credit work?</summary><p>Your plan adds credit to your wallet each month. Before each video you see the most it can use; when it&rsquo;s done you&rsquo;re charged what it actually used, and the rest stays in your wallet. The app also shows a weekly estimate for each channel, so you know how far your credit goes.</p></details>
+  <details><summary>How long does a video take?</summary><p>You&rsquo;ll see a live progress bar with a time estimate. You don&rsquo;t need to wait on the page: close the tab and we&rsquo;ll email you when it&rsquo;s ready, or when it needs your yes.</p></details>
+  <details><summary>Can I change the script or thumbnail?</summary><p>Yes. Ask for up to three script changes per video, and up to three new thumbnails, each priced before it&rsquo;s made.</p></details>
+  <details><summary>Who owns the videos?</summary><p>You do. Download them and post them wherever you like. Stock footage comes from Pexels and Pixabay under their free licences. Finished files stay in the app for 7 days, so download what you want to keep.</p></details>
+  <details><summary>Can I get a refund?</summary><p>Yes, in full, as long as you haven&rsquo;t started a video yet. Once a video has used credit, payments aren&rsquo;t refundable. See the <a href="../refunds.html">refund policy</a>.</p></details>
+  <details><summary>Will my videos get views or make money?</summary><p>We can&rsquo;t promise that, and nobody honest can. You get a well-made video on a topic you chose; growing a channel is still up to your topics, how often you post, and YouTube.</p></details>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>Your next video, minus the editing.</h2>
+  <p>Set up a channel in 3 minutes, say yes to a script, and get a finished video.</p>
+  <a class="btn btn-hot" href="#prices">Start my channel</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>&copy; 2026 Faceless Video Kit</span>
+  <a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a><a href="../privacy.html">Privacy</a>
+  <a href="mailto:facelessvideokit.help@gmail.com">facelessvideokit.help@gmail.com</a>
+  <span class="sp">Payments and sign-in by Whop</span>
+</div></footer>
+</body>
+</html>
