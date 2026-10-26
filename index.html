@@ -557,7 +557,6 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
 
 <section class="block faq" id="faq"><div class="wrap">
   <div class="head"><h2>Before you buy</h2></div>
-  <details><summary>Does it upload to YouTube for me?</summary><p>Not yet. Today you download the finished video and thumbnail, and copy the title, description, tags and pinned comment with one tap each. Publishing to your channel from the app, now or on a schedule, is coming soon.</p></details>
   <details><summary>What does a video cost?</summary><p>A Short uses about 185 credits and a 10-minute video about 360&ndash;425, depending on the look. Starter&rsquo;s 2,000 credits a month make about 5 ten-minute videos or 10 Shorts. AI-filmed clips cost much more; see <a href="#cost">what a video costs</a>. You always see the most a video can use before it starts.</p></details>
   <details><summary>How do credits work?</summary><p>Your plan adds credits to your wallet each month. You&rsquo;re charged what each video actually used, and the rest stays in your wallet. Unused plan credits roll over to the next month (up to one month&rsquo;s worth), and top-up credits never expire while you have a plan.</p></details>
   <details><summary>Do I need to install anything, or have my own AI accounts?</summary><p>No. It all runs in your browser, on your phone or computer. The writing, pictures, voice and footage are included and paid from your credits.</p></details>
@@ -714,7 +713,7 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
 /* phones: the four most-asked questions under the hero, cloned from #faq (see .hfaq CSS) */
 (function () { var box = document.getElementById("hfaq"), all = box && box.querySelector(".all");
   if (!box) return;
-  ["Does it upload to YouTube for me?", "What does a video cost?", "Do I need to install anything, or have my own AI accounts?", "Will my videos get views or make money?"].forEach(function (q) {
+  ["What does a video cost?", "Can I change the script or thumbnail?", "Do I need to install anything, or have my own AI accounts?", "Will my videos get views or make money?"].forEach(function (q) {
     var d = [].filter.call(document.querySelectorAll("#faq details"), function (x) { return x.querySelector("summary").textContent.trim() === q; })[0];
     if (d) box.insertBefore(d.cloneNode(true), all); });
 })();
