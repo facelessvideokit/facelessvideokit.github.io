@@ -175,6 +175,14 @@ footer .sp{margin-left:auto}
 .obj q{display:block;font-family:var(--display);font-weight:600;font-size:19px;quotes:"\201C" "\201D"}
 .obj p{color:var(--ink2);font-size:15px;margin-top:6px}
 @media(min-width:820px){.objs{grid-template-columns:1fr 1fr}}
+/* 27 Oct 2026: restores the 23 Oct Clarity fix lost in the 26 Oct rebuild. On phones the FAQ taps at the bottom were the
+   top non-video taps, so the four most-asked questions sit right under the hero. Cloned from #faq at load, so answers never drift. */
+.hfaq{display:none}
+@media(max-width:899px){.hfaq{display:block;margin-top:18px}.hfaq h2{font-size:15px;font-weight:700;color:var(--mute);margin:0 0 8px;letter-spacing:.02em}
+.hfaq details{border:1px solid var(--line);border-radius:12px;background:rgba(23,21,27,.7);margin:0 0 6px}
+.hfaq summary{cursor:pointer;padding:12px 14px;font-size:15px;font-weight:600;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.hfaq summary::-webkit-details-marker{display:none}.hfaq summary::after{content:"+";color:var(--hot)}.hfaq details[open] summary::after{content:"\2013"}
+.hfaq p{margin:0;padding:0 14px 12px;font-size:14px;line-height:1.5;color:var(--ink2)}.hfaq .all{display:inline-block;margin-top:4px;font-size:14px;color:var(--ink2)}}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(11,10,12,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .25s}
 .sticky.on{transform:none}.sticky .btn{width:100%}
 @media(min-width:900px){.sticky{display:none}}
@@ -314,7 +322,8 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
   <li><b>Approve</b><span>title, thumbnail, script</span></li>
   <li><b>It&rsquo;s made</b><span>close the tab, we email you</span></li>
   <li><b>Upload</b><span>video + words, copy-ready</span></li>
-</ol></div></section>
+</ol>
+<div class="hfaq" id="hfaq" aria-label="Most-asked questions"><h2>Most asked</h2><a class="all" href="#faq">All questions &rarr;</a></div></div></section>
 
 <section class="looks" aria-label="Twelve looks to choose from"><div class="track">
   <figure><img src="looks/look_realistic.webp" alt="" width="480" height="270" loading="lazy"><figcaption>Realistic documentary</figcaption></figure>
@@ -699,6 +708,15 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
   new IntersectionObserver(function (e) { a = e[0].isIntersecting; set(); }).observe(hero);
   new IntersectionObserver(function (e) { b = e[0].isIntersecting; set(); }).observe(plans);
   new MutationObserver(set).observe(document.getElementById("co"), { attributes: true, attributeFilter: ["hidden"] });
+})();
+</script>
+<script>
+/* phones: the four most-asked questions under the hero, cloned from #faq (see .hfaq CSS) */
+(function () { var box = document.getElementById("hfaq"), all = box && box.querySelector(".all");
+  if (!box) return;
+  ["Does it upload to YouTube for me?", "What does a video cost?", "Do I need to install anything, or have my own AI accounts?", "Will my videos get views or make money?"].forEach(function (q) {
+    var d = [].filter.call(document.querySelectorAll("#faq details"), function (x) { return x.querySelector("summary").textContent.trim() === q; })[0];
+    if (d) box.insertBefore(d.cloneNode(true), all); });
 })();
 </script>
 </body>
