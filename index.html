@@ -239,6 +239,7 @@ footer .sp{margin-left:auto}
   .co-pack-l{gap:8px;font-size:13.5px}.co-pack small{margin-top:0}
   .co-pack-more{margin:0;font-size:12px;white-space:nowrap}.co-tt .co-pack-more{margin:0}
   .co-pack-in,.co-tt{grid-column:1/-1}
+  .co-tt{margin-left:0}
   .co-pack-in,.co-tt .co-pack-in{padding:0 0 0 28px}
 }
 .co{position:fixed;inset:0;z-index:100;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:16px;background:rgba(6,5,8,.78);backdrop-filter:blur(6px)}
@@ -571,8 +572,8 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
           </ul>
           <p class="co-pack-n"><i>Megaprojects · Military history · Company collapses · History mysteries · Abandoned places</i></p>
         </div>
-        <div class="co-tt" id="co-tt-row" hidden>
-          <label class="co-pack-l"><input type="checkbox" id="co-tt"><span><b>Make it the Launch Bundle &mdash; <em>both packs $29</em></b><small class="co-pack-sub"><b>+ the Thumbnail &amp; Title Pack for $10 more.</b><span id="co-tt-tot"></span></small></span></label>
+        <div class="co-tt" id="co-tt-row">
+          <label class="co-pack-l"><input type="checkbox" id="co-tt"><span><b>+ Thumbnail &amp; Title Pack too &mdash; <em>$29 for both</em></b><small class="co-pack-sub"><b>The Niche Pack + the Thumbnail &amp; Title Pack, for $10 more.</b><span id="co-tt-tot"></span></small></span></label>
           <p class="co-fit"><b>The other half of every video:</b> the Niche Pack picks <b>what</b> to make; this pack makes the title and thumbnail people <b>click</b>, by itself.</p>
           <button type="button" class="co-pack-more" id="co-tt-more" aria-expanded="false" aria-controls="co-tt-in">What&rsquo;s inside &#9662;</button>
           <div class="co-pack-in" id="co-tt-in">
@@ -619,7 +620,8 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
     var v = P[current].value;
     document.getElementById("co-pack-tot").textContent = " $" + (v + 19) + " today, then $" + v + "/mo";
     document.getElementById("co-tt-tot").textContent = " $" + (v + 29) + " today, then $" + v + "/mo";
-    ttRow.hidden = !pack.checked; if (!pack.checked) tt.checked = false;
+    // 27 Oct (owner: "what happened to the thumbnail one?"): the Launch Bundle is always shown, not only
+    // after the Niche Pack is ticked; ticking it ticks the Niche Pack too (it is both packs)
     document.querySelectorAll("[data-tab]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-tab") === current)); });
   }
   // without this script the plan buttons still work: each is the same plan's hosted checkout
@@ -652,8 +654,8 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
   document.querySelectorAll("a.buy").forEach(function (a) { a.addEventListener("click", function (e) {
     if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); open(a.getAttribute("data-tier")); }); });
   document.querySelectorAll("[data-tab]").forEach(function (b) { b.addEventListener("click", function () { current = b.getAttribute("data-tab"); totals(); mount(); }); });
-  pack.addEventListener("change", function () { totals(); mount(); });
-  tt.addEventListener("change", function () { totals(); mount(); });
+  pack.addEventListener("change", function () { if (!pack.checked) tt.checked = false; totals(); mount(); });
+  tt.addEventListener("change", function () { if (tt.checked) pack.checked = true; totals(); mount(); });
   ["co-pack-more", "co-tt-more"].forEach(function (id) { var b = document.getElementById(id); b.addEventListener("click", function () {
     var on = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", String(on)); b.parentNode.classList.toggle("open", on); }); });
   document.getElementById("co-x").addEventListener("click", close);
