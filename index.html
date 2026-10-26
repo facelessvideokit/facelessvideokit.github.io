@@ -306,11 +306,23 @@ window.FVK_CHECKOUT = {
 <script>
 // the pack add-on swaps each plan's checkout link (launch, owner 26 Oct: packs as checkout add-ons)
 (function () {
+  // an affiliate's ?a=<code> (Whop's affiliate links) is kept 30 days and goes on every checkout link,
+  // so the sale is theirs whether the visitor buys now or comes back later (as the Kit page did)
+  var AFF_RE = /^[A-Za-z0-9_.-]{2,40}$/, AFF = "";
+  (function () {
+    var a = (new URLSearchParams(location.search).get("a") || "").trim(), now = Date.now();
+    try {
+      if (AFF_RE.test(a)) { localStorage.setItem("fvk_aff", JSON.stringify({ c: a, t: now })); AFF = a; return; }
+      var s = JSON.parse(localStorage.getItem("fvk_aff") || "null");
+      if (s && AFF_RE.test(s.c) && now - s.t < 30 * 864e5) AFF = s.c; else localStorage.removeItem("fvk_aff");
+    } catch (e) { if (AFF_RE.test(a)) AFF = a; }
+  })();
   var go = function () {
     var pick = (document.querySelector('input[name="addon"]:checked') || {}).value || "plan";
     document.querySelectorAll("a.buy").forEach(function (a) {
       var id = a.getAttribute("data-" + pick) || a.getAttribute("data-plan");
-      a.href = (window.FVK_CHECKOUT && window.FVK_CHECKOUT[id]) || "https://whop.com/checkout/" + id;
+      var url = (window.FVK_CHECKOUT && window.FVK_CHECKOUT[id]) || "https://whop.com/checkout/" + id;
+      a.href = url + (AFF ? (url.indexOf("?") < 0 ? "?" : "&") + "a=" + encodeURIComponent(AFF) : "");
     });
   };
   // InitiateCheckout once per visit, when a plan button is pressed (checkout itself is on Whop)
