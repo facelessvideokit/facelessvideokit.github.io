@@ -74,7 +74,7 @@ input::placeholder{color:var(--mute)}
 </head>
 <body>
 <div class="wrap">
-  <header class="nav"><a class="logo" href="./"><i aria-hidden="true"></i>Faceless Video Kit</a><a class="btn btn-ghost btn-sm" href="./#proof">See real videos</a></header>
+  <header class="nav"><a class="logo" href="./"><i aria-hidden="true"></i>Faceless Video Kit</a><a class="btn btn-ghost btn-sm" href="./#samples">See real videos</a></header>
 
   <main>
     <span class="eyebrow">Free tool · live YouTube research</span>
@@ -117,8 +117,8 @@ input::placeholder{color:var(--mute)}
       <span class="eyebrow">Then make the videos</span>
       <h2>The Faceless Video Kit makes them for you<span style="color:var(--hot)">.</span></h2>
       <p class="lead" style="margin:0">A download that runs inside Claude or ChatGPT on your computer. You tick the topics and say yes; your AI assistant makes the script, voice, pictures, captions, thumbnail and the finished MP4, and cuts the Shorts.</p>
-      <div class="row2"><a class="btn btn-hot" id="buy" href="./#pricing">Get the Kit · $29/mo <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="./#proof">See real videos</a></div>
-      <p class="hint" style="margin-top:10px">or $199 once, yours for life · 7-day refund</p>
+      <div class="row2"><a class="btn btn-hot" id="buy" href="./#prices">Start making videos · from $29/mo <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="./#samples">See real videos</a></div>
+      <p class="hint" style="margin-top:10px">Made in your browser, nothing to install · full refund before your first video</p>
     </section>
 
     <p class="note">The checker reads public YouTube data (views, subscribers, upload dates) and scores it with fixed rules; it isn't a promise of results. Earnings are never guaranteed. Niches that need bodycam or dashcam footage (true crime) aren't supported by the Kit.</p>
@@ -134,7 +134,7 @@ input::placeholder{color:var(--mute)}
   // affiliate code kept by the main page (?a=, 30 days)
   var AFF='';try{var a=new URLSearchParams(location.search).get('a')||'';var s=JSON.parse(localStorage.getItem('fvk_aff')||'null');
     if(/^[A-Za-z0-9_.-]{2,40}$/.test(a)){AFF=a;localStorage.setItem('fvk_aff',JSON.stringify({c:a,t:Date.now()}))}else if(s&&Date.now()-s.t<30*864e5)AFF=s.c}catch(e){}
-  if(AFF){$('buy').href='./?a='+encodeURIComponent(AFF)+'#pricing'}
+  if(AFF){$('buy').href='./?a='+encodeURIComponent(AFF)+'#prices'}
   var pre=new URLSearchParams(location.search).get('q');if(pre)q.value=pre.slice(0,60);
   window.onTsLoad=function(){};
   (function wait(){if(window.turnstile){wid=turnstile.render('#ts',{sitekey:SITEKEY,appearance:'interaction-only',callback:function(t){tsToken=t},'expired-callback':function(){tsToken=''}})}else setTimeout(wait,150)})();

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://facelessvideokit.github.io/sitemap.xml
+Sitemap: https://facelessvideokit.com/sitemap.xml

@@ -1,16 +1,18 @@
 # Faceless Video Kit pricing
 
-| Plan | Price | Billing | Includes |
+Faceless Video Kit makes faceless YouTube videos in your browser. Every plan adds credits to your wallet each month; each video shows the most credits it can use before it starts, and you are charged what it actually used.
+
+| Plan | Price | Credits every month | About |
 |---|---|---|---|
-| Starter | $29 USD | every month, cancel any time | the full Kit and every update, for 1 channel |
-| Pro | $49 USD | every month, cancel any time | the full Kit and every update, for unlimited channels |
-| Lifetime | $199 USD | once | the full Kit and every update, for life, for unlimited channels |
+| Starter | $29 USD a month | 2,000 | 5 ten-minute videos or 11 Shorts |
+| Creator | $59 USD a month | 4,000 | 10 ten-minute videos or 23 Shorts |
+| Studio | $129 USD a month | 10,000 | 26 ten-minute videos or 58 Shorts |
 
-Starter buyers can move to Lifetime for $170 more (their $29 counts toward the $199).
+Estimates use the default set-up (drawn pictures, the free AI voice, writing by Claude Sonnet); longer videos, AI video clips and other models use more.
 
-All plans: every step from niche to published video, autopilot under a weekly spending limit, posting to YouTube, TikTok, Instagram, X, Facebook and Threads after your yes, a finished MP4 plus Final Cut / Premiere / DaVinci Resolve timelines, works with Claude or ChatGPT, one-click updates and bug reports.
-
-- Refund: full refund within 7 days, no questions.
-- Not included: pictures, clips and voice come from the AI services the Kit has built in (ElevenLabs, Higgsfield, OpenAI, Google Veo, fal.ai or Fish Audio), paid direct at their own price, or your own files. The Kit shows the price before every spend. Research and stock footage are free.
-- No free trial. Checkout by Whop.
-- Buy: https://facelessvideokit.github.io/#pricing
+- Top-ups: $10 (2,000 credits), $25 (5,000), $50 (10,000) or $100 (20,000), on top of an active plan. Top-up credits last 12 months; plan credits last a month.
+- Add-ons with your first month, paid once: Done-for-you Niche Pack $19 (5 researched niches, 100 topics), or the Launch Bundle $29 (the Niche Pack plus the Thumbnail & Title Pack).
+- Included: the writing, pictures, voice, stock footage and render, paid from your credits. No AI accounts of your own, nothing to install.
+- Refund: in full as long as no video has been started. See https://facelessvideokit.com/refunds.html
+- No free trial. Checkout and sign-in by Whop. Cancel any time.
+- Buy: https://facelessvideokit.com/#prices
