@@ -100,11 +100,6 @@ td.us{background:rgba(255,77,46,.08);font-weight:700}
 .assume{margin-top:18px;font-size:13px;line-height:1.5;color:var(--mute);max-width:900px}
 .topups a{color:var(--gold)}
 @media(max-width:900px){.plans{grid-template-columns:1fr}}
-.addons{margin:0 0 22px;border:1px dashed var(--line2);border-radius:16px;padding:18px 20px;display:grid;gap:10px}
-.addons h3{font-size:17px}.addons h3 span{font-weight:500;color:var(--mute);font-size:14px}
-.addon{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;cursor:pointer;padding:10px 12px;border-radius:12px;border:1px solid var(--line)}
-.addon input{width:20px;height:20px;margin-top:2px;accent-color:var(--hot)}.addon b{display:block}.addon small{display:block;color:var(--ink2);font-size:14px;margin-top:2px}
-.addon:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
 .faq details{border-bottom:1px solid var(--line);padding:18px 0}
 .faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
@@ -119,6 +114,52 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
 footer a{color:var(--ink2)}
 footer .sp{margin-left:auto}
 @media(max-width:560px){footer .sp{margin-left:0;width:100%}}
+</style>
+<style id="fvk-checkout-css">
+/* the checkout popup: the Kit page's own (kit.html), the Kit-only parts left out */
+.co-pack{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:7px 10px;border:1px dashed var(--line2);border-radius:12px;background:var(--card);font-size:14px;color:var(--ink2)}
+.co-pack[hidden]{display:none}
+.co-pack-l{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:center;cursor:pointer}.co-pack input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--hot);cursor:pointer}.co-pack-sub b{font-weight:700;color:var(--ink2)}.co-pack-in{padding:0 0 0 29px}.co-pack-in ul{margin:0;padding:0 0 0 14px;display:grid;gap:3px;font-size:12.5px;line-height:1.35;color:var(--ink2)}.co-pack-in li b{color:var(--ink)}.co-pack-n{margin:6px 0 0;font-size:12px;color:var(--mute)}.co-pack-more{display:none;justify-self:start;margin:0 0 0 29px;padding:2px 0;background:none;border:0;color:var(--gold);font:600 12.5px var(--body);cursor:pointer;text-decoration:underline}.co-pack-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px}@media (max-width:600px){.co-pack-more{display:block}.co-pack-in{display:none}.co-pack.open>.co-pack-in{display:block}}
+.co-pack b{color:var(--ink);font-weight:700}.co-pack em{font-style:normal;color:var(--gold)}
+.co-pack small{display:block;font-size:12px;color:var(--mute);line-height:1.3;margin-top:1px}
+.co-pack:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.co-pack:focus-within{outline:2px solid var(--gold);outline-offset:2px}
+/* 22 Oct 2026 (owner): the Launch Bundle upgrade tick, shown under the Niche Pack tick */
+.co-tt{margin:2px 0 0 29px;padding:7px 10px;border:1px dashed var(--line2);border-radius:10px;display:grid;gap:5px}
+.co-tt[hidden]{display:none}
+.co-tt:has(input:checked){border-style:solid;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.co-tt .co-pack-in{padding:0 0 0 29px}.co-tt .co-pack-more{margin:0 0 0 29px}
+.co-fit{margin:0;font-size:12px;line-height:1.35;color:var(--ink2)}.co-fit b{color:var(--ink)}
+/* 24 Oct 2026 (owner, Clarity: 3 of 3 phone Get-Kit openers left inside the box before Whop's form): the bumps stay
+   at billing, above Pay (Wendt-style), but on a phone each is ONE line (tick, name, price, What's inside) so
+   Whop's form starts on the first screen. Pitch lines are cut; the running total still shows. */
+@media (max-width:640px){
+  .co-pack,.co-tt{grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:8px;row-gap:4px;padding:6px 9px}
+  .co-pack-sub>b,.co-fit{display:none}
+  .co-pack-l{gap:8px;font-size:13.5px}.co-pack small{margin-top:0}
+  .co-pack-more{margin:0;font-size:12px;white-space:nowrap}.co-tt .co-pack-more{margin:0}
+  .co-pack-in,.co-tt{grid-column:1/-1}
+  .co-pack-in,.co-tt .co-pack-in{padding:0 0 0 28px}
+}
+.co{position:fixed;inset:0;z-index:100;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:16px;background:rgba(6,5,8,.78);backdrop-filter:blur(6px)}
+.co[hidden]{display:none!important}
+/* 22 Oct 2026 (owner): what the buyer needs, said inside the buy box before the payment form; plan + pack in one compact block */
+.co-expect{margin:0;padding:7px 11px;border:1px solid var(--line2);border-left:3px solid var(--gold);border-radius:10px;background:var(--card);font-size:13.5px;line-height:1.4;color:var(--ink2)}.co-expect b{color:var(--ink)}
+.co-plan{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;min-width:0}.co-plan[hidden]{display:none!important}
+.co-box{box-sizing:border-box;min-width:0;grid-template-columns:minmax(0,1fr);width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--bg2);border:1px solid var(--line2);border-radius:18px;padding:20px 18px 18px;display:grid;gap:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.co-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.co-top b{font-family:var(--display);font-size:20px;color:var(--ink)}
+.co-x{background:none;border:1px solid var(--line2);color:var(--ink2);border-radius:999px;width:36px;height:36px;font-size:18px;cursor:pointer}
+.co-x:focus-visible,.co-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.co-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.co-tabs button{min-width:0;font:600 15px/1.2 var(--body);text-align:left;padding:7px 9px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink2);cursor:pointer;display:grid;gap:2px}
+.co-tabs button small{font-weight:500;font-size:11.5px;line-height:1.25;color:var(--mute)}
+.co-tabs button[aria-pressed="true"]{border-color:var(--hot);color:var(--ink);box-shadow:0 0 0 1px var(--hot) inset}
+.co-wait{color:var(--mute);font-size:14px;padding:30px 4px;text-align:center}
+.co-foot{font-size:12px;color:var(--mute);text-align:center;margin:0}
+html.co-open,html.co-open body{overflow:hidden}
+/* 22 Oct 2026 (owner): on a phone the buy box fills the screen, so Whop's pay button is one short scroll away */
+.packline{margin:0 0 18px;padding:12px 16px;border:1px solid var(--line2);border-left:3px solid var(--gold);border-radius:12px;background:var(--card);color:var(--ink2)}.packline b{color:var(--ink)}
 </style>
 <!-- Meta Pixel (same pixel and test mode as the Kit page; ?fvktest=1 sends nothing) -->
 <script>
@@ -241,25 +282,20 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
     <h2>Pick your plan</h2>
     <p>Every plan adds credits to your wallet each month, and your videos are paid from them. Need more? Top up any time. Cancel any time.</p>
   </div>
-  <div class="addons" role="radiogroup" aria-label="Add a pack">
-    <h3>Add a pack to your first month, then pick your plan <span>(optional, paid once)</span></h3>
-    <label class="addon"><input type="radio" name="addon" value="plan" checked><span><b>No pack</b><small>Just the plan.</small></span></label>
-    <label class="addon"><input type="radio" name="addon" value="niche"><span><b>+ Done-for-you Niche Pack &middot; $19</b><small>5 niches already researched, with proof from small channels winning right now, and 100 video topics ready to make. Pick a niche and your channel is set up for you. New topics every month.</small></span></label>
-    <label class="addon"><input type="radio" name="addon" value="launch"><span><b>+ Launch Bundle &middot; $29</b><small>The Niche Pack plus the Thumbnail &amp; Title Pack: 40 title formulas and 6 thumbnail layouts taken from videos winning in those niches, used for your videos automatically.</small></span></label>
-  </div>
+  <p class="packline"><b>Want to start making videos tonight?</b> At checkout, add the <b>Done-for-you Niche Pack</b>: sign in and your channel is already set up, with 100 researched topics waiting.</p>
   <div class="plans">
     <div class="plan"><div class="flag"></div><h3>Starter</h3><div class="amt">$29<span>/month</span></div><div class="credit">2,000 credits every month</div>
       <p class="est">About <b>5</b> ten-minute videos or <b>11</b> Shorts a month*</p>
       <ul><li>Long videos and Shorts</li><li>Every look, voice and AI model</li><li>Finished video, thumbnail and Final Cut project</li></ul>
-      <a class="btn btn-hot buy" data-plan="plan_557ijfaENTgIP" data-niche="plan_zkcEQBNCoO2MX" data-launch="plan_iNO3OPr33H5hA" href="https://whop.com/checkout/plan_557ijfaENTgIP">Start with Starter</a></div>
+      <a class="btn btn-hot buy" data-tier="starter" href="https://whop.com/checkout/plan_557ijfaENTgIP">Start with Starter</a></div>
     <div class="plan"><div class="flag"></div><h3>Creator</h3><div class="amt">$59<span>/month</span></div><div class="credit">4,000 credits every month</div>
       <p class="est">About <b>10</b> ten-minute videos or <b>23</b> Shorts a month*</p>
       <ul><li>Everything in Starter</li><li>Twice Starter&rsquo;s monthly credits</li></ul>
-      <a class="btn btn-hot buy" data-plan="plan_YfGOpRrdqx4PG" data-niche="plan_ol75saT543qsF" data-launch="plan_WvxHRQK578SSh" href="https://whop.com/checkout/plan_YfGOpRrdqx4PG">Start with Creator</a></div>
+      <a class="btn btn-hot buy" data-tier="creator" href="https://whop.com/checkout/plan_YfGOpRrdqx4PG">Start with Creator</a></div>
     <div class="plan pick"><div class="flag">Most credits per dollar</div><h3>Studio</h3><div class="amt">$129<span>/month</span></div><div class="credit">10,000 credits every month</div>
       <p class="est">About <b>26</b> ten-minute videos or <b>58</b> Shorts a month*</p>
       <ul><li>Everything in Creator</li><li>Five times Starter&rsquo;s monthly credits</li></ul>
-      <a class="btn btn-hot buy" data-plan="plan_ExG1AQqvtvZii" data-niche="plan_IW26CcRhru6Lj" data-launch="plan_ofwdT9GuU0X66" href="https://whop.com/checkout/plan_ExG1AQqvtvZii">Start with Studio</a></div>
+      <a class="btn btn-hot buy" data-tier="studio" href="https://whop.com/checkout/plan_ExG1AQqvtvZii">Start with Studio</a></div>
   </div>
   <p class="assume">*Estimates assume each video uses the default set-up: drawn pictures (GPT Image), the free AI voice, and the title, thumbnail and script written by Claude Sonnet, for an 8&ndash;10 minute video (about 400 credits) or a 60-second Short (about 170); longer videos use more. Each figure is the most such a video can use at today&rsquo;s prices; most use less. AI video clips, other picture models, extra thumbnails or script changes, or our providers changing their prices change these numbers.</p>
   <p class="topups">Top-ups: <b>$10 (2,000 credits), $25 (5,000), $50 (10,000) or $100 (20,000)</b>, from your wallet in the app, on top of an active plan. Unused plan credits roll over to the next month (up to one month&rsquo;s worth). Top-up credits never expire while you have a plan, and are kept for 6 months if it ends. After checkout you land in the app at <a href="https://app.facelessvideokit.com/">app.facelessvideokit.com</a>: sign in with the email you bought with, and Whop emails you a code.</p>
@@ -291,25 +327,60 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
   <a href="mailto:help@facelessvideokit.com">help@facelessvideokit.com</a>
   <span class="sp">Payments and sign-in by Whop</span>
 </div></footer>
+<div class="co" id="co" role="dialog" aria-modal="true" aria-labelledby="co-title" hidden>
+  <div class="co-box">
+    <div class="co-top"><b id="co-title">Start making videos</b><button class="co-x" id="co-x" type="button" aria-label="Close checkout">×</button></div>
+    <p class="co-expect">In your browser, nothing to install · after paying you land in the app · full refund within 7 days if no video was started</p>
+    <div class="co-plan">
+      <div class="co-tabs" role="group" aria-label="Plan">
+        <button type="button" data-tab="starter" aria-pressed="true"><span>$29/mo</span><small>Starter · 2,000 credits</small></button>
+        <button type="button" data-tab="creator" aria-pressed="false"><span>$59/mo</span><small>Creator · 4,000 credits</small></button>
+        <button type="button" data-tab="studio" aria-pressed="false"><span>$129/mo</span><small>Studio · 10,000 credits</small></button>
+      </div>
+      <div class="co-pack">
+        <label class="co-pack-l"><input type="checkbox" id="co-pack"><span><b>+ Done-for-you Niche Pack &mdash; <em>$19 once</em></b><small class="co-pack-sub"><b>Sign in to a channel that&rsquo;s already set up. Make your first video tonight.</b><span id="co-pack-tot"></span></small></span></label>
+        <button type="button" class="co-pack-more" id="co-pack-more" aria-expanded="false" aria-controls="co-pack-in">What&rsquo;s inside &#9662;</button>
+        <div class="co-pack-in" id="co-pack-in">
+          <ul>
+            <li><b>Your channel, set up in one tap</b>: pick a niche after you sign in, and its name, look, video length and how often to post are filled in for you</li>
+            <li><b>100 video topics waiting</b>, each with its angle and opening line, first in line every time you make a video</li>
+            <li><b>5 niches already researched</b>: why each one is winning right now, with proof from small channels</li>
+            <li><b>No research step</b>: from signing in straight to your first video&rsquo;s title, thumbnail and script</li>
+            <li><b>New topics every month</b>, for as long as your plan is active</li>
+          </ul>
+          <p class="co-pack-n"><i>Megaprojects · Military history · Company collapses · History mysteries · Abandoned places</i></p>
+        </div>
+        <div class="co-tt" id="co-tt-row" hidden>
+          <label class="co-pack-l"><input type="checkbox" id="co-tt"><span><b>Make it the Launch Bundle &mdash; <em>both packs $29</em></b><small class="co-pack-sub"><b>+ the Thumbnail &amp; Title Pack for $10 more.</b><span id="co-tt-tot"></span></small></span></label>
+          <p class="co-fit"><b>The other half of every video:</b> the Niche Pack picks <b>what</b> to make; this pack makes the title and thumbnail people <b>click</b>, by itself.</p>
+          <button type="button" class="co-pack-more" id="co-tt-more" aria-expanded="false" aria-controls="co-tt-in">What&rsquo;s inside &#9662;</button>
+          <div class="co-pack-in" id="co-tt-in">
+            <ul>
+              <li><b>40 title formulas</b>: 8 for each niche, taken from videos winning there right now</li>
+              <li><b>6 thumbnail layouts</b>, each from real thumbnails that got the clicks</li>
+              <li><b>Used for every video automatically</b>: no guessing at titles or thumbnails</li>
+              <li><b>New winners every month</b>, for as long as your plan is active</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="co-pane"><p class="co-wait" id="co-wait">Loading secure checkout&hellip;</p><div id="co-mount"></div></div>
+    <p class="co-foot">Secure checkout by Whop · cancel any time · afterwards sign in with the same email: Whop sends you a code</p>
+  </div>
+</div>
 <script>
-// Whop checkouts that land the buyer in the app after paying (?welcome=1): plan id -> checkout (whop_checkouts.py)
-window.FVK_CHECKOUT = {
- "plan_557ijfaENTgIP": "https://whop.com/checkout/ch_UmvttjvoLEjyPeZ/",
- "plan_zkcEQBNCoO2MX": "https://whop.com/checkout/ch_3mmsp1F4fcYH9TD/",
- "plan_iNO3OPr33H5hA": "https://whop.com/checkout/ch_RtdqOlIo4QEhvqt/",
- "plan_YfGOpRrdqx4PG": "https://whop.com/checkout/ch_7IJNwnGyzZ5p8vA/",
- "plan_ol75saT543qsF": "https://whop.com/checkout/ch_zanlxEdB8vhEsMy/",
- "plan_WvxHRQK578SSh": "https://whop.com/checkout/ch_uaJw8kP0qIaCA0j/",
- "plan_ExG1AQqvtvZii": "https://whop.com/checkout/ch_4VSbPgIikKVzjtY/",
- "plan_IW26CcRhru6Lj": "https://whop.com/checkout/ch_exGFpg992hyCICj/",
- "plan_ofwdT9GuU0X66": "https://whop.com/checkout/ch_TbqPHZeSf1rKrU4/"
-};
-</script>
-<script>
-// the pack add-on swaps each plan's checkout link (launch, owner 26 Oct: packs as checkout add-ons)
+/* The checkout popup (owner, 26 Oct: "the same kind of popup we had earlier, less friction from the button to
+   buying", with the packs offered at checkout). Whop Elements in our own box, as on the Kit page (kit.html);
+   ticking a pack swaps the plan for its hidden bundle plan. After paying, the buyer lands in the app
+   (?welcome=1). Anything wrong loading Whop's form: the same plan's hosted checkout (which also lands in the app). */
+window.FVK_PLANS = {"starter": {"id": "plan_557ijfaENTgIP", "value": 29, "niche": "plan_zkcEQBNCoO2MX", "launch": "plan_iNO3OPr33H5hA"}, "creator": {"id": "plan_YfGOpRrdqx4PG", "value": 59, "niche": "plan_ol75saT543qsF", "launch": "plan_WvxHRQK578SSh"}, "studio": {"id": "plan_ExG1AQqvtvZii", "value": 129, "niche": "plan_IW26CcRhru6Lj", "launch": "plan_ofwdT9GuU0X66"}};
+window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_UmvttjvoLEjyPeZ/", "plan_zkcEQBNCoO2MX": "https://whop.com/checkout/ch_3mmsp1F4fcYH9TD/", "plan_iNO3OPr33H5hA": "https://whop.com/checkout/ch_RtdqOlIo4QEhvqt/", "plan_YfGOpRrdqx4PG": "https://whop.com/checkout/ch_7IJNwnGyzZ5p8vA/", "plan_ol75saT543qsF": "https://whop.com/checkout/ch_zanlxEdB8vhEsMy/", "plan_WvxHRQK578SSh": "https://whop.com/checkout/ch_uaJw8kP0qIaCA0j/", "plan_ExG1AQqvtvZii": "https://whop.com/checkout/ch_4VSbPgIikKVzjtY/", "plan_IW26CcRhru6Lj": "https://whop.com/checkout/ch_exGFpg992hyCICj/", "plan_ofwdT9GuU0X66": "https://whop.com/checkout/ch_TbqPHZeSf1rKrU4/"};
 (function () {
-  // an affiliate's ?a=<code> (Whop's affiliate links) is kept 30 days and goes on every checkout link,
-  // so the sale is theirs whether the visitor buys now or comes back later (as the Kit page did)
+  var P = window.FVK_PLANS, co = document.getElementById("co"), wait = document.getElementById("co-wait"), mountEl = document.getElementById("co-mount");
+  var pack = document.getElementById("co-pack"), tt = document.getElementById("co-tt"), ttRow = document.getElementById("co-tt-row");
+  var APP = "https://app.facelessvideokit.com/?welcome=1", current = "starter", sdk = null, handle = null, mounted = "", readyTimer = 0, lastFocus = null;
+  // an affiliate's ?a=<code>, kept 30 days (as the Kit page did)
   var AFF_RE = /^[A-Za-z0-9_.-]{2,40}$/, AFF = "";
   (function () {
     var a = (new URLSearchParams(location.search).get("a") || "").trim(), now = Date.now();
@@ -319,28 +390,58 @@ window.FVK_CHECKOUT = {
       if (s && AFF_RE.test(s.c) && now - s.t < 30 * 864e5) AFF = s.c; else localStorage.removeItem("fvk_aff");
     } catch (e) { if (AFF_RE.test(a)) AFF = a; }
   })();
-  var go = function () {
-    var pick = (document.querySelector('input[name="addon"]:checked') || {}).value || "plan";
-    document.querySelectorAll("a.buy").forEach(function (a) {
-      var id = a.getAttribute("data-" + pick) || a.getAttribute("data-plan");
-      var url = (window.FVK_CHECKOUT && window.FVK_CHECKOUT[id]) || "https://whop.com/checkout/" + id;
-      a.href = url + (AFF ? (url.indexOf("?") < 0 ? "?" : "&") + "a=" + encodeURIComponent(AFF) : "");
-    });
-  };
-  // InitiateCheckout once per visit, when a plan button is pressed (checkout itself is on Whop)
-  var PRICE = { starter: 29, creator: 59, studio: 129 }, sent = false;
-  document.querySelectorAll("a.buy").forEach(function (a) {
-    a.addEventListener("click", function () {
-      if (sent) return; sent = true;
-      var pick = (document.querySelector('input[name="addon"]:checked') || {}).value || "plan";
-      var tier = (a.textContent.match(/Starter|Creator|Studio/) || ["Starter"])[0].toLowerCase();
-      var v = PRICE[tier] + (pick === "niche" ? 19 : pick === "launch" ? 29 : 0);
-      try { if (window.fbq) fbq("track", "InitiateCheckout", { value: v, currency: "USD", content_name: "Faceless Video Kit web", content_ids: [a.getAttribute("data-" + pick)], content_type: "product" }); } catch (e) {}
-    });
-  });
-  document.querySelectorAll('input[name="addon"]').forEach(function (r) { r.addEventListener("change", go); });
-  go();
+  function which() { return tt.checked ? "launch" : pack.checked ? "niche" : "id"; }
+  function planId() { return P[current][which()]; }
+  function value() { return P[current].value + (tt.checked ? 29 : pack.checked ? 19 : 0); }
+  function hosted(id) { var u = (window.FVK_CHECKOUT || {})[id] || "https://whop.com/checkout/" + id; return u + (AFF ? (u.indexOf("?") < 0 ? "?" : "&") + "a=" + encodeURIComponent(AFF) : ""); }
+  function totals() {
+    var v = P[current].value;
+    document.getElementById("co-pack-tot").textContent = " $" + (v + 19) + " today, then $" + v + "/mo";
+    document.getElementById("co-tt-tot").textContent = " $" + (v + 29) + " today, then $" + v + "/mo";
+    ttRow.hidden = !pack.checked; if (!pack.checked) tt.checked = false;
+    document.querySelectorAll("[data-tab]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-tab") === current)); });
+  }
+  // without this script the plan buttons still work: each is the same plan's hosted checkout
+  document.querySelectorAll("a.buy").forEach(function (a) { a.href = hosted(P[a.getAttribute("data-tier")].id); });
+  // Meta: InitiateCheckout once a visit, when the buyer starts Whop's form (focus moves into its frame)
+  var IC = "";
+  function fb() { try { if (window.fbq) fbq.apply(null, arguments); } catch (e) {} }
+  addEventListener("blur", function () { setTimeout(function () { var a = document.activeElement;
+    if (!IC && a && a.tagName === "IFRAME" && mountEl.contains(a)) { IC = "ic." + Date.now().toString(36);
+      fb("track", "InitiateCheckout", { value: value(), currency: "USD", content_name: "Faceless Video Kit web", content_ids: [planId()], content_type: "product" }, { eventID: IC }); } }, 0); });
+  var sdkWait = [];
+  function loadSdk(cb) { if (sdk) { cb(sdk); return; } sdkWait.push(cb); if (sdkWait.length > 1) return;
+    var s = document.createElement("script"); s.src = "https://cdn.whop.com/elements/amber/elements.js"; s.async = true; s.setAttribute("data-whop-elements", "");
+    s.onload = function () { try { sdk = window.WhopElements({ locale: "en" }); } catch (e) { sdk = null; } if (!sdk) { bail(); return; } var w = sdkWait; sdkWait = []; w.forEach(function (f) { f(sdk); }); };
+    s.onerror = bail; document.head.appendChild(s); }
+  function bail() { location.href = hosted(planId()); }
+  function unmount() { clearTimeout(readyTimer); if (handle) { try { handle.destroy(); } catch (e) {} } handle = null; mounted = ""; mountEl.innerHTML = ""; }
+  function mount() { var key = planId(); if (key === mounted) return; unmount(); mounted = key; wait.hidden = false;
+    loadSdk(function (w) { if (mounted !== key) return;
+      var opts = { plan: key, returnUrl: APP, appearance: { theme: { appearance: "dark", accentColor: "orange", grayColor: "auto" } },
+        onComplete: function () { location.href = APP; } };
+      if (AFF) opts.affiliateCode = AFF;
+      try { handle = w.checkout.create(opts);
+        handle.create("checkout", { onReady: function () { clearTimeout(readyTimer); wait.hidden = true; }, onError: function () { bail(); } }).mount(mountEl);
+      } catch (e) { bail(); return; }
+      readyTimer = setTimeout(function () { if (!wait.hidden) bail(); }, 12000); }); }
+  function open(tier) { current = P[tier] ? tier : "starter"; lastFocus = document.activeElement; co.hidden = false;
+    document.documentElement.classList.add("co-open"); totals(); mount(); document.getElementById("co-x").focus(); }
+  function close() { co.hidden = true; document.documentElement.classList.remove("co-open"); unmount(); if (lastFocus) try { lastFocus.focus(); } catch (e) {} }
+  document.querySelectorAll("a.buy").forEach(function (a) { a.addEventListener("click", function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); open(a.getAttribute("data-tier")); }); });
+  document.querySelectorAll("[data-tab]").forEach(function (b) { b.addEventListener("click", function () { current = b.getAttribute("data-tab"); totals(); mount(); }); });
+  pack.addEventListener("change", function () { totals(); mount(); });
+  tt.addEventListener("change", function () { totals(); mount(); });
+  ["co-pack-more", "co-tt-more"].forEach(function (id) { var b = document.getElementById(id); b.addEventListener("click", function () {
+    var on = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", String(on)); b.parentNode.classList.toggle("open", on); }); });
+  document.getElementById("co-x").addEventListener("click", close);
+  co.addEventListener("click", function (e) { if (e.target === co) close(); });
+  addEventListener("keydown", function (e) { if (e.key === "Escape" && !co.hidden) close(); });
+  var q = location.search.match(/[?&]buy=(starter|creator|studio)\b/);
+  if (q) open(q[1]);
 })();
 </script>
+
 </body>
 </html>
