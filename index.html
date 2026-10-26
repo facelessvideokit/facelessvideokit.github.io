@@ -125,6 +125,9 @@ footer .sp{margin-left:auto}
 .phone{margin:0;border-radius:26px;border:5px solid #2b2830;background:#000;overflow:hidden;aspect-ratio:390/844;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .phone img{width:100%;height:100%;object-fit:cover;object-position:top}
 .hphone{position:absolute;right:0;bottom:0;width:36%;max-width:220px}
+/* 27 Oct (owner): on a phone the hero phone is taller than the video, so it rose over the price line above it.
+   The stage is made tall enough to hold it: phone 36% wide x 844/390 tall, its top a fifth of the width down. */
+@media(max-width:899px){.stage{padding-bottom:49%}}
 @media(min-width:900px){.hero{padding:64px 0 16px}.hero .grid{grid-template-columns:1.05fr .95fr;gap:44px}.stage{padding-bottom:48px}}
 .strip{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;counter-reset:st}
 .strip li{counter-increment:st;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 50px;position:relative;min-width:0}
