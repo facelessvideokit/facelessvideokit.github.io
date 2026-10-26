@@ -192,6 +192,25 @@ footer .sp{margin-left:auto}
 .fstep{grid-template-columns:44% minmax(0,1fr)}
 @media(min-width:820px){.fstep{grid-template-columns:220px minmax(0,1fr)}}
 .mx td small{display:block;font-size:11px;color:var(--mute);font-weight:500;line-height:1.25;margin-top:2px}
+/* What's possible (from the Kit page) */
+.ec{background:linear-gradient(180deg,#1B1720,var(--card));border:1px solid var(--line2);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-width:0}
+.ec::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,77,46,.18),transparent 70%);pointer-events:none}
+.ec .fmt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.ec .v{font-family:var(--display);font-weight:800;font-size:clamp(44px,5vw,60px);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ec .v small{font-size:.38em;font-weight:700;color:var(--mute);letter-spacing:0;margin-left:6px}
+.ec .money{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ec .money strong{font-family:var(--display);font-size:30px;color:var(--gold);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ec .money span{font-size:13px;color:var(--mute)}
+.ec .t{font-weight:700;font-size:15px;line-height:1.4;color:var(--ink)}
+.ec .meta2{display:flex;flex-wrap:wrap;gap:6px}
+.ec .meta2 span{font-size:12.5px;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:3px 10px}
+.ec .meta2 span b{color:var(--ok)}
+.ec a{margin-top:auto;font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;border-top:1px solid var(--line);padding-top:12px}
+.ec a:hover{color:var(--hot)}
+.ec .v{font-size:clamp(44px,12vw,60px)}
+.wall2.rail{grid-auto-columns:84%}
+@media(min-width:900px){.wall2.rail{grid-template-columns:repeat(3,1fr)}}
+:root{--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
 </style>
 <style id="fvk-checkout-css">
 /* the checkout popup: the Kit page's own (kit.html), the Kit-only parts left out */
@@ -261,7 +280,7 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
 <body>
 <header class="nav"><div class="wrap">
   <a class="logo" href="#top"><i></i>Faceless Video Kit</a>
-  <nav><a href="#flow">How it works</a><a href="#cost">Costs</a><a href="#get">What you get</a><a href="#prices">Plans</a><a href="#faq">FAQ</a></nav>
+  <nav><a href="#possible">What&rsquo;s possible</a><a href="#flow">How it works</a><a href="#cost">Costs</a><a href="#get">What you get</a><a href="#prices">Plans</a><a href="#faq">FAQ</a></nav>
   <a class="btn" href="https://app.facelessvideokit.com/">Sign in</a>
 </div></header>
 
@@ -315,6 +334,47 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
   <figure aria-hidden="true"><img src="looks/look_whiteboard.webp" alt="" width="480" height="270" loading="lazy"><figcaption>Whiteboard doodle</figcaption></figure>
   <figure aria-hidden="true"><img src="looks/look_stick-figure.webp" alt="" width="480" height="270" loading="lazy"><figcaption>Stick figure</figcaption></figure>
   <figure aria-hidden="true"><img src="looks/look_watercolor.webp" alt="" width="480" height="270" loading="lazy"><figcaption>Watercolour</figcaption></figure>
+</div></section>
+
+<section class="block" id="possible"><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">What&rsquo;s possible</span>
+    <h2>Small faceless channels. Millions of views.</h2>
+    <p>A faceless channel can grow into a second income, made in your spare time. Each video below is on a channel under 71K subscribers, in a format Faceless Video Kit makes.</p>
+  </div>
+  <div class="wall2 rail">
+        <div class="ec"><span class="fmt">Science documentary</span><div class="v">8.1M<small>views</small></div>
+          <div class="money"><strong>≈ $71K</strong><span>ad revenue · est. $43K–$99K</span></div>
+          <p class="t">Why The Ocean's Deadliest Predator Refuses To Kill Us</p>
+          <div class="meta2"><span>OctoLab · 65.8K subs</span><span><b>49×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=VtrcKTkhDHU" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">Illustrated history explainer</span><div class="v">11.7M<small>views</small></div>
+          <div class="money"><strong>≈ $47K</strong><span>ad revenue · est. $19K–$53K</span></div>
+          <p class="t">How Long You'd Last in Every Prehistoric Era</p>
+          <div class="meta2"><span>Fossil · 24.5K subs</span><span><b>10.6×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=nAWpLtG-kNs" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">AI stills · long documentary</span><div class="v">2.84M<small>views</small></div>
+          <div class="money"><strong>≈ $40K</strong><span>ad revenue · est. $22K–$59K</span></div>
+          <p class="t">4.5 Billion Years of Earth's History in JUST 1 Hour</p>
+          <div class="meta2"><span>Wild Horizons · 68K subs</span><span><b>12.6×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=Me4hxOX8ULo" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">AI fantasy story</span><div class="v">9.6M<small>views</small></div>
+          <div class="money"><strong>≈ $24K</strong><span>ad revenue · est. up to $68K</span></div>
+          <p class="t">Beautiful Wolf Creature Saves the Man Running From Her</p>
+          <div class="meta2"><span>Mythforge · 19.9K subs</span><span><b>6.1×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=M7i7K4B2NEE" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">Footage-led · factory process</span><div class="v">9.5M<small>views</small></div>
+          <div class="money"><strong>≈ $23K</strong><span>ad revenue · est. up to $62K</span></div>
+          <p class="t">Inside the Giant Ajinomoto Factory (Full Process)</p>
+          <div class="meta2"><span>Swift Process · 70.9K subs</span><span><b>25×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=pzlgsQjMN_E" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+        <div class="ec"><span class="fmt">Stills + text · money psychology</span><div class="v">2.05M<small>views</small></div>
+          <div class="money"><strong>≈ $8.9K</strong><span>ad revenue · est. $1.4K–$16K</span></div>
+          <p class="t">Why Your Brain Never Feels Rich Enough (And How to Rewire It)</p>
+          <div class="meta2"><span>The Affluent Mind · 43.6K subs</span><span><b>44×</b> its usual views</span></div>
+          <a href="https://www.youtube.com/watch?v=dI64rTyvAn0" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+      </div>
+  <p class="note">Other creators&rsquo; videos, not made by us or with Faceless Video Kit; shown as what these formats can do. Views as of September&ndash;October 2026; earnings are NexLev estimates of YouTube ad revenue only. Results vary, and no earnings are promised.</p>
 </div></section>
 
 <section class="block" id="flow"><div class="wrap">
