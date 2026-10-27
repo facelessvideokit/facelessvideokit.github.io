@@ -100,6 +100,9 @@ td.us{background:rgba(255,77,46,.08);font-weight:700}
 .assume{margin-top:18px;font-size:13px;line-height:1.5;color:var(--mute);max-width:900px}
 .topups a{color:var(--gold)}
 @media(max-width:900px){.plans{grid-template-columns:1fr}}
+/* 27 Oct 2026 (owner, Clarity): an Instagram visitor tapped a plan card 4 times and the hero video 3 times, all dead
+   taps. The whole plan card now opens its checkout, and the hero video/phone plays the walkthrough. */
+.plan,.hero .frame,.hero .hphone{cursor:pointer}
 .faq details{border-bottom:1px solid var(--line);padding:18px 0}
 .faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
@@ -679,11 +682,19 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
         handle.create("checkout", { onReady: function () { clearTimeout(readyTimer); wait.hidden = true; }, onError: function () { bail(); } }).mount(mountEl);
       } catch (e) { bail(); return; }
       readyTimer = setTimeout(function () { if (!wait.hidden) bail(); }, 12000); }); }
-  function open(tier) { current = P[tier] ? tier : "starter"; lastFocus = document.activeElement; co.hidden = false;
+  // Get Kit press = ViewContent, once a visit (ads_lib PRESS_TYPES; the $15 kill rung reads it). Lost in the 26 Oct
+  // rebuild, so the board showed 0 presses; restored 27 Oct 2026.
+  var VC = "";
+  function open(tier) { current = P[tier] ? tier : "starter";
+    if (!VC) { VC = "vc." + Date.now().toString(36); fb("track", "ViewContent", { value: P[current].value, currency: "USD", content_name: "Faceless Video Kit web", content_ids: [P[current].id], content_type: "product" }, { eventID: VC }); }
+    lastFocus = document.activeElement; co.hidden = false;
     document.documentElement.classList.add("co-open"); totals(); mount(); document.getElementById("co-x").focus(); }
   function close() { co.hidden = true; document.documentElement.classList.remove("co-open"); unmount(); if (lastFocus) try { lastFocus.focus(); } catch (e) {} }
   document.querySelectorAll("a.buy").forEach(function (a) { a.addEventListener("click", function (e) {
     if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); open(a.getAttribute("data-tier")); }); });
+  // a tap anywhere on a plan card opens that plan's checkout (27 Oct, Clarity: 4 dead taps on a card body)
+  document.querySelectorAll(".plan").forEach(function (c) { var a = c.querySelector("a.buy"); if (!a) return;
+    c.addEventListener("click", function (e) { if (e.target.closest("a,button,input,label,summary")) return; open(a.getAttribute("data-tier")); }); });
   document.querySelectorAll("[data-tab]").forEach(function (b) { b.addEventListener("click", function () { current = b.getAttribute("data-tab"); totals(); mount(); }); });
   pack.addEventListener("change", function () { if (!pack.checked) tt.checked = false; totals(); mount(); });
   tt.addEventListener("change", function () { if (tt.checked) pack.checked = true; totals(); mount(); });
@@ -714,6 +725,14 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
   ["What does a video cost?", "Can I change the script or thumbnail?", "Do I need to install anything, or have my own AI accounts?", "Will my videos get views or make money?"].forEach(function (q) {
     var d = [].filter.call(document.querySelectorAll("#faq details"), function (x) { return x.querySelector("summary").textContent.trim() === q; })[0];
     if (d) box.insertBefore(d.cloneNode(true), all); });
+})();
+</script>
+<script>
+/* 27 Oct 2026 (owner, Clarity): a tap on the hero video or phone did nothing (3 dead taps from an ad visitor).
+   It now scrolls to the walkthrough and plays it, with sound (the tap is the user gesture that allows it). */
+(function () { var w = document.querySelector("figure.walk video"); if (!w) return;
+  document.querySelectorAll(".hero .frame, .hero .hphone").forEach(function (el) { el.addEventListener("click", function () {
+    w.scrollIntoView({ behavior: "smooth", block: "center" }); w.muted = false; try { var p = w.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} }); });
 })();
 </script>
 </body>
