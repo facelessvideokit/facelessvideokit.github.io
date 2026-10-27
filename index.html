@@ -227,7 +227,7 @@ footer .sp{margin-left:auto}
 :root{--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
 </style>
 <style id="fvk-checkout-css">
-/* the checkout popup: the Kit page's own (kit.html), the Kit-only parts left out */
+/* the checkout popup (first built for the old Kit page, now a redirect), the Kit-only parts left out */
 .co-pack{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:7px 10px;border:1px dashed var(--line2);border-radius:12px;background:var(--card);font-size:14px;color:var(--ink2)}
 .co-pack[hidden]{display:none}
 .co-pack-l{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:center;cursor:pointer}.co-pack input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--hot);cursor:pointer}.co-pack-sub b{font-weight:700;color:var(--ink2)}.co-pack-in{padding:0 0 0 29px}.co-pack-in ul{margin:0;padding:0 0 0 14px;display:grid;gap:3px;font-size:12.5px;line-height:1.35;color:var(--ink2)}.co-pack-in li b{color:var(--ink)}.co-pack-n{margin:6px 0 0;font-size:12px;color:var(--mute)}.co-pack-more{display:none;justify-self:start;margin:0 0 0 29px;padding:2px 0;background:none;border:0;color:var(--gold);font:600 12.5px var(--body);cursor:pointer;text-decoration:underline}.co-pack-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px}@media (max-width:600px){.co-pack-more{display:block}.co-pack-in{display:none}.co-pack.open>.co-pack-in{display:block}}
@@ -624,7 +624,7 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
 </div>
 <script>
 /* The checkout popup (owner, 26 Oct: "the same kind of popup we had earlier, less friction from the button to
-   buying", with the packs offered at checkout). Whop Elements in our own box, as on the Kit page (kit.html);
+   buying", with the packs offered at checkout). Whop Elements in our own box, as the old Kit page had it;
    ticking a pack swaps the plan for its hidden bundle plan. After paying, the buyer lands in the app
    (?welcome=1). Anything wrong loading Whop's form: the same plan's hosted checkout (which also lands in the app). */
 window.FVK_PLANS = {"starter": {"id": "plan_557ijfaENTgIP", "value": 29, "niche": "plan_zkcEQBNCoO2MX", "launch": "plan_iNO3OPr33H5hA"}, "creator": {"id": "plan_YfGOpRrdqx4PG", "value": 59, "niche": "plan_ol75saT543qsF", "launch": "plan_WvxHRQK578SSh"}, "studio": {"id": "plan_ExG1AQqvtvZii", "value": 129, "niche": "plan_IW26CcRhru6Lj", "launch": "plan_ofwdT9GuU0X66"}};
