@@ -228,6 +228,26 @@ footer .sp{margin-left:auto}
 .wall2.rail{grid-auto-columns:84%}
 @media(min-width:900px){.wall2.rail{grid-template-columns:repeat(3,1fr)}}
 :root{--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* 27 Oct 2026 (owner): steals 3–5 — start-here routing, market price labels, who it's for + the demo above Buy */
+.routes{display:grid;gap:12px}
+@media(min-width:820px){.routes{grid-template-columns:repeat(3,1fr)}}
+.route{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--hot);border-radius:14px;padding:16px 18px}
+.route small{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.route b{display:block;font-family:var(--display);font-size:19px;margin:4px 0 6px;line-height:1.2}
+.route span{display:block;color:var(--ink2);font-size:15px}
+.route em{display:inline-block;font-style:normal;font-weight:700;color:var(--hot2);margin-top:8px;font-size:15px}
+.mkt{margin:auto 14px 14px;padding:8px 10px;border-radius:10px;background:var(--bg2);border:1px dashed var(--line2);font-size:13px;color:var(--ink2);line-height:1.35}
+.mkt b{color:var(--gold)}
+.gcard p:not(.mkt){padding-bottom:10px}
+.foryou{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:8px}
+@media(min-width:820px){.foryou{grid-template-columns:repeat(2,1fr)}}
+.foryou li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px 10px 40px;position:relative;font-size:15.5px;color:var(--ink2)}
+.foryou li b{color:var(--ink)}
+.foryou li:before{content:"";position:absolute;left:15px;top:17px;width:12px;height:6px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
+.demo{margin:0 0 20px}
+.demo video{width:100%;max-width:640px;border-radius:14px;border:1px solid var(--line2);background:#000;aspect-ratio:16/9}
+.demo figcaption{font-size:13.5px;color:var(--mute);margin-top:6px}
 </style>
 <style id="fvk-checkout-css">
 /* the checkout popup (first built for the old Kit page, now a redirect), the Kit-only parts left out */
@@ -326,6 +346,15 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
   <li><b>Upload</b><span>video + words, copy-ready</span></li>
 </ol>
 <div class="hfaq" id="hfaq" aria-label="Most-asked questions"><h2>Most asked</h2><a class="all" href="#faq">All questions &rarr;</a></div></div></section>
+
+<section class="block" id="start"><div class="wrap">
+  <div class="head"><h2>Start here if&hellip;</h2></div>
+  <div class="routes">
+    <a class="route" href="#flow"><small>New to YouTube</small><b>You&rsquo;ve never made a video</b><span>Set up your channel, say yes to a title, thumbnail and script, and get the finished video.</span><em>See how it works &rarr;</em></a>
+    <a class="route" href="start.html"><small>Stuck at no views</small><b>You have a channel, but no views</b><span>X-ray the channels already winning your niche: what their hits are about, the titles that work, and 20 ideas for you. Then check your niche before you post again.</span><em>X-ray a channel for $9 &rarr;</em></a>
+    <a class="route" href="#more"><small>Short on time</small><b>You want it on autopilot</b><span>Pick your posting days and a weekly budget. It starts each video ahead of its day and never goes past the budget. You still pick the topic and okay the script.</span><em>How autopilot works &rarr;</em></a>
+  </div>
+</div></section>
 
 <section class="looks" aria-label="Twelve looks to choose from"><div class="track">
   <figure><img src="looks/look_realistic.webp" alt="" width="480" height="270" loading="lazy"><figcaption>Realistic documentary</figcaption></figure>
@@ -473,16 +502,18 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
     <p>Everything you need to upload, in one place.</p>
   </div>
   <div class="gets rail">
-    <div class="gcard"><img src="v2/hero_main.jpg" alt="A frame from a finished video" width="640" height="360" loading="lazy"><h3>The finished video</h3><p>An MP4 with voice, music and captions, in 1080p, 1440p or 4K.</p></div>
-    <div class="gcard"><img src="web2/thumb.jpg" alt="A thumbnail made for a video" width="640" height="360" loading="lazy"><h3>A thumbnail made to be clicked</h3><p>Made first, from what&rsquo;s getting clicks on your topic. Want another? Ask.</p></div>
+    <div class="gcard"><img src="v2/hero_main.jpg" alt="A frame from a finished video" width="640" height="360" loading="lazy"><h3>The finished video</h3><p>An MP4 with voice, music and captions, in 1080p, 1440p or 4K.</p><p class="mkt">Hiring an editor: <b>about $305 a video</b>, the freelance average&sup1;</p></div>
+    <div class="gcard"><img src="web2/thumb.jpg" alt="A thumbnail made for a video" width="640" height="360" loading="lazy"><h3>A thumbnail made to be clicked</h3><p>Made first, from what&rsquo;s getting clicks on your topic. Want another? Ask.</p><p class="mkt">On Fiverr: <b>$18</b>, the average thumbnail job&sup2;</p></div>
     <div class="gcard words"><div class="wbox"><small>Title</small><p>Theranos: The Decision That Sank a $9 Billion Company</p><small>Tags</small><p>business history, company collapse, Theranos</p><i>Copy</i></div><h3>Title, description and tags</h3><p>Plus a pinned comment, written for this video. One tap copies each.</p></div>
+    <div class="gcard words"><div class="wbox"><small>Script</small><p>In 2003, Theranos had one promise: a full blood test from a single drop. By 2018 it was worth nothing&hellip;</p><i>You okay it</i></div><h3>The script, and the voice that reads it</h3><p>Written to deliver on the title, read by the narrator you picked. Nothing is voiced until you say yes.</p><p class="mkt">Hiring it out: a script writer <b>$300&ndash;600</b>&sup3; and a narrator <b>$120&ndash;400</b>&#8308;, per video</p></div>
     <div class="gcard"><img class="tl" src="web2/timeline.jpg" alt="The video's timeline, every picture and sound on its own track" width="640" height="360" loading="lazy"><h3>A Final Cut and Resolve timeline</h3><p>Want to touch it up? Every picture, clip and sound on its own track.</p></div>
   </div>
+  <p class="note">What people pay to hire each part out, from published rates (checked 27 October 2026): &sup1; <a href="https://adsnipper.com/?p=2495">Ad Snipper, YouTube editor rates</a>, freelance average near $305 a finished video (range $100&ndash;$1,000+). &sup2; <a href="https://www.fiverr.com/hire/youtube-thumbnail-design">Fiverr</a>, average thumbnail design job. &sup3; <a href="https://viralbangers.beehiiv.com/p/much-charge-per-word">YouTube scriptwriters&rsquo; per-word rates</a>, $300&ndash;600 a script on average. &#8308; <a href="https://voicebros.com/en/blog/voice-over-pricing-guide-2026">VoiceBros 2026 voice-over guide</a>, a standard YouTube video. Your cost here is the credits each video shows before you press Go.</p>
 </div></section>
 
 <section class="block" id="more"><div class="wrap">
   <div class="head">
-    <span class="eyebrow">New in the app</span>
+    <span class="eyebrow">Run a channel</span>
     <h2>Built to run a channel, not just make a video</h2>
     <p>Set it up once. It plans, makes and keeps your channel going.</p>
   </div>
@@ -536,6 +567,16 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
     <h2>Pick your plan</h2>
     <p>Every plan adds credits to your wallet each month, and your videos are paid from them. Need more? Top up any time. Cancel any time.</p>
   </div>
+  <h3 style="margin:0 0 12px">This is for you if you&rsquo;re a&hellip;</h3>
+  <ul class="foryou">
+    <li><b>9-to-5er</b> building something of your own on the side</li>
+    <li><b>New YouTuber</b> who&rsquo;d rather not show your face</li>
+    <li><b>AI tinkerer</b> tired of stitching five tools into one video</li>
+    <li><b>Teacher or expert</b> with knowledge worth a channel</li>
+    <li><b>Parent working from home</b>, making videos in the gaps of your day</li>
+    <li><b>Channel owner or agency</b> whose editor is the bottleneck</li>
+  </ul>
+  <figure class="demo"><video src="guides/web-walkthrough/demo30.mp4" poster="guides/web-walkthrough/demo30.jpg" controls playsinline preload="none" aria-label="30 seconds of the real app: a video from Make to finished file"><track kind="captions" src="guides/web-walkthrough/demo30.vtt" srclang="en" label="English" default></video><figcaption>The real app, 30 seconds: from Make a video to the finished file.</figcaption></figure>
   <p class="packline"><b>Want to start making videos tonight?</b> At checkout, add the <b>Done-for-you Niche Pack</b>: sign in, pick one of 5 researched niches, and your channel is set up in one tap with 20 topics waiting.</p>
   <div class="plans">
     <div class="plan"><div class="flag"></div><h3>Starter</h3><div class="amt">$29<span>/month</span></div><div class="credit">2,000 credits every month</div>
@@ -594,28 +635,23 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElem
         <button type="button" data-tab="studio" aria-pressed="false"><span>$129/mo</span><small>Studio · 12,000 credits</small></button>
       </div>
       <div class="co-pack">
-        <label class="co-pack-l"><input type="checkbox" id="co-pack"><span><b>+ Done-for-you Niche Pack &mdash; <em>$19 once</em></b><small class="co-pack-sub"><b>Pick a niche, and your channel is set up in one tap. Make your first video tonight.</b><span id="co-pack-tot"></span></small></span></label>
+        <label class="co-pack-l"><input type="checkbox" id="co-pack"><span><b>+ Niche Pack &mdash; <em>$19 once</em></b><small class="co-pack-sub"><b>Start creating today, not next week.</b><span id="co-pack-tot"></span></small></span></label>
         <button type="button" class="co-pack-more" id="co-pack-more" aria-expanded="false" aria-controls="co-pack-in">What&rsquo;s inside &#9662;</button>
         <div class="co-pack-in" id="co-pack-in">
           <ul>
-            <li><b>Your channel, set up in one tap</b>: pick a niche after you sign in, and its name, look, video length and how often to post are filled in for you</li>
-            <li><b>20 video topics per niche (100 in all)</b>, each with its angle and opening line, first in line every time you make a video</li>
-            <li><b>5 niches already researched</b>: why each one is winning right now, with proof from small channels</li>
-            <li><b>No research step</b>: from signing in straight to your first video&rsquo;s title, thumbnail and script</li>
-            <li><b>New topics every month</b>, for as long as your plan is active</li>
+            <li><b>5 niches already researched</b>, with proof they&rsquo;re winning right now</li>
+            <li><b>20 video topics in each</b>, every one with its angle and opening line</li>
+            <li><b>Your channel set up in one tap</b> from any of them, the moment you sign in</li>
           </ul>
-          <p class="co-pack-n"><i>Megaprojects · Military history · Company collapses · History mysteries · Abandoned places</i></p>
         </div>
         <div class="co-tt" id="co-tt-row">
-          <label class="co-pack-l"><input type="checkbox" id="co-tt"><span><b>+ Thumbnail &amp; Title Pack too &mdash; <em>$29 for both</em></b><small class="co-pack-sub"><b>The Niche Pack + the Thumbnail &amp; Title Pack, for $10 more.</b><span id="co-tt-tot"></span></small></span></label>
-          <p class="co-fit"><b>The other half of every video:</b> the Niche Pack picks <b>what</b> to make; this pack makes the title and thumbnail people <b>click</b>, by itself.</p>
+          <label class="co-pack-l"><input type="checkbox" id="co-tt"><span><b>+ Thumbnail &amp; Title Pack &mdash; <em>$10 more</em></b><small class="co-pack-sub"><b>Titles and thumbnails that click, from your first video.</b><span id="co-tt-tot"></span></small></span></label>
           <button type="button" class="co-pack-more" id="co-tt-more" aria-expanded="false" aria-controls="co-tt-in">What&rsquo;s inside &#9662;</button>
           <div class="co-pack-in" id="co-tt-in">
             <ul>
-              <li><b>40 title formulas</b>: 8 for each niche, taken from videos winning there right now</li>
-              <li><b>6 thumbnail layouts</b>, each from real thumbnails that got the clicks</li>
-              <li><b>Used for every video automatically</b>: no guessing at titles or thumbnails</li>
-              <li><b>New winners every month</b>, for as long as your plan is active</li>
+              <li><b>40 title formulas</b> from videos winning in each niche right now</li>
+              <li><b>6 thumbnail layouts</b> taken from real thumbnails that got the clicks</li>
+              <li><b>Used for every video automatically</b>: no guessing at a title</li>
             </ul>
           </div>
         </div>
