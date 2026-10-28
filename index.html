@@ -312,7 +312,7 @@ fbq('track','PageView');
 /* Microsoft Clarity session recordings + heatmaps (owner, 14 Oct 2026: find where buyers drop before paying).
    Loaded 2.5 s after the page has fully loaded, so it never competes with the hero, the Meta Pixel or LCP. */
 if(!window.FVK_TEST)window.addEventListener('load',function(){setTimeout(function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yxksij4ckw");},2500)});
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];var o;try{var s=location.search;if(/[?&]fvk_owner=1/.test(s))localStorage.setItem('fvk_owner','1');if(/[?&]fvk_owner=0/.test(s))localStorage.removeItem('fvk_owner');o=localStorage.getItem('fvk_owner')}catch(e){}if(o)return;/* 28 Oct 2026 (owner): his own visits (opened once with ?fvk_owner=1) never load Clarity */y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yxksij4ckw");},2500)});
 </script>
 </head>
 <body>
@@ -769,6 +769,20 @@ window.FVK_CHECKOUT = {"plan_557ijfaENTgIP": "https://whop.com/checkout/ch_Umvtt
 (function () { var w = document.querySelector("figure.walk video"); if (!w) return;
   document.querySelectorAll(".hero .frame, .hero .hphone").forEach(function (el) { el.addEventListener("click", function () {
     w.scrollIntoView({ behavior: "smooth", block: "center" }); w.muted = false; try { var p = w.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} }); });
+})();
+</script>
+<script>
+/* 28 Oct 2026 (owner, Clarity): one Instagram visitor tapped the sample videos ~10 times, all logged as dead taps.
+   In-app browsers can swallow the first tap on a native video. A tap on a paused sample (or its caption) now plays it;
+   a tap on a playing one is left to the native controls, so it can still pause. */
+(function () {
+  document.querySelectorAll("figure.sample").forEach(function (fig) {
+    var v = fig.querySelector("video"); if (!v) return;
+    var go = function () { try { var p = v.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} };
+    v.addEventListener("pointerdown", function () { v._wasPaused = v.paused; });
+    v.addEventListener("click", function () { var was = v._wasPaused; setTimeout(function () { if (was && v.paused) go(); }, 80); });
+    var cap = fig.querySelector(".cap"); if (cap) { cap.style.cursor = "pointer"; cap.addEventListener("click", function () { if (v.paused) go(); }); }
+  });
 })();
 </script>
 </body>
